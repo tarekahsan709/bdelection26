@@ -1,0 +1,262 @@
+{
+  "party": "NCP",
+  "party_full_name": "National Citizen Party",
+  "party_bengali": "জাতীয় নাগরিক পার্টি",
+  "document_date": "2025-12-26",
+  "electoral_symbol": "Shapla Koli (Waterlily Bud)",
+  "candidates": [
+    {
+      "candidate_id": 1,
+      "serial": 1,
+      "constituency_id": 1,
+      "constituency": "পঞ্চগড় -১",
+      "constituency_english": "Panchagarh-1",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "31",
+      "district": "পঞ্চগড়",
+      "district_english": "Panchagarh",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "পঞ্চগড় সদর উপজেলা",
+          "name_english": "Panchagarh Sadar Upazila",
+          "upazila_id": "435",
+          "postcodes": ["5000"]
+        },
+        {
+          "type": "upazila",
+          "name": "তেতুলিয়া উপজেলা",
+          "name_english": "Tetulia Upazila",
+          "upazila_id": "439",
+          "postcodes": ["5030"]
+        },
+        {
+          "type": "upazila",
+          "name": "আটোয়ারী উপজেলা",
+          "name_english": "Atwari Upazila",
+          "upazila_id": "438"
+        }
+      ],
+      "candidate_name": "সারজিস আলম",
+      "candidate_name_english": "Sarjis Alam",
+      "position": "Chief Organiser (North)"
+    },
+    {
+      "candidate_id": 2,
+      "serial": 179,
+      "constituency_id": 179,
+      "constituency": "ঢাকা -১১",
+      "constituency_english": "Dhaka-11",
+      "division_id": "3",
+      "division": "ঢাকা",
+      "division_english": "Dhaka",
+      "district_id": "1",
+      "district": "ঢাকা",
+      "district_english": "Dhaka",
+      "areas": [
+        {
+          "type": "city_corporation_ward",
+          "name": "ঢাকা দক্ষিণ সিটি কর্পোরেশন",
+          "name_english": "Dhaka South City Corporation"
+        }
+      ],
+      "candidate_name": "নাহিদ ইসলাম",
+      "candidate_name_english": "Nahid Islam",
+      "position": "Convener"
+    },
+    {
+      "candidate_id": 3,
+      "serial": 186,
+      "constituency_id": 186,
+      "constituency": "ঢাকা -১৮",
+      "constituency_english": "Dhaka-18",
+      "division_id": "3",
+      "division": "ঢাকা",
+      "division_english": "Dhaka",
+      "district_id": "1",
+      "district": "ঢাকা",
+      "district_english": "Dhaka",
+      "areas": [
+        {
+          "type": "city_corporation_ward",
+          "name": "ঢাকা উত্তর সিটি কর্পোরেশন",
+          "name_english": "Dhaka North City Corporation"
+        }
+      ],
+      "candidate_name": "নাসিরউদ্দিন পাটোয়ারী",
+      "candidate_name_english": "Nasiruddin Patwary",
+      "position": "Chief Coordinator"
+    },
+    {
+      "candidate_id": 4,
+      "serial": 253,
+      "constituency_id": 253,
+      "constituency": "কুমিল্লা - ৫",
+      "constituency_english": "Cumilla-4",
+      "division_id": "2",
+      "division": "চট্টগ্রাম",
+      "division_english": "Chattogram",
+      "district_id": "44",
+      "district": "কুমিল্লা",
+      "district_english": "Cumilla",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "ব্রাহ্মণপাড়া উপজেলা",
+          "name_english": "Brahmanpara Upazila"
+        },
+        {
+          "type": "upazila",
+          "name": "বুড়িচং উপজেলা",
+          "name_english": "Burichang Upazila"
+        }
+      ],
+      "candidate_name": "হাসনাত আব্দুল্লাহ",
+      "candidate_name_english": "Hasnat Abdullah",
+      "position": "Chief Organiser (South)"
+    },
+    {
+      "candidate_id": 5,
+      "serial": 180,
+      "constituency_id": 180,
+      "constituency": "ঢাকা -১২",
+      "constituency_english": "Dhaka-12",
+      "division_id": "3",
+      "division": "ঢাকা",
+      "division_english": "Dhaka",
+      "district_id": "1",
+      "district": "ঢাকা",
+      "district_english": "Dhaka",
+      "areas": [
+        {
+          "type": "city_corporation_ward",
+          "name": "ঢাকা দক্ষিণ সিটি কর্পোরেশন",
+          "name_english": "Dhaka South City Corporation"
+        }
+      ],
+      "candidate_name": "নাহিদা সরওয়ার নিভা",
+      "candidate_name_english": "Nahida Sarwar Niva",
+      "position": "Senior Joint Member Secretary"
+    },
+    {
+      "candidate_id": 6,
+      "serial": 273,
+      "constituency_id": 273,
+      "constituency": "নোয়াখালী-৬",
+      "constituency_english": "Noakhali-6",
+      "division_id": "2",
+      "division": "চট্টগ্রাম",
+      "division_english": "Chattogram",
+      "district_id": "49",
+      "district": "নোয়াখালী",
+      "district_english": "Noakhali",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "হাতিয়া উপজেলা",
+          "name_english": "Hatiya Upazila"
+        }
+      ],
+      "candidate_name": "আব্দুল হান্নান মাসুদ",
+      "candidate_name_english": "Abdul Hannan Masud",
+      "position": "Senior Joint Chief Coordinator"
+    },
+    {
+      "candidate_id": 7,
+      "serial": 26,
+      "constituency_id": 26,
+      "constituency": "রংপুর -৪",
+      "constituency_english": "Rangpur-4",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "32",
+      "district": "রংপুর",
+      "district_english": "Rangpur",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "পীরগাছা উপজেলা",
+          "name_english": "Pirgachha Upazila"
+        },
+        {
+          "type": "upazila",
+          "name": "কাউনিয়া উপজেলা",
+          "name_english": "Kawnia Upazila"
+        }
+      ],
+      "candidate_name": "আখতার হোসেন",
+      "candidate_name_english": "Akhter Hossen",
+      "position": "Member Secretary"
+    },
+    {
+      "candidate_id": 8,
+      "serial": 3,
+      "constituency_id": 3,
+      "constituency": "ঠাকুরগাঁও - ১",
+      "constituency_english": "Thakurgaon-1",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "33",
+      "district": "ঠাকুরগাঁও",
+      "district_english": "Thakurgaon",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "ঠাকুরগাঁও সদর উপজেলা",
+          "name_english": "Thakurgaon Sadar Upazila",
+          "upazila_id": "463"
+        }
+      ],
+      "candidate_name": "রাফিদ হাসান",
+      "candidate_name_english": "Rafid Hasan"
+    },
+    {
+      "candidate_id": 9,
+      "serial": 278,
+      "constituency_id": 278,
+      "constituency": "চট্টগ্রাম-১",
+      "constituency_english": "Chittagong-1",
+      "division_id": "2",
+      "division": "চট্টগ্রাম",
+      "division_english": "Chattogram",
+      "district_id": "43",
+      "district": "চট্টগ্রাম",
+      "district_english": "Chattogram",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "মীরশরাই উপজেলা",
+          "name_english": "Mirsharai Upazila"
+        }
+      ],
+      "candidate_name": "ফাহিম আহমেদ",
+      "candidate_name_english": "Fahim Ahmed"
+    },
+    {
+      "candidate_id": 10,
+      "serial": 54,
+      "constituency_id": 54,
+      "constituency": "রাজশাহী -১",
+      "constituency_english": "Rajshahi-1",
+      "division_id": "5",
+      "division": "রাজশাহী",
+      "division_english": "Rajshahi",
+      "district_id": "24",
+      "district": "রাজশাহী",
+      "district_english": "Rajshahi",
+      "areas": [
+        {
+          "type": "city_corporation_ward",
+          "name": "রাজশাহী সিটি কর্পোরেশন",
+          "name_english": "Rajshahi City Corporation"
+        }
+      ],
+      "candidate_name": "তানভীর ইসলাম",
+      "candidate_name_english": "Tanvir Islam"
+    }
+  ]
+}

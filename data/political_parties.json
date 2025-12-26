@@ -1,0 +1,200 @@
+[
+    {
+        "id": "ncp",
+        "registration_number": "001",
+        "name_en": "National Citizen Party",
+        "name_bn": "জাতীয় নাগরিক পার্টি",
+        "short_name": "NCP",
+        "short_name_bn": "এনসিপি",
+        "founded": "2025-02-28",
+        "founder": "Nahid Islam",
+        "founder_bn": "নাহিদ ইসলাম",
+        "leadership": {
+            "convener": {
+                "name_en": "Nahid Islam",
+                "name_bn": "নাহিদ ইসলাম"
+            },
+            "chief_coordinator": {
+                "name_en": "Nasiruddin Patwary",
+                "name_bn": "নাসিরউদ্দিন পাটোয়ারী"
+            },
+            "joint_coordinator": {
+                "name_en": "Abdul Hannan Masud",
+                "name_bn": "আব্দুল হান্নান মাসুদ"
+            }
+        },
+        "symbol": "water-lily",
+        "symbol_bn": "শাপলা",
+        "symbol_note": "Requested water lily (Shapla); EC allocation pending",
+        "color": "#1E88E5",
+        "ideology": [
+            "Centrism",
+            "Pluralism",
+            "Youth politics",
+            "Reform-oriented"
+        ],
+        "slogan": "Integrity, Unity, Progress",
+        "slogan_bn": "সততা, ঐক্য, উন্নয়ন",
+        "website_url": "https://jatiyonagrikparty.com/",
+        "facebook_url": null,
+        "twitter_url": null,
+        "headquarters": "Dhaka, Bangladesh",
+        "is_registered": true,
+        "alliance": null,
+        "description_en": "First student-led political party in Bangladesh's history, formed after the July 2024 uprising by the Students Against Discrimination movement and Jatiya Nagorik Committee.",
+        "description_bn": "বাংলাদেশের ইতিহাসে প্রথম ছাত্র-নেতৃত্বাধীন রাজনৈতিক দল, ২০২৪ সালের জুলাই গণজাগরণের পর বৈষম্যবিরোধী ছাত্র আন্দোলন ও জাতীয় নাগরিক কমিটি দ্বারা গঠিত।",
+        "verified": true,
+        "last_updated": "2025-12-26",
+        "sources": [
+            "https://en.wikipedia.org/wiki/National_Citizen_Party",
+            "https://jatiyonagrikparty.com/"
+        ]
+    },
+    {
+        "id": "cpb",
+        "registration_number": "005",
+        "name_en": "Communist Party of Bangladesh",
+        "name_bn": "বাংলাদেশের কমিউনিস্ট পার্টি",
+        "short_name": "CPB",
+        "short_name_bn": "সিপিবি",
+        "founded": "1968-01-01",
+        "founder": null,
+        "founder_bn": null,
+        "leadership": {
+            "president": {
+                "name_en": "Kazi Sajjad Zahir Chandan",
+                "name_bn": "কাজী সাজ্জাদ জহির চন্দন"
+            },
+            "general_secretary": {
+                "name_en": "Shah Alam",
+                "name_bn": "শাহ আলম"
+            }
+        },
+        "symbol": "sickle",
+        "symbol_bn": "কাস্তে",
+        "symbol_note": null,
+        "color": "#D32F2F",
+        "ideology": [
+            "Communism",
+            "Marxism–Leninism",
+            "Left-wing politics"
+        ],
+        "slogan": null,
+        "slogan_bn": null,
+        "website_url": "https://www.cpbbd.org/",
+        "facebook_url": null,
+        "twitter_url": null,
+        "headquarters": "Dhaka, Bangladesh",
+        "is_registered": true,
+        "alliance": "Left Democratic Alliance",
+        "description_en": "The dominant communist political party in Bangladesh, emerged from the East Pakistani wing of the Communist Party of Pakistan in 1968. Leads the Left Democratic Alliance since 2018.",
+        "description_bn": "বাংলাদেশের প্রধান কমিউনিস্ট রাজনৈতিক দল, ১৯৬৮ সালে পাকিস্তান কমিউনিস্ট পার্টির পূর্ব পাকিস্তান শাখা থেকে উদ্ভূত।",
+        "verified": true,
+        "last_updated": "2025-12-26",
+        "sources": [
+            "https://en.wikipedia.org/wiki/Communist_Party_of_Bangladesh",
+            "https://www.cpbbd.org/"
+        ]
+    },
+    {
+        "id": "bnp",
+        "registration_number": "007",
+        "name_en": "Bangladesh Nationalist Party",
+        "name_bn": "বাংলাদেশ জাতীয়তাবাদী দল",
+        "short_name": "BNP",
+        "short_name_bn": "বিএনপি",
+        "founded": "1978-09-01",
+        "founder": "Ziaur Rahman",
+        "founder_bn": "জিয়াউর রহমান",
+        "leadership": {
+            "chairperson": {
+                "name_en": "Khaleda Zia",
+                "name_bn": "খালেদা জিয়া"
+            },
+            "acting_chairman": {
+                "name_en": "Tarique Rahman",
+                "name_bn": "তারেক রহমান"
+            },
+            "secretary_general": {
+                "name_en": "Mirza Fakhrul Islam Alamgir",
+                "name_bn": "মির্জা ফখরুল ইসলাম আলমগীর"
+            }
+        },
+        "symbol": "sheaf-of-paddy",
+        "symbol_bn": "ধানের শীষ",
+        "symbol_note": null,
+        "color": "#4CAF50",
+        "ideology": [
+            "Bangladeshi nationalism",
+            "Liberalism",
+            "Conservatism",
+            "Economic liberalism",
+            "Anti-corruption"
+        ],
+        "slogan": "Bangladesh Zindabad",
+        "slogan_bn": "বাংলাদেশ জিন্দাবাদ",
+        "website_url": "https://www.bnpbd.org/",
+        "facebook_url": "https://www.facebook.com/aborbnp/",
+        "twitter_url": "https://twitter.com/bdaborbnp",
+        "youtube_url": "https://www.youtube.com/channel/UCp0svklvXrphG3A6jItBcNQ",
+        "headquarters": "Naya Paltan, Dhaka, Bangladesh",
+        "is_registered": true,
+        "alliance": "20-Party Alliance",
+        "description_en": "A major political party in Bangladesh, founded in 1978 by President Ziaur Rahman. One of the two largest parties in the country, known for its nationalist ideology.",
+        "description_bn": "বাংলাদেশের একটি প্রধান রাজনৈতিক দল, ১৯৭৮ সালে রাষ্ট্রপতি জিয়াউর রহমান কর্তৃক প্রতিষ্ঠিত। জাতীয়তাবাদী আদর্শের জন্য পরিচিত।",
+        "verified": true,
+        "last_updated": "2025-12-26",
+        "sources": [
+            "https://en.wikipedia.org/wiki/Bangladesh_Nationalist_Party",
+            "https://www.bnpbd.org/"
+        ]
+    },
+    {
+        "id": "jamaat",
+        "registration_number": "014",
+        "name_en": "Bangladesh Jamaat-e-Islami",
+        "name_bn": "বাংলাদেশ জামায়াতে ইসলামী",
+        "short_name": "Jamaat",
+        "short_name_bn": "জামায়াত",
+        "founded": "1979-01-01",
+        "founder": null,
+        "founder_bn": null,
+        "leadership": {
+            "ameer": {
+                "name_en": "Shafiqur Rahman",
+                "name_bn": "শফিকুর রহমান"
+            },
+            "secretary_general": {
+                "name_en": "Mia Golam Parwar",
+                "name_bn": "মিয়া গোলাম পারোয়ার"
+            }
+        },
+        "symbol": "scales",
+        "symbol_bn": "দাঁড়িপাল্লা",
+        "symbol_note": "Scales symbol was reinstated by Appellate Division verdict in June 2025",
+        "color": "#2E7D32",
+        "ideology": [
+            "Islamism",
+            "Islamic democracy",
+            "Social conservatism",
+            "Anti-corruption"
+        ],
+        "slogan": null,
+        "slogan_bn": null,
+        "website_url": "https://jamaat-e-islami.org/",
+        "website_url_en": "https://www.jamaat-e-islami.org/en/",
+        "facebook_url": "https://www.facebook.com/BJI.Official/",
+        "twitter_url": "https://twitter.com/BJI_Official",
+        "headquarters": "Moghbazar, Dhaka, Bangladesh",
+        "is_registered": true,
+        "alliance": null,
+        "description_en": "The largest Islamist political party in Bangladesh, emerged from the East Pakistani wing of the Jamaat-e-Islami Pakistan in 1979. Registration and symbol reinstated in 2025.",
+        "description_bn": "বাংলাদেশের বৃহত্তম ইসলামপন্থী রাজনৈতিক দল, ১৯৭৯ সালে জামায়াতে ইসলামী পাকিস্তানের পূর্ব পাকিস্তান শাখা থেকে উদ্ভূত।",
+        "verified": true,
+        "last_updated": "2025-12-26",
+        "sources": [
+            "https://en.wikipedia.org/wiki/Bangladesh_Jamaat-e-Islami",
+            "https://jamaat-e-islami.org/"
+        ]
+    }
+]

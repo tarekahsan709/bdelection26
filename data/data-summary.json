@@ -1,0 +1,110 @@
+{
+  "project": "Bangladesh Election Geographic Data",
+  "description": "Complete geographic and administrative data for Bangladesh elections mapping",
+  "last_updated": "2025-12-26",
+  "administrative_hierarchy": [
+    "Division (বিভাগ)",
+    "District (জেলা)",
+    "Upazila (উপজেলা)",
+    "Union (ইউনিয়ন)"
+  ],
+  "data_files": {
+    "bd-divisions.json": {
+      "description": "8 Administrative Divisions of Bangladesh",
+      "count": 8,
+      "fields": ["id", "name", "bn_name", "lat", "long"],
+      "relation": "Top-level administrative unit"
+    },
+    "bd-districts.json": {
+      "description": "64 Districts of Bangladesh",
+      "count": 64,
+      "fields": ["id", "division_id", "name", "bn_name", "lat", "long"],
+      "relation": "Belongs to a Division"
+    },
+    "bd-upazilas.json": {
+      "description": "494 Upazilas (Sub-districts) of Bangladesh",
+      "count": 494,
+      "fields": ["id", "district_id", "name", "bn_name"],
+      "relation": "Belongs to a District"
+    },
+    "bd-unions.json": {
+      "description": "4540 Unions (lowest rural administrative unit)",
+      "count": 4540,
+      "fields": ["id", "upazilla_id", "name", "bn_name", "url"],
+      "relation": "Belongs to an Upazila"
+    },
+    "bd-postcodes.json": {
+      "description": "1349 Post Office locations with postcodes",
+      "count": 1349,
+      "fields": ["division_id", "district_id", "upazila", "postOffice", "postCode"],
+      "relation": "Associated with Upazilas"
+    },
+    "bd-city-corporations.json": {
+      "description": "12 City Corporations with ward numbers",
+      "count": 12,
+      "fields": ["id", "name", "bn_name", "short_name", "division_id", "district_id", "total_wards", "wards"],
+      "city_corporations": [
+        "Dhaka North (54 wards)",
+        "Dhaka South (75 wards)",
+        "Chattogram (41 wards)",
+        "Khulna (31 wards)",
+        "Rajshahi (30 wards)",
+        "Sylhet (42 wards)",
+        "Rangpur (33 wards)",
+        "Barishal (30 wards)",
+        "Cumilla (27 wards)",
+        "Gazipur (57 wards)",
+        "Narayanganj (27 wards)",
+        "Mymensingh (21 wards)"
+      ]
+    },
+    "bd-constituencies.json": {
+      "description": "300 Parliamentary Constituencies for National Elections",
+      "count": 300,
+      "fields": ["id", "name", "name_english", "division_id", "division", "district_id", "district", "areas"],
+      "distribution": {
+        "Dhaka": 71,
+        "Chattogram": 58,
+        "Rajshahi": 39,
+        "Khulna": 35,
+        "Rangpur": 33,
+        "Mymensingh": 24,
+        "Barishal": 21,
+        "Sylhet": 19
+      }
+    },
+    "dhaka-city.json": {
+      "description": "142 Neighborhoods/Areas of Dhaka City",
+      "count": 142,
+      "fields": ["division_id", "district_id", "city_corporation", "name", "bn_name"],
+      "relation": "Detailed areas within Dhaka North and South"
+    },
+    "bangladesh.geojson": {
+      "description": "GeoJSON boundary polygons for mapping",
+      "features": 463,
+      "format": "GeoJSON FeatureCollection",
+      "usage": "Map rendering with Leaflet, Mapbox, Google Maps"
+    }
+  },
+  "id_relationships": {
+    "division_id": "Links to bd-divisions.json id",
+    "district_id": "Links to bd-districts.json id",
+    "upazila_id": "Links to bd-upazilas.json id",
+    "upazilla_id": "Links to bd-upazilas.json id (alternate spelling)",
+    "constituency_id": "Links to bd-constituencies.json id"
+  },
+  "area_types": {
+    "upazila": "Sub-district administrative unit",
+    "city_corporation_ward": "Ward within a City Corporation",
+    "municipality": "Urban municipality (Pourashava)",
+    "union": "Rural union council",
+    "hill_district": "Special administrative unit in CHT",
+    "other": "Unclassified administrative area"
+  },
+  "notes": [
+    "All data includes both English and Bengali (bn_name) names",
+    "Constituency boundaries don't align exactly with administrative boundaries",
+    "City Corporation wards are separate from upazila system",
+    "Chittagong Hill Tracts (CHT) has special administrative structure"
+  ]
+}

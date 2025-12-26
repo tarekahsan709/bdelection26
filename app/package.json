@@ -1,0 +1,73 @@
+{
+  "name": "bangladesh-election-map",
+  "version": "1.0.0",
+  "description": "Interactive dot density map visualization of Bangladesh election data with voter distribution across 300 parliamentary constituencies",
+  "private": true,
+  "author": {
+    "name": "Nazmul Ahsan",
+    "email": "tarekahsan709@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tarekahsan709/bangladesh-election"
+  },
+  "keywords": [
+    "bangladesh",
+    "election",
+    "map",
+    "visualization",
+    "dot-density",
+    "leaflet",
+    "nextjs",
+    "react"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "eslint src --fix && pnpm format",
+    "lint:strict": "eslint --max-warnings=0 src",
+    "typecheck": "tsc --noEmit --incremental false",
+    "test:watch": "jest --watch",
+    "test": "jest",
+    "format": "prettier -w .",
+    "format:check": "prettier -c ."
+  },
+  "dependencies": {
+    "@turf/turf": "^7.3.1",
+    "@types/leaflet": "^1.9.21",
+    "clsx": "^2.0.0",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.438.0",
+    "next": "^15.4.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
+    "tailwind-merge": "^2.6.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^15.0.7",
+    "@types/react": "^19.1.8",
+    "@types/testing-library__jest-dom": "^5.14.9",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.23",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "jest": "^27.5.1",
+    "postcss": "^8.5.1",
+    "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3"
+  }
+}

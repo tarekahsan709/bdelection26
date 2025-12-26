@@ -1,0 +1,2366 @@
+[
+  {
+    "id": "1",
+    "name_english": "Panchagarh-1",
+    "registered_voters": 436923,
+    "lat": 26.32999992370605,
+    "long": 88.55999755859375,
+    "source": "dbpedia"
+  },
+  {
+    "id": "2",
+    "name_english": "Panchagarh-2",
+    "registered_voters": 389941,
+    "lat": 26.20000076293945,
+    "long": 88.55000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "3",
+    "name_english": "Thakurgaon-1",
+    "registered_voters": 480609,
+    "lat": 26.09000015258789,
+    "long": 88.27999877929688,
+    "source": "dbpedia"
+  },
+  {
+    "id": "4",
+    "name_english": "Thakurgaon-2",
+    "registered_voters": 317973,
+    "lat": 26.09000015258789,
+    "long": 88.27999877929688,
+    "source": "dbpedia"
+  },
+  {
+    "id": "5",
+    "name_english": "Thakurgaon-3",
+    "registered_voters": 300017,
+    "lat": 23.63999938964844,
+    "long": 88.8499984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "6",
+    "name_english": "Dinajpur-1",
+    "registered_voters": 344065,
+    "lat": 25.86000061035156,
+    "long": 88.6500015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "7",
+    "name_english": "Dinajpur-2",
+    "registered_voters": 306579,
+    "lat": 25.6299991607666,
+    "long": 88.55000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "8",
+    "name_english": "Dinajpur-3",
+    "registered_voters": 349569,
+    "lat": 25.6200008392334,
+    "long": 88.63999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "9",
+    "name_english": "Dinajpur-4",
+    "registered_voters": 342887,
+    "lat": 25.64999961853027,
+    "long": 88.7699966430664,
+    "source": "dbpedia"
+  },
+  {
+    "id": "10",
+    "name_english": "Dinajpur-5",
+    "registered_voters": 399243,
+    "lat": 25.65999984741211,
+    "long": 88.91000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "11",
+    "name_english": "Dinajpur-6",
+    "registered_voters": 466243,
+    "lat": 25.42000007629395,
+    "long": 89.08000183105469,
+    "source": "dbpedia"
+  },
+  {
+    "id": "12",
+    "name_english": "Nilphamari-1",
+    "registered_voters": 372535,
+    "lat": 26.14999961853027,
+    "long": 88.91999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "13",
+    "name_english": "Nilphamari-2",
+    "registered_voters": 311735,
+    "lat": 25.93000030517578,
+    "long": 88.86000061035156,
+    "source": "dbpedia"
+  },
+  {
+    "id": "14",
+    "name_english": "Nilphamari-3",
+    "registered_voters": 236171,
+    "lat": 26.02000045776367,
+    "long": 89.0199966430664,
+    "source": "dbpedia"
+  },
+  {
+    "id": "15",
+    "name_english": "Nilphamari-4",
+    "registered_voters": 371999,
+    "lat": 25.78000068664551,
+    "long": 88.9000015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "16",
+    "name_english": "Lalmonirhat-1",
+    "registered_voters": 318112,
+    "lat": 26.1200008392334,
+    "long": 89.13999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "17",
+    "name_english": "Lalmonirhat-2",
+    "registered_voters": 346334,
+    "lat": 25.96999931335449,
+    "long": 89.22000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "18",
+    "name_english": "Lalmonirhat-3",
+    "registered_voters": 252243,
+    "lat": 25.92000007629395,
+    "long": 89.44999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "19",
+    "name_english": "Rangpur-1",
+    "registered_voters": 287989,
+    "lat": 25.85000038146973,
+    "long": 89.22000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "20",
+    "name_english": "Rangpur-2",
+    "registered_voters": 312816,
+    "lat": 25.67000007629395,
+    "long": 89.05000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "21",
+    "name_english": "Rangpur-3",
+    "registered_voters": 441671,
+    "lat": 25.76000022888184,
+    "long": 89.23999786376953,
+    "source": "dbpedia"
+  },
+  {
+    "id": "22",
+    "name_english": "Rangpur-4",
+    "registered_voters": 412990,
+    "lat": 25.65999984741211,
+    "long": 89.41000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "23",
+    "name_english": "Rangpur-5",
+    "registered_voters": 386414,
+    "lat": 25.56999969482422,
+    "long": 89.2699966430664,
+    "source": "dbpedia"
+  },
+  {
+    "id": "24",
+    "name_english": "Rangpur-6",
+    "registered_voters": 292994,
+    "lat": 25.42000007629395,
+    "long": 89.30999755859375,
+    "source": "dbpedia"
+  },
+  {
+    "id": "25",
+    "name_english": "Kurigram-1",
+    "registered_voters": 461516,
+    "lat": 25.96999931335449,
+    "long": 89.69000244140625,
+    "source": "dbpedia"
+  },
+  {
+    "id": "26",
+    "name_english": "Kurigram-2",
+    "registered_voters": 493356,
+    "lat": 25.80999946594238,
+    "long": 89.63999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "27",
+    "name_english": "Kurigram-3",
+    "registered_voters": 303013,
+    "lat": 25.65999984741211,
+    "long": 89.62000274658203,
+    "source": "dbpedia"
+  },
+  {
+    "id": "28",
+    "name_english": "Kurigram-4",
+    "registered_voters": 289120,
+    "lat": 25.56999969482422,
+    "long": 89.83000183105469,
+    "source": "dbpedia"
+  },
+  {
+    "id": "29",
+    "name_english": "Gaibandha-1",
+    "registered_voters": 339149,
+    "lat": 25.56999969482422,
+    "long": 89.5199966430664,
+    "source": "dbpedia"
+  },
+  {
+    "id": "30",
+    "name_english": "Gaibandha-2",
+    "registered_voters": 334665,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "31",
+    "name_english": "Gaibandha-3",
+    "registered_voters": 369797,
+    "lat": 25.38999938964844,
+    "long": 89.47000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "32",
+    "name_english": "Gaibandha-4",
+    "registered_voters": 386296,
+    "lat": 25.13999938964844,
+    "long": 89.38999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "33",
+    "name_english": "Gaibandha-5",
+    "registered_voters": 313755,
+    "lat": 25.11000061035156,
+    "long": 89.58000183105469,
+    "source": "dbpedia"
+  },
+  {
+    "id": "34",
+    "name_english": "Joypurhat-1",
+    "registered_voters": 399245,
+    "lat": 25.10000038146973,
+    "long": 89.02999877929688,
+    "source": "dbpedia"
+  },
+  {
+    "id": "35",
+    "name_english": "Joypurhat-2",
+    "registered_voters": 307298,
+    "lat": 25.05999946594238,
+    "long": 89.16999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "36",
+    "name_english": "Bogra-1",
+    "registered_voters": 317569,
+    "lat": 24.88999938964844,
+    "long": 89.56999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "37",
+    "name_english": "Bogra-2",
+    "registered_voters": 296406,
+    "lat": 25,
+    "long": 89.31999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "38",
+    "name_english": "Bogra-3",
+    "registered_voters": 296469,
+    "lat": 24.81999969482422,
+    "long": 89.04000091552734,
+    "source": "dbpedia"
+  },
+  {
+    "id": "39",
+    "name_english": "Bogra-4",
+    "registered_voters": 312081,
+    "lat": 24.82999992370605,
+    "long": 89.26000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "40",
+    "name_english": "Bogra-5",
+    "registered_voters": 475639,
+    "lat": 24.67000007629395,
+    "long": 89.41999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "41",
+    "name_english": "Bogra-6",
+    "registered_voters": 387279,
+    "lat": 24.85000038146973,
+    "long": 89.37000274658203,
+    "source": "dbpedia"
+  },
+  {
+    "id": "42",
+    "name_english": "Bogra-7",
+    "registered_voters": 461515,
+    "lat": 24.8799991607666,
+    "long": 89.44999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "43",
+    "name_english": "Chapainawabganj-1",
+    "error": "not_found"
+  },
+  {
+    "id": "44",
+    "name_english": "Chapainawabganj-2",
+    "error": "not_found"
+  },
+  {
+    "id": "45",
+    "name_english": "Chapainawabganj-3",
+    "error": "not_found"
+  },
+  {
+    "id": "46",
+    "name_english": "Naogaon-1",
+    "registered_voters": null,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "47",
+    "name_english": "Naogaon-2",
+    "registered_voters": 322091,
+    "lat": 25.04999923706055,
+    "long": 88.76000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "48",
+    "name_english": "Naogaon-3",
+    "registered_voters": 382536,
+    "lat": 24.92000007629395,
+    "long": 88.75,
+    "source": "dbpedia"
+  },
+  {
+    "id": "49",
+    "name_english": "Naogaon-4",
+    "registered_voters": 289226,
+    "lat": 24.78000068664551,
+    "long": 88.69999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "50",
+    "name_english": "Naogaon-5",
+    "registered_voters": 289228,
+    "lat": 24.82999992370605,
+    "long": 88.93000030517578,
+    "source": "dbpedia"
+  },
+  {
+    "id": "51",
+    "name_english": "Naogaon-6",
+    "registered_voters": 294493,
+    "lat": 24.73999977111816,
+    "long": 88.95999908447266,
+    "source": "dbpedia"
+  },
+  {
+    "id": "52",
+    "name_english": "Rajshahi-1",
+    "registered_voters": 383352,
+    "lat": 24.46999931335449,
+    "long": 88.31999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "53",
+    "name_english": "Rajshahi-2",
+    "registered_voters": 317852,
+    "lat": 24.3700008392334,
+    "long": 88.5999984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "54",
+    "name_english": "Rajshahi-3",
+    "registered_voters": 357375,
+    "lat": 24.45999908447266,
+    "long": 88.61000061035156,
+    "source": "dbpedia"
+  },
+  {
+    "id": "55",
+    "name_english": "Rajshahi-4",
+    "registered_voters": 306352,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "56",
+    "name_english": "Rajshahi-5",
+    "registered_voters": 301677,
+    "lat": 24.3700008392334,
+    "long": 88.83999633789062,
+    "source": "dbpedia"
+  },
+  {
+    "id": "57",
+    "name_english": "Rajshahi-6",
+    "registered_voters": 304298,
+    "lat": 24.29000091552734,
+    "long": 88.75,
+    "source": "dbpedia"
+  },
+  {
+    "id": "58",
+    "name_english": "Natore-1",
+    "registered_voters": 311925,
+    "lat": 24.18000030517578,
+    "long": 88.95999908447266,
+    "source": "dbpedia"
+  },
+  {
+    "id": "59",
+    "name_english": "Natore-2",
+    "registered_voters": 343986,
+    "lat": 24.42000007629395,
+    "long": 89,
+    "source": "dbpedia"
+  },
+  {
+    "id": "60",
+    "name_english": "Natore-3",
+    "registered_voters": 276178,
+    "lat": 24.5,
+    "long": 89.1500015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "61",
+    "name_english": "Natore-4",
+    "registered_voters": 371788,
+    "lat": 24.30999946594238,
+    "long": 89.16999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "62",
+    "name_english": "Sirajganj-1",
+    "registered_voters": 345603,
+    "lat": 24.64999961853027,
+    "long": 89.63999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "63",
+    "name_english": "Sirajganj-2",
+    "registered_voters": 351121,
+    "lat": 24.45000076293945,
+    "long": 89.69999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "64",
+    "name_english": "Sirajganj-3",
+    "registered_voters": 367549,
+    "lat": 24.51000022888184,
+    "long": 89.52999877929688,
+    "source": "dbpedia"
+  },
+  {
+    "id": "65",
+    "name_english": "Sirajganj-4",
+    "registered_voters": 391114,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "66",
+    "name_english": "Sirajganj-5",
+    "registered_voters": 339906,
+    "lat": 24.29999923706055,
+    "long": 89.69999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "67",
+    "name_english": "Sirajganj-6",
+    "registered_voters": 401155,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "68",
+    "name_english": "Pabna-1",
+    "registered_voters": 377706,
+    "lat": 24.04999923706055,
+    "long": 89.55000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "69",
+    "name_english": "Pabna-2",
+    "registered_voters": 300789,
+    "lat": 23.94000053405762,
+    "long": 89.41000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "70",
+    "name_english": "Pabna-3",
+    "registered_voters": 402836,
+    "lat": 24.22999954223633,
+    "long": 89.29000091552734,
+    "source": "dbpedia"
+  },
+  {
+    "id": "71",
+    "name_english": "Pabna-4",
+    "registered_voters": 362483,
+    "lat": 24.1200008392334,
+    "long": 89.05999755859375,
+    "source": "dbpedia"
+  },
+  {
+    "id": "72",
+    "name_english": "Pabna-5",
+    "registered_voters": 435902,
+    "lat": 24,
+    "long": 89.2300033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "73",
+    "name_english": "Meherpur-1",
+    "registered_voters": 269605,
+    "lat": 23.76000022888184,
+    "long": 88.62999725341797,
+    "source": "dbpedia"
+  },
+  {
+    "id": "74",
+    "name_english": "Meherpur-2",
+    "registered_voters": 226288,
+    "lat": 23.80999946594238,
+    "long": 88.76000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "75",
+    "name_english": "Kushtia-1",
+    "registered_voters": 336119,
+    "lat": 24,
+    "long": 88.87999725341797,
+    "source": "dbpedia"
+  },
+  {
+    "id": "76",
+    "name_english": "Kushtia-2",
+    "registered_voters": 399687,
+    "lat": 23.94000053405762,
+    "long": 89,
+    "source": "dbpedia"
+  },
+  {
+    "id": "77",
+    "name_english": "Kushtia-3",
+    "registered_voters": 372848,
+    "lat": 23.90999984741211,
+    "long": 89.12000274658203,
+    "source": "dbpedia"
+  },
+  {
+    "id": "78",
+    "name_english": "Kushtia-4",
+    "registered_voters": 351234,
+    "lat": 23.86000061035156,
+    "long": 89.23999786376953,
+    "source": "dbpedia"
+  },
+  {
+    "id": "79",
+    "name_english": "Chuadanga-1",
+    "registered_voters": 437845,
+    "lat": 23.63999938964844,
+    "long": 88.8499984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "80",
+    "name_english": "Chuadanga-2",
+    "registered_voters": 415027,
+    "lat": 23.60000038146973,
+    "long": 88.77999877929688,
+    "source": "dbpedia"
+  },
+  {
+    "id": "81",
+    "name_english": "Jhenaidah-1",
+    "registered_voters": 276334,
+    "lat": 23.68490028381348,
+    "long": 89.25029754638672,
+    "source": "dbpedia"
+  },
+  {
+    "id": "82",
+    "name_english": "Jhenaidah-2",
+    "registered_voters": 423555,
+    "lat": 23.54000091552734,
+    "long": 89.18000030517578,
+    "source": "dbpedia"
+  },
+  {
+    "id": "83",
+    "name_english": "Jhenaidah-3",
+    "registered_voters": 360920,
+    "lat": 23.36000061035156,
+    "long": 88.91999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "84",
+    "name_english": "Jhenaidah-4",
+    "registered_voters": 281621,
+    "lat": 23.42000007629395,
+    "long": 89.13999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "85",
+    "name_english": "Jessore-1",
+    "registered_voters": 263500,
+    "lat": 23.04999923706055,
+    "long": 88.94999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "86",
+    "name_english": "Jessore-2",
+    "registered_voters": 405871,
+    "lat": 23.10580062866211,
+    "long": 89.10379791259766,
+    "source": "dbpedia"
+  },
+  {
+    "id": "87",
+    "name_english": "Jessore-3",
+    "registered_voters": 523340,
+    "lat": 23.15999984741211,
+    "long": 89.20999908447266,
+    "source": "dbpedia"
+  },
+  {
+    "id": "88",
+    "name_english": "Jessore-4",
+    "registered_voters": 386892,
+    "lat": 23.21999931335449,
+    "long": 89.3499984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "89",
+    "name_english": "Jessore-5",
+    "registered_voters": 319084,
+    "lat": 23.02000045776367,
+    "long": 89.2300033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "90",
+    "name_english": "Jessore-6",
+    "registered_voters": 193570,
+    "lat": 22.90999984741211,
+    "long": 89.22000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "91",
+    "name_english": "Magura-1",
+    "registered_voters": 400485,
+    "lat": 23.48999977111816,
+    "long": 89.41999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "92",
+    "name_english": "Magura-2",
+    "registered_voters": 334953,
+    "lat": 23.48999977111816,
+    "long": 89.41999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "93",
+    "name_english": "Narail-1",
+    "registered_voters": 238174,
+    "lat": 23.04000091552734,
+    "long": 89.62999725341797,
+    "source": "dbpedia"
+  },
+  {
+    "id": "94",
+    "name_english": "Narail-2",
+    "registered_voters": 317844,
+    "lat": 23.18000030517578,
+    "long": 89.6500015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "95",
+    "name_english": "Bagerhat-1",
+    "registered_voters": 302328,
+    "lat": 22.78000068664551,
+    "long": 89.69999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "96",
+    "name_english": "Bagerhat-2",
+    "registered_voters": 284096,
+    "lat": 22.65999984741211,
+    "long": 89.7699966430664,
+    "source": "dbpedia"
+  },
+  {
+    "id": "97",
+    "name_english": "Bagerhat-3",
+    "registered_voters": 226194,
+    "lat": 22.55999946594238,
+    "long": 89.6500015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "98",
+    "name_english": "Khulna-1",
+    "registered_voters": 259420,
+    "lat": 22.73999977111816,
+    "long": 89.5199966430664,
+    "source": "dbpedia"
+  },
+  {
+    "id": "99",
+    "name_english": "Khulna-2",
+    "registered_voters": 294116,
+    "lat": 22.81999969482422,
+    "long": 89.55999755859375,
+    "source": "dbpedia"
+  },
+  {
+    "id": "100",
+    "name_english": "Khulna-3",
+    "registered_voters": 226281,
+    "lat": 22.85000038146973,
+    "long": 89.54000091552734,
+    "source": "dbpedia"
+  },
+  {
+    "id": "101",
+    "name_english": "Khulna-4",
+    "registered_voters": 310476,
+    "lat": 22.79999923706055,
+    "long": 89.63999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "102",
+    "name_english": "Khulna-5",
+    "registered_voters": 344470,
+    "lat": 22.80999946594238,
+    "long": 89.41999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "103",
+    "name_english": "Khulna-6",
+    "registered_voters": 366239,
+    "lat": 22.59000015258789,
+    "long": 89.31999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "104",
+    "name_english": "Satkhira-1",
+    "registered_voters": 423073,
+    "lat": 22.75,
+    "long": 89.26000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "105",
+    "name_english": "Satkhira-2",
+    "registered_voters": 356246,
+    "lat": 22.71999931335449,
+    "long": 89.06999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "106",
+    "name_english": "Satkhira-3",
+    "registered_voters": 387337,
+    "lat": 22.54999923706055,
+    "long": 89.18000030517578,
+    "source": "dbpedia"
+  },
+  {
+    "id": "107",
+    "name_english": "Satkhira-4",
+    "registered_voters": 393767,
+    "lat": 22.34000015258789,
+    "long": 89.0999984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "108",
+    "name_english": "Barguna-1",
+    "registered_voters": 414402,
+    "lat": 22.13999938964844,
+    "long": 90.2300033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "109",
+    "name_english": "Barguna-2",
+    "registered_voters": 268366,
+    "lat": 22.04000091552734,
+    "long": 89.97000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "110",
+    "name_english": "Patuakhali-1",
+    "registered_voters": 393474,
+    "lat": 22.36000061035156,
+    "long": 90.33000183105469,
+    "source": "dbpedia"
+  },
+  {
+    "id": "111",
+    "name_english": "Patuakhali-2",
+    "registered_voters": 251873,
+    "lat": 22.40999984741211,
+    "long": 90.55999755859375,
+    "source": "dbpedia"
+  },
+  {
+    "id": "112",
+    "name_english": "Patuakhali-3",
+    "registered_voters": 298675,
+    "lat": 22.17000007629395,
+    "long": 90.41000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "113",
+    "name_english": "Patuakhali-4",
+    "registered_voters": 249035,
+    "lat": 21.98999977111816,
+    "long": 90.22000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "114",
+    "name_english": "Bhola-1",
+    "registered_voters": 310048,
+    "lat": 22.69000053405762,
+    "long": 90.6500015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "115",
+    "name_english": "Bhola-2",
+    "registered_voters": 297221,
+    "lat": 22.5,
+    "long": 90.72000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "116",
+    "name_english": "Bhola-3",
+    "registered_voters": 293604,
+    "lat": 22.32999992370605,
+    "long": 90.7300033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "117",
+    "name_english": "Bhola-4",
+    "registered_voters": 372948,
+    "lat": 22.19000053405762,
+    "long": 90.76000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "118",
+    "name_english": "Barishal-1",
+    "error": "not_found"
+  },
+  {
+    "id": "119",
+    "name_english": "Barishal-2",
+    "error": "not_found"
+  },
+  {
+    "id": "120",
+    "name_english": "Barishal-3",
+    "error": "not_found"
+  },
+  {
+    "id": "121",
+    "name_english": "Barishal-4",
+    "error": "not_found"
+  },
+  {
+    "id": "122",
+    "name_english": "Barishal-5",
+    "error": "not_found"
+  },
+  {
+    "id": "123",
+    "name_english": "Barishal-6",
+    "error": "not_found"
+  },
+  {
+    "id": "124",
+    "name_english": "Jhalokathi-1",
+    "error": "not_found"
+  },
+  {
+    "id": "125",
+    "name_english": "Jhalokathi-2",
+    "error": "not_found"
+  },
+  {
+    "id": "126",
+    "name_english": "Pirojpur-1",
+    "registered_voters": 419106,
+    "lat": 22.57999992370605,
+    "long": 89.9800033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "127",
+    "name_english": "Pirojpur-2",
+    "registered_voters": 220535,
+    "lat": 22.48999977111816,
+    "long": 90.05999755859375,
+    "source": "dbpedia"
+  },
+  {
+    "id": "128",
+    "name_english": "Pirojpur-3",
+    "registered_voters": 189862,
+    "lat": 22.29000091552734,
+    "long": 89.95999908447266,
+    "source": "dbpedia"
+  },
+  {
+    "id": "129",
+    "name_english": "Tangail-1",
+    "registered_voters": 364991,
+    "lat": 24.60000038146973,
+    "long": 90.02999877929688,
+    "source": "dbpedia"
+  },
+  {
+    "id": "130",
+    "name_english": "Tangail-2",
+    "registered_voters": 348670,
+    "lat": 24.54999923706055,
+    "long": 89.93000030517578,
+    "source": "dbpedia"
+  },
+  {
+    "id": "131",
+    "name_english": "Tangail-3",
+    "registered_voters": 318546,
+    "lat": 24.47999954223633,
+    "long": 89.97000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "132",
+    "name_english": "Tangail-4",
+    "registered_voters": 311088,
+    "lat": 24.3799991607666,
+    "long": 89.98999786376953,
+    "source": "dbpedia"
+  },
+  {
+    "id": "133",
+    "name_english": "Tangail-5",
+    "registered_voters": 380338,
+    "lat": 24.25,
+    "long": 89.91999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "134",
+    "name_english": "Tangail-6",
+    "registered_voters": 390446,
+    "lat": 24.05999946594238,
+    "long": 89.87999725341797,
+    "source": "dbpedia"
+  },
+  {
+    "id": "135",
+    "name_english": "Tangail-7",
+    "registered_voters": 322673,
+    "lat": 24.10000038146973,
+    "long": 90.0999984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "136",
+    "name_english": "Tangail-8",
+    "registered_voters": 346646,
+    "lat": 24.31999969482422,
+    "long": 90.16999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "137",
+    "name_english": "Jamalpur-1",
+    "registered_voters": 346286,
+    "lat": 25.15999984741211,
+    "long": 89.76000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "138",
+    "name_english": "Jamalpur-2",
+    "registered_voters": 221186,
+    "lat": 25.07999992370605,
+    "long": 89.79000091552734,
+    "source": "dbpedia"
+  },
+  {
+    "id": "139",
+    "name_english": "Jamalpur-3",
+    "registered_voters": 501819,
+    "lat": 24.97999954223633,
+    "long": 89.83000183105469,
+    "source": "dbpedia"
+  },
+  {
+    "id": "140",
+    "name_english": "Jamalpur-4",
+    "registered_voters": 252748,
+    "lat": 24.75,
+    "long": 89.83999633789062,
+    "source": "dbpedia"
+  },
+  {
+    "id": "141",
+    "name_english": "Jamalpur-5",
+    "registered_voters": 469931,
+    "lat": 24.93000030517578,
+    "long": 89.94000244140625,
+    "source": "dbpedia"
+  },
+  {
+    "id": "142",
+    "name_english": "Sherpur-1",
+    "registered_voters": 423664,
+    "lat": 25.01000022888184,
+    "long": 90.0199966430664,
+    "source": "dbpedia"
+  },
+  {
+    "id": "143",
+    "name_english": "Sherpur-2",
+    "registered_voters": 411695,
+    "lat": 25.09000015258789,
+    "long": 90.19000244140625,
+    "source": "dbpedia"
+  },
+  {
+    "id": "144",
+    "name_english": "Sherpur-3",
+    "registered_voters": 325520,
+    "lat": 25.14999961853027,
+    "long": 89.94000244140625,
+    "source": "dbpedia"
+  },
+  {
+    "id": "145",
+    "name_english": "Mymensingh-1",
+    "registered_voters": 377296,
+    "lat": 25.1200008392334,
+    "long": 90.33999633789062,
+    "source": "dbpedia"
+  },
+  {
+    "id": "146",
+    "name_english": "Mymensingh-2",
+    "registered_voters": 450703,
+    "lat": 24.95000076293945,
+    "long": 90.36000061035156,
+    "source": "dbpedia"
+  },
+  {
+    "id": "147",
+    "name_english": "Mymensingh-3",
+    "registered_voters": 234595,
+    "lat": 24.95000076293945,
+    "long": 90.36000061035156,
+    "source": "dbpedia"
+  },
+  {
+    "id": "148",
+    "name_english": "Mymensingh-4",
+    "registered_voters": 650289,
+    "lat": 24.76000022888184,
+    "long": 90.4000015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "149",
+    "name_english": "Mymensingh-5",
+    "registered_voters": 306525,
+    "lat": 24.77000045776367,
+    "long": 90.26000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "150",
+    "name_english": "Mymensingh-6",
+    "registered_voters": 325740,
+    "lat": 24.6299991607666,
+    "long": 90.2699966430664,
+    "source": "dbpedia"
+  },
+  {
+    "id": "151",
+    "name_english": "Mymensingh-7",
+    "registered_voters": 315508,
+    "lat": 24.57999992370605,
+    "long": 90.38999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "152",
+    "name_english": "Mymensingh-8",
+    "registered_voters": 271196,
+    "lat": 24.69000053405762,
+    "long": 90.5999984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "153",
+    "name_english": "Mymensingh-9",
+    "registered_voters": 294105,
+    "lat": 24.56999969482422,
+    "long": 90.69000244140625,
+    "source": "dbpedia"
+  },
+  {
+    "id": "154",
+    "name_english": "Mymensingh-10",
+    "registered_voters": 324345,
+    "lat": 24.45000076293945,
+    "long": 90.55000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "155",
+    "name_english": "Mymensingh-11",
+    "registered_voters": 294788,
+    "lat": 24.39999961853027,
+    "long": 90.38999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "156",
+    "name_english": "Netrokona-1",
+    "registered_voters": 353206,
+    "lat": 25.07999992370605,
+    "long": 90.88999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "157",
+    "name_english": "Netrokona-2",
+    "registered_voters": 396255,
+    "lat": 24.8700008392334,
+    "long": 90.7300033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "158",
+    "name_english": "Netrokona-3",
+    "registered_voters": 334453,
+    "lat": 24.65999984741211,
+    "long": 90.83999633789062,
+    "source": "dbpedia"
+  },
+  {
+    "id": "159",
+    "name_english": "Netrokona-4",
+    "registered_voters": 298237,
+    "lat": 24.8700008392334,
+    "long": 90.9800033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "160",
+    "name_english": "Netrokona-5",
+    "registered_voters": null,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "161",
+    "name_english": "Kishoreganj-1",
+    "registered_voters": 430193,
+    "lat": 24.45000076293945,
+    "long": 90.77999877929688,
+    "source": "dbpedia"
+  },
+  {
+    "id": "162",
+    "name_english": "Kishoreganj-2",
+    "registered_voters": 417265,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "163",
+    "name_english": "Kishoreganj-3",
+    "registered_voters": null,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "164",
+    "name_english": "Kishoreganj-4",
+    "registered_voters": 320246,
+    "lat": 24.53000068664551,
+    "long": 91.0999984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "165",
+    "name_english": "Kishoreganj-5",
+    "registered_voters": 278708,
+    "lat": 24.20999908447266,
+    "long": 90.94000244140625,
+    "source": "dbpedia"
+  },
+  {
+    "id": "166",
+    "name_english": "Kishoreganj-6",
+    "registered_voters": 332651,
+    "lat": 24.05999946594238,
+    "long": 90.9800033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "167",
+    "name_english": "Manikganj-1",
+    "registered_voters": 384610,
+    "lat": 23.84000015258789,
+    "long": 89.81999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "168",
+    "name_english": "Manikganj-2",
+    "registered_voters": 406245,
+    "lat": 23.80999946594238,
+    "long": 90.1500015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "169",
+    "name_english": "Manikganj-3",
+    "registered_voters": 319722,
+    "lat": 23.80999946594238,
+    "long": 90.1500015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "170",
+    "name_english": "Munshiganj-1",
+    "registered_voters": 440532,
+    "lat": 23.56999969482422,
+    "long": 90.37000274658203,
+    "source": "dbpedia"
+  },
+  {
+    "id": "171",
+    "name_english": "Munshiganj-2",
+    "registered_voters": 305987,
+    "lat": 23.51000022888184,
+    "long": 90.47000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "172",
+    "name_english": "Munshiganj-3",
+    "registered_voters": null,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "173",
+    "name_english": "Dhaka-1",
+    "registered_voters": 440287,
+    "lat": 23.65999984741211,
+    "long": 90.16000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "174",
+    "name_english": "Dhaka-2",
+    "registered_voters": 494346,
+    "lat": 23.70000076293945,
+    "long": 90.33999633789062,
+    "source": "dbpedia"
+  },
+  {
+    "id": "175",
+    "name_english": "Dhaka-3",
+    "registered_voters": 311617,
+    "lat": 23.70000076293945,
+    "long": 90.33999633789062,
+    "source": "dbpedia"
+  },
+  {
+    "id": "176",
+    "name_english": "Dhaka-4",
+    "registered_voters": 245813,
+    "lat": 23.69000053405762,
+    "long": 90.43000030517578,
+    "source": "dbpedia"
+  },
+  {
+    "id": "177",
+    "name_english": "Dhaka-5",
+    "registered_voters": 450608,
+    "lat": 23.70999908447266,
+    "long": 90.44000244140625,
+    "source": "dbpedia"
+  },
+  {
+    "id": "178",
+    "name_english": "Dhaka-6",
+    "registered_voters": 269315,
+    "lat": 23.70999908447266,
+    "long": 90.41999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "179",
+    "name_english": "Dhaka-7",
+    "registered_voters": 328181,
+    "lat": 23.71999931335449,
+    "long": 90.38999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "180",
+    "name_english": "Dhaka-8",
+    "registered_voters": 264664,
+    "lat": 23.72999954223633,
+    "long": 90.41000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "181",
+    "name_english": "Dhaka-9",
+    "registered_voters": 425501,
+    "lat": 23.73999977111816,
+    "long": 90.44000244140625,
+    "source": "dbpedia"
+  },
+  {
+    "id": "182",
+    "name_english": "Dhaka-10",
+    "registered_voters": 313744,
+    "lat": 23.73999977111816,
+    "long": 90.37999725341797,
+    "source": "dbpedia"
+  },
+  {
+    "id": "183",
+    "name_english": "Dhaka-11",
+    "registered_voters": 415455,
+    "lat": 23.77000045776367,
+    "long": 90.43000030517578,
+    "source": "dbpedia"
+  },
+  {
+    "id": "184",
+    "name_english": "Dhaka-12",
+    "registered_voters": 339840,
+    "lat": 23.70999908447266,
+    "long": 90.41999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "185",
+    "name_english": "Dhaka-13",
+    "registered_voters": null,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "186",
+    "name_english": "Dhaka-14",
+    "registered_voters": null,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "187",
+    "name_english": "Dhaka-15",
+    "registered_voters": 340480,
+    "lat": 23.79000091552734,
+    "long": 90.38999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "188",
+    "name_english": "Dhaka-16",
+    "registered_voters": 374154,
+    "lat": 23.82999992370605,
+    "long": 90.36000061035156,
+    "source": "dbpedia"
+  },
+  {
+    "id": "189",
+    "name_english": "Dhaka-17",
+    "registered_voters": 313875,
+    "lat": 23.79999923706055,
+    "long": 90.41000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "190",
+    "name_english": "Dhaka-18",
+    "registered_voters": 555773,
+    "lat": 23.86000061035156,
+    "long": 90.43000030517578,
+    "source": "dbpedia"
+  },
+  {
+    "id": "191",
+    "name_english": "Dhaka-19",
+    "registered_voters": 746947,
+    "lat": 23.82999992370605,
+    "long": 90.26000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "192",
+    "name_english": "Dhaka-20",
+    "registered_voters": 320223,
+    "lat": 23.92000007629395,
+    "long": 90.20999908447266,
+    "source": "dbpedia"
+  },
+  {
+    "id": "193",
+    "name_english": "Gazipur-1",
+    "registered_voters": 664519,
+    "lat": 24.20000076293945,
+    "long": 90.47000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "194",
+    "name_english": "Gazipur-2",
+    "registered_voters": 745734,
+    "lat": 24,
+    "long": 90.43000030517578,
+    "source": "dbpedia"
+  },
+  {
+    "id": "195",
+    "name_english": "Gazipur-3",
+    "registered_voters": 436667,
+    "lat": 24.20000076293945,
+    "long": 90.47000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "196",
+    "name_english": "Gazipur-4",
+    "registered_voters": 267394,
+    "lat": 24.11000061035156,
+    "long": 90.56999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "197",
+    "name_english": "Gazipur-5",
+    "registered_voters": 302555,
+    "lat": 23.92000007629395,
+    "long": 90.56999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "198",
+    "name_english": "Gazipur-6",
+    "error": "not_found"
+  },
+  {
+    "id": "199",
+    "name_english": "Narsingdi-1",
+    "registered_voters": 380095,
+    "lat": 23.93000030517578,
+    "long": 90.72000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "200",
+    "name_english": "Narsingdi-2",
+    "registered_voters": 234373,
+    "lat": 23.97999954223633,
+    "long": 90.6500015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "201",
+    "name_english": "Narsingdi-3",
+    "registered_voters": 224610,
+    "lat": 24.04000091552734,
+    "long": 90.73999786376953,
+    "source": "dbpedia"
+  },
+  {
+    "id": "202",
+    "name_english": "Narsingdi-4",
+    "registered_voters": 341742,
+    "lat": 24.14999961853027,
+    "long": 90.69999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "203",
+    "name_english": "Narsingdi-5",
+    "registered_voters": 455297,
+    "lat": 23.99290084838867,
+    "long": 90.87030029296875,
+    "source": "dbpedia"
+  },
+  {
+    "id": "204",
+    "name_english": "Narayanganj-1",
+    "registered_voters": null,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "205",
+    "name_english": "Narayanganj-2",
+    "registered_voters": 283867,
+    "lat": 23.79000091552734,
+    "long": 90.66000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "206",
+    "name_english": "Narayanganj-3",
+    "registered_voters": null,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "207",
+    "name_english": "Narayanganj-4",
+    "registered_voters": 651099,
+    "lat": 23.63999938964844,
+    "long": 90.4800033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "208",
+    "name_english": "Narayanganj-5",
+    "registered_voters": 445616,
+    "lat": 23.6299991607666,
+    "long": 90.5,
+    "source": "dbpedia"
+  },
+  {
+    "id": "209",
+    "name_english": "Rajbari-1",
+    "registered_voters": 346619,
+    "lat": 23.76000022888184,
+    "long": 89.63999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "210",
+    "name_english": "Rajbari-2",
+    "registered_voters": 462473,
+    "lat": 23.76000022888184,
+    "long": 89.63999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "211",
+    "name_english": "Faridpur-1",
+    "registered_voters": 410501,
+    "lat": 23.38999938964844,
+    "long": 89.68000030517578,
+    "source": "dbpedia"
+  },
+  {
+    "id": "212",
+    "name_english": "Faridpur-2",
+    "registered_voters": 287370,
+    "lat": 23.42000007629395,
+    "long": 89.88999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "213",
+    "name_english": "Faridpur-3",
+    "registered_voters": 353469,
+    "lat": 23.61000061035156,
+    "long": 89.83999633789062,
+    "source": "dbpedia"
+  },
+  {
+    "id": "214",
+    "name_english": "Faridpur-4",
+    "registered_voters": 370695,
+    "lat": 23.38999938964844,
+    "long": 89.9800033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "215",
+    "name_english": "Gopalganj-1",
+    "registered_voters": 321450,
+    "lat": 23.31999969482422,
+    "long": 89.87000274658203,
+    "source": "dbpedia"
+  },
+  {
+    "id": "216",
+    "name_english": "Gopalganj-2",
+    "registered_voters": 311822,
+    "lat": 23.01000022888184,
+    "long": 89.83000183105469,
+    "source": "dbpedia"
+  },
+  {
+    "id": "217",
+    "name_english": "Gopalganj-3",
+    "registered_voters": 246685,
+    "lat": 22.98999977111816,
+    "long": 90,
+    "source": "dbpedia"
+  },
+  {
+    "id": "218",
+    "name_english": "Madaripur-1",
+    "registered_voters": 245095,
+    "lat": 23.35000038146973,
+    "long": 90.16999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "219",
+    "name_english": "Madaripur-2",
+    "registered_voters": 347230,
+    "lat": 23.20999908447266,
+    "long": 90.05000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "220",
+    "name_english": "Madaripur-3",
+    "registered_voters": 297955,
+    "lat": 23.06999969482422,
+    "long": 90.2300033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "221",
+    "name_english": "Shariatpur-1",
+    "registered_voters": 296018,
+    "lat": 23.20999908447266,
+    "long": 90.3499984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "222",
+    "name_english": "Shariatpur-2",
+    "registered_voters": 310343,
+    "lat": 23.29999923706055,
+    "long": 90.41000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "223",
+    "name_english": "Shariatpur-3",
+    "registered_voters": 255295,
+    "lat": 23.10000038146973,
+    "long": 90.44999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "224",
+    "name_english": "Sunamganj-1",
+    "registered_voters": 399359,
+    "lat": 24.89999961853027,
+    "long": 91.01000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "225",
+    "name_english": "Sunamganj-2",
+    "registered_voters": 250721,
+    "lat": 24.79000091552734,
+    "long": 91.3499984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "226",
+    "name_english": "Sunamganj-3",
+    "registered_voters": 292471,
+    "lat": 24.77000045776367,
+    "long": 91.55000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "227",
+    "name_english": "Sunamganj-4",
+    "registered_voters": 289030,
+    "lat": 25.06999969482422,
+    "long": 91.4000015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "228",
+    "name_english": "Sunamganj-5",
+    "registered_voters": 415954,
+    "lat": 25.03000068664551,
+    "long": 91.66000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "229",
+    "name_english": "Sylhet-1",
+    "registered_voters": 544244,
+    "lat": 24.88999938964844,
+    "long": 91.87000274658203,
+    "source": "dbpedia"
+  },
+  {
+    "id": "230",
+    "name_english": "Sylhet-2",
+    "registered_voters": 286586,
+    "lat": 24.64999961853027,
+    "long": 91.81999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "231",
+    "name_english": "Sylhet-3",
+    "registered_voters": 323666,
+    "lat": 24.81999969482422,
+    "long": 91.9000015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "232",
+    "name_english": "Sylhet-4",
+    "registered_voters": 382231,
+    "lat": 25.09000015258789,
+    "long": 91.9800033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "233",
+    "name_english": "Sylhet-5",
+    "registered_voters": 324510,
+    "lat": 25.01000022888184,
+    "long": 92.26000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "234",
+    "name_english": "Sylhet-6",
+    "registered_voters": 393115,
+    "lat": 24.85000038146973,
+    "long": 92.0199966430664,
+    "source": "dbpedia"
+  },
+  {
+    "id": "235",
+    "name_english": "Moulvibazar-1",
+    "registered_voters": 265809,
+    "lat": 24.70000076293945,
+    "long": 92.19000244140625,
+    "source": "dbpedia"
+  },
+  {
+    "id": "236",
+    "name_english": "Moulvibazar-2",
+    "registered_voters": 241169,
+    "lat": 24.52000045776367,
+    "long": 92.02999877929688,
+    "source": "dbpedia"
+  },
+  {
+    "id": "237",
+    "name_english": "Moulvibazar-3",
+    "registered_voters": 391358,
+    "lat": 24.47999954223633,
+    "long": 91.7699966430664,
+    "source": "dbpedia"
+  },
+  {
+    "id": "238",
+    "name_english": "Moulvibazar-4",
+    "registered_voters": 250352,
+    "lat": 24.30999946594238,
+    "long": 91.7300033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "239",
+    "name_english": "Habiganj-1",
+    "registered_voters": 365018,
+    "lat": 24.56999969482422,
+    "long": 91.51000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "240",
+    "name_english": "Habiganj-2",
+    "registered_voters": 306981,
+    "lat": 24.52000045776367,
+    "long": 91.37000274658203,
+    "source": "dbpedia"
+  },
+  {
+    "id": "241",
+    "name_english": "Habiganj-3",
+    "registered_voters": 326823,
+    "lat": 24.3700008392334,
+    "long": 91.41999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "242",
+    "name_english": "Habiganj-4",
+    "registered_voters": 427557,
+    "lat": 24.10000038146973,
+    "long": 91.29000091552734,
+    "source": "dbpedia"
+  },
+  {
+    "id": "243",
+    "name_english": "Brahmanbaria-1",
+    "registered_voters": 214039,
+    "lat": 24.20000076293945,
+    "long": 91.19000244140625,
+    "source": "dbpedia"
+  },
+  {
+    "id": "244",
+    "name_english": "Brahmanbaria-2",
+    "registered_voters": 292593,
+    "lat": 24.06999969482422,
+    "long": 91.11000061035156,
+    "source": "dbpedia"
+  },
+  {
+    "id": "245",
+    "name_english": "Brahmanbaria-3",
+    "registered_voters": 515116,
+    "lat": 23.95999908447266,
+    "long": 91.11000061035156,
+    "source": "dbpedia"
+  },
+  {
+    "id": "246",
+    "name_english": "Brahmanbaria-4",
+    "registered_voters": 327257,
+    "lat": 23.75,
+    "long": 91.1500015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "247",
+    "name_english": "Brahmanbaria-5",
+    "registered_voters": 343892,
+    "lat": 23.88999938964844,
+    "long": 90.97000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "248",
+    "name_english": "Brahmanbaria-6",
+    "registered_voters": 217470,
+    "lat": 23.77000045776367,
+    "long": 90.80000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "249",
+    "name_english": "Comilla-1",
+    "registered_voters": 347071,
+    "lat": 23.53000068664551,
+    "long": 90.72000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "250",
+    "name_english": "Comilla-2",
+    "registered_voters": 290027,
+    "lat": 23.68000030517578,
+    "long": 90.77999877929688,
+    "source": "dbpedia"
+  },
+  {
+    "id": "251",
+    "name_english": "Comilla-3",
+    "registered_voters": 383086,
+    "lat": 23.63999938964844,
+    "long": 90.93000030517578,
+    "source": "dbpedia"
+  },
+  {
+    "id": "252",
+    "name_english": "Comilla-4",
+    "registered_voters": 316751,
+    "lat": 23.60000038146973,
+    "long": 90.98999786376953,
+    "source": "dbpedia"
+  },
+  {
+    "id": "253",
+    "name_english": "Comilla-5",
+    "registered_voters": 368967,
+    "lat": 23.54999923706055,
+    "long": 91.12999725341797,
+    "source": "dbpedia"
+  },
+  {
+    "id": "254",
+    "name_english": "Comilla-6",
+    "registered_voters": 415884,
+    "lat": 23.46999931335449,
+    "long": 91.18000030517578,
+    "source": "dbpedia"
+  },
+  {
+    "id": "255",
+    "name_english": "Comilla-7",
+    "registered_voters": 254497,
+    "lat": 23.48999977111816,
+    "long": 91.01000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "256",
+    "name_english": "Comilla-8",
+    "registered_voters": 296697,
+    "lat": 23.3700008392334,
+    "long": 91.05000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "257",
+    "name_english": "Comilla-9",
+    "registered_voters": 361960,
+    "lat": 23.23999977111816,
+    "long": 91.12000274658203,
+    "source": "dbpedia"
+  },
+  {
+    "id": "258",
+    "name_english": "Comilla-10",
+    "registered_voters": 516571,
+    "lat": 23.15999984741211,
+    "long": 91.19999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "259",
+    "name_english": "Comilla-11",
+    "registered_voters": 328280,
+    "lat": 23.22999954223633,
+    "long": 91.30999755859375,
+    "source": "dbpedia"
+  },
+  {
+    "id": "260",
+    "name_english": "Chandpur-1",
+    "registered_voters": 265966,
+    "lat": 23.34000015258789,
+    "long": 90.88999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "261",
+    "name_english": "Chandpur-2",
+    "registered_voters": 393346,
+    "lat": 23.43000030517578,
+    "long": 90.62000274658203,
+    "source": "dbpedia"
+  },
+  {
+    "id": "262",
+    "name_english": "Chandpur-3",
+    "registered_voters": 430400,
+    "lat": 23.22999954223633,
+    "long": 90.66999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "263",
+    "name_english": "Chandpur-4",
+    "registered_voters": 309776,
+    "lat": 23.1299991607666,
+    "long": 90.75,
+    "source": "dbpedia"
+  },
+  {
+    "id": "264",
+    "name_english": "Chandpur-5",
+    "registered_voters": 408496,
+    "lat": 23.25,
+    "long": 90.8499984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "265",
+    "name_english": "Feni-1",
+    "registered_voters": 305055,
+    "lat": 23.04000091552734,
+    "long": 91.5199966430664,
+    "source": "dbpedia"
+  },
+  {
+    "id": "266",
+    "name_english": "Feni-2",
+    "registered_voters": 348162,
+    "lat": 23.02000045776367,
+    "long": 91.38999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "267",
+    "name_english": "Feni-3",
+    "registered_voters": 393454,
+    "lat": 22.94000053405762,
+    "long": 91.30000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "268",
+    "name_english": "Noakhali-1",
+    "registered_voters": 347671,
+    "lat": 23.05999946594238,
+    "long": 90.97000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "269",
+    "name_english": "Noakhali-2",
+    "registered_voters": 273851,
+    "lat": 22.98999977111816,
+    "long": 91.2300033569336,
+    "source": "dbpedia"
+  },
+  {
+    "id": "270",
+    "name_english": "Noakhali-3",
+    "registered_voters": 392330,
+    "lat": 22.94000053405762,
+    "long": 91.0999984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "271",
+    "name_english": "Noakhali-4",
+    "registered_voters": 544740,
+    "lat": 22.8700008392334,
+    "long": 91.0999984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "272",
+    "name_english": "Noakhali-5",
+    "registered_voters": 331793,
+    "lat": 25.07999992370605,
+    "long": 91.76000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "273",
+    "name_english": "Noakhali-6",
+    "registered_voters": 258854,
+    "lat": 22.29000091552734,
+    "long": 91.13999938964844,
+    "source": "dbpedia"
+  },
+  {
+    "id": "274",
+    "name_english": "Lakshmipur-1",
+    "registered_voters": 219940,
+    "lat": 23.09000015258789,
+    "long": 90.86000061035156,
+    "source": "dbpedia"
+  },
+  {
+    "id": "275",
+    "name_english": "Lakshmipur-2",
+    "registered_voters": 372592,
+    "lat": 22.94000053405762,
+    "long": 91.30000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "276",
+    "name_english": "Lakshmipur-3",
+    "registered_voters": 330930,
+    "lat": null,
+    "long": null,
+    "source": "dbpedia"
+  },
+  {
+    "id": "277",
+    "name_english": "Lakshmipur-4",
+    "registered_voters": 310842,
+    "lat": 22.64999961853027,
+    "long": 90.91999816894531,
+    "source": "dbpedia"
+  },
+  {
+    "id": "278",
+    "name_english": "Chittagong-1",
+    "registered_voters": 315016,
+    "lat": 22.78000068664551,
+    "long": 91.56999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "279",
+    "name_english": "Chittagong-2",
+    "registered_voters": 376485,
+    "lat": 22.69000053405762,
+    "long": 91.80000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "280",
+    "name_english": "Chittagong-3",
+    "registered_voters": 202635,
+    "lat": 22.48999977111816,
+    "long": 91.45999908447266,
+    "source": "dbpedia"
+  },
+  {
+    "id": "281",
+    "name_english": "Chittagong-4",
+    "registered_voters": 393228,
+    "lat": 22.61000061035156,
+    "long": 91.66000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "282",
+    "name_english": "Chittagong-5",
+    "registered_voters": 430124,
+    "lat": 22.40999984741211,
+    "long": 91.81999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "283",
+    "name_english": "Chittagong-6",
+    "registered_voters": 270760,
+    "lat": 22.54000091552734,
+    "long": 91.91000366210938,
+    "source": "dbpedia"
+  },
+  {
+    "id": "284",
+    "name_english": "Chittagong-7",
+    "registered_voters": 269332,
+    "lat": 22.46999931335449,
+    "long": 92.05000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "285",
+    "name_english": "Chittagong-8",
+    "registered_voters": 475996,
+    "lat": 22.3799991607666,
+    "long": 91.86000061035156,
+    "source": "dbpedia"
+  },
+  {
+    "id": "286",
+    "name_english": "Chittagong-9",
+    "registered_voters": 390431,
+    "lat": 22.40999984741211,
+    "long": 91.81999969482422,
+    "source": "dbpedia"
+  },
+  {
+    "id": "287",
+    "name_english": "Chittagong-10",
+    "registered_voters": 469314,
+    "lat": 22.34000015258789,
+    "long": 91.77999877929688,
+    "source": "dbpedia"
+  },
+  {
+    "id": "288",
+    "name_english": "Chittagong-11",
+    "registered_voters": 507405,
+    "lat": 22.29000091552734,
+    "long": 91.79000091552734,
+    "source": "dbpedia"
+  },
+  {
+    "id": "289",
+    "name_english": "Chittagong-12",
+    "registered_voters": 285966,
+    "lat": 22.29999923706055,
+    "long": 91.97000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "290",
+    "name_english": "Chittagong-13",
+    "registered_voters": 310466,
+    "lat": 22.21999931335449,
+    "long": 91.9000015258789,
+    "source": "dbpedia"
+  },
+  {
+    "id": "291",
+    "name_english": "Chittagong-14",
+    "registered_voters": 249043,
+    "lat": 22.20999908447266,
+    "long": 92.01000213623047,
+    "source": "dbpedia"
+  },
+  {
+    "id": "292",
+    "name_english": "Chittagong-15",
+    "registered_voters": 458411,
+    "lat": 22.02000045776367,
+    "long": 92.0999984741211,
+    "source": "dbpedia"
+  },
+  {
+    "id": "293",
+    "name_english": "Chittagong-16",
+    "registered_voters": 303123,
+    "lat": 22.03000068664551,
+    "long": 91.94999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "294",
+    "name_english": "Cox's Bazar-1",
+    "registered_voters": 390829,
+    "lat": 21.76000022888184,
+    "long": 92.08000183105469,
+    "source": "dbpedia"
+  },
+  {
+    "id": "295",
+    "name_english": "Cox's Bazar-2",
+    "registered_voters": 296177,
+    "lat": 21.52000045776367,
+    "long": 91.95999908447266,
+    "source": "dbpedia"
+  },
+  {
+    "id": "296",
+    "name_english": "Cox's Bazar-3",
+    "registered_voters": 414930,
+    "lat": 21.44000053405762,
+    "long": 91.97000122070312,
+    "source": "dbpedia"
+  },
+  {
+    "id": "297",
+    "name_english": "Cox's Bazar-4",
+    "registered_voters": 266146,
+    "lat": 20.8700008392334,
+    "long": 92.30000305175781,
+    "source": "dbpedia"
+  },
+  {
+    "id": "298",
+    "name_english": "Khagrachhari",
+    "registered_voters": 58875,
+    "lat": 23.10600090026855,
+    "long": 91.97899627685547,
+    "source": "dbpedia"
+  },
+  {
+    "id": "299",
+    "name_english": "Rangamati",
+    "registered_voters": 648219,
+    "lat": 22.63333320617676,
+    "long": 92.19999694824219,
+    "source": "dbpedia"
+  },
+  {
+    "id": "300",
+    "name_english": "Bandarban",
+    "registered_voters": 54450,
+    "lat": 22.19799995422363,
+    "long": 92.22000122070312,
+    "source": "dbpedia"
+  }
+]

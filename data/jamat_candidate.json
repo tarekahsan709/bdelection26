@@ -1,0 +1,1104 @@
+{
+  "party": "Jamaat-e-Islami",
+  "party_full_name": "Bangladesh Jamaat-e-Islami",
+  "party_bengali": "বাংলাদেশ জামায়াতে ইসলামী",
+  "source": "2008 Election Data",
+  "document_date": "2008-12-29",
+  "total_candidates": 39,
+  "candidates": [
+    {
+      "candidate_id": 1,
+      "serial": 2,
+      "constituency_id": 4,
+      "constituency": "ঠাকুরগাঁও-২",
+      "constituency_english": "Thakurgaon-2",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "33",
+      "district": "ঠাকুরগাঁও",
+      "district_english": "Thakurgaon",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "বালিয়াডাঙ্গী উপজেলা",
+          "name_english": "Baliadangi Upazila",
+          "upazila_id": "450"
+        },
+        {
+          "type": "upazila",
+          "name": "হরিপুর উপজেলা",
+          "name_english": "Haripur Upazila",
+          "upazila_id": "451"
+        },
+        {
+          "type": "upazila",
+          "name": "রাণীশংকৈল উপজেলা",
+          "name_english": "Ranisankail Upazila",
+          "upazila_id": "452"
+        }
+      ],
+      "candidate_name_english": "Md.Abdul Hakim",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 2,
+      "serial": 3,
+      "constituency_id": 6,
+      "constituency": "দিনাজপুর-১",
+      "constituency_english": "Dinajpur-1",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "26",
+      "district": "দিনাজপুর",
+      "district_english": "Dinajpur",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "পীরগঞ্জ উপজেলা",
+          "name_english": "Pirganj Upazila"
+        },
+        {
+          "type": "upazila",
+          "name": "বিরল উপজেলা",
+          "name_english": "Biral Upazila",
+          "upazila_id": "397"
+        }
+      ],
+      "candidate_name_english": "Mohammad Hanif",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 3,
+      "serial": 4,
+      "constituency_id": 11,
+      "constituency": "দিনাজপুর-৬",
+      "constituency_english": "Dinajpur-6",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "26",
+      "district": "দিনাজপুর",
+      "district_english": "Dinajpur",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "নবাবগঞ্জ উপজেলা",
+          "name_english": "Nawabganj Upazila",
+          "upazila_id": "406"
+        },
+        {
+          "type": "upazila",
+          "name": "বিরামপুর উপজেলা",
+          "name_english": "Birampur Upazila",
+          "upazila_id": "395"
+        },
+        {
+          "type": "upazila",
+          "name": "হাকিমপুর উপজেলা",
+          "name_english": "Hakimpur Upazila",
+          "upazila_id": "402"
+        },
+        {
+          "type": "upazila",
+          "name": "ঘোড়াঘাট উপজেলা",
+          "name_english": "Ghoraghat Upazila",
+          "upazila_id": "401"
+        }
+      ],
+      "candidate_name_english": "Md. Anowarul Islam",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 4,
+      "serial": 5,
+      "constituency_id": 13,
+      "constituency": "নীলফামারী-২",
+      "constituency_english": "Nilphamari-2",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "30",
+      "district": "নীলফামারী",
+      "district_english": "Nilphamari",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "নীলফামারী সদর উপজেলা",
+          "name_english": "Nilphamari Sadar Upazila",
+          "upazila_id": "429"
+        }
+      ],
+      "candidate_name_english": "Md. Moniruzaman(Monto0",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 5,
+      "serial": 6,
+      "constituency_id": 14,
+      "constituency": "নীলফামারী-৩",
+      "constituency_english": "Nilphamari-3",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "30",
+      "district": "নীলফামারী",
+      "district_english": "Nilphamari",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "জলঢাকা উপজেলা",
+          "name_english": "Jaldhaka Upazila",
+          "upazila_id": "431"
+        }
+      ],
+      "candidate_name_english": "MD.AZIZUL ISLAM",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 6,
+      "serial": 7,
+      "constituency_id": 16,
+      "constituency": "লালমনিরহাট - ১",
+      "constituency_english": "Lalmonirhat-1",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "29",
+      "district": "লালমনিরহাট",
+      "district_english": "Lalmonirhat",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "পাটগ্রাম উপজেলা",
+          "name_english": "Patgram Upazila",
+          "upazila_id": "428"
+        },
+        {
+          "type": "upazila",
+          "name": "হাতীবান্ধা উপজেলা",
+          "name_english": "Hatibandha Upazila",
+          "upazila_id": "427"
+        }
+      ],
+      "candidate_name_english": "Md. Habibur Rahman",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 7,
+      "serial": 8,
+      "constituency_id": 19,
+      "constituency": "রংপুর - ১",
+      "constituency_english": "Rangpur-1",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "32",
+      "district": "রংপুর",
+      "district_english": "Rangpur",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "গংগাচড়া উপজেলা",
+          "name_english": "Gangachara Upazila",
+          "upazila_id": "442"
+        },
+        {
+          "type": "city_corporation_ward",
+          "name": "রংপুর সিটি কর্পোরেশন",
+          "name_english": "Rangpur City Corporation"
+        }
+      ],
+      "candidate_name_english": "Mohmmad Abdul Goni",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 8,
+      "serial": 9,
+      "constituency_id": 20,
+      "constituency": "রংপুর -২",
+      "constituency_english": "Rangpur-2",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "32",
+      "district": "রংপুর",
+      "district_english": "Rangpur",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "তারাগঞ্জ উপজেলা",
+          "name_english": "Taraganj Upazila",
+          "upazila_id": "447"
+        },
+        {
+          "type": "upazila",
+          "name": "বদরগঞ্জ উপজেলা",
+          "name_english": "Badarganj Upazila",
+          "upazila_id": "440"
+        }
+      ],
+      "candidate_name_english": "A T M Azaharul Islam",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 9,
+      "serial": 10,
+      "constituency_id": 23,
+      "constituency": "রংপুর-৫",
+      "constituency_english": "Rangpur-5",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "32",
+      "district": "রংপুর",
+      "district_english": "Rangpur",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "মিঠাপুকুর উপজেলা",
+          "name_english": "Mithapukur Upazila",
+          "upazila_id": "441"
+        }
+      ],
+      "candidate_name_english": "Shah Md. Hafizur Rohaman",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 10,
+      "serial": 11,
+      "constituency_id": 28,
+      "constituency": "কুড়িগ্রাম -৪",
+      "constituency_english": "Kurigram-4",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "28",
+      "district": "কুড়িগ্রাম",
+      "district_english": "Kurigram",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "রৌমারী উপজেলা",
+          "name_english": "Rowmari Upazila",
+          "upazila_id": "422"
+        },
+        {
+          "type": "upazila",
+          "name": "রাজিবপুর উপজেলা",
+          "name_english": "Rajibpur Upazila"
+        },
+        {
+          "type": "upazila",
+          "name": "চিলমারী উপজেলা",
+          "name_english": "Chilmari Upazila",
+          "upazila_id": "421"
+        }
+      ],
+      "candidate_name_english": "Md. Nur Alom Mukul",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 11,
+      "serial": 13,
+      "constituency_id": 29,
+      "constituency": "গাইবান্ধা-১",
+      "constituency_english": "Gaibandha-1",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "27",
+      "district": "গাইবান্ধা",
+      "district_english": "Gaibandha",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "সুন্দরগঞ্জ উপজেলা",
+          "name_english": "Sundarganj Upazila",
+          "upazila_id": "414"
+        }
+      ],
+      "candidate_name_english": "Abu Saleh Md. Abdul Aziz",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 12,
+      "serial": 14,
+      "constituency_id": 31,
+      "constituency": "গাইবান্ধা -৩",
+      "constituency_english": "Gaibandha-3",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "27",
+      "district": "গাইবান্ধা",
+      "district_english": "Gaibandha",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "সাদুল্যাপুর উপজেলা",
+          "name_english": "Sadullapur Upazila",
+          "upazila_id": "412"
+        },
+        {
+          "type": "upazila",
+          "name": "পলাশবাড়ি উপজেলা",
+          "name_english": "Palashbari Upazila",
+          "upazila_id": "411"
+        }
+      ],
+      "candidate_name_english": "Abul Kawsar Mohammad Nazrul Islam",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 13,
+      "serial": 15,
+      "constituency_id": 32,
+      "constituency": "গাইবান্ধা -৪",
+      "constituency_english": "Gaibandha-4",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "27",
+      "district": "গাইবান্ধা",
+      "district_english": "Gaibandha",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "গোবিন্দগঞ্জ উপজেলা",
+          "name_english": "Gobindaganj Upazila",
+          "upazila_id": "410"
+        }
+      ],
+      "candidate_name_english": "Md. Abdur Rahim Sarker",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 14,
+      "serial": 16,
+      "constituency_id": 45,
+      "constituency": "চাঁপাইনবাবগঞ্জ -৩",
+      "constituency_english": "Chapainawabganj-3",
+      "division_id": "5",
+      "division": "রাজশাহী",
+      "division_english": "Rajshahi",
+      "district_id": "22",
+      "district": "নবাবগঞ্জ",
+      "district_english": "Nawabganj",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "চাঁপাইনবাবগঞ্জ সদর উপজেলা",
+          "name_english": "Chapainawabganj Sadar Upazila"
+        }
+      ],
+      "candidate_name_english": "Md latifur rahman",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 15,
+      "serial": 17,
+      "constituency_id": 54,
+      "constituency": "রাজশাহী -৩",
+      "constituency_english": "Rajshahi-3",
+      "division_id": "5",
+      "division": "রাজশাহী",
+      "division_english": "Rajshahi",
+      "district_id": "24",
+      "district": "রাজশাহী",
+      "district_english": "Rajshahi",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "পবা উপজেলা",
+          "name_english": "Paba Upazila",
+          "upazila_id": "383"
+        },
+        {
+          "type": "upazila",
+          "name": "মোহনপুর উপজেলা",
+          "name_english": "Mohanpur Upazila",
+          "upazila_id": "382"
+        }
+      ],
+      "candidate_name_english": "Md .Ataur Rahman",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 16,
+      "serial": 18,
+      "constituency_id": 65,
+      "constituency": "সিরাজগঞ্জ-৪",
+      "constituency_english": "Sirajganj-4",
+      "division_id": "5",
+      "division": "রাজশাহী",
+      "division_english": "Rajshahi",
+      "district_id": "25",
+      "district": "সিরাজগঞ্জ",
+      "district_english": "Sirajgonj",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "উল্লাপাড়া উপজেলা",
+          "name_english": "Ullapara Upazila"
+        }
+      ],
+      "candidate_name_english": "Md. Rofiqul Islam Khan",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 17,
+      "serial": 19,
+      "constituency_id": 68,
+      "constituency": "পাবনা -১",
+      "constituency_english": "Pabna-1",
+      "division_id": "5",
+      "division": "রাজশাহী",
+      "division_english": "Rajshahi",
+      "district_id": "23",
+      "district": "পাবনা",
+      "district_english": "Pabna",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "সাঁথিয়া উপজেলা",
+          "name_english": "Santhia Upazila",
+          "upazila_id": "375"
+        }
+      ],
+      "candidate_name_english": "MOTEUR RAHAMAN NEZIME",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 18,
+      "serial": 20,
+      "constituency_id": 72,
+      "constituency": "পাবনা-৫",
+      "constituency_english": "Pabna-5",
+      "division_id": "5",
+      "division": "রাজশাহী",
+      "division_english": "Rajshahi",
+      "district_id": "23",
+      "district": "পাবনা",
+      "district_english": "Pabna",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "পাবনা সদর উপজেলা",
+          "name_english": "Pabna Sadar Upazila",
+          "upazila_id": "374"
+        }
+      ],
+      "candidate_name_english": "Abul Basar Mohammad Abdus Sobahab Mia",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 19,
+      "serial": 21,
+      "constituency_id": 73,
+      "constituency": "মেহেরপুর -১",
+      "constituency_english": "Meherpur-1",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "62",
+      "district": "মেহেরপুর",
+      "district_english": "Meherpur",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "মেহেরপুর সদর উপজেলা",
+          "name_english": "Meherpur Sadar Upazila",
+          "upazila_id": "318"
+        },
+        {
+          "type": "upazila",
+          "name": "গাংনী উপজেলা",
+          "name_english": "Gangni Upazila"
+        }
+      ],
+      "candidate_name_english": "Al Haz Chamir Uddin",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 20,
+      "serial": 22,
+      "constituency_id": 80,
+      "constituency": "চুয়াডাঙ্গা -২",
+      "constituency_english": "Chuadanga-2",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "56",
+      "district": "চুয়াডাঙ্গা",
+      "district_english": "Chuadanga",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "দামুড়হুদা উপজেলা",
+          "name_english": "Damurhuda Upazila",
+          "upazila_id": "279"
+        },
+        {
+          "type": "upazila",
+          "name": "জীবননগর উপজেলা",
+          "name_english": "Jibannagar Upazila",
+          "upazila_id": "281"
+        },
+        {
+          "type": "upazila",
+          "name": "চুয়াডাঙ্গা সদর উপজেলা",
+          "name_english": "Chuadanga Sadar Upazila"
+        }
+      ],
+      "candidate_name_english": "Md. Habibur Rahman",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 21,
+      "serial": 23,
+      "constituency_id": 83,
+      "constituency": "ঝিনাইদহ-৩",
+      "constituency_english": "Jhenaidah-3",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "58",
+      "district": "ঝিনাইদহ",
+      "district_english": "Jhenaidah",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "কোটচাঁদপুর উপজেলা",
+          "name_english": "Kotchandpur Upazila",
+          "upazila_id": "294"
+        },
+        {
+          "type": "upazila",
+          "name": "মহেশপুর উপজেলা",
+          "name_english": "Maheshpur Upazila",
+          "upazila_id": "292"
+        }
+      ],
+      "candidate_name_english": "Md. Motiyar Rhaman",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 22,
+      "serial": 24,
+      "constituency_id": 85,
+      "constituency": "যশোর -১",
+      "constituency_english": "Jessore-1",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "57",
+      "district": "যশোর",
+      "district_english": "Jashore",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "শার্শা উপজেলা",
+          "name_english": "Sharsha Upazila",
+          "upazila_id": "290"
+        }
+      ],
+      "candidate_name_english": "MD. AJIZUR RAHMAN",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 23,
+      "serial": 25,
+      "constituency_id": 86,
+      "constituency": "যশোর-২",
+      "constituency_english": "Jessore-2",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "57",
+      "district": "যশোর",
+      "district_english": "Jashore",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "চৌগাছা উপজেলা",
+          "name_english": "Chaugachha Upazila",
+          "upazila_id": "287"
+        },
+        {
+          "type": "upazila",
+          "name": "ঝিকরগাছা উপজেলা",
+          "name_english": "Jhikargachha Upazila",
+          "upazila_id": "289"
+        }
+      ],
+      "candidate_name_english": "Abue sayed muhammad shadad hussain",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 24,
+      "serial": 26,
+      "constituency_id": 97,
+      "constituency": "বাগেরহাট-৩",
+      "constituency_english": "Bagerhat-3",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "55",
+      "district": "বাগেরহাট",
+      "district_english": "Bagerhat",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "কচুয়া উপজেলা",
+          "name_english": "Kachua Upazila",
+          "upazila_id": "273"
+        },
+        {
+          "type": "upazila",
+          "name": "মোরেলগঞ্জ উপজেলা",
+          "name_english": "Morrelganj Upazila",
+          "upazila_id": "276"
+        },
+        {
+          "type": "upazila",
+          "name": "শরণখোলা উপজেলা",
+          "name_english": "Sharankhola Upazila"
+        }
+      ],
+      "candidate_name_english": "Mohammad Abdul Wadud Shak",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 25,
+      "serial": 27,
+      "constituency_id": 97,
+      "constituency": "বাগেরহাট-৩",
+      "constituency_english": "Bagerhat-3",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "55",
+      "district": "বাগেরহাট",
+      "district_english": "Bagerhat",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "কচুয়া উপজেলা",
+          "name_english": "Kachua Upazila",
+          "upazila_id": "273"
+        },
+        {
+          "type": "upazila",
+          "name": "মোরেলগঞ্জ উপজেলা",
+          "name_english": "Morrelganj Upazila",
+          "upazila_id": "276"
+        },
+        {
+          "type": "upazila",
+          "name": "শরণখোলা উপজেলা",
+          "name_english": "Sharankhola Upazila"
+        }
+      ],
+      "candidate_name_english": "Md. Shaidul Islam",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 26,
+      "serial": 28,
+      "constituency_id": 102,
+      "constituency": "খুলনা -৫",
+      "constituency_english": "Khulna-5",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "59",
+      "district": "খুলনা",
+      "district_english": "Khulna",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "ফুলতলা উপজেলা",
+          "name_english": "Phultala Upazila",
+          "upazila_id": "304"
+        },
+        {
+          "type": "upazila",
+          "name": "ডুমুরিয়া উপজেলা",
+          "name_english": "Dumuria Upazila",
+          "upazila_id": "300"
+        },
+        {
+          "type": "other",
+          "name": "পিলাতলা ক্যান্টনমেন্ট এলাকা",
+          "name_english": "Pilatala Cantonment Area"
+        }
+      ],
+      "candidate_name_english": "Mia Gulam Porwar",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 27,
+      "serial": 29,
+      "constituency_id": 103,
+      "constituency": "খুলনা -৬",
+      "constituency_english": "Khulna-6",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "59",
+      "district": "খুলনা",
+      "district_english": "Khulna",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "কয়রা উপজেলা",
+          "name_english": "Koyra Upazila",
+          "upazila_id": "302"
+        },
+        {
+          "type": "upazila",
+          "name": "পাইকগাছা উপজেলা",
+          "name_english": "Paikgachha Upazila",
+          "upazila_id": "303"
+        }
+      ],
+      "candidate_name_english": "Sah Muhammad Ruhul Kuddus",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 28,
+      "serial": 30,
+      "constituency_id": 105,
+      "constituency": "সাতক্ষীরা -২",
+      "constituency_english": "Satkhira-2",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "64",
+      "district": "সাতক্ষীরা",
+      "district_english": "Satkhira",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "সাতক্ষীরা সদর উপজেলা",
+          "name_english": "Satkhira Sadar Upazila",
+          "upazila_id": "322"
+        },
+        {
+          "type": "upazila",
+          "name": "দেবহাটা উপজেলা",
+          "name_english": "Debhata Upazila",
+          "upazila_id": "324"
+        }
+      ],
+      "candidate_name_english": "Md. Abdul Khalak",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 29,
+      "serial": 31,
+      "constituency_id": 106,
+      "constituency": "সাতক্ষীরা -৩",
+      "constituency_english": "Satkhira-3",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "64",
+      "district": "সাতক্ষীরা",
+      "district_english": "Satkhira",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "কালিগঞ্জ উপজেলা",
+          "name_english": "Kaliganj Upazila",
+          "upazila_id": "327"
+        },
+        {
+          "type": "upazila",
+          "name": "আশাশুনি উপজেলা",
+          "name_english": "Ashashuni Upazila"
+        }
+      ],
+      "candidate_name_english": "A M Resalat Ali",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 30,
+      "serial": 32,
+      "constituency_id": 107,
+      "constituency": "সাতক্ষীরা -৪",
+      "constituency_english": "Satkhira-4",
+      "division_id": "4",
+      "division": "খুলনা",
+      "division_english": "Khulna",
+      "district_id": "64",
+      "district": "সাতক্ষীরা",
+      "district_english": "Satkhira",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "শ্যামনগর উপজেলা",
+          "name_english": "Shyamnagar Upazila",
+          "upazila_id": "328"
+        }
+      ],
+      "candidate_name_english": "Nazrul Islam",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 31,
+      "serial": 33,
+      "constituency_id": 109,
+      "constituency": "বরগুনা -২",
+      "constituency_english": "Barguna-2",
+      "division_id": "1",
+      "division": "বরিশাল",
+      "division_english": "Barishal",
+      "district_id": "34",
+      "district": "বরগুনা",
+      "district_english": "Barguna",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "বামনা উপজেলা",
+          "name_english": "Bamna Upazila",
+          "upazila_id": "2"
+        },
+        {
+          "type": "upazila",
+          "name": "পাথরঘাটা উপজেলা",
+          "name_english": "Pathorghata Upazila",
+          "upazila_id": "5"
+        },
+        {
+          "type": "upazila",
+          "name": "বেতাগী উপজেলা",
+          "name_english": "Betagi Upazila",
+          "upazila_id": "4"
+        }
+      ],
+      "candidate_name_english": "Dr. Sultan Ahmed",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 32,
+      "serial": 34,
+      "constituency_id": 126,
+      "constituency": "পিরোজপুর -১",
+      "constituency_english": "Pirojpur-1",
+      "division_id": "1",
+      "division": "বরিশাল",
+      "division_english": "Barishal",
+      "district_id": "39",
+      "district": "পিরোজপুর",
+      "district_english": "Pirojpur",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "পিরোজপুর সদর উপজেলা",
+          "name_english": "Pirojpur Sadar Upazila",
+          "upazila_id": "41"
+        },
+        {
+          "type": "upazila",
+          "name": "নাজিরপুর উপজেলা",
+          "name_english": "Nazirpur Upazila",
+          "upazila_id": "39"
+        },
+        {
+          "type": "upazila",
+          "name": "ইন্দুরকানী উপজেলা",
+          "name_english": "Indurkani Upazila"
+        }
+      ],
+      "candidate_name_english": "Allama. Delaowar Hosain Saidi",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 33,
+      "serial": 1,
+      "constituency_id": 142,
+      "constituency": "শেরপুর -১",
+      "constituency_english": "Sherpur-1",
+      "division_id": "8",
+      "division": "ময়মনসিংহ",
+      "division_english": "Mymensingh",
+      "district_id": "16",
+      "district": "শেরপুর",
+      "district_english": "Sherpur",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "শেরপুর সদর উপজেলা",
+          "name_english": "Sherpur Sadar Upazila",
+          "upazila_id": "256"
+        }
+      ],
+      "candidate_name_english": "Mohammad Kamruzzaman",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 34,
+      "serial": 35,
+      "constituency_id": 213,
+      "constituency": "ফরিদপুর -৩",
+      "constituency_english": "Faridpur-3",
+      "division_id": "3",
+      "division": "ঢাকা",
+      "division_english": "Dhaka",
+      "district_id": "2",
+      "district": "ফরিদপুর",
+      "district_english": "Faridpur",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "ফরিদপুর সদর উপজেলা",
+          "name_english": "Faridpur Sadar Upazila",
+          "upazila_id": "150"
+        }
+      ],
+      "candidate_name_english": "ALI AHOMAN MOHAMMAD MOZAHID",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 35,
+      "serial": 36,
+      "constituency_id": 233,
+      "constituency": "সিলেট-৫",
+      "constituency_english": "Sylhet-5",
+      "division_id": "7",
+      "division": "সিলেট",
+      "division_english": "Sylhet",
+      "district_id": "54",
+      "district": "সিলেট",
+      "district_english": "Sylhet",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "কানাইঘাট উপজেলা",
+          "name_english": "Kanaighat Upazila",
+          "upazila_id": "490"
+        },
+        {
+          "type": "upazila",
+          "name": "জকিগঞ্জ উপজেলা",
+          "name_english": "Zakiganj Upazila",
+          "upazila_id": "491"
+        }
+      ],
+      "candidate_name_english": "Maulana Farid Uddin Chowdhury",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 36,
+      "serial": 37,
+      "constituency_id": 234,
+      "constituency": "সিলেট-৬",
+      "constituency_english": "Sylhet-6",
+      "division_id": "7",
+      "division": "সিলেট",
+      "division_english": "Sylhet",
+      "district_id": "54",
+      "district": "সিলেট",
+      "district_english": "Sylhet",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "বিয়ানীবাজার উপজেলা",
+          "name_english": "Beanibazar Upazila",
+          "upazila_id": "481"
+        },
+        {
+          "type": "upazila",
+          "name": "গোলাপগঞ্জ উপজেলা",
+          "name_english": "Golapganj Upazila",
+          "upazila_id": "487"
+        }
+      ],
+      "candidate_name_english": "Maolana Habibur Rahman",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 37,
+      "serial": 38,
+      "constituency_id": 259,
+      "constituency": "কুমিল্লা-১১",
+      "constituency_english": "Comilla-11",
+      "division_id": "2",
+      "division": "চট্টগ্রাম",
+      "division_english": "Chattogram",
+      "district_id": "44",
+      "district": "কুমিল্লা",
+      "district_english": "Cumilla",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "চৌদ্দগ্রাম উপজেলা",
+          "name_english": "Chauddagram Upazila",
+          "upazila_id": "86"
+        }
+      ],
+      "candidate_name_english": "Dr. Sayed Abdulla Mohammod Taher",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 38,
+      "serial": 39,
+      "constituency_id": 291,
+      "constituency": "চট্টগ্রাম-১৪",
+      "constituency_english": "Chittagong-14",
+      "division_id": "2",
+      "division": "চট্টগ্রাম",
+      "division_english": "Chattogram",
+      "district_id": "43",
+      "district": "চট্টগ্রাম",
+      "district_english": "Chattogram",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "চন্দনাইশ উপজেলা",
+          "name_english": "Chandanaish Upazila",
+          "upazila_id": "71"
+        },
+        {
+          "type": "union",
+          "name": "সাতকানিয়া উপজেলার নিম্নলিখিত ইউনিয়নসমূহঃ (ক) কেওচিয়া (২) কালিরাইশ (৩) বাজালিয়া (৪) ধর্মপুর ও (৫) খাগরিয়া ইউনিয়ন",
+          "name_english": "Satkania Upazila Unions: (1) Keochiya (2) Kaliraish (3) Bajalia (4) Dharmapur and (5) Khagariya Union"
+        }
+      ],
+      "candidate_name_english": "A N M Samsul Islam",
+      "election_year": 2008
+    },
+    {
+      "candidate_id": 39,
+      "serial": 40,
+      "constituency_id": 295,
+      "constituency": "কক্সবাজার-২",
+      "constituency_english": "Cox's Bazar-2",
+      "division_id": "2",
+      "division": "চট্টগ্রাম",
+      "division_english": "Chattogram",
+      "district_id": "45",
+      "district": "কক্স বাজার",
+      "district_english": "Cox's Bazar",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "কুতুবদিয়া উপজেলা",
+          "name_english": "Kutubdia Upazila",
+          "upazila_id": "101"
+        },
+        {
+          "type": "upazila",
+          "name": "মহেশখালী উপজেলা",
+          "name_english": "Moheshkhali Upazila",
+          "upazila_id": "102"
+        }
+      ],
+      "candidate_name_english": "A.H.M. Hamidur Rahman Azad",
+      "election_year": 2008
+    }
+  ]
+}

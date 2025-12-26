@@ -1,0 +1,258 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+
+@theme {
+  /* Font configuration */
+  --font-primary: 'Inter', system-ui, sans-serif;
+
+  /*
+   * Golden Delta Color Palette
+   * Inspired by Bangladesh's rivers, sunrise, and fertile land.
+   */
+
+  /* Primary - Deep Teal (rivers, water) */
+  --color-primary-50: #f0fdfa;
+  --color-primary-100: #ccfbf1;
+  --color-primary-200: #99f6e4;
+  --color-primary-300: #5eead4;
+  --color-primary-400: #2dd4bf;
+  --color-primary-500: #14b8a6;
+  --color-primary-600: #0d9488;
+  --color-primary-700: #0f766e;
+  --color-primary-800: #115e59;
+  --color-primary-900: #134e4a;
+  --color-primary-950: #042f2e;
+
+  /* Secondary - Warm Gold (harvest, hope) */
+  --color-secondary-50: #fffbeb;
+  --color-secondary-100: #fef3c7;
+  --color-secondary-200: #fde68a;
+  --color-secondary-300: #fcd34d;
+  --color-secondary-400: #fbbf24;
+  --color-secondary-500: #f59e0b;
+  --color-secondary-600: #d97706;
+  --color-secondary-700: #b45309;
+  --color-secondary-800: #92400e;
+  --color-secondary-900: #78350f;
+
+  /* Accent - Coral (warmth, energy) */
+  --color-accent-300: #fca5a5;
+  --color-accent-400: #f87171;
+  --color-accent-500: #ef4444;
+  --color-accent-600: #dc2626;
+
+  /* Success - Emerald (positive, growth) */
+  --color-success-400: #34d399;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+
+  /* Background - Deep Navy */
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-bg-tertiary: #334155;
+
+  /* Text */
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+
+  /* Dark color */
+  --color-dark: #0f172a;
+
+  /* Animation configuration */
+  --animate-flicker: flicker 3s linear infinite;
+  --animate-shimmer: shimmer 1.3s linear infinite;
+}
+
+/* Animation keyframes - Golden Delta glow effect */
+@keyframes flicker {
+  0%,
+  19.999%,
+  22%,
+  62.999%,
+  64%,
+  64.999%,
+  70%,
+  100% {
+    opacity: 0.99;
+    filter: drop-shadow(0 0 1px rgba(13, 148, 136, 0.8))
+      drop-shadow(0 0 15px rgba(245, 158, 11, 0.6))
+      drop-shadow(0 0 1px rgba(13, 148, 136, 0.8));
+  }
+  20%,
+  21.999%,
+  63%,
+  63.999%,
+  65%,
+  69.999% {
+    opacity: 0.4;
+    filter: none;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -700px 0;
+  }
+  100% {
+    background-position: 700px 0;
+  }
+}
+
+@layer base {
+  /* inter var - latin */
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: block;
+    src: url('/fonts/inter-var-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
+      U+2215, U+FEFF, U+FFFD;
+  }
+
+  .cursor-newtab {
+    cursor: url('/images/new-tab.png') 10 10, pointer;
+  }
+
+  /* #region  /**=========== Typography =========== */
+  .h0 {
+    @apply font-primary text-3xl font-bold md:text-5xl;
+  }
+
+  h1,
+  .h1 {
+    @apply font-primary text-2xl font-bold md:text-4xl;
+  }
+
+  h2,
+  .h2 {
+    @apply font-primary text-xl font-bold md:text-3xl;
+  }
+
+  h3,
+  .h3 {
+    @apply font-primary text-lg font-bold md:text-2xl;
+  }
+
+  h4,
+  .h4 {
+    @apply font-primary text-base font-bold md:text-lg;
+  }
+
+  body,
+  .p {
+    @apply font-primary text-sm md:text-base;
+  }
+  /* #endregion  /**======== Typography =========== */
+
+  .layout {
+    /* 1100px */
+    max-width: 68.75rem;
+    @apply mx-auto w-11/12;
+  }
+
+  .bg-dark a.custom-link {
+    @apply border-gray-200 hover:border-gray-200/0;
+  }
+
+  /* Class to adjust with sticky footer */
+  .min-h-main {
+    @apply min-h-[calc(100vh-56px)];
+  }
+}
+
+@layer utilities {
+  .animated-underline {
+    background-image: linear-gradient(#33333300, #33333300),
+      linear-gradient(
+        to right,
+        var(--color-primary-400),
+        var(--color-primary-500)
+      );
+    background-size: 100% 2px, 0 2px;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .animated-underline {
+      transition: 0.3s ease;
+      transition-property: background-size, color, background-color,
+        border-color;
+    }
+  }
+  .animated-underline:hover,
+  .animated-underline:focus-visible {
+    background-size: 0 2px, 100% 2px;
+  }
+}
+
+/* Leaflet dark theme overrides - Golden Delta */
+.leaflet-control-attribution {
+  background: rgba(15, 23, 42, 0.9) !important;
+  color: #94a3b8 !important;
+  font-size: 11px !important;
+}
+
+.leaflet-control-zoom a {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: #0d9488 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Enhanced dot visualization with glow effects */
+.leaflet-interactive {
+  filter: drop-shadow(0 0 2px currentColor);
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Smooth fade-in animation for map layers */
+@keyframes dotFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.leaflet-zoom-animated {
+  animation: dotFadeIn 0.5s ease-in-out;
+}
+
+/* Enhanced canvas rendering for smoother visuals */
+canvas.leaflet-zoom-animated {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  will-change: transform;
+}
+
+/* Dark tooltip styling for constituency hover - Golden Delta */
+.dark-tooltip {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(13, 148, 136, 0.3) !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(13, 148, 136, 0.1) !important;
+}
+
+.dark-tooltip .leaflet-tooltip-tip {
+  display: none;
+}
+
+.constituency-tooltip {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #f1f5f9;
+}
+
+.constituency-tooltip strong {
+  color: #0d9488;
+}
