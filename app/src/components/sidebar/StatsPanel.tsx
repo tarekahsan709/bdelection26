@@ -72,8 +72,8 @@ export default function StatsPanel({ filterState }: StatsPanelProps) {
       <div className="grid grid-cols-2 gap-2">
         {[...Array(4)].map((_, i) => (
           <div key={i} className="p-3 rounded-xl bg-white/5 animate-pulse">
-            <div className="h-3 w-12 bg-slate-700 rounded mb-2" />
-            <div className="h-5 w-16 bg-slate-700 rounded" />
+            <div className="h-3 w-12 bg-neutral-800 rounded mb-2" />
+            <div className="h-5 w-16 bg-neutral-800 rounded" />
           </div>
         ))}
       </div>
@@ -122,8 +122,8 @@ function StatCard({
   };
 
   return (
-    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.06] transition-colors">
-      <p className="text-[11px] text-slate-500 uppercase tracking-wide mb-1">{label}</p>
+    <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.04] transition-colors">
+      <p className="text-[11px] text-neutral-500 uppercase tracking-wide mb-1">{label}</p>
       <p className={`text-lg font-bold tabular-nums ${accentColors[accent]}`}>
         {value}
       </p>

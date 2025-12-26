@@ -7,8 +7,8 @@ import type { ConstituencyInfo } from './ConstituencyLayer';
 const LeafletMap = dynamic(() => import('./LeafletMap'), {
   ssr: false,
   loading: () => (
-    <div className='flex h-full w-full items-center justify-center bg-gray-900'>
-      <p className='text-white'>Loading map...</p>
+    <div className='flex h-full w-full items-center justify-center bg-[#080808]'>
+      <div className="w-8 h-8 border-3 border-teal-600/30 border-t-teal-500 rounded-full animate-spin" />
     </div>
   ),
 });

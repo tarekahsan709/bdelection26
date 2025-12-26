@@ -26,7 +26,7 @@ export default function HomePage() {
 
   return (
     <>
-      <main className="flex h-screen w-screen bg-gray-900">
+      <main className="flex h-screen w-screen bg-[#080808]">
         {/* Mobile Header - only visible on mobile */}
         <MobileHeader
           onMenuClick={() => setIsSidebarOpen(true)}
@@ -50,7 +50,7 @@ export default function HomePage() {
           {/* Mobile close button */}
           <button
             onClick={() => setIsSidebarOpen(false)}
-            className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white md:hidden"
+            className="absolute top-4 right-4 p-2 text-neutral-500 hover:text-white md:hidden"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

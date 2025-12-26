@@ -5,20 +5,20 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { PARTY_COLORS } from '@/config/colors';
 
-// Minimal Background - Golden Delta subtle gradient
+// Minimal Background - Pure dark with subtle accent glows
 function ParallaxBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none">
       {/* Base solid dark */}
-      <div className="absolute inset-0 bg-slate-950" />
+      <div className="absolute inset-0 bg-[#080808]" />
 
-      {/* Golden Delta gradient glow - teal and gold */}
+      {/* Subtle accent glows - teal and gold */}
       <div
-        className="absolute inset-0 opacity-40"
+        className="absolute inset-0 opacity-30"
         style={{
           background: `
-            radial-gradient(ellipse 80% 60% at 20% 30%, rgba(13, 148, 136, 0.06) 0%, transparent 50%),
-            radial-gradient(ellipse 60% 50% at 80% 70%, rgba(245, 158, 11, 0.04) 0%, transparent 50%)
+            radial-gradient(ellipse 80% 60% at 20% 30%, rgba(13, 148, 136, 0.08) 0%, transparent 50%),
+            radial-gradient(ellipse 60% 50% at 80% 70%, rgba(245, 158, 11, 0.05) 0%, transparent 50%)
           `,
         }}
       />
@@ -27,7 +27,7 @@ function ParallaxBackground() {
       <div
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 50%, rgba(2, 6, 23, 0.5) 100%)',
+          background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.4) 100%)',
         }}
       />
     </div>
@@ -144,7 +144,7 @@ export default function ConstituencyPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg-[#080808] flex items-center justify-center">
         <div className="w-12 h-12 border-4 border-teal-600/30 border-t-teal-500 rounded-full animate-spin" />
       </div>
     );
@@ -152,9 +152,9 @@ export default function ConstituencyPage() {
 
   if (!data || !allData) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg-[#080808] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-slate-400 mb-4">নির্বাচনী এলাকা পাওয়া যায়নি</p>
+          <p className="text-neutral-400 mb-4">নির্বাচনী এলাকা পাওয়া যায়নি</p>
           <Link href="/" className="text-teal-400 hover:underline">মানচিত্রে ফিরুন</Link>
         </div>
       </div>
@@ -164,15 +164,15 @@ export default function ConstituencyPage() {
   const voters = data.registered_voters || 400000;
 
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden">
+    <div className="min-h-screen bg-[#080808] relative overflow-hidden">
       {/* Artistic Parallax Background */}
       <ParallaxBackground />
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-xl border-b border-white/10">
+      <header className="sticky top-0 z-50 bg-[#0c0c0c]/95 backdrop-blur-xl border-b border-white/[0.04]">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
+            className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -180,8 +180,8 @@ export default function ConstituencyPage() {
             <span className="hidden sm:inline">Back</span>
           </button>
           <div className="text-center">
-            <h1 className="text-lg font-bold text-white">{data.name_english}</h1>
-            <p className="text-xs text-slate-500">{data.district} · {data.division}</p>
+            <h1 className="text-lg font-bold text-white/90">{data.name_english}</h1>
+            <p className="text-xs text-neutral-500">{data.district} · {data.division}</p>
           </div>
           <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${
             data.urban_classification === 'urban'
@@ -209,14 +209,14 @@ export default function ConstituencyPage() {
           </div>
 
           {candidates.length === 0 && (
-            <p className="text-center text-slate-500">প্রার্থীর তথ্য পাওয়া যায়নি</p>
+            <p className="text-center text-neutral-500">প্রার্থীর তথ্য পাওয়া যায়নি</p>
           )}
         </section>
 
         {/* Visual Divider */}
         <div className="flex items-center justify-center py-4">
-          <div className="w-12 h-12 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center">
-            <svg className="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-12 h-12 rounded-full bg-neutral-900 border border-white/[0.06] flex items-center justify-center">
+            <svg className="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>
@@ -235,8 +235,8 @@ export default function ConstituencyPage() {
 
         {/* Visual Divider */}
         <div className="flex items-center justify-center py-4">
-          <div className="w-12 h-12 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center">
-            <svg className="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-12 h-12 rounded-full bg-neutral-900 border border-white/[0.06] flex items-center justify-center">
+            <svg className="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>
@@ -254,8 +254,8 @@ export default function ConstituencyPage() {
 
         {/* Visual Divider */}
         <div className="flex items-center justify-center py-4">
-          <div className="w-12 h-12 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center">
-            <svg className="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-12 h-12 rounded-full bg-neutral-900 border border-white/[0.06] flex items-center justify-center">
+            <svg className="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>
@@ -275,11 +275,11 @@ export default function ConstituencyPage() {
         <section className="relative py-12 px-8 rounded-3xl overflow-hidden">
           {/* Background gradient - Golden Delta colors */}
           <div className="absolute inset-0 bg-gradient-to-br from-teal-600/10 via-amber-500/5 to-emerald-500/10" />
-          <div className="absolute inset-0 bg-slate-950/50" />
+          <div className="absolute inset-0 bg-black/40" />
 
           <div className="relative text-center">
             <h2 className="text-2xl font-bold text-white mb-4">সিদ্ধান্ত আপনার</h2>
-            <p className="text-slate-300 max-w-xl mx-auto leading-relaxed mb-6">
+            <p className="text-neutral-300 max-w-xl mx-auto leading-relaxed mb-6">
               আপনি দেখলেন কারা প্রার্থী। জানলেন তাদের হাতে কী ক্ষমতা থাকবে।
               বুঝলেন আপনার এলাকার বর্তমান অবস্থা।
             </p>
@@ -293,14 +293,14 @@ export default function ConstituencyPage() {
         <div className="text-center pt-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-slate-300 rounded-xl transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-neutral-300 rounded-xl transition-colors"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             মানচিত্রে ফিরুন
           </Link>
-          <p className="mt-4 text-xs text-slate-600">
+          <p className="mt-4 text-xs text-neutral-600">
             তথ্য শুধুমাত্র জানার জন্য
           </p>
         </div>
@@ -322,7 +322,7 @@ function CandidateCard({ candidate }: { candidate: Candidate }) {
   };
 
   return (
-    <div className="group relative p-6 rounded-2xl bg-slate-900/50 border border-white/10 hover:border-white/20 transition-all hover:bg-slate-900/80">
+    <div className="group relative p-6 rounded-2xl bg-neutral-900/50 border border-white/[0.06] hover:border-white/[0.12] transition-all hover:bg-neutral-900/80">
       {/* Party color accent */}
       <div
         className="absolute top-0 left-6 right-6 h-1 rounded-b-full"
@@ -341,7 +341,7 @@ function CandidateCard({ candidate }: { candidate: Candidate }) {
         {/* Name */}
         <h3 className="text-lg font-semibold text-white mb-1">{name}</h3>
         {bengaliName && (
-          <p className="text-sm text-slate-500 mb-3">{bengaliName}</p>
+          <p className="text-sm text-neutral-500 mb-3">{bengaliName}</p>
         )}
 
         {/* Party Badge */}
@@ -352,7 +352,7 @@ function CandidateCard({ candidate }: { candidate: Candidate }) {
           >
             {config.name}
           </span>
-          <span className="text-xs text-slate-600 mt-1">{config.fullName}</span>
+          <span className="text-xs text-neutral-600 mt-1">{config.fullName}</span>
         </div>
       </div>
     </div>
@@ -417,14 +417,14 @@ function PowerJourney({ voters }: { voters: number }) {
           {steps.map((step, idx) => (
             <div key={idx} className="relative flex flex-col items-center">
               {/* Circle with SVG icon */}
-              <div className="w-20 h-20 p-4 rounded-full bg-slate-800 border-2 border-white/20 text-amber-400 z-10 shadow-lg">
+              <div className="w-20 h-20 p-4 rounded-full bg-neutral-900 border-2 border-white/10 text-amber-400 z-10 shadow-lg">
                 {step.icon}
               </div>
               {/* Label */}
               <div className="mt-4 text-center">
-                <p className="text-xs text-slate-500">{step.label}</p>
+                <p className="text-xs text-neutral-500">{step.label}</p>
                 <p className="text-lg font-bold text-white">{step.value}</p>
-                <p className="text-xs text-slate-600">{step.sub}</p>
+                <p className="text-xs text-neutral-600">{step.sub}</p>
               </div>
             </div>
           ))}
@@ -435,20 +435,20 @@ function PowerJourney({ voters }: { voters: number }) {
       <div className="md:hidden space-y-4">
         {steps.map((step, idx) => (
           <div key={idx} className="flex items-center gap-4">
-            <div className="w-14 h-14 p-3 rounded-full bg-slate-800 border-2 border-white/20 text-amber-400 shrink-0">
+            <div className="w-14 h-14 p-3 rounded-full bg-neutral-900 border-2 border-white/10 text-amber-400 shrink-0">
               {step.icon}
             </div>
-            <div className="flex-1 py-3 px-4 rounded-xl bg-slate-800/50 border border-white/5">
-              <p className="text-xs text-slate-500">{step.label}</p>
+            <div className="flex-1 py-3 px-4 rounded-xl bg-neutral-900/50 border border-white/[0.04]">
+              <p className="text-xs text-neutral-500">{step.label}</p>
               <p className="text-lg font-bold text-white">{step.value}</p>
-              <p className="text-xs text-slate-600">{step.sub}</p>
+              <p className="text-xs text-neutral-600">{step.sub}</p>
             </div>
           </div>
         ))}
       </div>
 
       {/* Summary message */}
-      <p className="text-center text-slate-400 text-sm mt-8 max-w-md mx-auto">
+      <p className="text-center text-neutral-400 text-sm mt-8 max-w-md mx-auto">
         এক ভোট → এক এমপি → আপনার এলাকার ভবিষ্যৎ
       </p>
     </div>
@@ -516,16 +516,16 @@ function SeedsOfChange() {
       <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
         {powers.map((power, idx) => (
           <div key={idx} className="group text-center">
-            <div className="w-16 h-16 mx-auto mb-3 p-3 rounded-2xl bg-slate-800/50 border border-white/5 text-teal-400 group-hover:text-teal-300 group-hover:border-teal-500/30 group-hover:bg-teal-500/10 transition-all">
+            <div className="w-16 h-16 mx-auto mb-3 p-3 rounded-2xl bg-neutral-900/50 border border-white/[0.04] text-teal-400 group-hover:text-teal-300 group-hover:border-teal-500/30 group-hover:bg-teal-500/10 transition-all">
               {power.icon}
             </div>
             <p className="text-sm font-medium text-white">{power.label}</p>
-            <p className="text-xs text-slate-600">{power.desc}</p>
+            <p className="text-xs text-neutral-600">{power.desc}</p>
           </div>
         ))}
       </div>
 
-      <p className="text-center text-slate-500 text-sm">
+      <p className="text-center text-neutral-500 text-sm">
         &quot;যে ক্ষমতা পাবে, সে পরিবর্তন আনতে পারবে&quot;
       </p>
     </div>
@@ -628,7 +628,7 @@ function GardenView({ data, voters }: { data: DevelopmentData; voters: number })
           return (
             <div
               key={idx}
-              className="relative p-4 rounded-xl bg-slate-800/30 border border-white/5 overflow-hidden"
+              className="relative p-4 rounded-xl bg-neutral-900/30 border border-white/[0.04] overflow-hidden"
             >
               {/* Progress fill */}
               <div
@@ -651,10 +651,10 @@ function GardenView({ data, voters }: { data: DevelopmentData; voters: number })
                 {/* Label and stats */}
                 <div className="flex-1">
                   <p className="text-white font-medium">{sector.label}</p>
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-neutral-500">
                     আছে <span className={isGood ? 'text-emerald-400' : isMedium ? 'text-amber-400' : 'text-red-400'}>{sector.have}</span>টি
                     {' · '}
-                    দরকার <span className="text-slate-300">{sector.need}</span>টি
+                    দরকার <span className="text-neutral-300">{sector.need}</span>টি
                   </p>
                 </div>
 
@@ -675,7 +675,7 @@ function GardenView({ data, voters }: { data: DevelopmentData; voters: number })
       </div>
 
       {/* Legend */}
-      <div className="flex justify-center gap-6 text-xs text-slate-500">
+      <div className="flex justify-center gap-6 text-xs text-neutral-500">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-400" />
           <span>পর্যাপ্ত</span>
@@ -690,7 +690,7 @@ function GardenView({ data, voters }: { data: DevelopmentData; voters: number })
         </div>
       </div>
 
-      <p className="text-center text-slate-600 text-sm mt-4">
+      <p className="text-center text-neutral-600 text-sm mt-4">
         &quot;উন্নয়ন যেখানে থেমে আছে, সেখানেই সুযোগ&quot;
       </p>
     </div>

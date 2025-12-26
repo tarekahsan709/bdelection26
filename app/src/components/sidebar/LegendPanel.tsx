@@ -8,20 +8,20 @@ export default function LegendPanel() {
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
           <div
-            className="w-3 h-3 rounded-full shadow-sm"
-            style={{ backgroundColor: DATA_COLORS.urban, boxShadow: `0 2px 4px ${DATA_COLORS.urban}50` }}
+            className="w-3 h-3 rounded-full"
+            style={{ backgroundColor: DATA_COLORS.urban, boxShadow: `0 0 8px ${DATA_COLORS.urban}60` }}
           />
-          <span className="text-xs text-slate-400">শহর</span>
+          <span className="text-xs text-neutral-400">শহর</span>
         </div>
         <div className="flex items-center gap-2">
           <div
-            className="w-3 h-3 rounded-full shadow-sm"
-            style={{ backgroundColor: DATA_COLORS.rural, boxShadow: `0 2px 4px ${DATA_COLORS.rural}50` }}
+            className="w-3 h-3 rounded-full"
+            style={{ backgroundColor: DATA_COLORS.rural, boxShadow: `0 0 8px ${DATA_COLORS.rural}60` }}
           />
-          <span className="text-xs text-slate-400">গ্রাম</span>
+          <span className="text-xs text-neutral-400">গ্রাম</span>
         </div>
       </div>
-      <p className="text-[11px] text-slate-500 leading-relaxed">
+      <p className="text-[11px] text-neutral-600 leading-relaxed">
         প্রতিটি বিন্দু প্রায় ৫,০০০ নিবন্ধিত ভোটার প্রতিনিধিত্ব করে
       </p>
     </div>
