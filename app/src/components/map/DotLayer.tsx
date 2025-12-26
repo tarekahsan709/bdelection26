@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import type { Dot } from '@/types/dot-density';
-import { getConstituencyColor } from '@/constants/divisions';
+import { DATA_COLORS } from '@/config/colors';
 
 interface DotLayerProps {
   map: L.Map;
@@ -12,40 +12,96 @@ interface DotLayerProps {
 
 export default function DotLayer({ map, dots }: DotLayerProps) {
   const layerGroupRef = useRef<L.LayerGroup | null>(null);
+  const glowLayerRef = useRef<L.LayerGroup | null>(null);
+  const [isReady, setIsReady] = useState(false);
+
+  // Wait for map to be fully initialized before rendering dots
+  useEffect(() => {
+    const checkReady = () => {
+      if (map.getZoom() !== undefined && map.getCenter()) {
+        setIsReady(true);
+      }
+    };
+
+    // Check immediately
+    checkReady();
+
+    // Also listen for first load event
+    map.once('load', checkReady);
+
+    return () => {
+      map.off('load', checkReady);
+    };
+  }, [map]);
 
   useEffect(() => {
-    // Clear existing layer
+    if (!isReady || dots.length === 0) return;
+
+    // Clear existing layers
     if (layerGroupRef.current) {
       map.removeLayer(layerGroupRef.current);
     }
+    if (glowLayerRef.current) {
+      map.removeLayer(glowLayerRef.current);
+    }
 
-    const layerGroup = L.layerGroup();
+    const glowLayer = L.layerGroup();
+    const mainLayer = L.layerGroup();
     const canvasRenderer = L.canvas({ padding: 0.5 });
+    const glowRenderer = L.canvas({ padding: 0.5 });
 
-    // Add dots with random multi-color distribution (like UK GE Dot Map)
+    const zoom = map.getZoom();
+    const baseRadius = getRadiusForZoom(zoom);
+    const glowRadius = getGlowRadiusForZoom(zoom);
+
+    // Add dots with urban/rural coloring (like UK GE Dot Map)
     dots.forEach((dot: Dot) => {
-      const color = getConstituencyColor(dot.c_id);
+      // Urban = teal, Rural = amber (Golden Delta theme)
+      const color = dot.u ? DATA_COLORS.urban : DATA_COLORS.rural;
 
+      // Subtle glow layer (rendered behind main dots)
+      L.circleMarker([dot.lat, dot.lng], {
+        renderer: glowRenderer,
+        radius: glowRadius,
+        fillColor: color,
+        fillOpacity: 0.12, // Reduced for subtler effect
+        color: 'transparent',
+        weight: 0,
+        interactive: false,
+      }).addTo(glowLayer);
+
+      // Main dot layer
       L.circleMarker([dot.lat, dot.lng], {
         renderer: canvasRenderer,
-        radius: getRadiusForZoom(map.getZoom()),
+        radius: baseRadius,
         fillColor: color,
-        fillOpacity: 0.7, // Slightly transparent for overlapping dots
+        fillOpacity: 0.85,
         color: color,
-        weight: 0, // No outline for cleaner look
-        interactive: false, // Disable for performance
-      }).addTo(layerGroup);
+        weight: 0,
+        interactive: false,
+      }).addTo(mainLayer);
     });
 
-    layerGroup.addTo(map);
-    layerGroupRef.current = layerGroup;
+    // Add glow first (behind), then main dots
+    glowLayer.addTo(map);
+    mainLayer.addTo(map);
+    glowLayerRef.current = glowLayer;
+    layerGroupRef.current = mainLayer;
 
     // Update dot size on zoom
     const handleZoom = () => {
       const newRadius = getRadiusForZoom(map.getZoom());
-      layerGroup.eachLayer((layer) => {
+      const newGlowRadius = getGlowRadiusForZoom(map.getZoom());
+
+      mainLayer.eachLayer((layer) => {
         if (layer instanceof L.CircleMarker) {
           layer.setRadius(newRadius);
+        }
+      });
+
+      glowLayer.eachLayer((layer) => {
+        if (layer instanceof L.CircleMarker) {
+          layer.setRadius(newGlowRadius);
         }
       });
     };
@@ -57,20 +113,35 @@ export default function DotLayer({ map, dots }: DotLayerProps) {
       if (layerGroupRef.current) {
         map.removeLayer(layerGroupRef.current);
       }
+      if (glowLayerRef.current) {
+        map.removeLayer(glowLayerRef.current);
+      }
     };
-  }, [map, dots]);
+  }, [map, dots, isReady]);
 
   return null; // This component only manages Leaflet layers
 }
 
-// Tiny dots - very sparse at default view
+// Smaller dots for denser visualization (like UK GE Dot Map)
 function getRadiusForZoom(zoom: number): number {
-  if (zoom <= 6) return 0.3;
-  if (zoom === 7) return 0.4;   // Default view - tiny dots
-  if (zoom === 8) return 0.6;
-  if (zoom === 9) return 0.8;
-  if (zoom === 10) return 1.0;
-  if (zoom === 11) return 1.3;
-  if (zoom === 12) return 1.6;
-  return 1.8;
+  if (zoom <= 6) return 0.8;
+  if (zoom === 7) return 1.0;   // Default view - small but visible
+  if (zoom === 8) return 1.3;
+  if (zoom === 9) return 1.6;
+  if (zoom === 10) return 2.0;
+  if (zoom === 11) return 2.5;
+  if (zoom === 12) return 3.0;
+  return 3.5;
+}
+
+// Glow radius - slightly larger than main dots
+function getGlowRadiusForZoom(zoom: number): number {
+  if (zoom <= 6) return 2.0;
+  if (zoom === 7) return 2.5;
+  if (zoom === 8) return 3.0;
+  if (zoom === 9) return 3.5;
+  if (zoom === 10) return 4.5;
+  if (zoom === 11) return 5.5;
+  if (zoom === 12) return 6.5;
+  return 7.5;
 }

@@ -1,10 +1,10 @@
 'use client';
 
-import FilterPanel from './FilterPanel';
-import StatsPanel from './StatsPanel';
-import LegendPanel from './LegendPanel';
-import type { FilterState } from '@/types/map';
 import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
+import type { FilterState } from '@/types/map';
+import FilterPanel from './FilterPanel';
+import LegendPanel from './LegendPanel';
+import StatsPanel from './StatsPanel';
 
 interface SidebarProps {
   filterState: FilterState;
@@ -26,7 +26,7 @@ export default function Sidebar({
         <div className="absolute inset-0 bg-gradient-to-br from-teal-600/10 via-transparent to-transparent" />
         <div className="relative">
           <h1 className="text-xl font-bold text-white tracking-tight">
-            বাংলাদেশ নির্বাচন
+            বাংলাদেশ নির্বাচন 2026
           </h1>
           <p className="mt-1.5 text-sm text-slate-400">
             ভোটার ঘনত্ব মানচিত্র

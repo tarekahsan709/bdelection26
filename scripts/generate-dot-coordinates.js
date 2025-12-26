@@ -8,8 +8,8 @@ const POPULATION_DATA_PATH = path.join(__dirname, '../app/public/data/constituen
 const OUTPUT_VOTERS_PATH = path.join(__dirname, '../app/public/data/dot-density-voters.json');
 const OUTPUT_POPULATION_PATH = path.join(__dirname, '../app/public/data/dot-density-population.json');
 
-// Configuration - balanced ratio for cleaner visualization (like UK GE Dot Map)
-const DOT_RATIO = 2500; // Each dot represents 2,500 people (fewer dots = less congested)
+// Configuration - higher ratio for cleaner visualization with visible density variation
+const DOT_RATIO = 5000; // Each dot represents 5,000 people (fewer dots = clearer density differences)
 
 // District name mappings (constituency name -> GeoJSON name)
 const DISTRICT_NAME_MAP = {
