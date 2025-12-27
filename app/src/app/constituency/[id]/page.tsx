@@ -9,8 +9,8 @@ import { useEffect, useState } from 'react';
 function ParallaxBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none">
-      {/* Base solid dark */}
-      <div className="absolute inset-0 bg-[#060606]" />
+      {/* Base solid dark - lightened from #060606 */}
+      <div className="absolute inset-0 bg-[#0c0c0c]" />
 
       {/* Gradient orbs that shift with content */}
       <div
@@ -44,6 +44,141 @@ function ParallaxBackground() {
         }}
       />
     </div>
+  );
+}
+
+// Parliament Building Illustration - Jatiya Sangsad Bhaban by Louis Kahn
+// Brutalist style with filled masses and dramatic geometric voids
+function ParliamentIllustration({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 1000 500" fill="none" className={className}>
+      <defs>
+        {/* Masks for cutting out geometric voids */}
+        <mask id="centerMask">
+          <rect x="0" y="0" width="1000" height="500" fill="white" />
+          {/* Main central circle - THE defining feature */}
+          <circle cx="500" cy="195" r="75" fill="black" />
+          {/* Smaller circles in roof line */}
+          <circle cx="420" cy="95" r="22" fill="black" />
+          <circle cx="500" cy="85" r="28" fill="black" />
+          <circle cx="580" cy="95" r="22" fill="black" />
+          {/* Semi-circle at bottom */}
+          <ellipse cx="500" cy="320" rx="55" ry="35" fill="black" />
+        </mask>
+
+        <mask id="leftBlockMask">
+          <rect x="0" y="0" width="1000" height="500" fill="white" />
+          {/* Large triangle void */}
+          <polygon points="280,70 340,180 220,180" fill="black" />
+          {/* Circle void */}
+          <circle cx="280" cy="235" r="50" fill="black" />
+        </mask>
+
+        <mask id="rightBlockMask">
+          <rect x="0" y="0" width="1000" height="500" fill="white" />
+          {/* Large triangle void */}
+          <polygon points="720,70 780,180 660,180" fill="black" />
+          {/* Circle void */}
+          <circle cx="720" cy="235" r="50" fill="black" />
+        </mask>
+
+        {/* Horizontal striation pattern */}
+        <pattern id="striations" patternUnits="userSpaceOnUse" width="1000" height="8">
+          <line x1="0" y1="4" x2="1000" y2="4" stroke="currentColor" strokeWidth="0.5" opacity="0.15" />
+        </pattern>
+
+        {/* Reflection gradient */}
+        <linearGradient id="reflectionGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="currentColor" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+
+      {/* ====== MAIN BUILDING ====== */}
+
+      {/* CENTER BLOCK - Assembly Hall (Tallest, most prominent) */}
+      <g mask="url(#centerMask)">
+        <rect x="390" y="55" width="220" height="280" fill="currentColor" opacity="0.35" />
+        <rect x="390" y="55" width="220" height="280" fill="url(#striations)" />
+        <rect x="390" y="55" width="220" height="280" stroke="currentColor" strokeWidth="1.5" fill="none" opacity="0.6" />
+      </g>
+
+      {/* LEFT BLOCK - Triangle + Circle */}
+      <g mask="url(#leftBlockMask)">
+        <rect x="180" y="120" width="200" height="215" fill="currentColor" opacity="0.28" />
+        <rect x="180" y="120" width="200" height="215" fill="url(#striations)" />
+        <rect x="180" y="120" width="200" height="215" stroke="currentColor" strokeWidth="1.2" fill="none" opacity="0.5" />
+      </g>
+
+      {/* RIGHT BLOCK - Triangle + Circle (Mirror) */}
+      <g mask="url(#rightBlockMask)">
+        <rect x="620" y="120" width="200" height="215" fill="currentColor" opacity="0.28" />
+        <rect x="620" y="120" width="200" height="215" fill="url(#striations)" />
+        <rect x="620" y="120" width="200" height="215" stroke="currentColor" strokeWidth="1.2" fill="none" opacity="0.5" />
+      </g>
+
+      {/* FAR LEFT WING - Lower block with vertical slots */}
+      <g>
+        <rect x="60" y="200" width="120" height="135" fill="currentColor" opacity="0.2" />
+        <rect x="60" y="200" width="120" height="135" fill="url(#striations)" />
+        <rect x="60" y="200" width="120" height="135" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.4" />
+        {/* Vertical slot voids */}
+        <rect x="75" y="220" width="12" height="80" fill="#0c0c0c" />
+        <rect x="95" y="220" width="12" height="80" fill="#0c0c0c" />
+        <rect x="115" y="220" width="12" height="80" fill="#0c0c0c" />
+        <rect x="135" y="220" width="12" height="80" fill="#0c0c0c" />
+        <rect x="155" y="220" width="12" height="80" fill="#0c0c0c" />
+      </g>
+
+      {/* FAR RIGHT WING - Lower block with vertical slots */}
+      <g>
+        <rect x="820" y="200" width="120" height="135" fill="currentColor" opacity="0.2" />
+        <rect x="820" y="200" width="120" height="135" fill="url(#striations)" />
+        <rect x="820" y="200" width="120" height="135" stroke="currentColor" strokeWidth="1" fill="none" opacity="0.4" />
+        {/* Vertical slot voids */}
+        <rect x="833" y="220" width="12" height="80" fill="#0c0c0c" />
+        <rect x="853" y="220" width="12" height="80" fill="#0c0c0c" />
+        <rect x="873" y="220" width="12" height="80" fill="#0c0c0c" />
+        <rect x="893" y="220" width="12" height="80" fill="#0c0c0c" />
+        <rect x="913" y="220" width="12" height="80" fill="#0c0c0c" />
+      </g>
+
+      {/* ====== GROUND / PLATFORM ====== */}
+      <rect x="40" y="335" width="920" height="8" fill="currentColor" opacity="0.25" />
+
+      {/* ====== WATER REFLECTION ====== */}
+      <g opacity="0.4" transform="translate(0, 350) scale(1, -0.4)">
+        {/* Reflected center block */}
+        <rect x="390" y="55" width="220" height="280" fill="url(#reflectionGrad)" />
+        {/* Reflected side blocks */}
+        <rect x="180" y="120" width="200" height="215" fill="url(#reflectionGrad)" />
+        <rect x="620" y="120" width="200" height="215" fill="url(#reflectionGrad)" />
+      </g>
+
+      {/* Water ripple lines */}
+      <g stroke="currentColor" opacity="0.1">
+        <line x1="100" y1="380" x2="900" y2="380" strokeWidth="0.5" />
+        <line x1="150" y1="400" x2="850" y2="400" strokeWidth="0.5" />
+        <line x1="200" y1="420" x2="800" y2="420" strokeWidth="0.5" />
+        <line x1="250" y1="440" x2="750" y2="440" strokeWidth="0.5" />
+      </g>
+
+      {/* ====== VOID OUTLINES (to make them pop) ====== */}
+      <g stroke="currentColor" fill="none" opacity="0.5">
+        {/* Center voids */}
+        <circle cx="500" cy="195" r="75" strokeWidth="1" />
+        <circle cx="420" cy="95" r="22" strokeWidth="0.8" />
+        <circle cx="500" cy="85" r="28" strokeWidth="0.8" />
+        <circle cx="580" cy="95" r="22" strokeWidth="0.8" />
+        <ellipse cx="500" cy="320" rx="55" ry="35" strokeWidth="0.8" />
+        {/* Left block voids */}
+        <polygon points="280,70 340,180 220,180" strokeWidth="0.8" />
+        <circle cx="280" cy="235" r="50" strokeWidth="0.8" />
+        {/* Right block voids */}
+        <polygon points="720,70 780,180 660,180" strokeWidth="0.8" />
+        <circle cx="720" cy="235" r="50" strokeWidth="0.8" />
+      </g>
+    </svg>
   );
 }
 
@@ -478,7 +613,7 @@ export default function ConstituencyPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#080808] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0c0c0c] flex items-center justify-center">
         <div className="w-12 h-12 border-4 border-teal-600/30 border-t-teal-500 rounded-full animate-spin" />
       </div>
     );
@@ -486,7 +621,7 @@ export default function ConstituencyPage() {
 
   if (!infrastructure || !population) {
     return (
-      <div className="min-h-screen bg-[#080808] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0c0c0c] flex items-center justify-center">
         <div className="text-center">
           <p className="text-neutral-400 mb-4">নির্বাচনী এলাকা পাওয়া যায়নি</p>
           <Link href="/" className="text-teal-400 hover:underline">মানচিত্রে ফিরুন</Link>
@@ -496,14 +631,13 @@ export default function ConstituencyPage() {
   }
 
   const voters = population.registered_voters || 400000;
-  const votersInLakh = (voters / 100000).toFixed(1);
 
   return (
-    <div className="min-h-screen bg-[#060606] relative overflow-hidden">
+    <div className="min-h-screen bg-[#0c0c0c] relative overflow-hidden">
       <ParallaxBackground />
 
       {/* Minimal Header */}
-      <header className="sticky top-0 z-50 bg-[#060606]/90 backdrop-blur-xl border-b border-white/[0.04]">
+      <header className="sticky top-0 z-50 bg-[#0c0c0c]/90 backdrop-blur-xl border-b border-white/[0.04]">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
           <button
             onClick={() => router.back()}
@@ -527,292 +661,296 @@ export default function ConstituencyPage() {
       <main className="relative z-10">
 
         {/* ═══════════════════════════════════════════════════════════════════
-            HERO SECTION - The Hook (Pudding-style big typography)
+            HERO SECTION - Clean, Focused (60vh max)
         ═══════════════════════════════════════════════════════════════════ */}
-        <section className="min-h-[70vh] flex items-center justify-center px-4 py-20">
-          <div className="text-center max-w-3xl mx-auto">
-            {/* Location badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] mb-8">
-              <svg className="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span className="text-sm text-neutral-300">{population.district_english}, {population.division_english}</span>
-            </div>
+        <section className="min-h-[60vh] flex flex-col justify-center px-4 py-8 md:py-12">
+          <div className="max-w-5xl mx-auto w-full">
+            {/* Two-column layout on desktop */}
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
 
-            {/* Bengali constituency name - large */}
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              {population.name}
-            </h1>
+              {/* Left: Main Info */}
+              <div className="text-center md:text-left">
+                {/* Constituency Name - THE headline */}
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 leading-tight">
+                  {population.name_english}
+                </h1>
+                <p className="text-xl md:text-2xl text-neutral-400 mb-6">{population.name}</p>
 
-            {/* The big number - voter count with crowd illustration */}
-            <div className="mb-8 relative">
-              {/* Crowd illustration behind the number */}
-              <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
-                <VoterCrowdIllustration className="w-full max-w-2xl h-auto text-teal-500/30" />
-              </div>
-
-              {/* The number overlay */}
-              <div className="relative z-10 py-8">
-                <div className="text-7xl md:text-9xl font-black bg-gradient-to-r from-teal-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent drop-shadow-2xl">
-                  {votersInLakh} লক্ষ
+                {/* Location chips */}
+                <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-8">
+                  <span className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-neutral-300">
+                    {population.district_english}
+                  </span>
+                  <span className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-neutral-300">
+                    {population.division_english}
+                  </span>
+                  <span className={`px-3 py-1.5 rounded-full text-sm font-medium ${
+                    population.urban_classification === 'urban'
+                      ? 'bg-teal-500/15 text-teal-400 border border-teal-500/20'
+                      : 'bg-amber-500/15 text-amber-400 border border-amber-500/20'
+                  }`}>
+                    {population.urban_classification === 'urban' ? 'Urban' : 'Rural'}
+                  </span>
                 </div>
-                <p className="text-xl md:text-2xl text-neutral-300 mt-3 font-medium">মানুষের কণ্ঠস্বর</p>
+
+                {/* THE key stat */}
+                <div className="p-6 rounded-2xl bg-gradient-to-br from-teal-500/10 to-transparent border border-teal-500/20">
+                  <div className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-1">
+                    {formatNumber(voters)}
+                  </div>
+                  <div className="text-lg text-teal-400 font-medium">Registered Voters</div>
+                  <p className="text-sm text-neutral-500 mt-2">
+                    You are 1 of {formatNumber(voters)} who will choose the next MP
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* The hook - emotional message */}
-            <p className="text-lg md:text-xl text-neutral-300 leading-relaxed max-w-xl mx-auto mb-12">
-              এই {formatNumber(voters)} ভোটার একজন <span className="text-teal-400 font-semibold">সংসদ সদস্য</span> নির্বাচন করবেন।
-              যে ব্যক্তি পরবর্তী ৫ বছর আপনার এলাকার <span className="text-amber-400 font-semibold">ভাগ্য নির্ধারণ</span> করবেন।
-            </p>
+              {/* Right: Quick Stats Cards */}
+              <div className="grid grid-cols-2 gap-3">
+                {/* Candidates count */}
+                <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20">
+                  <div className="text-3xl font-bold text-rose-400">{candidates.length || '—'}</div>
+                  <div className="text-sm text-neutral-400">Candidates</div>
+                </div>
 
-            {/* Scroll indicator */}
-            <div className="animate-bounce">
-              <svg className="w-6 h-6 mx-auto text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
+                {/* Schools */}
+                <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                  <div className="text-3xl font-bold text-emerald-400">{infrastructure?.schools || '—'}</div>
+                  <div className="text-sm text-neutral-400">Schools</div>
+                </div>
+
+                {/* Hospitals + Clinics */}
+                <div className="p-4 rounded-xl bg-sky-500/10 border border-sky-500/20">
+                  <div className="text-3xl font-bold text-sky-400">{(infrastructure?.hospitals || 0) + (infrastructure?.clinics || 0) || '—'}</div>
+                  <div className="text-sm text-neutral-400">Health Facilities</div>
+                </div>
+
+                {/* Markets */}
+                <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                  <div className="text-3xl font-bold text-amber-400">{infrastructure?.markets || '—'}</div>
+                  <div className="text-sm text-neutral-400">Markets</div>
+                </div>
+
+                {/* Parliament illustration as subtle decoration */}
+                <div className="col-span-2 flex items-center justify-center py-4 opacity-20">
+                  <ParliamentIllustration className="w-full max-w-xs h-auto text-white" />
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 1: প্রার্থীগণ - The Candidates
+            CANDIDATES - The Most Important Section
         ═══════════════════════════════════════════════════════════════════ */}
-        <section className="py-20 px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <SectionBadge number="১" color="rose" />
-              <span className="text-rose-400/80 text-sm font-medium uppercase tracking-wider">চিনুন</span>
+        <section className="py-12 px-4 border-t border-white/5">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold text-white">
+                  Candidates
+                </h2>
+                <p className="text-neutral-500 mt-1">Who&apos;s running for MP in this constituency</p>
+              </div>
+              {candidates.length > 0 && (
+                <span className="px-3 py-1 rounded-full bg-rose-500/15 text-rose-400 text-sm font-medium">
+                  {candidates.length} candidates
+                </span>
+              )}
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              কারা আপনার <span className="text-rose-400">ভোট চাইছেন</span>?
-            </h2>
-
-            <p className="text-neutral-400 text-lg mb-10 max-w-2xl">
-              এই প্রার্থীরা আপনার প্রতিনিধি হতে চান। তাদের দল, পটভূমি এবং প্রতিশ্রুতি সম্পর্কে জানুন।
-              মনে রাখবেন — <span className="text-white">তারা আপনার কাছে জবাবদিহি করতে বাধ্য</span>।
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {candidates.map((candidate, idx) => (
-                <CandidateCard key={idx} candidate={candidate} />
-              ))}
-            </div>
-
-            {candidates.length === 0 && (
-              <div className="text-center py-12 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
-                <svg className="w-12 h-12 mx-auto text-neutral-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                <p className="text-neutral-500">প্রার্থীদের তথ্য শীঘ্রই যোগ করা হবে</p>
+            {candidates.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {candidates.map((candidate, idx) => (
+                  <CandidateCard key={idx} candidate={candidate} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-16 rounded-2xl bg-white/[0.02] border border-dashed border-white/10">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-neutral-800 flex items-center justify-center">
+                  <svg className="w-8 h-8 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <p className="text-neutral-400 font-medium">Candidate information coming soon</p>
+                <p className="text-neutral-600 text-sm mt-1">Check back for updates</p>
               </div>
             )}
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 2: বর্তমান অবস্থা - Current Reality
+            INFRASTRUCTURE - What's in this area
         ═══════════════════════════════════════════════════════════════════ */}
-        <section className="py-20 px-4 bg-gradient-to-b from-transparent via-amber-950/10 to-transparent">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <SectionBadge number="২" color="amber" />
-              <span className="text-amber-400/80 text-sm font-medium uppercase tracking-wider">দেখুন</span>
+        <section className="py-12 px-4 border-t border-white/5">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold text-white">
+                  Local Infrastructure
+                </h2>
+                <p className="text-neutral-500 mt-1">Data from OpenStreetMap</p>
+              </div>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              আপনার এলাকায় এখন <span className="text-amber-400">কী আছে</span>?
-            </h2>
-
-            <p className="text-neutral-400 text-lg mb-10 max-w-2xl">
-              এই তথ্য OpenStreetMap থেকে সংগ্রহ করা হয়েছে। দেখুন আপনার নির্বাচনী এলাকায়
-              জনসংখ্যা অনুযায়ী কোথায় ঘাটতি আছে এবং কোথায় উন্নতি দরকার।
-            </p>
-
-            <GardenView infrastructure={infrastructure} voters={voters} />
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 3: আপনার ক্ষমতা - Your Power (Civic Education)
-        ═══════════════════════════════════════════════════════════════════ */}
-        <section className="py-20 px-4 bg-gradient-to-b from-transparent via-teal-950/10 to-transparent">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <SectionBadge number="৩" color="teal" />
-              <span className="text-teal-400/80 text-sm font-medium uppercase tracking-wider">বুঝুন</span>
+            {/* Compact infrastructure grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+              <InfraStatCard
+                icon="🏫"
+                value={infrastructure?.schools || 0}
+                label="Schools"
+                color="emerald"
+              />
+              <InfraStatCard
+                icon="🏥"
+                value={infrastructure?.hospitals || 0}
+                label="Hospitals"
+                color="rose"
+              />
+              <InfraStatCard
+                icon="🏪"
+                value={infrastructure?.clinics || 0}
+                label="Clinics"
+                color="sky"
+              />
+              <InfraStatCard
+                icon="🏦"
+                value={infrastructure?.banks || 0}
+                label="Banks"
+                color="amber"
+              />
+              <InfraStatCard
+                icon="🛒"
+                value={infrastructure?.markets || 0}
+                label="Markets"
+                color="purple"
+              />
+              <InfraStatCard
+                icon="🕌"
+                value={infrastructure?.mosques || 0}
+                label="Mosques"
+                color="teal"
+              />
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              আপনার ভোট কেন <span className="text-teal-400">শক্তিশালী</span>?
-            </h2>
-
-            <div className="prose prose-invert prose-lg max-w-none">
-              <p className="text-neutral-300 text-lg leading-relaxed mb-8">
-                গণতন্ত্রে জনগণই সর্বোচ্চ ক্ষমতার অধিকারী। আপনার একটি ভোট শুধু একটি কাগজের টুকরো নয় —
-                এটি আপনার এলাকার <strong className="text-white">স্কুল, হাসপাতাল, রাস্তা, বিদ্যুৎ এবং পানি</strong>র ভবিষ্যৎ নির্ধারণ করে।
+            {/* Per capita context */}
+            <div className="mt-6 p-4 rounded-xl bg-white/[0.02] border border-white/5">
+              <p className="text-sm text-neutral-400">
+                <span className="text-white font-medium">Per 10,000 voters:</span>{' '}
+                {infrastructure?.schools ? ((infrastructure.schools / voters) * 10000).toFixed(1) : '—'} schools,{' '}
+                {infrastructure?.hospitals || infrastructure?.clinics
+                  ? (((infrastructure.hospitals || 0) + (infrastructure.clinics || 0)) / voters * 10000).toFixed(1)
+                  : '—'} health facilities
               </p>
             </div>
-
-            {/* Key insight cards */}
-            <div className="grid md:grid-cols-3 gap-4 mt-10">
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-white font-semibold mb-2">এমপি কাজ করেন আপনার জন্য</h3>
-                <p className="text-neutral-400 text-sm">
-                  সংসদ সদস্য জনগণের সেবক। তারা আপনার ট্যাক্সের টাকায় বেতন পান এবং আপনার কাছে জবাবদিহি করতে বাধ্য।
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-white font-semibold mb-2">বাজেট বরাদ্দের ক্ষমতা</h3>
-                <p className="text-neutral-400 text-sm">
-                  প্রতিটি নির্বাচনী এলাকায় উন্নয়ন বাজেট বরাদ্দ হয়। এমপি সেই অর্থ কোথায় খরচ হবে তা প্রভাবিত করেন।
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <h3 className="text-white font-semibold mb-2">৫ বছরের সুযোগ</h3>
-                <p className="text-neutral-400 text-sm">
-                  একবার নির্বাচিত হলে এমপি ৫ বছর দায়িত্ব পালন করেন। আপনার সিদ্ধান্ত দীর্ঘমেয়াদী প্রভাব ফেলে।
-                </p>
-              </div>
-            </div>
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 4: এমপির ক্ষমতা - What MP Can Deliver
+            CIVIC INFO - Collapsed, expandable
         ═══════════════════════════════════════════════════════════════════ */}
-        <section className="py-20 px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <SectionBadge number="৪" color="emerald" />
-              <span className="text-emerald-400/80 text-sm font-medium uppercase tracking-wider">জানুন</span>
-            </div>
-
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              একজন এমপি কী <span className="text-emerald-400">আনতে পারেন</span>?
-            </h2>
-
-            <p className="text-neutral-400 text-lg mb-10 max-w-2xl">
-              সংসদ সদস্যদের হাতে উন্নয়ন প্রকল্প অনুমোদন, বাজেট বরাদ্দ প্রভাবিত করা এবং
-              সরকারি সংস্থাগুলোর সাথে যোগাযোগের ক্ষমতা থাকে। তারা আনতে পারেন:
-            </p>
-
-            <SeedsOfChange />
-
-            {/* Educational note */}
-            <div className="mt-10 p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/20">
-              <div className="flex gap-4">
-                <div className="shrink-0">
-                  <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
+        <section className="py-12 px-4 border-t border-white/5">
+          <div className="max-w-5xl mx-auto">
+            <details className="group">
+              <summary className="flex items-center justify-between cursor-pointer list-none">
                 <div>
-                  <h4 className="text-emerald-400 font-semibold mb-2">জানা দরকার</h4>
-                  <p className="text-neutral-300 text-sm leading-relaxed">
-                    এমপি একা সব করতে পারেন না, তবে তারা গুরুত্বপূর্ণ দরজা খুলতে পারেন।
-                    একজন সক্রিয় এমপি তার এলাকায় সরকারি প্রকল্প আনতে, আমলাতান্ত্রিক জটিলতা কমাতে
-                    এবং জনগণের দাবি সংসদে তুলে ধরতে পারেন।
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">
+                    What Can an MP Do?
+                  </h2>
+                  <p className="text-neutral-500 mt-1">Understanding your representative&apos;s powers</p>
+                </div>
+                <span className="text-neutral-500 group-open:rotate-180 transition-transform">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+
+              <div className="mt-8 grid md:grid-cols-3 gap-4">
+                <div className="p-5 rounded-xl bg-teal-500/5 border border-teal-500/10">
+                  <div className="text-2xl mb-2">🗣️</div>
+                  <h3 className="text-white font-semibold mb-1">Represent You</h3>
+                  <p className="text-neutral-400 text-sm">
+                    MPs speak for constituents in Parliament and advocate for local needs.
+                  </p>
+                </div>
+
+                <div className="p-5 rounded-xl bg-amber-500/5 border border-amber-500/10">
+                  <div className="text-2xl mb-2">💰</div>
+                  <h3 className="text-white font-semibold mb-1">Influence Budget</h3>
+                  <p className="text-neutral-400 text-sm">
+                    Development funds are allocated per constituency. MPs influence spending priorities.
+                  </p>
+                </div>
+
+                <div className="p-5 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                  <div className="text-2xl mb-2">🏗️</div>
+                  <h3 className="text-white font-semibold mb-1">Bring Projects</h3>
+                  <p className="text-neutral-400 text-sm">
+                    Roads, schools, hospitals, electricity - MPs can push for infrastructure projects.
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════
-            FINAL SECTION: সিদ্ধান্ত - Your Decision
-        ═══════════════════════════════════════════════════════════════════ */}
-        <section className="py-24 px-4">
-          <div className="max-w-3xl mx-auto">
-            <div className="relative p-10 md:p-16 rounded-3xl overflow-hidden">
-              {/* Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-600/15 via-emerald-500/10 to-amber-500/15" />
-              <div className="absolute inset-0 bg-[#060606]/60" />
-              <div
-                className="absolute inset-0 opacity-30"
-                style={{
-                  backgroundImage: `radial-gradient(circle at 30% 20%, rgba(20, 184, 166, 0.3) 0%, transparent 50%),
-                                    radial-gradient(circle at 70% 80%, rgba(245, 158, 11, 0.2) 0%, transparent 50%)`
-                }}
-              />
-
-              <div className="relative text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                  সিদ্ধান্ত এখন <span className="text-teal-400">আপনার</span>
-                </h2>
-
-                <div className="space-y-4 text-neutral-300 text-lg leading-relaxed mb-8">
-                  <p>
-                    আপনি জানলেন আপনার ভোটের শক্তি।
-                  </p>
-                  <p>
-                    দেখলেন এমপি কী কী আনতে পারেন।
-                  </p>
-                  <p>
-                    বুঝলেন আপনার এলাকার বর্তমান অবস্থা।
-                  </p>
-                  <p>
-                    চিনলেন কারা প্রার্থী।
-                  </p>
-                </div>
-
-                <div className="py-6 border-y border-white/10 mb-8">
-                  <p className="text-2xl md:text-3xl font-bold">
-                    <span className="text-teal-400">{formatNumber(voters)}</span> ভোটারের কণ্ঠস্বর
-                  </p>
-                  <p className="text-neutral-400 mt-2">কার হাতে তুলে দেবেন?</p>
-                </div>
-
-                <p className="text-sm text-neutral-500 italic">
-                  &quot;গণতন্ত্রে প্রতিটি ভোট গুরুত্বপূর্ণ। আপনার সিদ্ধান্তই আপনার এলাকার ভবিষ্যৎ।&quot;
+              <div className="mt-6 p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                <p className="text-sm text-neutral-400">
+                  <span className="text-teal-400 font-medium">Note:</span>{' '}
+                  MPs serve 5-year terms. Your vote has long-term impact on this constituency&apos;s development.
                 </p>
               </div>
-            </div>
+            </details>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="py-12 px-4 border-t border-white/[0.04]">
-          <div className="max-w-4xl mx-auto text-center">
+        <footer className="py-8 px-4 border-t border-white/5">
+          <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-neutral-300 rounded-xl transition-colors mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white rounded-lg transition-colors text-sm"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              মানচিত্রে ফিরুন
+              Back to Map
             </Link>
 
-            <p className="text-xs text-neutral-600 mb-2">
-              তথ্য শুধুমাত্র শিক্ষামূলক উদ্দেশ্যে
-            </p>
-            <p className="text-xs text-neutral-700">
-              অবকাঠামো তথ্য: OpenStreetMap contributors
+            <p className="text-xs text-neutral-600">
+              Infrastructure data from OpenStreetMap contributors
             </p>
           </div>
         </footer>
       </main>
+    </div>
+  );
+}
+
+// Infrastructure Stat Card - Compact display
+function InfraStatCard({
+  icon,
+  value,
+  label,
+  color,
+}: {
+  icon: string;
+  value: number;
+  label: string;
+  color: 'emerald' | 'rose' | 'sky' | 'amber' | 'purple' | 'teal';
+}) {
+  const colorClasses = {
+    emerald: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400',
+    rose: 'bg-rose-500/10 border-rose-500/20 text-rose-400',
+    sky: 'bg-sky-500/10 border-sky-500/20 text-sky-400',
+    amber: 'bg-amber-500/10 border-amber-500/20 text-amber-400',
+    purple: 'bg-purple-500/10 border-purple-500/20 text-purple-400',
+    teal: 'bg-teal-500/10 border-teal-500/20 text-teal-400',
+  };
+
+  return (
+    <div className={`p-4 rounded-xl border ${colorClasses[color]}`}>
+      <div className="text-2xl mb-1">{icon}</div>
+      <div className="text-2xl font-bold text-white">{value}</div>
+      <div className="text-xs text-neutral-500">{label}</div>
     </div>
   );
 }
