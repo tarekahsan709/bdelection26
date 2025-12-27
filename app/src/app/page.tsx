@@ -27,7 +27,6 @@ export default function HomePage() {
 
   return (
     <>
-      <DevBanner />
       <main className="flex h-screen w-screen bg-[#080808]">
         {/* Mobile Header - only visible on mobile */}
         <MobileHeader
@@ -70,6 +69,7 @@ export default function HomePage() {
 
         {/* Map container */}
         <div className="flex-1 relative pt-14 md:pt-0 overflow-hidden">
+          <DevBanner />
           <MapContainer
             filterState={filterState}
             onConstituencySelect={handleConstituencySelect}
