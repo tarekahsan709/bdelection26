@@ -689,7 +689,7 @@ export default function ConstituencyPage() {
                       ? 'bg-teal-500/15 text-teal-400 border border-teal-500/20'
                       : 'bg-amber-500/15 text-amber-400 border border-amber-500/20'
                   }`}>
-                    {population.urban_classification === 'urban' ? 'Urban' : 'Rural'}
+                    {population.urban_classification === 'urban' ? 'শহর' : 'গ্রাম'}
                   </span>
                 </div>
 
@@ -698,9 +698,9 @@ export default function ConstituencyPage() {
                   <div className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-1">
                     {formatNumber(voters)}
                   </div>
-                  <div className="text-lg text-teal-400 font-medium">Registered Voters</div>
+                  <div className="text-lg text-teal-400 font-medium">নিবন্ধিত ভোটার</div>
                   <p className="text-sm text-neutral-500 mt-2">
-                    You are 1 of {formatNumber(voters)} who will choose the next MP
+                    আপনি {formatNumber(voters)} ভোটারের একজন যারা পরবর্তী এমপি নির্বাচন করবেন
                   </p>
                 </div>
               </div>
@@ -710,25 +710,25 @@ export default function ConstituencyPage() {
                 {/* Candidates count */}
                 <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20">
                   <div className="text-3xl font-bold text-rose-400">{candidates.length || '—'}</div>
-                  <div className="text-sm text-neutral-400">Candidates</div>
+                  <div className="text-sm text-neutral-400">প্রার্থী</div>
                 </div>
 
                 {/* Schools */}
                 <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
                   <div className="text-3xl font-bold text-emerald-400">{infrastructure?.schools || '—'}</div>
-                  <div className="text-sm text-neutral-400">Schools</div>
+                  <div className="text-sm text-neutral-400">বিদ্যালয়</div>
                 </div>
 
                 {/* Hospitals + Clinics */}
                 <div className="p-4 rounded-xl bg-sky-500/10 border border-sky-500/20">
                   <div className="text-3xl font-bold text-sky-400">{(infrastructure?.hospitals || 0) + (infrastructure?.clinics || 0) || '—'}</div>
-                  <div className="text-sm text-neutral-400">Health Facilities</div>
+                  <div className="text-sm text-neutral-400">স্বাস্থ্য সুবিধা</div>
                 </div>
 
                 {/* Markets */}
                 <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
                   <div className="text-3xl font-bold text-amber-400">{infrastructure?.markets || '—'}</div>
-                  <div className="text-sm text-neutral-400">Markets</div>
+                  <div className="text-sm text-neutral-400">বাজার</div>
                 </div>
 
                 {/* Parliament illustration as subtle decoration */}
@@ -741,20 +741,20 @@ export default function ConstituencyPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            CANDIDATES - The Most Important Section
+            প্রার্থী - সবচেয়ে গুরুত্বপূর্ণ তথ্য
         ═══════════════════════════════════════════════════════════════════ */}
         <section className="py-12 px-4 border-t border-white/5">
           <div className="max-w-5xl mx-auto">
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="text-2xl md:text-3xl font-bold text-white">
-                  Candidates
+                  প্রার্থী
                 </h2>
-                <p className="text-neutral-500 mt-1">Who&apos;s running for MP in this constituency</p>
+                <p className="text-neutral-500 mt-1">এই নির্বাচনী এলাকায় কারা এমপি পদপ্রার্থী</p>
               </div>
               {candidates.length > 0 && (
                 <span className="px-3 py-1 rounded-full bg-rose-500/15 text-rose-400 text-sm font-medium">
-                  {candidates.length} candidates
+                  {candidates.length} জন প্রার্থী
                 </span>
               )}
             </div>
@@ -772,24 +772,24 @@ export default function ConstituencyPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
-                <p className="text-neutral-400 font-medium">Candidate information coming soon</p>
-                <p className="text-neutral-600 text-sm mt-1">Check back for updates</p>
+                <p className="text-neutral-400 font-medium">প্রার্থীদের তথ্য শীঘ্রই আসছে</p>
+                <p className="text-neutral-600 text-sm mt-1">আপডেটের জন্য পরে দেখুন</p>
               </div>
             )}
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            INFRASTRUCTURE - What's in this area
+            অবকাঠামো - এলাকায় কী আছে
         ═══════════════════════════════════════════════════════════════════ */}
         <section className="py-12 px-4 border-t border-white/5">
           <div className="max-w-5xl mx-auto">
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="text-2xl md:text-3xl font-bold text-white">
-                  Local Infrastructure
+                  স্থানীয় অবকাঠামো
                 </h2>
-                <p className="text-neutral-500 mt-1">Data from OpenStreetMap</p>
+                <p className="text-neutral-500 mt-1">OpenStreetMap থেকে তথ্য</p>
               </div>
             </div>
 
@@ -798,37 +798,37 @@ export default function ConstituencyPage() {
               <InfraStatCard
                 icon="🏫"
                 value={infrastructure?.schools || 0}
-                label="Schools"
+                label="বিদ্যালয়"
                 color="emerald"
               />
               <InfraStatCard
                 icon="🏥"
                 value={infrastructure?.hospitals || 0}
-                label="Hospitals"
+                label="হাসপাতাল"
                 color="rose"
               />
               <InfraStatCard
                 icon="🏪"
                 value={infrastructure?.clinics || 0}
-                label="Clinics"
+                label="ক্লিনিক"
                 color="sky"
               />
               <InfraStatCard
                 icon="🏦"
                 value={infrastructure?.banks || 0}
-                label="Banks"
+                label="ব্যাংক"
                 color="amber"
               />
               <InfraStatCard
                 icon="🛒"
                 value={infrastructure?.markets || 0}
-                label="Markets"
+                label="বাজার"
                 color="purple"
               />
               <InfraStatCard
                 icon="🕌"
                 value={infrastructure?.mosques || 0}
-                label="Mosques"
+                label="মসজিদ"
                 color="teal"
               />
             </div>
@@ -836,18 +836,18 @@ export default function ConstituencyPage() {
             {/* Per capita context */}
             <div className="mt-6 p-4 rounded-xl bg-white/[0.02] border border-white/5">
               <p className="text-sm text-neutral-400">
-                <span className="text-white font-medium">Per 10,000 voters:</span>{' '}
-                {infrastructure?.schools ? ((infrastructure.schools / voters) * 10000).toFixed(1) : '—'} schools,{' '}
+                <span className="text-white font-medium">প্রতি ১০,০০০ ভোটারে:</span>{' '}
+                {infrastructure?.schools ? ((infrastructure.schools / voters) * 10000).toFixed(1) : '—'} বিদ্যালয়,{' '}
                 {infrastructure?.hospitals || infrastructure?.clinics
                   ? (((infrastructure.hospitals || 0) + (infrastructure.clinics || 0)) / voters * 10000).toFixed(1)
-                  : '—'} health facilities
+                  : '—'} স্বাস্থ্য সুবিধা
               </p>
             </div>
           </div>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            CIVIC INFO - Collapsed, expandable
+            নাগরিক তথ্য - বিস্তারিত দেখুন
         ═══════════════════════════════════════════════════════════════════ */}
         <section className="py-12 px-4 border-t border-white/5">
           <div className="max-w-5xl mx-auto">
@@ -855,9 +855,9 @@ export default function ConstituencyPage() {
               <summary className="flex items-center justify-between cursor-pointer list-none">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-white">
-                    What Can an MP Do?
+                    একজন এমপি কী করতে পারেন?
                   </h2>
-                  <p className="text-neutral-500 mt-1">Understanding your representative&apos;s powers</p>
+                  <p className="text-neutral-500 mt-1">আপনার প্রতিনিধির ক্ষমতা সম্পর্কে জানুন</p>
                 </div>
                 <span className="text-neutral-500 group-open:rotate-180 transition-transform">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -869,33 +869,33 @@ export default function ConstituencyPage() {
               <div className="mt-8 grid md:grid-cols-3 gap-4">
                 <div className="p-5 rounded-xl bg-teal-500/5 border border-teal-500/10">
                   <div className="text-2xl mb-2">🗣️</div>
-                  <h3 className="text-white font-semibold mb-1">Represent You</h3>
+                  <h3 className="text-white font-semibold mb-1">আপনার প্রতিনিধিত্ব</h3>
                   <p className="text-neutral-400 text-sm">
-                    MPs speak for constituents in Parliament and advocate for local needs.
+                    এমপিরা সংসদে আপনার পক্ষে কথা বলেন এবং স্থানীয় প্রয়োজনের পক্ষে সওয়াল করেন।
                   </p>
                 </div>
 
                 <div className="p-5 rounded-xl bg-amber-500/5 border border-amber-500/10">
                   <div className="text-2xl mb-2">💰</div>
-                  <h3 className="text-white font-semibold mb-1">Influence Budget</h3>
+                  <h3 className="text-white font-semibold mb-1">বাজেটে প্রভাব</h3>
                   <p className="text-neutral-400 text-sm">
-                    Development funds are allocated per constituency. MPs influence spending priorities.
+                    প্রতি নির্বাচনী এলাকায় উন্নয়ন তহবিল বরাদ্দ হয়। এমপিরা ব্যয়ের অগ্রাধিকার নির্ধারণে প্রভাব রাখেন।
                   </p>
                 </div>
 
                 <div className="p-5 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
                   <div className="text-2xl mb-2">🏗️</div>
-                  <h3 className="text-white font-semibold mb-1">Bring Projects</h3>
+                  <h3 className="text-white font-semibold mb-1">প্রকল্প আনা</h3>
                   <p className="text-neutral-400 text-sm">
-                    Roads, schools, hospitals, electricity - MPs can push for infrastructure projects.
+                    রাস্তা, স্কুল, হাসপাতাল, বিদ্যুৎ - এমপিরা অবকাঠামো প্রকল্প আনতে পারেন।
                   </p>
                 </div>
               </div>
 
               <div className="mt-6 p-4 rounded-xl bg-white/[0.02] border border-white/5">
                 <p className="text-sm text-neutral-400">
-                  <span className="text-teal-400 font-medium">Note:</span>{' '}
-                  MPs serve 5-year terms. Your vote has long-term impact on this constituency&apos;s development.
+                  <span className="text-teal-400 font-medium">বিঃদ্রঃ</span>{' '}
+                  এমপিরা ৫ বছরের মেয়াদে কাজ করেন। আপনার ভোট এই নির্বাচনী এলাকার দীর্ঘমেয়াদী উন্নয়নে প্রভাব ফেলে।
                 </p>
               </div>
             </details>
@@ -912,11 +912,11 @@ export default function ConstituencyPage() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              Back to Map
+              মানচিত্রে ফিরুন
             </Link>
 
             <p className="text-xs text-neutral-600">
-              Infrastructure data from OpenStreetMap contributors
+              অবকাঠামো তথ্য OpenStreetMap অবদানকারীদের থেকে
             </p>
           </div>
         </footer>
