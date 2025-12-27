@@ -1,11 +1,19 @@
 import { Metadata } from 'next';
+import { Noto_Sans_Bengali } from 'next/font/google';
 import * as React from 'react';
 
 import '@/styles/globals.css';
-// !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
 
 import { siteConfig } from '@/constant/config';
+
+// Noto Sans Bengali - Clean, modern Bangla font by Google
+const notoSansBengali = Noto_Sans_Bengali({
+  subsets: ['bengali'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-bangla',
+});
 
 // !STARTERCONF Change these default meta
 // !STARTERCONF Look at @/constant/config to change them
@@ -55,8 +63,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body className="bg-[#080808] text-white antialiased">{children}</body>
+    <html lang="bn" className={notoSansBengali.variable}>
+      <body className="bg-[#080808] text-white antialiased font-bangla">{children}</body>
     </html>
   );
 }

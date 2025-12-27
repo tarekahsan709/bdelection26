@@ -161,7 +161,7 @@ export default function FilterPanel({
             <option value="">নির্বাচনী এলাকা বাছুন</option>
             {constituencies.map((c) => (
               <option key={c.id} value={c.id}>
-                {c.name_english}
+                {c.name || c.name_english}
               </option>
             ))}
           </select>

@@ -3,11 +3,20 @@
 import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import type { ConstituencyInfo } from './ConstituencyLayer';
+import type { FilterState } from '@/types/map';
+
+interface District {
+  id: string;
+  division_id: string;
+  name: string;
+  bn_name: string;
+}
 
 interface DistrictBoundaryLayerProps {
   map: L.Map;
   hoveredConstituency: ConstituencyInfo | null;
   selectedConstituency: ConstituencyInfo | null;
+  filterState?: FilterState;
 }
 
 interface DistrictFeature {
@@ -122,19 +131,26 @@ export default function DistrictBoundaryLayer({
   map,
   hoveredConstituency,
   selectedConstituency,
+  filterState,
 }: DistrictBoundaryLayerProps) {
   const layerRef = useRef<L.GeoJSON | null>(null);
   const [geoData, setGeoData] = useState<DistrictGeoJSON | null>(null);
+  const [districts, setDistricts] = useState<District[]>([]);
 
-  // Load district boundaries
+  // Load district boundaries and district data
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/data/district-boundaries.json');
-        const data = await response.json();
-        setGeoData(data);
+        const [boundaryRes, districtRes] = await Promise.all([
+          fetch('/data/district-boundaries.json'),
+          fetch('/data/bd-districts.json'),
+        ]);
+        const boundaryData = await boundaryRes.json();
+        const districtData = await districtRes.json();
+        setGeoData(boundaryData);
+        setDistricts(districtData.districts || []);
       } catch (error) {
-        console.error('Failed to load district boundaries:', error);
+        console.error('Failed to load district data:', error);
       }
     };
     fetchData();
@@ -149,13 +165,20 @@ export default function DistrictBoundaryLayer({
       map.removeLayer(layerRef.current);
     }
 
-    // Get the district to highlight
+    // Get the district to highlight - from constituency hover/select or from filter
     const activeConstituency = hoveredConstituency || selectedConstituency;
     let activeDistrictName: string | null = null;
 
     if (activeConstituency) {
       const districtEnglish = activeConstituency.district_english?.toLowerCase() || '';
       activeDistrictName = DISTRICT_NAME_MAP[districtEnglish] || null;
+    } else if (filterState?.districtId && districts.length > 0) {
+      // Get district name from filter
+      const district = districts.find(d => d.id === filterState.districtId);
+      if (district) {
+        const districtName = district.name.toLowerCase();
+        activeDistrictName = DISTRICT_NAME_MAP[districtName] || null;
+      }
     }
 
     // Create the GeoJSON layer
@@ -183,7 +206,7 @@ export default function DistrictBoundaryLayer({
         map.removeLayer(layerRef.current);
       }
     };
-  }, [map, geoData, hoveredConstituency, selectedConstituency]);
+  }, [map, geoData, districts, hoveredConstituency, selectedConstituency, filterState]);
 
   return null;
 }

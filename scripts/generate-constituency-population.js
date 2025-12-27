@@ -3,6 +3,8 @@ const path = require('path');
 
 // Input/Output paths
 const CONSTITUENCIES_PATH = path.join(__dirname, '../data/bd-constituencies.json');
+const DIVISIONS_PATH = path.join(__dirname, '../data/geojson/bd-divisions.json');
+const DISTRICTS_PATH = path.join(__dirname, '../data/geojson/bd-districts.json');
 const OUTPUT_PATH = path.join(__dirname, '../app/public/data/constituency-population.json');
 
 // Voter to population ratio (Bangladesh avg: ~110M voters / ~170M population = 1:1.54)
@@ -31,6 +33,17 @@ function generateConstituencyPopulation() {
   const constituenciesData = JSON.parse(fs.readFileSync(CONSTITUENCIES_PATH, 'utf8'));
   const constituencies = constituenciesData.constituencies;
 
+  // Read divisions and districts for Bangla names
+  const divisionsData = JSON.parse(fs.readFileSync(DIVISIONS_PATH, 'utf8'));
+  const districtsData = JSON.parse(fs.readFileSync(DISTRICTS_PATH, 'utf8'));
+
+  // Create lookup maps for Bangla names
+  const divisionBnNames = new Map();
+  divisionsData.divisions.forEach(d => divisionBnNames.set(d.id, d.bn_name));
+
+  const districtBnNames = new Map();
+  districtsData.districts.forEach(d => districtBnNames.set(d.id, d.bn_name));
+
   console.log(`📊 Total constituencies: ${constituencies.length}`);
 
   // Process each constituency
@@ -57,8 +70,10 @@ function generateConstituencyPopulation() {
       lat: constituency.lat || 0,
       long: constituency.long || 0,
       division_id: constituency.division_id,
+      division: divisionBnNames.get(constituency.division_id) || constituency.division_english,
       division_english: constituency.division_english,
       district_id: constituency.district_id,
+      district: districtBnNames.get(constituency.district_id) || constituency.district_english,
       district_english: constituency.district_english,
     };
   });

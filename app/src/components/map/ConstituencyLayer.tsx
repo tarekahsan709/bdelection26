@@ -13,8 +13,10 @@ export interface ConstituencyInfo {
   lat: number;
   long: number;
   division_id: string;
+  division: string;
   division_english: string;
   district_id: string;
+  district: string;
   district_english: string;
 }
 
@@ -100,10 +102,10 @@ export default function ConstituencyLayer({
 
       const tooltipContent = `
         <div class="constituency-tooltip">
-          <div class="font-semibold text-white">${constituency.name_english}</div>
-          <div class="text-gray-300 text-xs">${constituency.division_english} Division</div>
+          <div class="font-semibold text-white">${constituency.name || constituency.name_english}</div>
+          <div class="text-gray-300 text-xs">${constituency.division || constituency.division_english} বিভাগ</div>
           <div class="mt-1 text-xs">
-            <span class="text-cyan-400">${constituency.registered_voters.toLocaleString()}</span> voters
+            <span class="text-cyan-400">${constituency.registered_voters.toLocaleString('bn-BD')}</span> ভোটার
           </div>
         </div>
       `;

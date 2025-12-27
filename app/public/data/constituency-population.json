@@ -2,7 +2,7 @@
   "metadata": {
     "source": "Generated from bd-constituencies.json voter data",
     "estimation_method": "Voter-to-population ratio (1:1.54)",
-    "generated_at": "2025-12-26T16:17:48.597Z",
+    "generated_at": "2025-12-27T01:02:09.538Z",
     "note": "Population estimates based on registered voters. Update with BBS census data for accuracy."
   },
   "statistics": {
@@ -27,8 +27,10 @@
       "lat": 26.32999992370605,
       "long": 88.55999755859375,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "31",
+      "district": "পঞ্চগড়",
       "district_english": "Panchagarh"
     },
     {
@@ -41,8 +43,10 @@
       "lat": 26.20000076293945,
       "long": 88.55000305175781,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "31",
+      "district": "পঞ্চগড়",
       "district_english": "Panchagarh"
     },
     {
@@ -55,8 +59,10 @@
       "lat": 26.09000015258789,
       "long": 88.27999877929688,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "33",
+      "district": "ঠাকুরগাঁও",
       "district_english": "Thakurgaon"
     },
     {
@@ -69,8 +75,10 @@
       "lat": 26.09000015258789,
       "long": 88.27999877929688,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "33",
+      "district": "ঠাকুরগাঁও",
       "district_english": "Thakurgaon"
     },
     {
@@ -83,8 +91,10 @@
       "lat": 23.63999938964844,
       "long": 88.8499984741211,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "33",
+      "district": "ঠাকুরগাঁও",
       "district_english": "Thakurgaon"
     },
     {
@@ -97,8 +107,10 @@
       "lat": 25.86000061035156,
       "long": 88.6500015258789,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "26",
+      "district": "দিনাজপুর",
       "district_english": "Dinajpur"
     },
     {
@@ -111,8 +123,10 @@
       "lat": 25.6299991607666,
       "long": 88.55000305175781,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "26",
+      "district": "দিনাজপুর",
       "district_english": "Dinajpur"
     },
     {
@@ -125,8 +139,10 @@
       "lat": 25.6200008392334,
       "long": 88.63999938964844,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "26",
+      "district": "দিনাজপুর",
       "district_english": "Dinajpur"
     },
     {
@@ -139,8 +155,10 @@
       "lat": 25.64999961853027,
       "long": 88.7699966430664,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "26",
+      "district": "দিনাজপুর",
       "district_english": "Dinajpur"
     },
     {
@@ -153,8 +171,10 @@
       "lat": 25.65999984741211,
       "long": 88.91000366210938,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "26",
+      "district": "দিনাজপুর",
       "district_english": "Dinajpur"
     },
     {
@@ -167,8 +187,10 @@
       "lat": 25.42000007629395,
       "long": 89.08000183105469,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "26",
+      "district": "দিনাজপুর",
       "district_english": "Dinajpur"
     },
     {
@@ -181,8 +203,10 @@
       "lat": 26.14999961853027,
       "long": 88.91999816894531,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "30",
+      "district": "নীলফামারী",
       "district_english": "Nilphamari"
     },
     {
@@ -195,8 +219,10 @@
       "lat": 25.93000030517578,
       "long": 88.86000061035156,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "30",
+      "district": "নীলফামারী",
       "district_english": "Nilphamari"
     },
     {
@@ -209,8 +235,10 @@
       "lat": 26.02000045776367,
       "long": 89.0199966430664,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "30",
+      "district": "নীলফামারী",
       "district_english": "Nilphamari"
     },
     {
@@ -223,8 +251,10 @@
       "lat": 25.78000068664551,
       "long": 88.9000015258789,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "30",
+      "district": "নীলফামারী",
       "district_english": "Nilphamari"
     },
     {
@@ -237,8 +267,10 @@
       "lat": 26.1200008392334,
       "long": 89.13999938964844,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "29",
+      "district": "লালমনিরহাট",
       "district_english": "Lalmonirhat"
     },
     {
@@ -251,8 +283,10 @@
       "lat": 25.96999931335449,
       "long": 89.22000122070312,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "29",
+      "district": "লালমনিরহাট",
       "district_english": "Lalmonirhat"
     },
     {
@@ -265,8 +299,10 @@
       "lat": 25.92000007629395,
       "long": 89.44999694824219,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "29",
+      "district": "লালমনিরহাট",
       "district_english": "Lalmonirhat"
     },
     {
@@ -279,8 +315,10 @@
       "lat": 25.85000038146973,
       "long": 89.22000122070312,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "32",
+      "district": "রংপুর",
       "district_english": "Rangpur"
     },
     {
@@ -293,8 +331,10 @@
       "lat": 25.67000007629395,
       "long": 89.05000305175781,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "32",
+      "district": "রংপুর",
       "district_english": "Rangpur"
     },
     {
@@ -307,8 +347,10 @@
       "lat": 25.76000022888184,
       "long": 89.23999786376953,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "32",
+      "district": "রংপুর",
       "district_english": "Rangpur"
     },
     {
@@ -321,8 +363,10 @@
       "lat": 25.65999984741211,
       "long": 89.41000366210938,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "32",
+      "district": "রংপুর",
       "district_english": "Rangpur"
     },
     {
@@ -335,8 +379,10 @@
       "lat": 25.56999969482422,
       "long": 89.2699966430664,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "32",
+      "district": "রংপুর",
       "district_english": "Rangpur"
     },
     {
@@ -349,8 +395,10 @@
       "lat": 25.42000007629395,
       "long": 89.30999755859375,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "32",
+      "district": "রংপুর",
       "district_english": "Rangpur"
     },
     {
@@ -363,8 +411,10 @@
       "lat": 25.96999931335449,
       "long": 89.69000244140625,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "28",
+      "district": "কুড়িগ্রাম",
       "district_english": "Kurigram"
     },
     {
@@ -377,8 +427,10 @@
       "lat": 25.80999946594238,
       "long": 89.63999938964844,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "28",
+      "district": "কুড়িগ্রাম",
       "district_english": "Kurigram"
     },
     {
@@ -391,8 +443,10 @@
       "lat": 25.65999984741211,
       "long": 89.62000274658203,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "28",
+      "district": "কুড়িগ্রাম",
       "district_english": "Kurigram"
     },
     {
@@ -405,8 +459,10 @@
       "lat": 25.56999969482422,
       "long": 89.83000183105469,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "28",
+      "district": "কুড়িগ্রাম",
       "district_english": "Kurigram"
     },
     {
@@ -419,8 +475,10 @@
       "lat": 25.56999969482422,
       "long": 89.5199966430664,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "27",
+      "district": "গাইবান্ধা",
       "district_english": "Gaibandha"
     },
     {
@@ -433,8 +491,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "27",
+      "district": "গাইবান্ধা",
       "district_english": "Gaibandha"
     },
     {
@@ -447,8 +507,10 @@
       "lat": 25.38999938964844,
       "long": 89.47000122070312,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "27",
+      "district": "গাইবান্ধা",
       "district_english": "Gaibandha"
     },
     {
@@ -461,8 +523,10 @@
       "lat": 25.13999938964844,
       "long": 89.38999938964844,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "27",
+      "district": "গাইবান্ধা",
       "district_english": "Gaibandha"
     },
     {
@@ -475,8 +539,10 @@
       "lat": 25.11000061035156,
       "long": 89.58000183105469,
       "division_id": "6",
+      "division": "রংপুর",
       "division_english": "Rangpur",
       "district_id": "27",
+      "district": "গাইবান্ধা",
       "district_english": "Gaibandha"
     },
     {
@@ -489,8 +555,10 @@
       "lat": 25.10000038146973,
       "long": 89.02999877929688,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "19",
+      "district": "জয়পুরহাট",
       "district_english": "Joypurhat"
     },
     {
@@ -503,8 +571,10 @@
       "lat": 25.05999946594238,
       "long": 89.16999816894531,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "19",
+      "district": "জয়পুরহাট",
       "district_english": "Joypurhat"
     },
     {
@@ -517,8 +587,10 @@
       "lat": 24.88999938964844,
       "long": 89.56999969482422,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "18",
+      "district": "বগুড়া",
       "district_english": "Bogura"
     },
     {
@@ -531,8 +603,10 @@
       "lat": 25,
       "long": 89.31999969482422,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "18",
+      "district": "বগুড়া",
       "district_english": "Bogura"
     },
     {
@@ -545,8 +619,10 @@
       "lat": 24.81999969482422,
       "long": 89.04000091552734,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "18",
+      "district": "বগুড়া",
       "district_english": "Bogura"
     },
     {
@@ -559,8 +635,10 @@
       "lat": 24.82999992370605,
       "long": 89.26000213623047,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "18",
+      "district": "বগুড়া",
       "district_english": "Bogura"
     },
     {
@@ -573,8 +651,10 @@
       "lat": 24.67000007629395,
       "long": 89.41999816894531,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "18",
+      "district": "বগুড়া",
       "district_english": "Bogura"
     },
     {
@@ -587,8 +667,10 @@
       "lat": 24.85000038146973,
       "long": 89.37000274658203,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "18",
+      "district": "বগুড়া",
       "district_english": "Bogura"
     },
     {
@@ -601,8 +683,10 @@
       "lat": 24.8799991607666,
       "long": 89.44999694824219,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "18",
+      "district": "বগুড়া",
       "district_english": "Bogura"
     },
     {
@@ -615,8 +699,10 @@
       "lat": 24.68000030517578,
       "long": 88.16000366210938,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "22",
+      "district": "নবাবগঞ্জ",
       "district_english": "Nawabganj"
     },
     {
@@ -629,8 +715,10 @@
       "lat": 24.72999954223633,
       "long": 88.37999725341797,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "22",
+      "district": "নবাবগঞ্জ",
       "district_english": "Nawabganj"
     },
     {
@@ -643,8 +731,10 @@
       "lat": 24.60000038146973,
       "long": 88.27999877929688,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "22",
+      "district": "নবাবগঞ্জ",
       "district_english": "Nawabganj"
     },
     {
@@ -657,8 +747,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "20",
+      "district": "নওগাঁ",
       "district_english": "Naogaon"
     },
     {
@@ -671,8 +763,10 @@
       "lat": 25.04999923706055,
       "long": 88.76000213623047,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "20",
+      "district": "নওগাঁ",
       "district_english": "Naogaon"
     },
     {
@@ -685,8 +779,10 @@
       "lat": 24.92000007629395,
       "long": 88.75,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "20",
+      "district": "নওগাঁ",
       "district_english": "Naogaon"
     },
     {
@@ -699,8 +795,10 @@
       "lat": 24.78000068664551,
       "long": 88.69999694824219,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "20",
+      "district": "নওগাঁ",
       "district_english": "Naogaon"
     },
     {
@@ -713,8 +811,10 @@
       "lat": 24.82999992370605,
       "long": 88.93000030517578,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "20",
+      "district": "নওগাঁ",
       "district_english": "Naogaon"
     },
     {
@@ -727,8 +827,10 @@
       "lat": 24.73999977111816,
       "long": 88.95999908447266,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "20",
+      "district": "নওগাঁ",
       "district_english": "Naogaon"
     },
     {
@@ -741,8 +843,10 @@
       "lat": 24.46999931335449,
       "long": 88.31999969482422,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "24",
+      "district": "রাজশাহী",
       "district_english": "Rajshahi"
     },
     {
@@ -755,8 +859,10 @@
       "lat": 24.3700008392334,
       "long": 88.5999984741211,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "24",
+      "district": "রাজশাহী",
       "district_english": "Rajshahi"
     },
     {
@@ -769,8 +875,10 @@
       "lat": 24.45999908447266,
       "long": 88.61000061035156,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "24",
+      "district": "রাজশাহী",
       "district_english": "Rajshahi"
     },
     {
@@ -783,8 +891,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "24",
+      "district": "রাজশাহী",
       "district_english": "Rajshahi"
     },
     {
@@ -797,8 +907,10 @@
       "lat": 24.3700008392334,
       "long": 88.83999633789062,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "24",
+      "district": "রাজশাহী",
       "district_english": "Rajshahi"
     },
     {
@@ -811,8 +923,10 @@
       "lat": 24.29000091552734,
       "long": 88.75,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "24",
+      "district": "রাজশাহী",
       "district_english": "Rajshahi"
     },
     {
@@ -825,8 +939,10 @@
       "lat": 24.18000030517578,
       "long": 88.95999908447266,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "21",
+      "district": "নাটোর",
       "district_english": "Natore"
     },
     {
@@ -839,8 +955,10 @@
       "lat": 24.42000007629395,
       "long": 89,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "21",
+      "district": "নাটোর",
       "district_english": "Natore"
     },
     {
@@ -853,8 +971,10 @@
       "lat": 24.5,
       "long": 89.1500015258789,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "21",
+      "district": "নাটোর",
       "district_english": "Natore"
     },
     {
@@ -867,8 +987,10 @@
       "lat": 24.30999946594238,
       "long": 89.16999816894531,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "21",
+      "district": "নাটোর",
       "district_english": "Natore"
     },
     {
@@ -881,8 +1003,10 @@
       "lat": 24.64999961853027,
       "long": 89.63999938964844,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "25",
+      "district": "সিরাজগঞ্জ",
       "district_english": "Sirajgonj"
     },
     {
@@ -895,8 +1019,10 @@
       "lat": 24.45000076293945,
       "long": 89.69999694824219,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "25",
+      "district": "সিরাজগঞ্জ",
       "district_english": "Sirajgonj"
     },
     {
@@ -909,8 +1035,10 @@
       "lat": 24.51000022888184,
       "long": 89.52999877929688,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "25",
+      "district": "সিরাজগঞ্জ",
       "district_english": "Sirajgonj"
     },
     {
@@ -923,8 +1051,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "25",
+      "district": "সিরাজগঞ্জ",
       "district_english": "Sirajgonj"
     },
     {
@@ -937,8 +1067,10 @@
       "lat": 24.29999923706055,
       "long": 89.69999694824219,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "25",
+      "district": "সিরাজগঞ্জ",
       "district_english": "Sirajgonj"
     },
     {
@@ -951,8 +1083,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "25",
+      "district": "সিরাজগঞ্জ",
       "district_english": "Sirajgonj"
     },
     {
@@ -965,8 +1099,10 @@
       "lat": 24.04999923706055,
       "long": 89.55000305175781,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "23",
+      "district": "পাবনা",
       "district_english": "Pabna"
     },
     {
@@ -979,8 +1115,10 @@
       "lat": 23.94000053405762,
       "long": 89.41000366210938,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "23",
+      "district": "পাবনা",
       "district_english": "Pabna"
     },
     {
@@ -993,8 +1131,10 @@
       "lat": 24.22999954223633,
       "long": 89.29000091552734,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "23",
+      "district": "পাবনা",
       "district_english": "Pabna"
     },
     {
@@ -1007,8 +1147,10 @@
       "lat": 24.1200008392334,
       "long": 89.05999755859375,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "23",
+      "district": "পাবনা",
       "district_english": "Pabna"
     },
     {
@@ -1021,8 +1163,10 @@
       "lat": 24,
       "long": 89.2300033569336,
       "division_id": "5",
+      "division": "রাজশাহী",
       "division_english": "Rajshahi",
       "district_id": "23",
+      "district": "পাবনা",
       "district_english": "Pabna"
     },
     {
@@ -1035,8 +1179,10 @@
       "lat": 23.76000022888184,
       "long": 88.62999725341797,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "62",
+      "district": "মেহেরপুর",
       "district_english": "Meherpur"
     },
     {
@@ -1049,8 +1195,10 @@
       "lat": 23.80999946594238,
       "long": 88.76000213623047,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "62",
+      "district": "মেহেরপুর",
       "district_english": "Meherpur"
     },
     {
@@ -1063,8 +1211,10 @@
       "lat": 24,
       "long": 88.87999725341797,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "60",
+      "district": "কুষ্টিয়া",
       "district_english": "Kushtia"
     },
     {
@@ -1077,8 +1227,10 @@
       "lat": 23.94000053405762,
       "long": 89,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "60",
+      "district": "কুষ্টিয়া",
       "district_english": "Kushtia"
     },
     {
@@ -1091,8 +1243,10 @@
       "lat": 23.90999984741211,
       "long": 89.12000274658203,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "60",
+      "district": "কুষ্টিয়া",
       "district_english": "Kushtia"
     },
     {
@@ -1105,8 +1259,10 @@
       "lat": 23.86000061035156,
       "long": 89.23999786376953,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "60",
+      "district": "কুষ্টিয়া",
       "district_english": "Kushtia"
     },
     {
@@ -1119,8 +1275,10 @@
       "lat": 23.63999938964844,
       "long": 88.8499984741211,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "56",
+      "district": "চুয়াডাঙ্গা",
       "district_english": "Chuadanga"
     },
     {
@@ -1133,8 +1291,10 @@
       "lat": 23.60000038146973,
       "long": 88.77999877929688,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "56",
+      "district": "চুয়াডাঙ্গা",
       "district_english": "Chuadanga"
     },
     {
@@ -1147,8 +1307,10 @@
       "lat": 23.68490028381348,
       "long": 89.25029754638672,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "58",
+      "district": "ঝিনাইদহ",
       "district_english": "Jhenaidah"
     },
     {
@@ -1161,8 +1323,10 @@
       "lat": 23.54000091552734,
       "long": 89.18000030517578,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "58",
+      "district": "ঝিনাইদহ",
       "district_english": "Jhenaidah"
     },
     {
@@ -1175,8 +1339,10 @@
       "lat": 23.36000061035156,
       "long": 88.91999816894531,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "58",
+      "district": "ঝিনাইদহ",
       "district_english": "Jhenaidah"
     },
     {
@@ -1189,8 +1355,10 @@
       "lat": 23.42000007629395,
       "long": 89.13999938964844,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "58",
+      "district": "ঝিনাইদহ",
       "district_english": "Jhenaidah"
     },
     {
@@ -1203,8 +1371,10 @@
       "lat": 23.04999923706055,
       "long": 88.94999694824219,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "57",
+      "district": "যশোর",
       "district_english": "Jashore"
     },
     {
@@ -1217,8 +1387,10 @@
       "lat": 23.10580062866211,
       "long": 89.10379791259766,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "57",
+      "district": "যশোর",
       "district_english": "Jashore"
     },
     {
@@ -1231,8 +1403,10 @@
       "lat": 23.15999984741211,
       "long": 89.20999908447266,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "57",
+      "district": "যশোর",
       "district_english": "Jashore"
     },
     {
@@ -1245,8 +1419,10 @@
       "lat": 23.21999931335449,
       "long": 89.3499984741211,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "57",
+      "district": "যশোর",
       "district_english": "Jashore"
     },
     {
@@ -1259,8 +1435,10 @@
       "lat": 23.02000045776367,
       "long": 89.2300033569336,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "57",
+      "district": "যশোর",
       "district_english": "Jashore"
     },
     {
@@ -1273,8 +1451,10 @@
       "lat": 22.90999984741211,
       "long": 89.22000122070312,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "57",
+      "district": "যশোর",
       "district_english": "Jashore"
     },
     {
@@ -1287,8 +1467,10 @@
       "lat": 23.48999977111816,
       "long": 89.41999816894531,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "61",
+      "district": "মাগুরা",
       "district_english": "Magura"
     },
     {
@@ -1301,8 +1483,10 @@
       "lat": 23.48999977111816,
       "long": 89.41999816894531,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "61",
+      "district": "মাগুরা",
       "district_english": "Magura"
     },
     {
@@ -1315,8 +1499,10 @@
       "lat": 23.04000091552734,
       "long": 89.62999725341797,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "63",
+      "district": "নড়াইল",
       "district_english": "Narail"
     },
     {
@@ -1329,8 +1515,10 @@
       "lat": 23.18000030517578,
       "long": 89.6500015258789,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "63",
+      "district": "নড়াইল",
       "district_english": "Narail"
     },
     {
@@ -1343,8 +1531,10 @@
       "lat": 22.78000068664551,
       "long": 89.69999694824219,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "55",
+      "district": "বাগেরহাট",
       "district_english": "Bagerhat"
     },
     {
@@ -1357,8 +1547,10 @@
       "lat": 22.65999984741211,
       "long": 89.7699966430664,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "55",
+      "district": "বাগেরহাট",
       "district_english": "Bagerhat"
     },
     {
@@ -1371,8 +1563,10 @@
       "lat": 22.55999946594238,
       "long": 89.6500015258789,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "55",
+      "district": "বাগেরহাট",
       "district_english": "Bagerhat"
     },
     {
@@ -1385,8 +1579,10 @@
       "lat": 22.73999977111816,
       "long": 89.5199966430664,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "59",
+      "district": "খুলনা",
       "district_english": "Khulna"
     },
     {
@@ -1399,8 +1595,10 @@
       "lat": 22.81999969482422,
       "long": 89.55999755859375,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "59",
+      "district": "খুলনা",
       "district_english": "Khulna"
     },
     {
@@ -1413,8 +1611,10 @@
       "lat": 22.85000038146973,
       "long": 89.54000091552734,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "59",
+      "district": "খুলনা",
       "district_english": "Khulna"
     },
     {
@@ -1427,8 +1627,10 @@
       "lat": 22.79999923706055,
       "long": 89.63999938964844,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "59",
+      "district": "খুলনা",
       "district_english": "Khulna"
     },
     {
@@ -1441,8 +1643,10 @@
       "lat": 22.80999946594238,
       "long": 89.41999816894531,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "59",
+      "district": "খুলনা",
       "district_english": "Khulna"
     },
     {
@@ -1455,8 +1659,10 @@
       "lat": 22.59000015258789,
       "long": 89.31999969482422,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "59",
+      "district": "খুলনা",
       "district_english": "Khulna"
     },
     {
@@ -1469,8 +1675,10 @@
       "lat": 22.75,
       "long": 89.26000213623047,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "64",
+      "district": "সাতক্ষীরা",
       "district_english": "Satkhira"
     },
     {
@@ -1483,8 +1691,10 @@
       "lat": 22.71999931335449,
       "long": 89.06999969482422,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "64",
+      "district": "সাতক্ষীরা",
       "district_english": "Satkhira"
     },
     {
@@ -1497,8 +1707,10 @@
       "lat": 22.54999923706055,
       "long": 89.18000030517578,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "64",
+      "district": "সাতক্ষীরা",
       "district_english": "Satkhira"
     },
     {
@@ -1511,8 +1723,10 @@
       "lat": 22.34000015258789,
       "long": 89.0999984741211,
       "division_id": "4",
+      "division": "খুলনা",
       "division_english": "Khulna",
       "district_id": "64",
+      "district": "সাতক্ষীরা",
       "district_english": "Satkhira"
     },
     {
@@ -1525,8 +1739,10 @@
       "lat": 22.13999938964844,
       "long": 90.2300033569336,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "34",
+      "district": "বরগুনা",
       "district_english": "Barguna"
     },
     {
@@ -1539,8 +1755,10 @@
       "lat": 22.04000091552734,
       "long": 89.97000122070312,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "34",
+      "district": "বরগুনা",
       "district_english": "Barguna"
     },
     {
@@ -1553,8 +1771,10 @@
       "lat": 22.36000061035156,
       "long": 90.33000183105469,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "38",
+      "district": "পটুয়াখালী",
       "district_english": "Patuakhali"
     },
     {
@@ -1567,8 +1787,10 @@
       "lat": 22.40999984741211,
       "long": 90.55999755859375,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "38",
+      "district": "পটুয়াখালী",
       "district_english": "Patuakhali"
     },
     {
@@ -1581,8 +1803,10 @@
       "lat": 22.17000007629395,
       "long": 90.41000366210938,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "38",
+      "district": "পটুয়াখালী",
       "district_english": "Patuakhali"
     },
     {
@@ -1595,8 +1819,10 @@
       "lat": 21.98999977111816,
       "long": 90.22000122070312,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "38",
+      "district": "পটুয়াখালী",
       "district_english": "Patuakhali"
     },
     {
@@ -1609,8 +1835,10 @@
       "lat": 22.69000053405762,
       "long": 90.6500015258789,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "36",
+      "district": "ভোলা",
       "district_english": "Bhola"
     },
     {
@@ -1623,8 +1851,10 @@
       "lat": 22.5,
       "long": 90.72000122070312,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "36",
+      "district": "ভোলা",
       "district_english": "Bhola"
     },
     {
@@ -1637,8 +1867,10 @@
       "lat": 22.32999992370605,
       "long": 90.7300033569336,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "36",
+      "district": "ভোলা",
       "district_english": "Bhola"
     },
     {
@@ -1651,8 +1883,10 @@
       "lat": 22.19000053405762,
       "long": 90.76000213623047,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "36",
+      "district": "ভোলা",
       "district_english": "Bhola"
     },
     {
@@ -1665,8 +1899,10 @@
       "lat": 22.96999931335449,
       "long": 90.2300033569336,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "35",
+      "district": "বরিশাল",
       "district_english": "Barishal"
     },
     {
@@ -1679,8 +1915,10 @@
       "lat": 22.81999969482422,
       "long": 90.25,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "35",
+      "district": "বরিশাল",
       "district_english": "Barishal"
     },
     {
@@ -1693,8 +1931,10 @@
       "lat": 22.90999984741211,
       "long": 90.41000366210938,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "35",
+      "district": "বরিশাল",
       "district_english": "Barishal"
     },
     {
@@ -1707,8 +1947,10 @@
       "lat": 22.82999992370605,
       "long": 90.52999877929688,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "35",
+      "district": "বরিশাল",
       "district_english": "Barishal"
     },
     {
@@ -1721,8 +1963,10 @@
       "lat": 22.70000076293945,
       "long": 90.37000274658203,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "35",
+      "district": "বরিশাল",
       "district_english": "Barishal"
     },
     {
@@ -1735,8 +1979,10 @@
       "lat": 22.54000091552734,
       "long": 90.33999633789062,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "35",
+      "district": "বরিশাল",
       "district_english": "Barishal"
     },
     {
@@ -1749,8 +1995,10 @@
       "lat": 22.56999969482422,
       "long": 90.13999938964844,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "37",
+      "district": "ঝালকাঠি",
       "district_english": "Jhalokati"
     },
     {
@@ -1763,8 +2011,10 @@
       "lat": 22.63999938964844,
       "long": 90.19999694824219,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "37",
+      "district": "ঝালকাঠি",
       "district_english": "Jhalokati"
     },
     {
@@ -1777,8 +2027,10 @@
       "lat": 22.57999992370605,
       "long": 89.9800033569336,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "39",
+      "district": "পিরোজপুর",
       "district_english": "Pirojpur"
     },
     {
@@ -1791,8 +2043,10 @@
       "lat": 22.48999977111816,
       "long": 90.05999755859375,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "39",
+      "district": "পিরোজপুর",
       "district_english": "Pirojpur"
     },
     {
@@ -1805,8 +2059,10 @@
       "lat": 22.29000091552734,
       "long": 89.95999908447266,
       "division_id": "1",
+      "division": "বরিশাল",
       "division_english": "Barishal",
       "district_id": "39",
+      "district": "পিরোজপুর",
       "district_english": "Pirojpur"
     },
     {
@@ -1819,8 +2075,10 @@
       "lat": 24.60000038146973,
       "long": 90.02999877929688,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "17",
+      "district": "টাঙ্গাইল",
       "district_english": "Tangail"
     },
     {
@@ -1833,8 +2091,10 @@
       "lat": 24.54999923706055,
       "long": 89.93000030517578,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "17",
+      "district": "টাঙ্গাইল",
       "district_english": "Tangail"
     },
     {
@@ -1847,8 +2107,10 @@
       "lat": 24.47999954223633,
       "long": 89.97000122070312,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "17",
+      "district": "টাঙ্গাইল",
       "district_english": "Tangail"
     },
     {
@@ -1861,8 +2123,10 @@
       "lat": 24.3799991607666,
       "long": 89.98999786376953,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "17",
+      "district": "টাঙ্গাইল",
       "district_english": "Tangail"
     },
     {
@@ -1875,8 +2139,10 @@
       "lat": 24.25,
       "long": 89.91999816894531,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "17",
+      "district": "টাঙ্গাইল",
       "district_english": "Tangail"
     },
     {
@@ -1889,8 +2155,10 @@
       "lat": 24.05999946594238,
       "long": 89.87999725341797,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "17",
+      "district": "টাঙ্গাইল",
       "district_english": "Tangail"
     },
     {
@@ -1903,8 +2171,10 @@
       "lat": 24.10000038146973,
       "long": 90.0999984741211,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "17",
+      "district": "টাঙ্গাইল",
       "district_english": "Tangail"
     },
     {
@@ -1917,8 +2187,10 @@
       "lat": 24.31999969482422,
       "long": 90.16999816894531,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "17",
+      "district": "টাঙ্গাইল",
       "district_english": "Tangail"
     },
     {
@@ -1931,8 +2203,10 @@
       "lat": 25.15999984741211,
       "long": 89.76000213623047,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "5",
+      "district": "জামালপুর",
       "district_english": "Jamalpur"
     },
     {
@@ -1945,8 +2219,10 @@
       "lat": 25.07999992370605,
       "long": 89.79000091552734,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "5",
+      "district": "জামালপুর",
       "district_english": "Jamalpur"
     },
     {
@@ -1959,8 +2235,10 @@
       "lat": 24.97999954223633,
       "long": 89.83000183105469,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "5",
+      "district": "জামালপুর",
       "district_english": "Jamalpur"
     },
     {
@@ -1973,8 +2251,10 @@
       "lat": 24.75,
       "long": 89.83999633789062,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "5",
+      "district": "জামালপুর",
       "district_english": "Jamalpur"
     },
     {
@@ -1987,8 +2267,10 @@
       "lat": 24.93000030517578,
       "long": 89.94000244140625,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "5",
+      "district": "জামালপুর",
       "district_english": "Jamalpur"
     },
     {
@@ -2001,8 +2283,10 @@
       "lat": 25.01000022888184,
       "long": 90.0199966430664,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "16",
+      "district": "শেরপুর",
       "district_english": "Sherpur"
     },
     {
@@ -2015,8 +2299,10 @@
       "lat": 25.09000015258789,
       "long": 90.19000244140625,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "16",
+      "district": "শেরপুর",
       "district_english": "Sherpur"
     },
     {
@@ -2029,8 +2315,10 @@
       "lat": 25.14999961853027,
       "long": 89.94000244140625,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "16",
+      "district": "শেরপুর",
       "district_english": "Sherpur"
     },
     {
@@ -2043,8 +2331,10 @@
       "lat": 25.1200008392334,
       "long": 90.33999633789062,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "10",
+      "district": "ময়মনসিংহ",
       "district_english": "Mymensingh"
     },
     {
@@ -2057,8 +2347,10 @@
       "lat": 24.95000076293945,
       "long": 90.36000061035156,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "10",
+      "district": "ময়মনসিংহ",
       "district_english": "Mymensingh"
     },
     {
@@ -2071,8 +2363,10 @@
       "lat": 24.95000076293945,
       "long": 90.36000061035156,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "10",
+      "district": "ময়মনসিংহ",
       "district_english": "Mymensingh"
     },
     {
@@ -2085,8 +2379,10 @@
       "lat": 24.76000022888184,
       "long": 90.4000015258789,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "10",
+      "district": "ময়মনসিংহ",
       "district_english": "Mymensingh"
     },
     {
@@ -2099,8 +2395,10 @@
       "lat": 24.77000045776367,
       "long": 90.26000213623047,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "10",
+      "district": "ময়মনসিংহ",
       "district_english": "Mymensingh"
     },
     {
@@ -2113,8 +2411,10 @@
       "lat": 24.6299991607666,
       "long": 90.2699966430664,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "10",
+      "district": "ময়মনসিংহ",
       "district_english": "Mymensingh"
     },
     {
@@ -2127,8 +2427,10 @@
       "lat": 24.57999992370605,
       "long": 90.38999938964844,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "10",
+      "district": "ময়মনসিংহ",
       "district_english": "Mymensingh"
     },
     {
@@ -2141,8 +2443,10 @@
       "lat": 24.69000053405762,
       "long": 90.5999984741211,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "10",
+      "district": "ময়মনসিংহ",
       "district_english": "Mymensingh"
     },
     {
@@ -2155,8 +2459,10 @@
       "lat": 24.56999969482422,
       "long": 90.69000244140625,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "10",
+      "district": "ময়মনসিংহ",
       "district_english": "Mymensingh"
     },
     {
@@ -2169,8 +2475,10 @@
       "lat": 24.45000076293945,
       "long": 90.55000305175781,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "10",
+      "district": "ময়মনসিংহ",
       "district_english": "Mymensingh"
     },
     {
@@ -2183,8 +2491,10 @@
       "lat": 24.39999961853027,
       "long": 90.38999938964844,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "10",
+      "district": "ময়মনসিংহ",
       "district_english": "Mymensingh"
     },
     {
@@ -2197,8 +2507,10 @@
       "lat": 25.07999992370605,
       "long": 90.88999938964844,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "13",
+      "district": "নেত্রকোণা",
       "district_english": "Netrokona"
     },
     {
@@ -2211,8 +2523,10 @@
       "lat": 24.8700008392334,
       "long": 90.7300033569336,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "13",
+      "district": "নেত্রকোণা",
       "district_english": "Netrokona"
     },
     {
@@ -2225,8 +2539,10 @@
       "lat": 24.65999984741211,
       "long": 90.83999633789062,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "13",
+      "district": "নেত্রকোণা",
       "district_english": "Netrokona"
     },
     {
@@ -2239,8 +2555,10 @@
       "lat": 24.8700008392334,
       "long": 90.9800033569336,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "13",
+      "district": "নেত্রকোণা",
       "district_english": "Netrokona"
     },
     {
@@ -2253,8 +2571,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "8",
+      "division": "ময়মনসিংহ",
       "division_english": "Mymensingh",
       "district_id": "13",
+      "district": "নেত্রকোণা",
       "district_english": "Netrokona"
     },
     {
@@ -2267,8 +2587,10 @@
       "lat": 24.45000076293945,
       "long": 90.77999877929688,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "6",
+      "district": "কিশোরগঞ্জ",
       "district_english": "Kishoreganj"
     },
     {
@@ -2281,8 +2603,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "6",
+      "district": "কিশোরগঞ্জ",
       "district_english": "Kishoreganj"
     },
     {
@@ -2295,8 +2619,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "6",
+      "district": "কিশোরগঞ্জ",
       "district_english": "Kishoreganj"
     },
     {
@@ -2309,8 +2635,10 @@
       "lat": 24.53000068664551,
       "long": 91.0999984741211,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "6",
+      "district": "কিশোরগঞ্জ",
       "district_english": "Kishoreganj"
     },
     {
@@ -2323,8 +2651,10 @@
       "lat": 24.20999908447266,
       "long": 90.94000244140625,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "6",
+      "district": "কিশোরগঞ্জ",
       "district_english": "Kishoreganj"
     },
     {
@@ -2337,8 +2667,10 @@
       "lat": 24.05999946594238,
       "long": 90.9800033569336,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "6",
+      "district": "কিশোরগঞ্জ",
       "district_english": "Kishoreganj"
     },
     {
@@ -2351,8 +2683,10 @@
       "lat": 23.84000015258789,
       "long": 89.81999969482422,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "8",
+      "district": "মানিকগঞ্জ",
       "district_english": "Manikganj"
     },
     {
@@ -2365,8 +2699,10 @@
       "lat": 23.80999946594238,
       "long": 90.1500015258789,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "8",
+      "district": "মানিকগঞ্জ",
       "district_english": "Manikganj"
     },
     {
@@ -2379,8 +2715,10 @@
       "lat": 23.80999946594238,
       "long": 90.1500015258789,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "8",
+      "district": "মানিকগঞ্জ",
       "district_english": "Manikganj"
     },
     {
@@ -2393,8 +2731,10 @@
       "lat": 23.56999969482422,
       "long": 90.37000274658203,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "9",
+      "district": "মুন্সিগঞ্জ",
       "district_english": "Munshiganj"
     },
     {
@@ -2407,8 +2747,10 @@
       "lat": 23.51000022888184,
       "long": 90.47000122070312,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "9",
+      "district": "মুন্সিগঞ্জ",
       "district_english": "Munshiganj"
     },
     {
@@ -2421,8 +2763,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "9",
+      "district": "মুন্সিগঞ্জ",
       "district_english": "Munshiganj"
     },
     {
@@ -2435,8 +2779,10 @@
       "lat": 23.65999984741211,
       "long": 90.16000366210938,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2449,8 +2795,10 @@
       "lat": 23.70000076293945,
       "long": 90.33999633789062,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2463,8 +2811,10 @@
       "lat": 23.70000076293945,
       "long": 90.33999633789062,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2477,8 +2827,10 @@
       "lat": 23.69000053405762,
       "long": 90.43000030517578,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2491,8 +2843,10 @@
       "lat": 23.70999908447266,
       "long": 90.44000244140625,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2505,8 +2859,10 @@
       "lat": 23.70999908447266,
       "long": 90.41999816894531,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2519,8 +2875,10 @@
       "lat": 23.71999931335449,
       "long": 90.38999938964844,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2533,8 +2891,10 @@
       "lat": 23.72999954223633,
       "long": 90.41000366210938,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2547,8 +2907,10 @@
       "lat": 23.73999977111816,
       "long": 90.44000244140625,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2561,8 +2923,10 @@
       "lat": 23.73999977111816,
       "long": 90.37999725341797,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2575,8 +2939,10 @@
       "lat": 23.77000045776367,
       "long": 90.43000030517578,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2589,8 +2955,10 @@
       "lat": 23.70999908447266,
       "long": 90.41999816894531,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2603,8 +2971,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2617,8 +2987,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2631,8 +3003,10 @@
       "lat": 23.79000091552734,
       "long": 90.38999938964844,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2645,8 +3019,10 @@
       "lat": 23.82999992370605,
       "long": 90.36000061035156,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2659,8 +3035,10 @@
       "lat": 23.79999923706055,
       "long": 90.41000366210938,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2673,8 +3051,10 @@
       "lat": 23.86000061035156,
       "long": 90.43000030517578,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2687,8 +3067,10 @@
       "lat": 23.82999992370605,
       "long": 90.26000213623047,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2701,8 +3083,10 @@
       "lat": 23.92000007629395,
       "long": 90.20999908447266,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "1",
+      "district": "ঢাকা",
       "district_english": "Dhaka"
     },
     {
@@ -2715,8 +3099,10 @@
       "lat": 24.20000076293945,
       "long": 90.47000122070312,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "3",
+      "district": "গাজীপুর",
       "district_english": "Gazipur"
     },
     {
@@ -2729,8 +3115,10 @@
       "lat": 24,
       "long": 90.43000030517578,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "3",
+      "district": "গাজীপুর",
       "district_english": "Gazipur"
     },
     {
@@ -2743,8 +3131,10 @@
       "lat": 24.20000076293945,
       "long": 90.47000122070312,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "3",
+      "district": "গাজীপুর",
       "district_english": "Gazipur"
     },
     {
@@ -2757,8 +3147,10 @@
       "lat": 24.11000061035156,
       "long": 90.56999969482422,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "3",
+      "district": "গাজীপুর",
       "district_english": "Gazipur"
     },
     {
@@ -2771,8 +3163,10 @@
       "lat": 23.92000007629395,
       "long": 90.56999969482422,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "3",
+      "district": "গাজীপুর",
       "district_english": "Gazipur"
     },
     {
@@ -2785,8 +3179,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "3",
+      "district": "গাজীপুর",
       "district_english": "Gazipur"
     },
     {
@@ -2799,8 +3195,10 @@
       "lat": 23.93000030517578,
       "long": 90.72000122070312,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "12",
+      "district": "নরসিংদী",
       "district_english": "Narsingdi"
     },
     {
@@ -2813,8 +3211,10 @@
       "lat": 23.97999954223633,
       "long": 90.6500015258789,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "12",
+      "district": "নরসিংদী",
       "district_english": "Narsingdi"
     },
     {
@@ -2827,8 +3227,10 @@
       "lat": 24.04000091552734,
       "long": 90.73999786376953,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "12",
+      "district": "নরসিংদী",
       "district_english": "Narsingdi"
     },
     {
@@ -2841,8 +3243,10 @@
       "lat": 24.14999961853027,
       "long": 90.69999694824219,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "12",
+      "district": "নরসিংদী",
       "district_english": "Narsingdi"
     },
     {
@@ -2855,8 +3259,10 @@
       "lat": 23.99290084838867,
       "long": 90.87030029296875,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "12",
+      "district": "নরসিংদী",
       "district_english": "Narsingdi"
     },
     {
@@ -2869,8 +3275,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "11",
+      "district": "নারায়াণগঞ্জ",
       "district_english": "Narayanganj"
     },
     {
@@ -2883,8 +3291,10 @@
       "lat": 23.79000091552734,
       "long": 90.66000366210938,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "11",
+      "district": "নারায়াণগঞ্জ",
       "district_english": "Narayanganj"
     },
     {
@@ -2897,8 +3307,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "11",
+      "district": "নারায়াণগঞ্জ",
       "district_english": "Narayanganj"
     },
     {
@@ -2911,8 +3323,10 @@
       "lat": 23.63999938964844,
       "long": 90.4800033569336,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "11",
+      "district": "নারায়াণগঞ্জ",
       "district_english": "Narayanganj"
     },
     {
@@ -2925,8 +3339,10 @@
       "lat": 23.6299991607666,
       "long": 90.5,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "11",
+      "district": "নারায়াণগঞ্জ",
       "district_english": "Narayanganj"
     },
     {
@@ -2939,8 +3355,10 @@
       "lat": 23.76000022888184,
       "long": 89.63999938964844,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "14",
+      "district": "রাজবাড়ি",
       "district_english": "Rajbari"
     },
     {
@@ -2953,8 +3371,10 @@
       "lat": 23.76000022888184,
       "long": 89.63999938964844,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "14",
+      "district": "রাজবাড়ি",
       "district_english": "Rajbari"
     },
     {
@@ -2967,8 +3387,10 @@
       "lat": 23.38999938964844,
       "long": 89.68000030517578,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "2",
+      "district": "ফরিদপুর",
       "district_english": "Faridpur"
     },
     {
@@ -2981,8 +3403,10 @@
       "lat": 23.42000007629395,
       "long": 89.88999938964844,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "2",
+      "district": "ফরিদপুর",
       "district_english": "Faridpur"
     },
     {
@@ -2995,8 +3419,10 @@
       "lat": 23.61000061035156,
       "long": 89.83999633789062,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "2",
+      "district": "ফরিদপুর",
       "district_english": "Faridpur"
     },
     {
@@ -3009,8 +3435,10 @@
       "lat": 23.38999938964844,
       "long": 89.9800033569336,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "2",
+      "district": "ফরিদপুর",
       "district_english": "Faridpur"
     },
     {
@@ -3023,8 +3451,10 @@
       "lat": 23.31999969482422,
       "long": 89.87000274658203,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "4",
+      "district": "গোপালগঞ্জ",
       "district_english": "Gopalganj"
     },
     {
@@ -3037,8 +3467,10 @@
       "lat": 23.01000022888184,
       "long": 89.83000183105469,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "4",
+      "district": "গোপালগঞ্জ",
       "district_english": "Gopalganj"
     },
     {
@@ -3051,8 +3483,10 @@
       "lat": 22.98999977111816,
       "long": 90,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "4",
+      "district": "গোপালগঞ্জ",
       "district_english": "Gopalganj"
     },
     {
@@ -3065,8 +3499,10 @@
       "lat": 23.35000038146973,
       "long": 90.16999816894531,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "7",
+      "district": "মাদারীপুর",
       "district_english": "Madaripur"
     },
     {
@@ -3079,8 +3515,10 @@
       "lat": 23.20999908447266,
       "long": 90.05000305175781,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "7",
+      "district": "মাদারীপুর",
       "district_english": "Madaripur"
     },
     {
@@ -3093,8 +3531,10 @@
       "lat": 23.06999969482422,
       "long": 90.2300033569336,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "7",
+      "district": "মাদারীপুর",
       "district_english": "Madaripur"
     },
     {
@@ -3107,8 +3547,10 @@
       "lat": 23.20999908447266,
       "long": 90.3499984741211,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "15",
+      "district": "শরীয়তপুর",
       "district_english": "Shariatpur"
     },
     {
@@ -3121,8 +3563,10 @@
       "lat": 23.29999923706055,
       "long": 90.41000366210938,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "15",
+      "district": "শরীয়তপুর",
       "district_english": "Shariatpur"
     },
     {
@@ -3135,8 +3579,10 @@
       "lat": 23.10000038146973,
       "long": 90.44999694824219,
       "division_id": "3",
+      "division": "ঢাকা",
       "division_english": "Dhaka",
       "district_id": "15",
+      "district": "শরীয়তপুর",
       "district_english": "Shariatpur"
     },
     {
@@ -3149,8 +3595,10 @@
       "lat": 24.89999961853027,
       "long": 91.01000213623047,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "53",
+      "district": "সুনামগঞ্জ",
       "district_english": "Sunamganj"
     },
     {
@@ -3163,8 +3611,10 @@
       "lat": 24.79000091552734,
       "long": 91.3499984741211,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "53",
+      "district": "সুনামগঞ্জ",
       "district_english": "Sunamganj"
     },
     {
@@ -3177,8 +3627,10 @@
       "lat": 24.77000045776367,
       "long": 91.55000305175781,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "53",
+      "district": "সুনামগঞ্জ",
       "district_english": "Sunamganj"
     },
     {
@@ -3191,8 +3643,10 @@
       "lat": 25.06999969482422,
       "long": 91.4000015258789,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "53",
+      "district": "সুনামগঞ্জ",
       "district_english": "Sunamganj"
     },
     {
@@ -3205,8 +3659,10 @@
       "lat": 25.03000068664551,
       "long": 91.66000366210938,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "53",
+      "district": "সুনামগঞ্জ",
       "district_english": "Sunamganj"
     },
     {
@@ -3219,8 +3675,10 @@
       "lat": 24.88999938964844,
       "long": 91.87000274658203,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "54",
+      "district": "সিলেট",
       "district_english": "Sylhet"
     },
     {
@@ -3233,8 +3691,10 @@
       "lat": 24.64999961853027,
       "long": 91.81999969482422,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "54",
+      "district": "সিলেট",
       "district_english": "Sylhet"
     },
     {
@@ -3247,8 +3707,10 @@
       "lat": 24.81999969482422,
       "long": 91.9000015258789,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "54",
+      "district": "সিলেট",
       "district_english": "Sylhet"
     },
     {
@@ -3261,8 +3723,10 @@
       "lat": 25.09000015258789,
       "long": 91.9800033569336,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "54",
+      "district": "সিলেট",
       "district_english": "Sylhet"
     },
     {
@@ -3275,8 +3739,10 @@
       "lat": 25.01000022888184,
       "long": 92.26000213623047,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "54",
+      "district": "সিলেট",
       "district_english": "Sylhet"
     },
     {
@@ -3289,8 +3755,10 @@
       "lat": 24.85000038146973,
       "long": 92.0199966430664,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "54",
+      "district": "সিলেট",
       "district_english": "Sylhet"
     },
     {
@@ -3303,8 +3771,10 @@
       "lat": 24.70000076293945,
       "long": 92.19000244140625,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "52",
+      "district": "মৌলভীবাজার",
       "district_english": "Maulvibazar"
     },
     {
@@ -3317,8 +3787,10 @@
       "lat": 24.52000045776367,
       "long": 92.02999877929688,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "52",
+      "district": "মৌলভীবাজার",
       "district_english": "Maulvibazar"
     },
     {
@@ -3331,8 +3803,10 @@
       "lat": 24.47999954223633,
       "long": 91.7699966430664,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "52",
+      "district": "মৌলভীবাজার",
       "district_english": "Maulvibazar"
     },
     {
@@ -3345,8 +3819,10 @@
       "lat": 24.30999946594238,
       "long": 91.7300033569336,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "52",
+      "district": "মৌলভীবাজার",
       "district_english": "Maulvibazar"
     },
     {
@@ -3359,8 +3835,10 @@
       "lat": 24.56999969482422,
       "long": 91.51000213623047,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "51",
+      "district": "হবিগঞ্জ",
       "district_english": "Habiganj"
     },
     {
@@ -3373,8 +3851,10 @@
       "lat": 24.52000045776367,
       "long": 91.37000274658203,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "51",
+      "district": "হবিগঞ্জ",
       "district_english": "Habiganj"
     },
     {
@@ -3387,8 +3867,10 @@
       "lat": 24.3700008392334,
       "long": 91.41999816894531,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "51",
+      "district": "হবিগঞ্জ",
       "district_english": "Habiganj"
     },
     {
@@ -3401,8 +3883,10 @@
       "lat": 24.10000038146973,
       "long": 91.29000091552734,
       "division_id": "7",
+      "division": "সিলেট",
       "division_english": "Sylhet",
       "district_id": "51",
+      "district": "হবিগঞ্জ",
       "district_english": "Habiganj"
     },
     {
@@ -3415,8 +3899,10 @@
       "lat": 24.20000076293945,
       "long": 91.19000244140625,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "41",
+      "district": "ব্রাহ্মণবাড়িয়া",
       "district_english": "Brahmanbaria"
     },
     {
@@ -3429,8 +3915,10 @@
       "lat": 24.06999969482422,
       "long": 91.11000061035156,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "41",
+      "district": "ব্রাহ্মণবাড়িয়া",
       "district_english": "Brahmanbaria"
     },
     {
@@ -3443,8 +3931,10 @@
       "lat": 23.95999908447266,
       "long": 91.11000061035156,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "41",
+      "district": "ব্রাহ্মণবাড়িয়া",
       "district_english": "Brahmanbaria"
     },
     {
@@ -3457,8 +3947,10 @@
       "lat": 23.75,
       "long": 91.1500015258789,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "41",
+      "district": "ব্রাহ্মণবাড়িয়া",
       "district_english": "Brahmanbaria"
     },
     {
@@ -3471,8 +3963,10 @@
       "lat": 23.88999938964844,
       "long": 90.97000122070312,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "41",
+      "district": "ব্রাহ্মণবাড়িয়া",
       "district_english": "Brahmanbaria"
     },
     {
@@ -3485,8 +3979,10 @@
       "lat": 23.77000045776367,
       "long": 90.80000305175781,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "41",
+      "district": "ব্রাহ্মণবাড়িয়া",
       "district_english": "Brahmanbaria"
     },
     {
@@ -3499,8 +3995,10 @@
       "lat": 23.53000068664551,
       "long": 90.72000122070312,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "44",
+      "district": "কুমিল্লা",
       "district_english": "Cumilla"
     },
     {
@@ -3513,8 +4011,10 @@
       "lat": 23.68000030517578,
       "long": 90.77999877929688,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "44",
+      "district": "কুমিল্লা",
       "district_english": "Cumilla"
     },
     {
@@ -3527,8 +4027,10 @@
       "lat": 23.63999938964844,
       "long": 90.93000030517578,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "44",
+      "district": "কুমিল্লা",
       "district_english": "Cumilla"
     },
     {
@@ -3541,8 +4043,10 @@
       "lat": 23.60000038146973,
       "long": 90.98999786376953,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "44",
+      "district": "কুমিল্লা",
       "district_english": "Cumilla"
     },
     {
@@ -3555,8 +4059,10 @@
       "lat": 23.54999923706055,
       "long": 91.12999725341797,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "44",
+      "district": "কুমিল্লা",
       "district_english": "Cumilla"
     },
     {
@@ -3569,8 +4075,10 @@
       "lat": 23.46999931335449,
       "long": 91.18000030517578,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "44",
+      "district": "কুমিল্লা",
       "district_english": "Cumilla"
     },
     {
@@ -3583,8 +4091,10 @@
       "lat": 23.48999977111816,
       "long": 91.01000213623047,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "44",
+      "district": "কুমিল্লা",
       "district_english": "Cumilla"
     },
     {
@@ -3597,8 +4107,10 @@
       "lat": 23.3700008392334,
       "long": 91.05000305175781,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "44",
+      "district": "কুমিল্লা",
       "district_english": "Cumilla"
     },
     {
@@ -3611,8 +4123,10 @@
       "lat": 23.23999977111816,
       "long": 91.12000274658203,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "44",
+      "district": "কুমিল্লা",
       "district_english": "Cumilla"
     },
     {
@@ -3625,8 +4139,10 @@
       "lat": 23.15999984741211,
       "long": 91.19999694824219,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "44",
+      "district": "কুমিল্লা",
       "district_english": "Cumilla"
     },
     {
@@ -3639,8 +4155,10 @@
       "lat": 23.22999954223633,
       "long": 91.30999755859375,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "44",
+      "district": "কুমিল্লা",
       "district_english": "Cumilla"
     },
     {
@@ -3653,8 +4171,10 @@
       "lat": 23.34000015258789,
       "long": 90.88999938964844,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "42",
+      "district": "চাঁদপুর",
       "district_english": "Chandpur"
     },
     {
@@ -3667,8 +4187,10 @@
       "lat": 23.43000030517578,
       "long": 90.62000274658203,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "42",
+      "district": "চাঁদপুর",
       "district_english": "Chandpur"
     },
     {
@@ -3681,8 +4203,10 @@
       "lat": 23.22999954223633,
       "long": 90.66999816894531,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "42",
+      "district": "চাঁদপুর",
       "district_english": "Chandpur"
     },
     {
@@ -3695,8 +4219,10 @@
       "lat": 23.1299991607666,
       "long": 90.75,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "42",
+      "district": "চাঁদপুর",
       "district_english": "Chandpur"
     },
     {
@@ -3709,8 +4235,10 @@
       "lat": 23.25,
       "long": 90.8499984741211,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "42",
+      "district": "চাঁদপুর",
       "district_english": "Chandpur"
     },
     {
@@ -3723,8 +4251,10 @@
       "lat": 23.04000091552734,
       "long": 91.5199966430664,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "46",
+      "district": "ফেনী",
       "district_english": "Feni"
     },
     {
@@ -3737,8 +4267,10 @@
       "lat": 23.02000045776367,
       "long": 91.38999938964844,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "46",
+      "district": "ফেনী",
       "district_english": "Feni"
     },
     {
@@ -3751,8 +4283,10 @@
       "lat": 22.94000053405762,
       "long": 91.30000305175781,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "46",
+      "district": "ফেনী",
       "district_english": "Feni"
     },
     {
@@ -3765,8 +4299,10 @@
       "lat": 23.05999946594238,
       "long": 90.97000122070312,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "49",
+      "district": "নোয়াখালী",
       "district_english": "Noakhali"
     },
     {
@@ -3779,8 +4315,10 @@
       "lat": 22.98999977111816,
       "long": 91.2300033569336,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "49",
+      "district": "নোয়াখালী",
       "district_english": "Noakhali"
     },
     {
@@ -3793,8 +4331,10 @@
       "lat": 22.94000053405762,
       "long": 91.0999984741211,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "49",
+      "district": "নোয়াখালী",
       "district_english": "Noakhali"
     },
     {
@@ -3807,8 +4347,10 @@
       "lat": 22.8700008392334,
       "long": 91.0999984741211,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "49",
+      "district": "নোয়াখালী",
       "district_english": "Noakhali"
     },
     {
@@ -3821,8 +4363,10 @@
       "lat": 25.07999992370605,
       "long": 91.76000213623047,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "49",
+      "district": "নোয়াখালী",
       "district_english": "Noakhali"
     },
     {
@@ -3835,8 +4379,10 @@
       "lat": 22.29000091552734,
       "long": 91.13999938964844,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "49",
+      "district": "নোয়াখালী",
       "district_english": "Noakhali"
     },
     {
@@ -3849,8 +4395,10 @@
       "lat": 23.09000015258789,
       "long": 90.86000061035156,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "48",
+      "district": "লক্ষ্মীপুর",
       "district_english": "Lakshmipur"
     },
     {
@@ -3863,8 +4411,10 @@
       "lat": 22.94000053405762,
       "long": 91.30000305175781,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "48",
+      "district": "লক্ষ্মীপুর",
       "district_english": "Lakshmipur"
     },
     {
@@ -3877,8 +4427,10 @@
       "lat": 0,
       "long": 0,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "48",
+      "district": "লক্ষ্মীপুর",
       "district_english": "Lakshmipur"
     },
     {
@@ -3891,8 +4443,10 @@
       "lat": 22.64999961853027,
       "long": 90.91999816894531,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "48",
+      "district": "লক্ষ্মীপুর",
       "district_english": "Lakshmipur"
     },
     {
@@ -3905,8 +4459,10 @@
       "lat": 22.78000068664551,
       "long": 91.56999969482422,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -3919,8 +4475,10 @@
       "lat": 22.69000053405762,
       "long": 91.80000305175781,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -3933,8 +4491,10 @@
       "lat": 22.48999977111816,
       "long": 91.45999908447266,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -3947,8 +4507,10 @@
       "lat": 22.61000061035156,
       "long": 91.66000366210938,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -3961,8 +4523,10 @@
       "lat": 22.40999984741211,
       "long": 91.81999969482422,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -3975,8 +4539,10 @@
       "lat": 22.54000091552734,
       "long": 91.91000366210938,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -3989,8 +4555,10 @@
       "lat": 22.46999931335449,
       "long": 92.05000305175781,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -4003,8 +4571,10 @@
       "lat": 22.3799991607666,
       "long": 91.86000061035156,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -4017,8 +4587,10 @@
       "lat": 22.40999984741211,
       "long": 91.81999969482422,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -4031,8 +4603,10 @@
       "lat": 22.34000015258789,
       "long": 91.77999877929688,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -4045,8 +4619,10 @@
       "lat": 22.29000091552734,
       "long": 91.79000091552734,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -4059,8 +4635,10 @@
       "lat": 22.29999923706055,
       "long": 91.97000122070312,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -4073,8 +4651,10 @@
       "lat": 22.21999931335449,
       "long": 91.9000015258789,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -4087,8 +4667,10 @@
       "lat": 22.20999908447266,
       "long": 92.01000213623047,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -4101,8 +4683,10 @@
       "lat": 22.02000045776367,
       "long": 92.0999984741211,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -4115,8 +4699,10 @@
       "lat": 22.03000068664551,
       "long": 91.94999694824219,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "43",
+      "district": "চট্টগ্রাম",
       "district_english": "Chattogram"
     },
     {
@@ -4129,8 +4715,10 @@
       "lat": 21.76000022888184,
       "long": 92.08000183105469,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "45",
+      "district": "কক্স বাজার",
       "district_english": "Cox's Bazar"
     },
     {
@@ -4143,8 +4731,10 @@
       "lat": 21.52000045776367,
       "long": 91.95999908447266,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "45",
+      "district": "কক্স বাজার",
       "district_english": "Cox's Bazar"
     },
     {
@@ -4157,8 +4747,10 @@
       "lat": 21.44000053405762,
       "long": 91.97000122070312,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "45",
+      "district": "কক্স বাজার",
       "district_english": "Cox's Bazar"
     },
     {
@@ -4171,8 +4763,10 @@
       "lat": 20.8700008392334,
       "long": 92.30000305175781,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "45",
+      "district": "কক্স বাজার",
       "district_english": "Cox's Bazar"
     },
     {
@@ -4185,8 +4779,10 @@
       "lat": 23.10600090026855,
       "long": 91.97899627685547,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "47",
+      "district": "খাগড়াছড়ি",
       "district_english": "Khagrachari"
     },
     {
@@ -4199,8 +4795,10 @@
       "lat": 22.63333320617676,
       "long": 92.19999694824219,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "50",
+      "district": "রাঙ্গামাটি",
       "district_english": "Rangamati"
     },
     {
@@ -4213,8 +4811,10 @@
       "lat": 22.19799995422363,
       "long": 92.22000122070312,
       "division_id": "2",
+      "division": "চট্টগ্রাম",
       "division_english": "Chattogram",
       "district_id": "40",
+      "district": "বান্দরবান",
       "district_english": "Bandarban"
     }
   ]

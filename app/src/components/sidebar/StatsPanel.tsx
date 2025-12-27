@@ -133,13 +133,13 @@ function StatCard({
 
 function formatNumber(num: number): string {
   if (num >= 10000000) {
-    return (num / 10000000).toFixed(1) + 'Cr';
+    return (num / 10000000).toFixed(1).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[parseInt(d)]) + ' কোটি';
   }
   if (num >= 100000) {
-    return (num / 100000).toFixed(1) + 'L';
+    return (num / 100000).toFixed(1).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[parseInt(d)]) + ' লক্ষ';
   }
   if (num >= 1000) {
-    return (num / 1000).toFixed(0) + 'K';
+    return (num / 1000).toFixed(0).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[parseInt(d)]) + ' হাজার';
   }
-  return num.toLocaleString();
+  return num.toLocaleString('bn-BD');
 }

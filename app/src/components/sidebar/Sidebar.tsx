@@ -63,14 +63,14 @@ export default function Sidebar({
                 <div className="flex items-start justify-between">
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-white/90 truncate">
-                      {selectedConstituency.name_english}
+                      {selectedConstituency.name || selectedConstituency.name_english}
                     </p>
                     <p className="text-xs text-neutral-500 mt-0.5">
-                      {selectedConstituency.district_english}
+                      {selectedConstituency.district || selectedConstituency.district_english}
                     </p>
                     <div className="flex items-center gap-3 mt-2">
                       <span className="text-xs text-teal-400">
-                        {selectedConstituency.registered_voters.toLocaleString()} ভোটার
+                        {selectedConstituency.registered_voters.toLocaleString('bn-BD')} ভোটার
                       </span>
                     </div>
                   </div>

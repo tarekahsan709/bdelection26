@@ -4,6 +4,7 @@
 @theme {
   /* Font configuration */
   --font-primary: 'Inter', system-ui, sans-serif;
+  --font-bangla: var(--font-bangla), 'Noto Sans Bengali', system-ui, sans-serif;
 
   /*
    * Golden Delta Color Palette
@@ -247,9 +248,9 @@ canvas.leaflet-zoom-animated {
 }
 
 .constituency-tooltip {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-bangla), 'Noto Sans Bengali', system-ui, sans-serif;
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: #f1f5f9;
 }
 

@@ -9,6 +9,7 @@ import DotLayer from './DotLayer';
 import ConstituencyLayer, { type ConstituencyInfo } from './ConstituencyLayer';
 import ConstituencyBoundaryLayer from './ConstituencyBoundaryLayer';
 import DistrictBoundaryLayer from './DistrictBoundaryLayer';
+import DivisionBoundaryLayer from './DivisionBoundaryLayer';
 import type { FilterState, MapState } from '@/types/map';
 
 const BANGLADESH_CENTER: [number, number] = [23.8103, 90.4125];
@@ -101,25 +102,36 @@ export default function LeafletMap({
     const map = mapRef.current;
     if (!map) return;
 
+    // Capture current filter state for this effect
+    const currentFilter = { ...filterState };
+    let cancelled = false;
+
     const fetchAndFlyToRegion = async () => {
       try {
         const response = await fetch('/data/constituency-population.json');
         const data = await response.json();
+
+        // Check if filter changed while we were fetching
+        if (cancelled) return;
+
         const constituencies: ConstituencyInfo[] = data.constituencies;
 
         let filteredConstituencies = constituencies.filter(c => c.lat && c.long);
 
-        if (filterState.divisionId) {
+        if (currentFilter.divisionId) {
           filteredConstituencies = filteredConstituencies.filter(
-            c => c.division_id === filterState.divisionId
+            c => c.division_id === currentFilter.divisionId
           );
 
-          if (filterState.districtId) {
+          if (currentFilter.districtId) {
             filteredConstituencies = filteredConstituencies.filter(
-              c => c.district_id === filterState.districtId
+              c => c.district_id === currentFilter.districtId
             );
           }
         }
+
+        // Only fly if filter hasn't changed
+        if (cancelled) return;
 
         if (filteredConstituencies.length > 0) {
           const bounds = L.latLngBounds(
@@ -127,10 +139,10 @@ export default function LeafletMap({
           );
           map.flyToBounds(bounds, {
             padding: [50, 50],
-            maxZoom: filterState.districtId ? 9 : 8,
+            maxZoom: currentFilter.districtId ? 9 : 8,
             duration: 1.2,
           });
-        } else if (!filterState.divisionId && !filterState.districtId) {
+        } else if (!currentFilter.divisionId && !currentFilter.districtId) {
           map.flyTo(BANGLADESH_CENTER, 7, { duration: 1.2 });
         }
       } catch {
@@ -139,6 +151,10 @@ export default function LeafletMap({
     };
 
     fetchAndFlyToRegion();
+
+    return () => {
+      cancelled = true;
+    };
   }, [filterState]);
 
   if (error) {
@@ -154,6 +170,10 @@ export default function LeafletMap({
       <div ref={mapContainerRef} className="absolute inset-0" />
       {mapRef.current && !loading && mapState.bounds && (
         <>
+          <DivisionBoundaryLayer
+            map={mapRef.current}
+            filterState={filterState}
+          />
           <ConstituencyBoundaryLayer
             map={mapRef.current}
             hoveredConstituency={hoveredConstituency}
@@ -164,6 +184,7 @@ export default function LeafletMap({
             map={mapRef.current}
             hoveredConstituency={hoveredConstituency}
             selectedConstituency={selectedConstituency || null}
+            filterState={filterState}
           />
           <ConstituencyLayer
             map={mapRef.current}
