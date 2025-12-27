@@ -47,6 +47,307 @@ function ParallaxBackground() {
   );
 }
 
+// Voter Crowd Illustration - Line art style showing Bangladeshi voters (Wide version with shadows)
+function VoterCrowdIllustration({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 1200 320" fill="none" className={className}>
+      {/* Definitions for shadows and gradients */}
+      <defs>
+        <linearGradient id="crowdGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+          <stop offset="0%" stopColor="currentColor" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+        </linearGradient>
+        {/* Shadow filter */}
+        <filter id="personShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="3" dy="5" stdDeviation="4" floodColor="currentColor" floodOpacity="0.3" />
+        </filter>
+        <filter id="lightShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="2" dy="3" stdDeviation="2" floodColor="currentColor" floodOpacity="0.2" />
+        </filter>
+      </defs>
+
+      {/* Ground shadow line */}
+      <ellipse cx="600" cy="305" rx="550" ry="15" fill="currentColor" fillOpacity="0.1" />
+
+      {/* === FAR BACKGROUND ROW (very faded) === */}
+      <g stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.15">
+        <ellipse cx="80" cy="185" rx="10" ry="8" />
+        <line x1="80" y1="193" x2="80" y2="250" />
+
+        <ellipse cx="180" cy="182" rx="9" ry="7" />
+        <line x1="180" y1="189" x2="180" y2="248" />
+
+        <ellipse cx="280" cy="180" rx="10" ry="8" />
+        <line x1="280" y1="188" x2="280" y2="252" />
+
+        <ellipse cx="380" cy="183" rx="9" ry="7" />
+        <line x1="380" y1="190" x2="380" y2="250" />
+
+        <ellipse cx="480" cy="178" rx="10" ry="8" />
+        <line x1="480" y1="186" x2="480" y2="248" />
+
+        <ellipse cx="580" cy="180" rx="9" ry="7" />
+        <line x1="580" y1="187" x2="580" y2="250" />
+
+        <ellipse cx="680" cy="182" rx="10" ry="8" />
+        <line x1="680" y1="190" x2="680" y2="252" />
+
+        <ellipse cx="780" cy="179" rx="9" ry="7" />
+        <line x1="780" y1="186" x2="780" y2="248" />
+
+        <ellipse cx="880" cy="183" rx="10" ry="8" />
+        <line x1="880" y1="191" x2="880" y2="250" />
+
+        <ellipse cx="980" cy="180" rx="9" ry="7" />
+        <line x1="980" y1="187" x2="980" y2="248" />
+
+        <ellipse cx="1080" cy="184" rx="10" ry="8" />
+        <line x1="1080" y1="192" x2="1080" y2="252" />
+
+        <ellipse cx="1150" cy="181" rx="9" ry="7" />
+        <line x1="1150" y1="188" x2="1150" y2="248" />
+      </g>
+
+      {/* === MIDDLE BACKGROUND ROW === */}
+      <g stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.25" filter="url(#lightShadow)">
+        <ellipse cx="50" cy="195" rx="11" ry="9" />
+        <line x1="50" y1="204" x2="50" y2="270" />
+
+        <ellipse cx="130" cy="192" rx="12" ry="10" />
+        <line x1="130" y1="202" x2="130" y2="272" />
+
+        <ellipse cx="220" cy="190" rx="11" ry="9" />
+        <line x1="220" y1="199" x2="220" y2="268" />
+
+        <ellipse cx="320" cy="193" rx="12" ry="10" />
+        <line x1="320" y1="203" x2="320" y2="270" />
+
+        <ellipse cx="430" cy="188" rx="11" ry="9" />
+        <line x1="430" y1="197" x2="430" y2="268" />
+
+        <ellipse cx="530" cy="191" rx="12" ry="10" />
+        <line x1="530" y1="201" x2="530" y2="272" />
+
+        <ellipse cx="630" cy="189" rx="11" ry="9" />
+        <line x1="630" y1="198" x2="630" y2="268" />
+
+        <ellipse cx="730" cy="192" rx="12" ry="10" />
+        <line x1="730" y1="202" x2="730" y2="270" />
+
+        <ellipse cx="830" cy="190" rx="11" ry="9" />
+        <line x1="830" y1="199" x2="830" y2="270" />
+
+        <ellipse cx="930" cy="193" rx="12" ry="10" />
+        <line x1="930" y1="203" x2="930" y2="272" />
+
+        <ellipse cx="1030" cy="188" rx="11" ry="9" />
+        <line x1="1030" y1="197" x2="1030" y2="268" />
+
+        <ellipse cx="1120" cy="191" rx="12" ry="10" />
+        <line x1="1120" y1="201" x2="1120" y2="270" />
+      </g>
+
+      {/* === MAIN FOREGROUND PEOPLE === */}
+
+      {/* Person 1 - Man with sign (far left) */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" filter="url(#personShadow)">
+        <rect x="30" y="50" width="50" height="40" rx="2" fill="none" />
+        <line x1="55" y1="90" x2="55" y2="135" />
+        <circle cx="55" cy="150" r="13" />
+        <path d="M42 163 L38 245 L72 245 L68 163" />
+        <path d="M42 168 L28 210" />
+        <path d="M68 168 L80 205" />
+        <path d="M48 245 L45 290" />
+        <path d="M62 245 L65 290" />
+      </g>
+
+      {/* Person 2 - Woman in saree */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.55" filter="url(#personShadow)">
+        <circle cx="120" cy="155" r="12" />
+        <path d="M108 167 L104 250 L136 250 L132 167" />
+        <path d="M115 172 L108 195 L118 230" strokeWidth="1" />
+        <path d="M108 172 L95 200" />
+        <path d="M132 172 L142 198" />
+        <path d="M115 250 L112 290" />
+        <path d="M125 250 L128 290" />
+      </g>
+
+      {/* Person 3 - Man in panjabi */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" filter="url(#personShadow)">
+        <circle cx="200" cy="148" r="14" />
+        <path d="M186 162 L180 250 L220 250 L214 162" />
+        <path d="M192 166 L200 176 L208 166" strokeWidth="1" />
+        <path d="M186 168 L168 208" />
+        <path d="M214 168 L230 205" />
+        <path d="M192 250 L188 290" />
+        <path d="M208 250 L212 290" />
+      </g>
+
+      {/* Person 4 - Woman with child */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.65" filter="url(#personShadow)">
+        <circle cx="290" cy="152" r="13" />
+        <path d="M277 165 L272 252 L308 252 L303 165" />
+        <path d="M285 170 L278 195 L290 235" strokeWidth="1" />
+        <path d="M277 172 L262 205" />
+        <path d="M303 172 L315 200" />
+        <path d="M282 252 L279 290" />
+        <path d="M298 252 L301 290" />
+        {/* Child */}
+        <circle cx="325" cy="195" r="8" />
+        <path d="M320 203 L318 245 L332 245 L330 203" />
+        <path d="M323 245 L321 275" />
+        <path d="M327 245 L329 275" />
+      </g>
+
+      {/* Person 5 - Man with flag */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" filter="url(#personShadow)">
+        <line x1="400" y1="40" x2="400" y2="140" />
+        <path d="M400 40 L445 58 L400 76" fill="currentColor" fillOpacity="0.2" />
+        <circle cx="390" cy="150" r="14" />
+        <path d="M376 164 L370 252 L410 252 L404 164" />
+        <path d="M395 145 L400 165" strokeWidth="2" />
+        <path d="M376 170 L358 205" />
+        <path d="M384 252 L380 290" />
+        <path d="M396 252 L400 290" />
+      </g>
+
+      {/* Person 6 - Elderly woman */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.75" filter="url(#personShadow)">
+        <circle cx="480" cy="155" r="13" />
+        <path d="M467 168 L462 255 L498 255 L493 168" />
+        <path d="M475 173 L468 200 L480 240" strokeWidth="1" />
+        <path d="M467 175 L450 210" />
+        <path d="M493 175 L508 208" />
+        <path d="M472 255 L469 290" />
+        <path d="M488 255 L491 290" />
+      </g>
+
+      {/* Person 7 - CENTER MAN (most prominent) */}
+      <g stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="1" filter="url(#personShadow)">
+        <circle cx="600" cy="140" r="18" />
+        <path d="M582 158 L574 258 L626 258 L618 158" />
+        <path d="M590 164 L600 176 L610 164" strokeWidth="1.5" />
+        <path d="M582 166 L552 205" />
+        <path d="M618 166 L648 205" />
+        <circle cx="548" cy="208" r="6" strokeWidth="1.2" />
+        <circle cx="652" cy="208" r="6" strokeWidth="1.2" />
+        <path d="M588 258 L582 300" />
+        <path d="M612 258 L618 300" />
+      </g>
+
+      {/* Person 8 - Woman with sign */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.75" filter="url(#personShadow)">
+        <rect x="680" y="48" width="50" height="42" rx="2" fill="none" />
+        <line x1="705" y1="90" x2="705" y2="138" />
+        <circle cx="700" cy="152" r="13" />
+        <path d="M687 165 L682 255 L718 255 L713 165" />
+        <path d="M693 170 L710 185 L706 220" strokeWidth="1" />
+        <path d="M702 140 L705 162" strokeWidth="2" />
+        <path d="M687 172 L672 205" />
+        <path d="M692 255 L689 290" />
+        <path d="M708 255 L711 290" />
+      </g>
+
+      {/* Person 9 - Man with glasses */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" filter="url(#personShadow)">
+        <circle cx="790" cy="153" r="14" />
+        <circle cx="784" cy="151" r="5" strokeWidth="1" />
+        <circle cx="796" cy="151" r="5" strokeWidth="1" />
+        <line x1="789" y1="151" x2="791" y2="151" />
+        <path d="M776 167 L770 255 L810 255 L804 167" />
+        <path d="M804 175 L822 192" />
+        <line x1="825" y1="188" x2="835" y2="285" strokeWidth="2" />
+        <path d="M776 175 L758 210" />
+        <path d="M782 255 L778 290" />
+        <path d="M798 255 L802 290" />
+      </g>
+
+      {/* Person 10 - Young woman */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.65" filter="url(#personShadow)">
+        <circle cx="880" cy="155" r="12" />
+        <path d="M872 162 L868 188" strokeWidth="1" />
+        <path d="M888 162 L892 185" strokeWidth="1" />
+        <path d="M868 167 L863 250 L897 250 L892 167" />
+        <path d="M875 172 L870 200" strokeWidth="1" />
+        <path d="M868 172 L855 205" />
+        <path d="M892 172 L905 202" />
+        <path d="M873 250 L870 290" />
+        <path d="M887 250 L890 290" />
+      </g>
+
+      {/* Person 11 - Man in lungi */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" filter="url(#personShadow)">
+        <circle cx="960" cy="150" r="13" />
+        <path d="M947 163 L942 210 L978 210 L973 163" />
+        <path d="M944 210 L940 255 L980 255 L976 210" fill="none" />
+        <path d="M947 168 L932 198" />
+        <path d="M973 168 L988 195" />
+        <path d="M952 255 L948 290" />
+        <path d="M968 255 L972 290" />
+      </g>
+
+      {/* Person 12 - Woman with flag */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.55" filter="url(#personShadow)">
+        <line x1="1050" y1="55" x2="1050" y2="145" />
+        <path d="M1050 55 L1085 68 L1050 82" fill="currentColor" fillOpacity="0.15" />
+        <circle cx="1040" cy="155" r="12" />
+        <ellipse cx="1040" cy="145" rx="5" ry="3" />
+        <path d="M1028 167 L1023 252 L1057 252 L1052 167" />
+        <path d="M1045 150 L1050 168" strokeWidth="2" />
+        <path d="M1028 172 L1015 205" />
+        <path d="M1033 252 L1030 290" />
+        <path d="M1047 252 L1050 290" />
+      </g>
+
+      {/* Person 13 - Man at edge */}
+      <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.45" filter="url(#lightShadow)">
+        <circle cx="1130" cy="158" r="12" />
+        <path d="M1118 170 L1114 252 L1146 252 L1142 170" />
+        <path d="M1118 175 L1105 208" />
+        <path d="M1142 175 L1155 205" />
+        <path d="M1124 252 L1121 290" />
+        <path d="M1136 252 L1139 290" />
+      </g>
+
+      {/* More background silhouettes in gaps */}
+      <g stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.2">
+        <ellipse cx="155" cy="200" rx="10" ry="8" />
+        <line x1="155" y1="208" x2="155" y2="265" />
+
+        <ellipse cx="245" cy="198" rx="9" ry="7" />
+        <line x1="245" y1="205" x2="245" y2="262" />
+
+        <ellipse cx="345" cy="200" rx="10" ry="8" />
+        <line x1="345" y1="208" x2="345" y2="265" />
+
+        <ellipse cx="445" cy="197" rx="9" ry="7" />
+        <line x1="445" y1="204" x2="445" y2="260" />
+
+        <ellipse cx="545" cy="200" rx="10" ry="8" />
+        <line x1="545" y1="208" x2="545" y2="265" />
+
+        <ellipse cx="655" cy="198" rx="9" ry="7" />
+        <line x1="655" y1="205" x2="655" y2="262" />
+
+        <ellipse cx="755" cy="200" rx="10" ry="8" />
+        <line x1="755" y1="208" x2="755" y2="265" />
+
+        <ellipse cx="845" cy="197" rx="9" ry="7" />
+        <line x1="845" y1="204" x2="845" y2="260" />
+
+        <ellipse cx="920" cy="198" rx="10" ry="8" />
+        <line x1="920" y1="206" x2="920" y2="262" />
+
+        <ellipse cx="1000" cy="200" rx="9" ry="7" />
+        <line x1="1000" y1="207" x2="1000" y2="265" />
+
+        <ellipse cx="1090" cy="198" rx="10" ry="8" />
+        <line x1="1090" y1="206" x2="1090" y2="262" />
+      </g>
+    </svg>
+  );
+}
+
 // Section Number Badge - Pudding-style
 function SectionBadge({ number, color = 'teal' }: { number: string; color?: 'teal' | 'amber' | 'emerald' | 'rose' }) {
   const colors = {
@@ -244,12 +545,20 @@ export default function ConstituencyPage() {
               {population.name}
             </h1>
 
-            {/* The big number - voter count */}
-            <div className="mb-8">
-              <div className="text-6xl md:text-8xl font-black bg-gradient-to-r from-teal-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                {votersInLakh} লক্ষ
+            {/* The big number - voter count with crowd illustration */}
+            <div className="mb-8 relative">
+              {/* Crowd illustration behind the number */}
+              <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
+                <VoterCrowdIllustration className="w-full max-w-2xl h-auto text-teal-500/30" />
               </div>
-              <p className="text-xl text-neutral-400 mt-2">মানুষের কণ্ঠস্বর</p>
+
+              {/* The number overlay */}
+              <div className="relative z-10 py-8">
+                <div className="text-7xl md:text-9xl font-black bg-gradient-to-r from-teal-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent drop-shadow-2xl">
+                  {votersInLakh} লক্ষ
+                </div>
+                <p className="text-xl md:text-2xl text-neutral-300 mt-3 font-medium">মানুষের কণ্ঠস্বর</p>
+              </div>
             </div>
 
             {/* The hook - emotional message */}
@@ -268,12 +577,71 @@ export default function ConstituencyPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 1: আপনার ক্ষমতা - Your Power (Civic Education)
+            SECTION 1: প্রার্থীগণ - The Candidates
+        ═══════════════════════════════════════════════════════════════════ */}
+        <section className="py-20 px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-6">
+              <SectionBadge number="১" color="rose" />
+              <span className="text-rose-400/80 text-sm font-medium uppercase tracking-wider">চিনুন</span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              কারা আপনার <span className="text-rose-400">ভোট চাইছেন</span>?
+            </h2>
+
+            <p className="text-neutral-400 text-lg mb-10 max-w-2xl">
+              এই প্রার্থীরা আপনার প্রতিনিধি হতে চান। তাদের দল, পটভূমি এবং প্রতিশ্রুতি সম্পর্কে জানুন।
+              মনে রাখবেন — <span className="text-white">তারা আপনার কাছে জবাবদিহি করতে বাধ্য</span>।
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {candidates.map((candidate, idx) => (
+                <CandidateCard key={idx} candidate={candidate} />
+              ))}
+            </div>
+
+            {candidates.length === 0 && (
+              <div className="text-center py-12 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+                <svg className="w-12 h-12 mx-auto text-neutral-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <p className="text-neutral-500">প্রার্থীদের তথ্য শীঘ্রই যোগ করা হবে</p>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            SECTION 2: বর্তমান অবস্থা - Current Reality
+        ═══════════════════════════════════════════════════════════════════ */}
+        <section className="py-20 px-4 bg-gradient-to-b from-transparent via-amber-950/10 to-transparent">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-6">
+              <SectionBadge number="২" color="amber" />
+              <span className="text-amber-400/80 text-sm font-medium uppercase tracking-wider">দেখুন</span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              আপনার এলাকায় এখন <span className="text-amber-400">কী আছে</span>?
+            </h2>
+
+            <p className="text-neutral-400 text-lg mb-10 max-w-2xl">
+              এই তথ্য OpenStreetMap থেকে সংগ্রহ করা হয়েছে। দেখুন আপনার নির্বাচনী এলাকায়
+              জনসংখ্যা অনুযায়ী কোথায় ঘাটতি আছে এবং কোথায় উন্নতি দরকার।
+            </p>
+
+            <GardenView infrastructure={infrastructure} voters={voters} />
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            SECTION 3: আপনার ক্ষমতা - Your Power (Civic Education)
         ═══════════════════════════════════════════════════════════════════ */}
         <section className="py-20 px-4 bg-gradient-to-b from-transparent via-teal-950/10 to-transparent">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-6">
-              <SectionBadge number="১" color="teal" />
+              <SectionBadge number="৩" color="teal" />
               <span className="text-teal-400/80 text-sm font-medium uppercase tracking-wider">বুঝুন</span>
             </div>
 
@@ -330,12 +698,12 @@ export default function ConstituencyPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 2: এমপির ক্ষমতা - What MP Can Deliver
+            SECTION 4: এমপির ক্ষমতা - What MP Can Deliver
         ═══════════════════════════════════════════════════════════════════ */}
         <section className="py-20 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-6">
-              <SectionBadge number="২" color="emerald" />
+              <SectionBadge number="৪" color="emerald" />
               <span className="text-emerald-400/80 text-sm font-medium uppercase tracking-wider">জানুন</span>
             </div>
 
@@ -368,65 +736,6 @@ export default function ConstituencyPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 3: বর্তমান অবস্থা - Current Reality
-        ═══════════════════════════════════════════════════════════════════ */}
-        <section className="py-20 px-4 bg-gradient-to-b from-transparent via-amber-950/10 to-transparent">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <SectionBadge number="৩" color="amber" />
-              <span className="text-amber-400/80 text-sm font-medium uppercase tracking-wider">দেখুন</span>
-            </div>
-
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              আপনার এলাকায় এখন <span className="text-amber-400">কী আছে</span>?
-            </h2>
-
-            <p className="text-neutral-400 text-lg mb-10 max-w-2xl">
-              এই তথ্য OpenStreetMap থেকে সংগ্রহ করা হয়েছে। দেখুন আপনার নির্বাচনী এলাকায়
-              জনসংখ্যা অনুযায়ী কোথায় ঘাটতি আছে এবং কোথায় উন্নতি দরকার।
-            </p>
-
-            <GardenView infrastructure={infrastructure} voters={voters} />
-          </div>
-        </section>
-
-        {/* ═══════════════════════════════════════════════════════════════════
-            SECTION 4: প্রার্থীগণ - The Candidates
-        ═══════════════════════════════════════════════════════════════════ */}
-        <section className="py-20 px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <SectionBadge number="৪" color="rose" />
-              <span className="text-rose-400/80 text-sm font-medium uppercase tracking-wider">চিনুন</span>
-            </div>
-
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              কারা আপনার <span className="text-rose-400">ভোট চাইছেন</span>?
-            </h2>
-
-            <p className="text-neutral-400 text-lg mb-10 max-w-2xl">
-              এই প্রার্থীরা আপনার প্রতিনিধি হতে চান। তাদের দল, পটভূমি এবং প্রতিশ্রুতি সম্পর্কে জানুন।
-              মনে রাখবেন — <span className="text-white">তারা আপনার কাছে জবাবদিহি করতে বাধ্য</span>।
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {candidates.map((candidate, idx) => (
-                <CandidateCard key={idx} candidate={candidate} />
-              ))}
-            </div>
-
-            {candidates.length === 0 && (
-              <div className="text-center py-12 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
-                <svg className="w-12 h-12 mx-auto text-neutral-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                <p className="text-neutral-500">প্রার্থীদের তথ্য শীঘ্রই যোগ করা হবে</p>
-              </div>
-            )}
           </div>
         </section>
 
