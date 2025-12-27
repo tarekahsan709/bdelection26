@@ -7,6 +7,7 @@ import { useMapData } from './hooks/useMapData';
 import { useViewportFilter } from './hooks/useViewportFilter';
 import DotLayer from './DotLayer';
 import ConstituencyLayer, { type ConstituencyInfo } from './ConstituencyLayer';
+import ConstituencyBoundaryLayer from './ConstituencyBoundaryLayer';
 import DistrictBoundaryLayer from './DistrictBoundaryLayer';
 import type { FilterState, MapState } from '@/types/map';
 
@@ -153,6 +154,11 @@ export default function LeafletMap({
       <div ref={mapContainerRef} className="absolute inset-0" />
       {mapRef.current && !loading && mapState.bounds && (
         <>
+          <ConstituencyBoundaryLayer
+            map={mapRef.current}
+            hoveredConstituency={hoveredConstituency}
+            selectedConstituency={selectedConstituency || null}
+          />
           <DotLayer map={mapRef.current} dots={visibleDots} />
           <DistrictBoundaryLayer
             map={mapRef.current}
