@@ -93,13 +93,17 @@ function generateConstituencyPopulation() {
     missing_voters: results.filter(c => !c.registered_voters).length,
   };
 
-  // Create output object
+  // Create output object with 2024 election data
   const output = {
     metadata: {
-      source: 'Generated from bd-constituencies.json voter data',
+      source: 'বাংলাদেশ নির্বাচন কমিশন (Bangladesh Election Commission)',
+      election: '১২তম জাতীয় সংসদ নির্বাচন (12th National Parliament Election)',
+      election_date: '২০২৪-০১-০৭ (2024-01-07)',
+      official_total_voters: 119689289,
       estimation_method: 'Voter-to-population ratio (1:1.54)',
       generated_at: new Date().toISOString(),
-      note: 'Population estimates based on registered voters. Update with BBS census data for accuracy.',
+      note_bn: 'জনসংখ্যা নিবন্ধিত ভোটারদের উপর ভিত্তি করে অনুমান করা হয়েছে',
+      note_en: 'Population estimated from registered voters. Update with BBS census data for accuracy.',
     },
     statistics: stats,
     constituencies: results,

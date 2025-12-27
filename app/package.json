@@ -1,6 +1,6 @@
 {
   "name": "bangladesh-election-map",
-  "version": "1.0.0",
+  "version": "0.1.0-beta",
   "description": "Interactive dot density map visualization of Bangladesh election data with voter distribution across 300 parliamentary constituencies",
   "private": true,
   "author": {
