@@ -5,11 +5,15 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useMapData } from './hooks/useMapData';
 import { useViewportFilter } from './hooks/useViewportFilter';
-import DotLayer from './DotLayer';
+import DotLayer, { type ColorMode } from './DotLayer';
+import ColorModeToggle from './ColorModeToggle';
 import ConstituencyLayer, { type ConstituencyInfo } from './ConstituencyLayer';
 import ConstituencyBoundaryLayer from './ConstituencyBoundaryLayer';
 import DistrictBoundaryLayer from './DistrictBoundaryLayer';
 import DivisionBoundaryLayer from './DivisionBoundaryLayer';
+import SearchBar from './SearchBar';
+import QuickStats from './QuickStats';
+import FloatingConstituencyCard from './FloatingConstituencyCard';
 import type { FilterState, MapState } from '@/types/map';
 
 const BANGLADESH_CENTER: [number, number] = [23.8103, 90.4125];
@@ -37,6 +41,7 @@ export default function LeafletMap({
     bounds: null,
   });
   const [hoveredConstituency, setHoveredConstituency] = useState<ConstituencyInfo | null>(null);
+  const [colorMode, setColorMode] = useState<ColorMode>('area');
 
   const { dots, loading, error } = useMapData('voters');
   const visibleDots = useViewportFilter(dots, mapState.bounds, mapState.zoom);
@@ -168,6 +173,25 @@ export default function LeafletMap({
   return (
     <div className="relative h-full w-full">
       <div ref={mapContainerRef} className="absolute inset-0" />
+
+      {/* Search bar overlay */}
+      <SearchBar onSelect={handleConstituencySelect} />
+
+      {/* Color mode toggle */}
+      <ColorModeToggle colorMode={colorMode} onChange={setColorMode} />
+
+      {/* Quick stats at bottom */}
+      <QuickStats />
+
+      {/* Floating constituency card when selected/hovered */}
+      {(selectedConstituency || hoveredConstituency) && (
+        <FloatingConstituencyCard
+          constituency={selectedConstituency || hoveredConstituency}
+          onClose={() => handleConstituencySelect(null)}
+          isSelected={!!selectedConstituency}
+        />
+      )}
+
       {mapRef.current && !loading && mapState.bounds && (
         <>
           <DivisionBoundaryLayer
@@ -179,7 +203,7 @@ export default function LeafletMap({
             hoveredConstituency={hoveredConstituency}
             selectedConstituency={selectedConstituency || null}
           />
-          <DotLayer map={mapRef.current} dots={visibleDots} />
+          <DotLayer map={mapRef.current} dots={visibleDots} colorMode={colorMode} />
           <DistrictBoundaryLayer
             map={mapRef.current}
             hoveredConstituency={hoveredConstituency}

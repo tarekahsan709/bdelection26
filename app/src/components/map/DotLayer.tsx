@@ -4,16 +4,21 @@ import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import type { Dot } from '@/types/dot-density';
 import { DATA_COLORS } from '@/config/colors';
+import { usePartyData, getPartyColor } from './hooks/usePartyData';
+
+export type ColorMode = 'area' | 'party';
 
 interface DotLayerProps {
   map: L.Map;
   dots: Dot[];
+  colorMode?: ColorMode;
 }
 
-export default function DotLayer({ map, dots }: DotLayerProps) {
+export default function DotLayer({ map, dots, colorMode = 'area' }: DotLayerProps) {
   const layerGroupRef = useRef<L.LayerGroup | null>(null);
   const glowLayerRef = useRef<L.LayerGroup | null>(null);
   const [isReady, setIsReady] = useState(false);
+  const { partyMap, loading: partyLoading } = usePartyData();
 
   // Wait for map to be fully initialized before rendering dots
   useEffect(() => {
@@ -36,6 +41,8 @@ export default function DotLayer({ map, dots }: DotLayerProps) {
 
   useEffect(() => {
     if (!isReady || dots.length === 0) return;
+    // Wait for party data if in party mode
+    if (colorMode === 'party' && partyLoading) return;
 
     // Clear existing layers
     if (layerGroupRef.current) {
@@ -54,10 +61,16 @@ export default function DotLayer({ map, dots }: DotLayerProps) {
     const baseRadius = getRadiusForZoom(zoom);
     const glowRadius = getGlowRadiusForZoom(zoom);
 
-    // Add dots with urban/rural coloring (like UK GE Dot Map)
+    // Add dots with coloring based on mode
     dots.forEach((dot: Dot) => {
-      // Urban = teal, Rural = amber (Golden Delta theme)
-      const color = dot.u ? DATA_COLORS.urban : DATA_COLORS.rural;
+      // Get color based on mode
+      let color: string;
+      if (colorMode === 'party') {
+        color = getPartyColor(partyMap, dot.c_id);
+      } else {
+        // Urban = teal, Rural = amber (Golden Delta theme)
+        color = dot.u ? DATA_COLORS.urban : DATA_COLORS.rural;
+      }
 
       // Subtle glow layer (rendered behind main dots)
       L.circleMarker([dot.lat, dot.lng], {
@@ -117,7 +130,7 @@ export default function DotLayer({ map, dots }: DotLayerProps) {
         map.removeLayer(glowLayerRef.current);
       }
     };
-  }, [map, dots, isReady]);
+  }, [map, dots, isReady, colorMode, partyMap, partyLoading]);
 
   return null; // This component only manages Leaflet layers
 }
