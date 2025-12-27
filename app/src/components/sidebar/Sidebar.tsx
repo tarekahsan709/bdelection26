@@ -120,9 +120,6 @@ export default function Sidebar({
         <p className="text-xs text-neutral-600 text-center">
           তথ্য সূত্র: বাংলাদেশ নির্বাচন কমিশন
         </p>
-        <p className="text-[10px] text-neutral-700 text-center mt-1">
-          ১২তম জাতীয় সংসদ নির্বাচন (৭ জানুয়ারি ২০২৪)
-        </p>
       </div>
     </div>
   );

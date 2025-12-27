@@ -5,6 +5,7 @@ import Sidebar from '@/components/sidebar/Sidebar';
 import MapContainer from '@/components/map/MapContainer';
 import CandidatePanel from '@/components/candidates/CandidatePanel';
 import MobileHeader from '@/components/mobile/MobileHeader';
+import DevBanner from '@/components/ui/DevBanner';
 import type { FilterState } from '@/types/map';
 import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
 
@@ -26,6 +27,7 @@ export default function HomePage() {
 
   return (
     <>
+      <DevBanner />
       <main className="flex h-screen w-screen bg-[#080808]">
         {/* Mobile Header - only visible on mobile */}
         <MobileHeader
