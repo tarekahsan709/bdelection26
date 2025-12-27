@@ -1,111 +1,109 @@
 const fs = require('fs');
-const https = require('https');
 
-// Mapping of our names to DBpedia names
-const nameCorrections = {
-  'Chapainawabganj-1': 'Chapai_Nawabganj-1',
-  'Chapainawabganj-2': 'Chapai_Nawabganj-2',
-  'Chapainawabganj-3': 'Chapai_Nawabganj-3',
-  'Barishal-1': 'Barisal-1',
-  'Barishal-2': 'Barisal-2',
-  'Barishal-3': 'Barisal-3',
-  'Barishal-4': 'Barisal-4',
-  'Barishal-5': 'Barisal-5',
-  'Barishal-6': 'Barisal-6',
-  'Jhalokathi-1': 'Jhalokati-1',
-  'Jhalokathi-2': 'Jhalokati-2',
-  // Alternative spellings to try
-  'Naogaon-1': 'Naogaon-1',
-  'Netrokona-5': 'Netrokona-5',
-  'Kishoreganj-3': 'Kishoreganj-3',
-  'Munshiganj-3': 'Munshiganj-3',
-  'Dhaka-13': 'Dhaka-13',
-  'Dhaka-14': 'Dhaka-14',
-  'Narayanganj-1': 'Narayanganj-1',
-  'Narayanganj-3': 'Narayanganj-3',
-  'Gazipur-6': 'Gazipur-6'
+/**
+ * Fix missing constituency coordinates by calculating from siblings
+ * Run from project root: node scripts/fix-missing-constituencies.js
+ */
+
+// Load source and population data
+const sourceData = JSON.parse(fs.readFileSync('./data/bd-constituencies.json', 'utf8'));
+const popDataPath = './app/public/data/constituency-population.json';
+const popData = JSON.parse(fs.readFileSync(popDataPath, 'utf8'));
+
+// Known district center coordinates (approximate)
+const districtCenters = {
+  'Gaibandha': { lat: 25.3297, long: 89.5283 },
+  'Naogaon': { lat: 24.7936, long: 88.9318 },
+  'Rajshahi': { lat: 24.3745, long: 88.6042 },
+  'Sirajgonj': { lat: 24.4534, long: 89.7006 },
+  'Netrokona': { lat: 24.8705, long: 90.7286 },
+  'Kishoreganj': { lat: 24.4449, long: 90.7766 },
+  'Munshiganj': { lat: 23.5422, long: 90.5305 },
+  'Dhaka': { lat: 23.8103, long: 90.4125 },
+  'Gazipur': { lat: 24.0023, long: 90.4264 },
+  'Narayanganj': { lat: 23.6238, long: 90.5000 },
+  'Narsingdi': { lat: 23.9322, long: 90.7151 },
+  'Lakshmipur': { lat: 22.9425, long: 90.8411 }
 };
 
-// Read existing data
-const constituenciesData = JSON.parse(fs.readFileSync('./bd-constituencies.json', 'utf8'));
-const voterData = JSON.parse(fs.readFileSync('./constituency-voter-data.json', 'utf8'));
+function getCoordinates(constituency) {
+  const sourceC = sourceData.constituencies.find(x => x.id === constituency.id);
+  if (!sourceC) return null;
 
-// Find missing ones
-const missing = voterData.filter(v => !v.registered_voters || v.error);
-console.log(`Found ${missing.length} constituencies to fix:\n`);
-missing.forEach(m => console.log(`  - ${m.name_english}: ${m.error || 'no data'}`));
+  // Find siblings in same district with valid coordinates
+  const siblings = sourceData.constituencies.filter(x =>
+    x.district_id === sourceC.district_id && x.lat && x.long && x.lat !== 0 && x.long !== 0
+  );
 
-// Fetch from DBpedia
-const fetchData = (dbpediaName) => {
-  return new Promise((resolve) => {
-    const url = `https://dbpedia.org/data/${dbpediaName}.json`;
+  // Extract constituency number (e.g., "Dhaka-13" -> 13)
+  const match = constituency.name_english.match(/-(\d+)$/);
+  const num = match ? parseInt(match[1]) : 1;
 
-    https.get(url, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          const json = JSON.parse(data);
-          const resourceKey = `http://dbpedia.org/resource/${dbpediaName}`;
-          const resource = json[resourceKey];
+  if (siblings.length > 0) {
+    // Calculate average of siblings
+    const avgLat = siblings.reduce((s, x) => s + x.lat, 0) / siblings.length;
+    const avgLong = siblings.reduce((s, x) => s + x.long, 0) / siblings.length;
 
-          if (resource) {
-            const electorate = resource['http://dbpedia.org/property/electorate']?.[0]?.value;
-            const lat = resource['http://www.w3.org/2003/01/geo/wgs84_pos#lat']?.[0]?.value;
-            const long = resource['http://www.w3.org/2003/01/geo/wgs84_pos#long']?.[0]?.value;
+    // Add offset based on constituency number to spread them
+    const offset = 0.04;
+    const angle = (num * 0.7) % (2 * Math.PI);
 
-            resolve({
-              registered_voters: electorate ? parseInt(electorate) : null,
-              lat: lat ? parseFloat(lat) : null,
-              long: long ? parseFloat(long) : null
-            });
-          } else {
-            resolve(null);
-          }
-        } catch (e) {
-          resolve(null);
-        }
-      });
-    }).on('error', () => resolve(null));
-  });
-};
-
-const fixMissing = async () => {
-  console.log('\nFetching with corrected spellings...\n');
-
-  let fixed = 0;
-
-  for (const item of missing) {
-    const dbpediaName = nameCorrections[item.name_english] || item.name_english;
-
-    await new Promise(r => setTimeout(r, 500)); // Rate limit
-
-    const result = await fetchData(dbpediaName);
-
-    if (result && result.registered_voters) {
-      // Update in constituencies data
-      const constituency = constituenciesData.constituencies.find(c => c.id === item.id);
-      if (constituency) {
-        constituency.registered_voters = result.registered_voters;
-        if (result.lat) constituency.lat = result.lat;
-        if (result.long) constituency.long = result.long;
-        fixed++;
-        console.log(`✓ ${item.name_english} (as ${dbpediaName}): ${result.registered_voters.toLocaleString()} voters`);
-      }
-    } else {
-      console.log(`✗ ${item.name_english}: still not found`);
-    }
+    return {
+      lat: parseFloat((avgLat + Math.sin(angle) * offset).toFixed(6)),
+      long: parseFloat((avgLong + Math.cos(angle) * offset).toFixed(6))
+    };
   }
 
-  // Save updated data
-  constituenciesData.last_updated = new Date().toISOString().split('T')[0];
-  fs.writeFileSync('./bd-constituencies.json', JSON.stringify(constituenciesData, null, 2));
+  // Fall back to district center
+  const districtName = sourceC.district_english;
+  if (districtCenters[districtName]) {
+    const base = districtCenters[districtName];
+    const offset = 0.03;
+    const angle = (num * 0.7) % (2 * Math.PI);
 
-  console.log(`\nFixed ${fixed} constituencies`);
+    return {
+      lat: parseFloat((base.lat + Math.sin(angle) * offset).toFixed(6)),
+      long: parseFloat((base.long + Math.cos(angle) * offset).toFixed(6))
+    };
+  }
 
-  // Count total with voter data
-  const withVoters = constituenciesData.constituencies.filter(c => c.registered_voters).length;
-  console.log(`Total with voter data: ${withVoters}/300`);
-};
+  return null;
+}
 
-fixMissing();
+// Find and fix missing coordinates
+console.log('Fixing missing constituency coordinates...\n');
+let updated = 0;
+
+popData.constituencies.forEach(c => {
+  if (!c.lat || !c.long || c.lat === 0 || c.long === 0) {
+    const coords = getCoordinates(c);
+    if (coords) {
+      console.log(`✓ ${c.name_english}: (0, 0) -> (${coords.lat}, ${coords.long})`);
+      c.lat = coords.lat;
+      c.long = coords.long;
+      updated++;
+    } else {
+      console.log(`✗ ${c.name_english}: Could not calculate coordinates`);
+    }
+  }
+});
+
+console.log(`\nUpdated ${updated} constituencies`);
+
+// Also update the source file
+sourceData.constituencies.forEach(c => {
+  if (!c.lat || !c.long) {
+    const popC = popData.constituencies.find(p => p.id === c.id);
+    if (popC && popC.lat && popC.long) {
+      c.lat = popC.lat;
+      c.long = popC.long;
+    }
+  }
+});
+
+// Save files
+fs.writeFileSync(popDataPath, JSON.stringify(popData, null, 2));
+console.log(`Saved ${popDataPath}`);
+
+fs.writeFileSync('./data/bd-constituencies.json', JSON.stringify(sourceData, null, 2));
+console.log('Saved ./data/bd-constituencies.json');
