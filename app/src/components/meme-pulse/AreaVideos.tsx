@@ -5,20 +5,29 @@ import { VideoCard } from './VideoCard';
 import type { VideoItem } from '@/types/meme-pulse';
 
 interface AreaVideosProps {
-  constituencyName: string;
-  constituencyNameBn?: string;
+  districtName: string;
+  districtNameBn?: string;
 }
 
 type SortType = 'trending' | 'recent';
 
-export function AreaVideos({ constituencyName, constituencyNameBn }: AreaVideosProps) {
+export function AreaVideos({ districtName, districtNameBn }: AreaVideosProps) {
   const [activeTab, setActiveTab] = useState<SortType>('trending');
   const [videos, setVideos] = useState<VideoItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+
+  // Detect mobile layout after hydration
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Check scroll position
   const checkScrollPosition = () => {
@@ -57,7 +66,7 @@ export function AreaVideos({ constituencyName, constituencyNameBn }: AreaVideosP
 
       try {
         const response = await fetch(
-          `/api/meme-pulse?constituency=${encodeURIComponent(constituencyName)}&sort=${activeTab}`,
+          `/api/meme-pulse?district=${encodeURIComponent(districtName)}&sort=${activeTab}`,
           { signal: controller.signal }
         );
         const data = await response.json();
@@ -86,7 +95,7 @@ export function AreaVideos({ constituencyName, constituencyNameBn }: AreaVideosP
       isMounted = false;
       controller.abort();
     };
-  }, [constituencyName, activeTab]);
+  }, [districtName, activeTab]);
 
   // Check scroll position on mount and resize
   useEffect(() => {
@@ -116,9 +125,9 @@ export function AreaVideos({ constituencyName, constituencyNameBn }: AreaVideosP
             </div>
             <div>
               <h3 className="text-lg font-semibold text-white">
-                {constituencyNameBn || constituencyName} তে কী হচ্ছে?
+                {districtNameBn || districtName} জেলায় কী হচ্ছে?
               </h3>
-              <p className="text-sm text-neutral-400">What&apos;s happening in your area</p>
+              <p className="text-sm text-neutral-400">What&apos;s happening in your district</p>
             </div>
           </div>
 
@@ -184,8 +193,8 @@ export function AreaVideos({ constituencyName, constituencyNameBn }: AreaVideosP
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-neutral-800 flex items-center justify-center">
               <span className="text-3xl">📹</span>
             </div>
-            <p className="text-neutral-400">এই এলাকার কোনো ভিডিও পাওয়া যায়নি</p>
-            <p className="text-neutral-600 text-sm mt-1">No videos found for this area</p>
+            <p className="text-neutral-400">এই জেলার কোনো ভিডিও পাওয়া যায়নি</p>
+            <p className="text-neutral-600 text-sm mt-1">No videos found for this district</p>
           </div>
         )}
 
@@ -214,7 +223,7 @@ export function AreaVideos({ constituencyName, constituencyNameBn }: AreaVideosP
                 <VideoCard
                   key={video.id}
                   video={video}
-                  layout={typeof window !== 'undefined' && window.innerWidth < 768 ? 'vertical' : 'horizontal'}
+                  layout={isMobile ? 'vertical' : 'horizontal'}
                 />
               ))}
             </div>
@@ -244,7 +253,7 @@ export function AreaVideos({ constituencyName, constituencyNameBn }: AreaVideosP
               ইউটিউব থেকে • YouTube থেকে স্বয়ংক্রিয়ভাবে সংগৃহীত
             </p>
             <a
-              href={`https://www.youtube.com/results?search_query=${encodeURIComponent(constituencyName + ' বাংলাদেশ নির্বাচন')}`}
+              href={`https://www.youtube.com/results?search_query=${encodeURIComponent(districtName + ' জেলা বাংলাদেশ নির্বাচন')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-red-400 hover:text-red-300 flex items-center gap-1"

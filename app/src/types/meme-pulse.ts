@@ -15,7 +15,7 @@ export interface VideoItem {
 
 export interface MemePulseResponse {
   success: boolean;
-  constituency: string;
+  district: string;
   videos: VideoItem[];
   cachedAt: string;
   expiresAt: string;

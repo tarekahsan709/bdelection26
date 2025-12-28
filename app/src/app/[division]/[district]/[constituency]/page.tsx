@@ -297,16 +297,21 @@ export default function ConstituencyPage() {
       <ParallaxBackground />
 
       <header className="sticky top-0 z-50 bg-[#0c0c0c]/90 backdrop-blur-xl border-b border-white/[0.04]">
-        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-          <button
-            onClick={() => router.back()}
-            className="flex items-center gap-2 text-neutral-500 hover:text-white transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <span className="text-sm text-neutral-400">{population.name_english}</span>
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => router.back()}
+              className="flex items-center gap-2 text-neutral-500 hover:text-white transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <Link href="/" className="text-sm font-semibold text-teal-400 hover:text-teal-300 transition-colors">
+              জনতার নির্বাচন ২০২৬
+            </Link>
+          </div>
+          <span className="text-sm text-neutral-400 truncate max-w-[150px] md:max-w-none">{population.name_english}</span>
         </div>
       </header>
 
@@ -341,23 +346,23 @@ export default function ConstituencyPage() {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20">
+                <div className="p-4 rounded-xl bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] hover:border-white/[0.12] transition-all">
                   <div className="text-3xl font-bold text-rose-400">{candidates.length || '—'}</div>
                   <div className="text-sm text-neutral-400">প্রার্থী</div>
                 </div>
-                <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                <div className="p-4 rounded-xl bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] hover:border-white/[0.12] transition-all">
                   <div className="text-3xl font-bold text-emerald-400">{infrastructure?.schools || '—'}</div>
                   <div className="text-sm text-neutral-400">বিদ্যালয়</div>
                 </div>
-                <div className="p-4 rounded-xl bg-sky-500/10 border border-sky-500/20">
+                <div className="p-4 rounded-xl bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] hover:border-white/[0.12] transition-all">
                   <div className="text-3xl font-bold text-sky-400">{(infrastructure?.hospitals || 0) + (infrastructure?.clinics || 0) || '—'}</div>
                   <div className="text-sm text-neutral-400">স্বাস্থ্য সুবিধা</div>
                 </div>
-                <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                <div className="p-4 rounded-xl bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] hover:border-white/[0.12] transition-all">
                   <div className="text-3xl font-bold text-amber-400">{infrastructure?.markets || '—'}</div>
                   <div className="text-sm text-neutral-400">বাজার</div>
                 </div>
-                <div className="col-span-2 flex items-center justify-center py-4 opacity-20">
+                <div className="col-span-2 flex items-center justify-center py-4 opacity-15">
                   <ParliamentIllustration className="w-full max-w-xs h-auto text-white" />
                 </div>
               </div>
@@ -365,6 +370,7 @@ export default function ConstituencyPage() {
           </div>
         </section>
 
+        {/* জনতার দাবি - The Problem: What do people want? */}
         <section className="py-12 px-4 border-t border-white/5">
           <div className="max-w-5xl mx-auto">
             <JanatarDabi
@@ -375,27 +381,18 @@ export default function ConstituencyPage() {
           </div>
         </section>
 
-        {/* Meme Pulse - What's happening in your area */}
-        <section className="py-12 px-4 border-t border-white/5">
-          <div className="max-w-5xl mx-auto">
-            <AreaVideos
-              constituencyName={population?.name_english || `Constituency ${constituencyId}`}
-              constituencyNameBn={population?.name}
-            />
-          </div>
-        </section>
-
+        {/* প্রার্থী - The Solution: Who can address those demands? */}
         <section className="py-12 px-4 border-t border-white/5">
           <div className="max-w-5xl mx-auto">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white text-bangla">
+                <h2 className="text-2xl md:text-3xl font-bold text-white">
                   প্রার্থী
                 </h2>
-                <p className="text-neutral-500 mt-1 text-bangla-sm">এই নির্বাচনী এলাকায় কারা এমপি পদপ্রার্থী</p>
+                <p className="text-neutral-500 mt-1">এই নির্বাচনী এলাকায় কারা এমপি পদপ্রার্থী</p>
               </div>
               {candidates.length > 0 && (
-                <span className="px-3 py-1 rounded-full bg-rose-500/15 text-rose-400 text-sm font-medium">
+                <span className="px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 text-sm font-medium backdrop-blur-sm">
                   {candidates.length} জন প্রার্থী
                 </span>
               )}
@@ -408,16 +405,25 @@ export default function ConstituencyPage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16 rounded-2xl bg-white/[0.02] border border-dashed border-white/10">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-neutral-800 flex items-center justify-center">
+              <div className="text-center py-16 rounded-2xl bg-white/[0.02] backdrop-blur-sm border border-dashed border-white/10">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/[0.03] flex items-center justify-center">
                   <svg className="w-8 h-8 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
-                <p className="text-neutral-400 font-medium text-bangla-sm">প্রার্থীদের তথ্য শীঘ্রই আসছে</p>
+                <p className="text-neutral-400 font-medium">প্রার্থীদের তথ্য শীঘ্রই আসছে</p>
                 <p className="text-neutral-600 text-sm mt-1">আপডেটের জন্য পরে দেখুন</p>
               </div>
             )}
+          </div>
+        </section>
+
+        {/* জেলার খবর - What's happening in your district */}
+        <section className="py-12 px-4 border-t border-white/5">
+          <div className="max-w-5xl mx-auto">
+            <AreaVideos
+              districtName={population?.district_english || 'District'}
+            />
           </div>
         </section>
 
@@ -536,19 +542,19 @@ function InfraStatCard({
   label: string;
   color: 'emerald' | 'rose' | 'sky' | 'amber' | 'purple' | 'teal';
 }) {
-  const colorClasses = {
-    emerald: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400',
-    rose: 'bg-rose-500/10 border-rose-500/20 text-rose-400',
-    sky: 'bg-sky-500/10 border-sky-500/20 text-sky-400',
-    amber: 'bg-amber-500/10 border-amber-500/20 text-amber-400',
-    purple: 'bg-purple-500/10 border-purple-500/20 text-purple-400',
-    teal: 'bg-teal-500/10 border-teal-500/20 text-teal-400',
+  const textColors = {
+    emerald: 'text-emerald-400',
+    rose: 'text-rose-400',
+    sky: 'text-sky-400',
+    amber: 'text-amber-400',
+    purple: 'text-purple-400',
+    teal: 'text-teal-400',
   };
 
   return (
-    <div className={`p-4 rounded-xl border ${colorClasses[color]}`}>
+    <div className="p-4 rounded-xl bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] hover:border-white/[0.12] transition-all">
       <div className="text-2xl mb-1">{icon}</div>
-      <div className="text-2xl font-bold text-white">{value}</div>
+      <div className={`text-2xl font-bold ${textColors[color]}`}>{value}</div>
       <div className="text-xs text-neutral-500">{label}</div>
     </div>
   );

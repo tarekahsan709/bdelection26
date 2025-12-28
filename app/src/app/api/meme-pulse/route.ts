@@ -1,12 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
-import Redis from 'ioredis';
-import { z } from 'zod';
-import type { VideoItem, MemePulseResponse } from '@/types/meme-pulse';
+import type { MemePulseResponse, VideoItem } from '@/types/meme-pulse';
 import { BLOCKLIST_KEYWORDS } from '@/types/meme-pulse';
+import Redis from 'ioredis';
+import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 
 // Validation schema
 const querySchema = z.object({
-  constituency: z.string().min(1).max(100),
+  district: z.string().min(1).max(100),
   sort: z.enum(['trending', 'recent']).default('trending'),
 });
 
@@ -50,15 +50,15 @@ function formatDuration(isoDuration: string): string {
 }
 
 async function fetchFromYouTube(
-  constituency: string,
+  district: string,
   sort: 'trending' | 'recent'
 ): Promise<VideoItem[]> {
   if (!YOUTUBE_API_KEY) {
     throw new Error('YouTube API key not configured');
   }
 
-  // Build search query
-  const searchQuery = `${constituency} বাংলাদেশ নির্বাচন`;
+  // Build search query - search by district for more results
+  const searchQuery = `${district} জেলা বাংলাদেশ নির্বাচন`;
 
   // Search parameters
   const searchParams = new URLSearchParams({
@@ -73,10 +73,15 @@ async function fetchFromYouTube(
     key: YOUTUBE_API_KEY,
   });
 
-  // If recent, only get videos from the last 7 days
+  // Always filter to last 2 months to avoid stale content
+  const twoMonthsAgo = new Date();
+  twoMonthsAgo.setMonth(twoMonthsAgo.getMonth() - 2);
+  searchParams.set('publishedAfter', twoMonthsAgo.toISOString());
+
+  // For recent tab, further restrict to last 15 days
   if (sort === 'recent') {
     const weekAgo = new Date();
-    weekAgo.setDate(weekAgo.getDate() - 7);
+    weekAgo.setDate(weekAgo.getDate() - 15);
     searchParams.set('publishedAfter', weekAgo.toISOString());
   }
 
@@ -189,14 +194,14 @@ async function setCachedData(cacheKey: string, data: MemePulseResponse): Promise
   };
 }
 
-// GET /api/meme-pulse?constituency=Dhaka-10&sort=trending
+// GET /api/meme-pulse?district=Dhaka&sort=trending
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const constituency = searchParams.get('constituency');
+  const district = searchParams.get('district');
   const sort = searchParams.get('sort') || 'trending';
 
   // Validate input
-  const parseResult = querySchema.safeParse({ constituency, sort });
+  const parseResult = querySchema.safeParse({ district, sort });
   if (!parseResult.success) {
     return NextResponse.json(
       { success: false, error: 'Invalid parameters' },
@@ -204,8 +209,8 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const { constituency: validConstituency, sort: validSort } = parseResult.data;
-  const cacheKey = getCacheKey(validConstituency, validSort);
+  const { district: validDistrict, sort: validSort } = parseResult.data;
+  const cacheKey = getCacheKey(validDistrict, validSort);
 
   // Check cache first
   const cached = await getCachedData(cacheKey);
@@ -220,7 +225,7 @@ export async function GET(request: NextRequest) {
   if (!YOUTUBE_API_KEY) {
     return NextResponse.json({
       success: true,
-      constituency: validConstituency,
+      district: validDistrict,
       videos: [],
       cachedAt: new Date().toISOString(),
       expiresAt: new Date(Date.now() + CACHE_TTL_SECONDS * 1000).toISOString(),
@@ -230,11 +235,11 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const videos = await fetchFromYouTube(validConstituency, validSort);
+    const videos = await fetchFromYouTube(validDistrict, validSort);
 
     const response: MemePulseResponse = {
       success: true,
-      constituency: validConstituency,
+      district: validDistrict,
       videos,
       cachedAt: new Date().toISOString(),
       expiresAt: new Date(Date.now() + CACHE_TTL_SECONDS * 1000).toISOString(),

@@ -34,10 +34,10 @@ function formatTimeAgo(dateString: string): string {
 export function VideoCard({ video, layout = 'horizontal' }: VideoCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [showEmbed, setShowEmbed] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleMouseEnter = () => {
-    // Start playing after 500ms of hover
     hoverTimeoutRef.current = setTimeout(() => {
       setShowEmbed(true);
     }, 500);
@@ -50,10 +50,23 @@ export function VideoCard({ video, layout = 'horizontal' }: VideoCardProps) {
     }
     setIsHovered(false);
     setShowEmbed(false);
+    setIsMuted(true); // Reset to muted when leaving
   };
 
-  const handleClick = () => {
-    // Open YouTube video in new tab
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (showEmbed && isMuted) {
+      // Unmute the video on click
+      setIsMuted(false);
+    } else if (!showEmbed) {
+      // If not playing yet, start playing unmuted
+      setShowEmbed(true);
+      setIsMuted(false);
+    }
+  };
+
+  const handleOpenYouTube = (e: React.MouseEvent) => {
+    e.stopPropagation();
     window.open(`https://www.youtube.com/watch?v=${video.id}`, '_blank');
   };
 
@@ -62,7 +75,7 @@ export function VideoCard({ video, layout = 'horizontal' }: VideoCardProps) {
   return (
     <div
       className={`group relative cursor-pointer transition-all duration-300 ${
-        isVertical ? 'w-full' : 'w-72 flex-shrink-0'
+        isVertical ? 'w-full' : 'w-72 shrink-0'
       }`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -70,9 +83,9 @@ export function VideoCard({ video, layout = 'horizontal' }: VideoCardProps) {
     >
       {/* Thumbnail Container */}
       <div
-        className={`relative overflow-hidden rounded-xl bg-neutral-900 ${
-          isVertical ? 'aspect-video' : 'aspect-video'
-        } ${isHovered ? 'ring-2 ring-red-500/50 shadow-lg shadow-red-500/20' : ''}`}
+        className={`relative overflow-hidden rounded-xl bg-neutral-900 aspect-video ${
+          isHovered ? 'ring-2 ring-red-500/50 shadow-lg shadow-red-500/20' : ''
+        }`}
       >
         {/* Thumbnail Image */}
         {!showEmbed && (
@@ -84,20 +97,23 @@ export function VideoCard({ video, layout = 'horizontal' }: VideoCardProps) {
           />
         )}
 
-        {/* YouTube Embed (on hover) */}
+        {/* YouTube Embed */}
         {showEmbed && (
           <iframe
-            src={`https://www.youtube.com/embed/${video.id}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0`}
+            key={isMuted ? 'muted' : 'unmuted'}
+            src={`https://www.youtube.com/embed/${video.id}?autoplay=1&mute=${isMuted ? 1 : 0}&controls=1&modestbranding=1&rel=0`}
             className="absolute inset-0 w-full h-full"
             allow="autoplay; encrypted-media"
             allowFullScreen
           />
         )}
 
-        {/* Duration Badge */}
-        <div className="absolute bottom-2 right-2 px-1.5 py-0.5 bg-black/80 rounded text-xs text-white font-medium">
-          {video.duration}
-        </div>
+        {/* Duration Badge - hide when embed is showing */}
+        {!showEmbed && (
+          <div className="absolute bottom-2 right-2 px-1.5 py-0.5 bg-black/80 rounded text-xs text-white font-medium">
+            {video.duration}
+          </div>
+        )}
 
         {/* Play Overlay */}
         {!showEmbed && (
@@ -114,8 +130,32 @@ export function VideoCard({ video, layout = 'horizontal' }: VideoCardProps) {
           </div>
         )}
 
-        {/* Live/Trending Badge */}
-        {video.viewCount > 100000 && (
+        {/* Click hint when muted */}
+        {showEmbed && isMuted && (
+          <div className="absolute bottom-2 left-2 px-2 py-1 bg-black/80 rounded text-xs text-white flex items-center gap-1 animate-pulse">
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+            </svg>
+            ক্লিক করে শব্দ চালু করুন
+          </div>
+        )}
+
+        {/* Open in YouTube button */}
+        {showEmbed && (
+          <button
+            onClick={handleOpenYouTube}
+            className="absolute top-2 right-2 px-2 py-1 bg-red-600 hover:bg-red-700 rounded text-xs text-white flex items-center gap-1 transition-colors z-10"
+          >
+            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+            </svg>
+            YouTube
+          </button>
+        )}
+
+        {/* Live/Trending Badge - hide when embed is showing */}
+        {video.viewCount > 100000 && !showEmbed && (
           <div className="absolute top-2 left-2 px-2 py-0.5 bg-red-600 rounded text-xs text-white font-medium flex items-center gap-1">
             <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
             ট্রেন্ডিং
