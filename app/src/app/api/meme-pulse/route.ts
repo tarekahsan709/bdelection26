@@ -5,13 +5,11 @@ import { z } from 'zod';
 import type { MemePulseResponse, VideoItem } from '@/types/meme-pulse';
 import { BLOCKLIST_KEYWORDS } from '@/types/meme-pulse';
 
-// Validation schema
 const querySchema = z.object({
   district: z.string().min(1).max(100),
   sort: z.enum(['trending', 'recent']).default('trending'),
 });
 
-// Redis client with error handling
 let redis: Redis | null = null;
 
 if (process.env.REDIS_URL) {
@@ -32,20 +30,23 @@ if (process.env.REDIS_URL) {
   }
 }
 
-// YouTube API config
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 const YOUTUBE_VIDEOS_URL = 'https://www.googleapis.com/youtube/v3/videos';
 
-// Cache config
 const CACHE_KEY_PREFIX = 'meme_pulse:';
-const CACHE_TTL_SECONDS = 6 * 60 * 60; // 6 hours
+const QUOTA_KEY = 'meme_pulse:quota';
+const CACHE_TTL_SECONDS = 24 * 60 * 60; // 24 hours
+const STALE_TTL_SECONDS = 7 * 24 * 60 * 60; // 7 days for stale data
+const DAILY_QUOTA_LIMIT = 8000; // Leave buffer from 10k limit
+const MAX_RESULTS = 6; // Reduced from 12 to save quota
 
-// In-memory fallback cache
 const memoryCache: Record<
   string,
-  { data: MemePulseResponse; expiresAt: number }
+  { data: MemePulseResponse; expiresAt: number; staleAt: number }
 > = {};
+
+let memoryQuota = { count: 0, resetAt: 0 };
 
 function getCacheKey(constituency: string, sort: string): string {
   return `${CACHE_KEY_PREFIX}${constituency.toLowerCase().replace(/\s+/g, '_')}:${sort}`;
@@ -59,7 +60,6 @@ function isBlocklisted(text: string): boolean {
 }
 
 function formatDuration(isoDuration: string): string {
-  // Convert ISO 8601 duration (PT4M13S) to readable format (4:13)
   const match = isoDuration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
   if (!match) return '0:00';
 
@@ -73,6 +73,57 @@ function formatDuration(isoDuration: string): string {
   return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
+async function checkQuota(): Promise<boolean> {
+  const now = Date.now();
+  const todayStart = new Date().setHours(0, 0, 0, 0);
+
+  if (redis) {
+    try {
+      const quotaData = await redis.get(QUOTA_KEY);
+      if (quotaData) {
+        const { count, resetAt } = JSON.parse(quotaData);
+        if (resetAt > now) {
+          return count < DAILY_QUOTA_LIMIT;
+        }
+      }
+      return true;
+    } catch {
+      // Fall through to memory
+    }
+  }
+
+  if (memoryQuota.resetAt < todayStart) {
+    memoryQuota = { count: 0, resetAt: todayStart + 24 * 60 * 60 * 1000 };
+  }
+  return memoryQuota.count < DAILY_QUOTA_LIMIT;
+}
+
+async function incrementQuota(amount: number): Promise<void> {
+  const todayEnd = new Date().setHours(23, 59, 59, 999);
+
+  if (redis) {
+    try {
+      const quotaData = await redis.get(QUOTA_KEY);
+      let count = amount;
+      if (quotaData) {
+        const parsed = JSON.parse(quotaData);
+        if (parsed.resetAt > Date.now()) {
+          count = parsed.count + amount;
+        }
+      }
+      await redis.setex(
+        QUOTA_KEY,
+        Math.floor((todayEnd - Date.now()) / 1000),
+        JSON.stringify({ count, resetAt: todayEnd }),
+      );
+    } catch {
+      // Fall through to memory
+    }
+  }
+
+  memoryQuota.count += amount;
+}
+
 async function fetchFromYouTube(
   district: string,
   sort: 'trending' | 'recent',
@@ -81,15 +132,13 @@ async function fetchFromYouTube(
     throw new Error('YouTube API key not configured');
   }
 
-  // Build search query - search by district for more results
-  const searchQuery = `${district} জেলা বাংলাদেশ নির্বাচন`;
+  const searchQuery = `${district} বাংলাদেশ নির্বাচন`;
 
-  // Search parameters
   const searchParams = new URLSearchParams({
     part: 'snippet',
     q: searchQuery,
     type: 'video',
-    maxResults: '12',
+    maxResults: String(MAX_RESULTS),
     regionCode: 'BD',
     relevanceLanguage: 'bn',
     safeSearch: 'strict',
@@ -97,24 +146,23 @@ async function fetchFromYouTube(
     key: YOUTUBE_API_KEY,
   });
 
-  // Always filter to last 2 months to avoid stale content
   const twoMonthsAgo = new Date();
   twoMonthsAgo.setMonth(twoMonthsAgo.getMonth() - 2);
   searchParams.set('publishedAfter', twoMonthsAgo.toISOString());
 
-  // For recent tab, further restrict to last 15 days
   if (sort === 'recent') {
     const weekAgo = new Date();
     weekAgo.setDate(weekAgo.getDate() - 15);
     searchParams.set('publishedAfter', weekAgo.toISOString());
   }
 
-  // Fetch search results
   const searchResponse = await fetch(`${YOUTUBE_SEARCH_URL}?${searchParams}`);
   if (!searchResponse.ok) {
     const error = await searchResponse.json();
     throw new Error(error.error?.message || 'YouTube API error');
   }
+
+  await incrementQuota(100); // search.list costs 100 units
 
   const searchData = await searchResponse.json();
   const videoIds = searchData.items
@@ -126,7 +174,6 @@ async function fetchFromYouTube(
     return [];
   }
 
-  // Fetch video details (for view count and duration)
   const videoParams = new URLSearchParams({
     part: 'snippet,statistics,contentDetails',
     id: videoIds,
@@ -138,9 +185,10 @@ async function fetchFromYouTube(
     throw new Error('Failed to fetch video details');
   }
 
+  await incrementQuota(1); // videos.list costs 1 unit
+
   const videoData = await videoResponse.json();
 
-  // Transform and filter results
   const videos: VideoItem[] = videoData.items
     ?.map(
       (item: {
@@ -172,64 +220,85 @@ async function fetchFromYouTube(
       }),
     )
     .filter((video: VideoItem) => {
-      // Filter out blocklisted content
       return !isBlocklisted(video.title) && !isBlocklisted(video.description);
     });
 
   return videos || [];
 }
 
-async function getCachedData(
-  cacheKey: string,
-): Promise<MemePulseResponse | null> {
-  // Try Redis first
+interface CacheResult {
+  data: MemePulseResponse | null;
+  isStale: boolean;
+  isExpired: boolean;
+}
+
+async function getCachedData(cacheKey: string): Promise<CacheResult> {
+  const now = Date.now();
+
   if (redis) {
     try {
       const cached = await redis.get(cacheKey);
       if (cached) {
-        return JSON.parse(cached);
+        const data = JSON.parse(cached) as MemePulseResponse & {
+          _staleAt?: number;
+        };
+        const staleAt = data._staleAt || 0;
+        const expiresAt = new Date(data.expiresAt).getTime();
+        return {
+          data,
+          isStale: now > staleAt,
+          isExpired: now > expiresAt + STALE_TTL_SECONDS * 1000,
+        };
       }
     } catch {
-      // Redis error, fall through to memory cache
+      // Fall through to memory cache
     }
   }
 
-  // Try memory cache
   const memCached = memoryCache[cacheKey];
-  if (memCached && memCached.expiresAt > Date.now()) {
-    return memCached.data;
+  if (memCached) {
+    return {
+      data: memCached.data,
+      isStale: now > memCached.staleAt,
+      isExpired: now > memCached.expiresAt,
+    };
   }
 
-  return null;
+  return { data: null, isStale: true, isExpired: true };
 }
 
 async function setCachedData(
   cacheKey: string,
   data: MemePulseResponse,
 ): Promise<void> {
-  // Set in Redis
+  const now = Date.now();
+  const staleAt = now + CACHE_TTL_SECONDS * 1000;
+  const expiresAt = now + STALE_TTL_SECONDS * 1000;
+
   if (redis) {
     try {
-      await redis.setex(cacheKey, CACHE_TTL_SECONDS, JSON.stringify(data));
+      await redis.setex(
+        cacheKey,
+        STALE_TTL_SECONDS,
+        JSON.stringify({ ...data, _staleAt: staleAt }),
+      );
     } catch {
-      // Redis error, continue with memory cache
+      // Continue with memory cache
     }
   }
 
-  // Also set in memory cache
   memoryCache[cacheKey] = {
     data,
-    expiresAt: Date.now() + CACHE_TTL_SECONDS * 1000,
+    staleAt,
+    expiresAt,
   };
 }
 
-// GET /api/meme-pulse?district=Dhaka&sort=trending
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const district = searchParams.get('district');
   const sort = searchParams.get('sort') || 'trending';
 
-  // Validate input
   const parseResult = querySchema.safeParse({ district, sort });
   if (!parseResult.success) {
     return NextResponse.json(
@@ -241,16 +310,29 @@ export async function GET(request: NextRequest) {
   const { district: validDistrict, sort: validSort } = parseResult.data;
   const cacheKey = getCacheKey(validDistrict, validSort);
 
-  // Check cache first
-  const cached = await getCachedData(cacheKey);
-  if (cached) {
+  const { data: cached, isStale, isExpired } = await getCachedData(cacheKey);
+
+  // Return fresh cache immediately
+  if (cached && !isStale) {
     return NextResponse.json({
       ...cached,
       source: 'cache',
     });
   }
 
-  // If no YouTube API key, return empty with message
+  // Return stale cache if quota exceeded or API unavailable
+  const hasQuota = await checkQuota();
+  if (cached && (!hasQuota || !YOUTUBE_API_KEY)) {
+    return NextResponse.json({
+      ...cached,
+      source: 'stale',
+      message: !hasQuota
+        ? 'API quota exceeded, showing cached data'
+        : undefined,
+    });
+  }
+
+  // No API key configured
   if (!YOUTUBE_API_KEY) {
     return NextResponse.json({
       success: true,
@@ -275,11 +357,19 @@ export async function GET(request: NextRequest) {
       source: 'api',
     };
 
-    // Cache the response
     await setCachedData(cacheKey, response);
 
     return NextResponse.json(response);
   } catch (error) {
+    // Return stale cache on API error
+    if (cached && !isExpired) {
+      return NextResponse.json({
+        ...cached,
+        source: 'stale',
+        message: 'API error, showing cached data',
+      });
+    }
+
     return NextResponse.json(
       {
         success: false,
