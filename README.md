@@ -1,5 +1,7 @@
 # Bangladesh Election Map 2026
 
+**Live Site: [bdelection.org](https://bdelection.org)**
+
 An interactive visualization of Bangladesh's 300 parliamentary constituencies with voter data, candidate information, and community issue tracking.
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org/)
