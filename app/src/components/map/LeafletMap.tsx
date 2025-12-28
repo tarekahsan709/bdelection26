@@ -46,6 +46,8 @@ export default function LeafletMap({
   const [hoveredConstituency, setHoveredConstituency] =
     useState<ConstituencyInfo | null>(null);
   const [colorMode, setColorMode] = useState<ColorMode>('area');
+  const [showGestureHint, setShowGestureHint] = useState(false);
+  const gestureTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const { dots, loading, error } = useMapData('voters');
   const visibleDots = useViewportFilter(dots, mapState.bounds, mapState.zoom);
@@ -83,6 +85,7 @@ export default function LeafletMap({
     }
 
     let mounted = true;
+    const isMobile = window.innerWidth < 768;
 
     const map = L.map(container, {
       center: BANGLADESH_CENTER,
@@ -92,6 +95,9 @@ export default function LeafletMap({
       minZoom: 6,
       maxZoom: 13,
       preferCanvas: true,
+      dragging: !isMobile,
+      touchZoom: true,
+      scrollWheelZoom: true,
     });
 
     L.tileLayer(
@@ -121,6 +127,30 @@ export default function LeafletMap({
       map.off('moveend', updateMapState);
       map.remove();
       mapRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    const container = mapContainerRef.current;
+    if (!container || window.innerWidth >= 768) return;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        if (gestureTimeoutRef.current) clearTimeout(gestureTimeoutRef.current);
+        setShowGestureHint(true);
+        gestureTimeoutRef.current = setTimeout(
+          () => setShowGestureHint(false),
+          1500,
+        );
+      }
+    };
+
+    container.addEventListener('touchstart', handleTouchStart, {
+      passive: true,
+    });
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart);
+      if (gestureTimeoutRef.current) clearTimeout(gestureTimeoutRef.current);
     };
   }, []);
 
@@ -199,17 +229,9 @@ export default function LeafletMap({
   return (
     <div className='relative h-full w-full isolate'>
       <div ref={mapContainerRef} className='absolute inset-0 z-0' />
-
-      {/* Search bar overlay */}
       <SearchBar onSelect={handleConstituencySelect} />
-
-      {/* Color mode toggle */}
       <ColorModeToggle colorMode={colorMode} onChange={setColorMode} />
-
-      {/* Quick stats at bottom */}
       <QuickStats />
-
-      {/* Floating constituency card when selected/hovered */}
       {(selectedConstituency || hoveredConstituency) && (
         <FloatingConstituencyCard
           constituency={selectedConstituency || hoveredConstituency}
@@ -251,6 +273,17 @@ export default function LeafletMap({
       {loading && (
         <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50'>
           <p className='text-white'>Loading voter data...</p>
+        </div>
+      )}
+      {showGestureHint && (
+        <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-black/40 z-50 md:hidden'>
+          <div className='bg-neutral-900/90 px-4 py-3 rounded-xl text-center'>
+            <div className='flex justify-center gap-1 mb-2'>
+              <div className='w-4 h-4 rounded-full bg-white/20' />
+              <div className='w-4 h-4 rounded-full bg-white/20' />
+            </div>
+            <p className='text-sm text-white'>দুই আঙুল দিয়ে মানচিত্র সরান</p>
+          </div>
         </div>
       )}
     </div>

@@ -297,13 +297,10 @@ export default function HomePage() {
     <>
       <ParallaxBackground />
       <main className='relative flex h-screen w-screen isolate'>
-        {/* Mobile Header - only visible on mobile */}
         <MobileHeader
           onMenuClick={() => setIsSidebarOpen(true)}
           constituency={selectedConstituency}
         />
-
-        {/* Sidebar - hidden on mobile, shown via overlay */}
         <div
           className={`
             fixed inset-y-0 left-0 z-1100 w-80 transform transition-transform duration-300 ease-in-out
@@ -337,18 +334,13 @@ export default function HomePage() {
             </svg>
           </button>
         </div>
-
-        {/* Mobile sidebar overlay */}
         {isSidebarOpen && (
           <div
             className='fixed inset-0 z-1050 bg-black/50 md:hidden'
             onClick={() => setIsSidebarOpen(false)}
           />
         )}
-
-        {/* Map container - isolate creates stacking context, z-0 keeps it below fixed elements */}
         <div className='flex-1 relative pt-14 md:pt-0 overflow-hidden isolate z-0'>
-          {/* Contour pattern overlay */}
           <div
             className='absolute inset-0 pointer-events-none z-[1] opacity-[0.03]'
             style={{
@@ -359,15 +351,12 @@ export default function HomePage() {
               `,
             }}
           />
-
           <DevBanner />
           <MapContainer
             filterState={filterState}
             onConstituencySelect={handleConstituencySelect}
             selectedConstituency={selectedConstituency}
           />
-
-          {/* Live Ticker - makes the site feel alive */}
           <div className='absolute top-16 md:top-4 right-4 z-20 hidden md:flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.03] backdrop-blur-md border border-white/[0.06]'>
             <span className='w-2 h-2 rounded-full bg-emerald-500 animate-pulse' />
             <span className='text-xs text-neutral-400'>
@@ -375,14 +364,10 @@ export default function HomePage() {
               নির্বাচনী এলাকা
             </span>
           </div>
-
-          {/* Parliament Illustration - Horizon element */}
           <div className='absolute bottom-0 left-0 right-0 pointer-events-none z-10 hidden md:block'>
             <ParliamentIllustration className='w-full h-48 text-teal-500' />
           </div>
         </div>
-
-        {/* Hide FAB when constituency panel is open */}
         {!selectedConstituency && (
           <button
             onClick={() => setIsSidebarOpen(true)}
@@ -407,8 +392,6 @@ export default function HomePage() {
           </button>
         )}
       </main>
-
-      {/* Candidate Panel - outside main to avoid overflow clipping */}
       <CandidatePanel
         constituency={selectedConstituency}
         onClose={() => setSelectedConstituency(null)}
