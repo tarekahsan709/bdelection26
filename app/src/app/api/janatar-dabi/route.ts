@@ -64,27 +64,15 @@ if (process.env.REDIS_URL) {
     redis = new Redis(process.env.REDIS_URL, {
       maxRetriesPerRequest: 3,
       retryStrategy: (times) => {
-        if (times > 3) {
-          console.warn(
-            'Redis connection failed after 3 retries. Falling back to in-memory storage.',
-          );
-          return null; // Stop retrying
-        }
+        if (times > 3) return null;
         return Math.min(times * 100, 2000);
       },
     });
 
-    // Handle connection errors gracefully
-    redis.on('error', (err) => {
-      console.error('Redis connection error:', err.message);
-      redis = null; // Fall back to in-memory storage
+    redis.on('error', () => {
+      redis = null;
     });
-
-    redis.on('connect', () => {
-      console.log('Successfully connected to Redis');
-    });
-  } catch (error) {
-    console.error('Failed to initialize Redis client:', error);
+  } catch {
     redis = null;
   }
 }

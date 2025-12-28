@@ -1,23 +1,12 @@
 'use client';
 
-import { useEffect,useState } from 'react';
+import { memo, useMemo } from 'react';
 
 import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
 
+import { useConstituencyData } from '@/contexts/ConstituencyDataContext';
+
 import type { FilterState } from '@/types/map';
-
-interface Division {
-  id: string;
-  name: string;
-  bn_name: string;
-}
-
-interface District {
-  id: string;
-  division_id: string;
-  name: string;
-  bn_name: string;
-}
 
 interface FilterPanelProps {
   value: FilterState;
@@ -26,71 +15,30 @@ interface FilterPanelProps {
   selectedConstituency?: ConstituencyInfo | null;
 }
 
-export default function FilterPanel({
+function FilterPanel({
   value,
   onChange,
   onConstituencySelect,
   selectedConstituency,
 }: FilterPanelProps) {
-  const [divisions, setDivisions] = useState<Division[]>([]);
-  const [districts, setDistricts] = useState<District[]>([]);
-  const [constituencies, setConstituencies] = useState<ConstituencyInfo[]>([]);
-  const [allConstituencies, setAllConstituencies] = useState<ConstituencyInfo[]>([]);
+  const { divisions, districts, constituencies } = useConstituencyData();
 
-  useEffect(() => {
-    const controller = new AbortController();
-    fetch('/data/bd-divisions.json', { signal: controller.signal })
-      .then((res) => res.json())
-      .then((data) => setDivisions(data.divisions || []))
-      .catch(() => undefined);
-    return () => controller.abort();
-  }, []);
+  const filteredDistricts = useMemo(() => {
+    if (!value.divisionId) return [];
+    return districts.filter((d) => d.division_id === value.divisionId);
+  }, [districts, value.divisionId]);
 
-  useEffect(() => {
-    const controller = new AbortController();
-    fetch('/data/constituency-voters-2025.json', { signal: controller.signal })
-      .then((res) => res.json())
-      .then((data) => setAllConstituencies(data.constituencies || []))
-      .catch(() => undefined);
-    return () => controller.abort();
-  }, []);
-
-  useEffect(() => {
-    if (!value.divisionId) {
-      setDistricts([]);
-      return;
-    }
-
-    const controller = new AbortController();
-    fetch('/data/bd-districts.json', { signal: controller.signal })
-      .then((res) => res.json())
-      .then((data) => {
-        const filtered = (data.districts || []).filter(
-          (d: District) => d.division_id === value.divisionId
-        );
-        setDistricts(filtered);
-      })
-      .catch(() => undefined);
-    return () => controller.abort();
-  }, [value.divisionId]);
-
-  useEffect(() => {
-    if (!value.districtId) {
-      setConstituencies([]);
-      return;
-    }
-    const filtered = allConstituencies.filter(
-      (c) => c.district_id === value.districtId
-    );
-    setConstituencies(filtered);
-  }, [value.districtId, allConstituencies]);
+  const filteredConstituencies = useMemo(() => {
+    if (!value.districtId) return [];
+    return constituencies.filter((c) => c.district_id === value.districtId);
+  }, [constituencies, value.districtId]);
 
   const handleConstituencyChange = (constituencyId: string) => {
     if (!constituencyId || !onConstituencySelect) {
       onConstituencySelect?.(null);
       return;
     }
-    const constituency = allConstituencies.find((c) => c.id === constituencyId);
+    const constituency = constituencies.find((c) => c.id === constituencyId);
     if (constituency) {
       onConstituencySelect(constituency);
     }
@@ -107,8 +55,8 @@ export default function FilterPanel({
   `;
 
   return (
-    <div className="space-y-3">
-      <div className="relative">
+    <div className='space-y-3'>
+      <div className='relative'>
         <select
           value={value.divisionId || ''}
           onChange={(e) => {
@@ -120,7 +68,7 @@ export default function FilterPanel({
           }}
           className={selectClass}
         >
-          <option value="">সব বিভাগ</option>
+          <option value=''>সব বিভাগ</option>
           {divisions.map((div) => (
             <option key={div.id} value={div.id}>
               {div.bn_name || div.name}
@@ -131,7 +79,7 @@ export default function FilterPanel({
       </div>
 
       {value.divisionId && (
-        <div className="relative">
+        <div className='relative'>
           <select
             value={value.districtId || ''}
             onChange={(e) => {
@@ -143,8 +91,8 @@ export default function FilterPanel({
             }}
             className={selectClass}
           >
-            <option value="">সব জেলা</option>
-            {districts.map((dist) => (
+            <option value=''>সব জেলা</option>
+            {filteredDistricts.map((dist) => (
               <option key={dist.id} value={dist.id}>
                 {dist.bn_name || dist.name}
               </option>
@@ -154,15 +102,15 @@ export default function FilterPanel({
         </div>
       )}
 
-      {value.districtId && constituencies.length > 0 && (
-        <div className="relative">
+      {value.districtId && filteredConstituencies.length > 0 && (
+        <div className='relative'>
           <select
             value={selectedConstituency?.id || ''}
             onChange={(e) => handleConstituencyChange(e.target.value)}
             className={selectClass}
           >
-            <option value="">নির্বাচনী এলাকা বাছুন</option>
-            {constituencies.map((c) => (
+            <option value=''>নির্বাচনী এলাকা বাছুন</option>
+            {filteredConstituencies.map((c) => (
               <option key={c.id} value={c.id}>
                 {c.name || c.name_english}
               </option>
@@ -177,10 +125,22 @@ export default function FilterPanel({
 
 function ChevronIcon() {
   return (
-    <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-      <svg className="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    <div className='absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none'>
+      <svg
+        className='w-4 h-4 text-neutral-500'
+        fill='none'
+        stroke='currentColor'
+        viewBox='0 0 24 24'
+      >
+        <path
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          strokeWidth={2}
+          d='M19 9l-7 7-7-7'
+        />
       </svg>
     </div>
   );
 }
+
+export default memo(FilterPanel);

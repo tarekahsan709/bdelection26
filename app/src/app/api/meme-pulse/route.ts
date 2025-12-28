@@ -19,26 +19,15 @@ if (process.env.REDIS_URL) {
     redis = new Redis(process.env.REDIS_URL, {
       maxRetriesPerRequest: 3,
       retryStrategy: (times) => {
-        if (times > 3) {
-          console.warn(
-            '[Meme Pulse] Redis connection failed. Falling back to in-memory cache.',
-          );
-          return null;
-        }
+        if (times > 3) return null;
         return Math.min(times * 100, 2000);
       },
     });
 
-    redis.on('error', (err) => {
-      console.error('[Meme Pulse] Redis error:', err.message);
+    redis.on('error', () => {
       redis = null;
     });
-
-    redis.on('connect', () => {
-      console.log('[Meme Pulse] Successfully connected to Redis');
-    });
-  } catch (error) {
-    console.error('[Meme Pulse] Failed to initialize Redis:', error);
+  } catch {
     redis = null;
   }
 }

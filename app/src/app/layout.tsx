@@ -6,6 +6,7 @@ import * as React from 'react';
 import '@/styles/globals.css';
 import '@/styles/colors.css';
 
+import Providers from '@/components/Providers';
 import { OrganizationJsonLd, WebsiteJsonLd } from '@/components/seo/JsonLd';
 
 import { siteConfig } from '@/constants/site';
@@ -112,7 +113,7 @@ export default function RootLayout({
         <OrganizationJsonLd />
       </head>
       <body className='bg-[#080808] text-white antialiased font-bangla'>
-        {children}
+        <Providers>{children}</Providers>
         <Disclaimer />
       </body>
     </html>
