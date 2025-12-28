@@ -22,11 +22,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV HOSTNAME=0.0.0.0
-ENV PORT=3000
 
-# Copy standalone build (already includes public/ and .next/static from build stage)
 COPY --from=builder /app/.next/standalone ./
-
-EXPOSE 3000
 
 CMD ["node", "server.js"]
