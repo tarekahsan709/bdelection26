@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
 import { PARTY_COLORS } from '@/config/colors';
+import { getConstituencyUrl } from '@/lib/url-utils';
 import { useCandidates } from '@/hooks/useCandidates';
 import type { Candidate } from '@/types/candidate';
 
@@ -53,7 +54,7 @@ export default function CandidatePanel({
           <div className="ml-3 flex items-center gap-2">
             {/* View Details Button */}
             <Link
-              href={`/constituency/${constituency.id}`}
+              href={getConstituencyUrl(constituency)}
               className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-teal-400 bg-teal-500/10 hover:bg-teal-500/20 border border-teal-500/30 rounded-lg transition-all"
             >
               <span>বিস্তারিত</span>

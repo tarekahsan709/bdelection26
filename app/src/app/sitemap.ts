@@ -3,10 +3,13 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 import { siteConfig } from '@/constant/config';
+import { getConstituencyUrl } from '@/lib/url-utils';
 
 interface ConstituencyData {
   id: string;
   name_english: string;
+  division_english: string;
+  district_english: string;
 }
 
 interface VoterData {
@@ -32,16 +35,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastUpdated = new Date(data.metadata.updated_at);
     }
   } catch {
-    // Fallback to generating 1-300 if file read fails
-    constituencies = Array.from({ length: 300 }, (_, i) => ({
-      id: String(i + 1),
-      name_english: `Constituency ${i + 1}`,
-    }));
+    // Fallback: return empty array if file read fails (sitemap will just have home page)
+    constituencies = [];
   }
 
   // Generate constituency URLs from actual data
   const constituencyUrls: MetadataRoute.Sitemap = constituencies.map((c) => ({
-    url: `${baseUrl}/constituency/${c.id}`,
+    url: `${baseUrl}${getConstituencyUrl(c)}`,
     lastModified: lastUpdated,
     changeFrequency: 'weekly' as const,
     priority: 0.8,
