@@ -382,27 +382,30 @@ export default function HomePage() {
           </div>
         </div>
 
-        <button
-          onClick={() => setIsSidebarOpen(true)}
-          className='fixed bottom-16 right-4 z-40 md:hidden flex items-center gap-2 px-5 py-3.5 bg-linear-to-r from-teal-600 to-teal-500 text-white font-medium rounded-full shadow-lg shadow-teal-500/25 active:scale-95 transition-transform'
-          style={{ marginBottom: 'env(safe-area-inset-bottom)' }}
-          aria-label='Find my area'
-        >
-          <svg
-            className='w-5 h-5'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
+        {/* Hide FAB when constituency panel is open */}
+        {!selectedConstituency && (
+          <button
+            onClick={() => setIsSidebarOpen(true)}
+            className='fixed bottom-16 right-4 z-40 md:hidden flex items-center gap-2 px-5 py-3.5 bg-linear-to-r from-teal-600 to-teal-500 text-white font-medium rounded-full shadow-lg shadow-teal-500/25 active:scale-95 transition-transform'
+            style={{ marginBottom: 'env(safe-area-inset-bottom)' }}
+            aria-label='Find my area'
           >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-            />
-          </svg>
-          <span>আমার এলাকা</span>
-        </button>
+            <svg
+              className='w-5 h-5'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+              />
+            </svg>
+            <span>আমার এলাকা</span>
+          </button>
+        )}
       </main>
 
       {/* Candidate Panel - outside main to avoid overflow clipping */}

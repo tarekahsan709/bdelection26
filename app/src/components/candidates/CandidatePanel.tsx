@@ -30,10 +30,10 @@ export default function CandidatePanel({
 
   return (
     <div
-      className={`fixed bottom-12 left-0 right-0 md:left-80 transition-transform duration-300 ease-out ${
+      className={`fixed bottom-15 left-0 right-0 md:left-80 transition-transform duration-300 ease-out ${
         isExpanded ? 'translate-y-0' : 'translate-y-[calc(100%-56px)]'
       }`}
-      style={{ zIndex: 45, paddingBottom: 'env(safe-area-inset-bottom)' }}
+      style={{ zIndex: 55, paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <div className='bg-[#0c0c0c]/95 backdrop-blur-xl border-t border-white/8 rounded-t-2xl shadow-2xl'>
         <button
@@ -98,7 +98,7 @@ export default function CandidatePanel({
         <div className='mx-5 h-px bg-white/10' />
 
         {/* Content */}
-        <div className='max-h-[50vh] overflow-y-auto overscroll-contain'>
+        <div className='max-h-[40vh] sm:max-h-[50vh] overflow-y-auto overscroll-contain'>
           {loading ? (
             <div className='p-5'>
               <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3'>
