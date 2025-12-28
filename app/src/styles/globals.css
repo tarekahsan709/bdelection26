@@ -24,23 +24,24 @@
   --color-primary-900: #134e4a;
   --color-primary-950: #042f2e;
 
-  /* Secondary - Warm Gold (harvest, hope) */
-  --color-secondary-50: #fffbeb;
-  --color-secondary-100: #fef3c7;
-  --color-secondary-200: #fde68a;
-  --color-secondary-300: #fcd34d;
-  --color-secondary-400: #fbbf24;
-  --color-secondary-500: #f59e0b;
-  --color-secondary-600: #d97706;
+  /* Secondary - Burned Clay / Terra Cotta (earthy, rural) */
+  --color-secondary-50: #fef7ed;
+  --color-secondary-100: #fdecd3;
+  --color-secondary-200: #fad5a5;
+  --color-secondary-300: #f6b86d;
+  --color-secondary-400: #f19033;
+  --color-secondary-500: #ed7410;
+  --color-secondary-600: #d95a0a;
   --color-secondary-700: #b45309;
   --color-secondary-800: #92400e;
   --color-secondary-900: #78350f;
 
-  /* Accent - Coral (warmth, energy) */
-  --color-accent-300: #fca5a5;
-  --color-accent-400: #f87171;
-  --color-accent-500: #ef4444;
-  --color-accent-600: #dc2626;
+  /* Accent - Sunrise Red (urgent, important - BD culture) */
+  --color-accent-300: #fda4af;
+  --color-accent-400: #fb7185;
+  --color-accent-500: #f43f5e;
+  --color-accent-600: #e11d48;
+  --color-accent-700: #be123c;
 
   /* Success - Emerald (positive, growth) */
   --color-success-400: #34d399;
@@ -146,7 +147,30 @@
   .p {
     @apply font-primary text-sm md:text-base;
   }
+
+  /* Bengali Typography - vertically shorter script needs adjustments */
+  .text-bangla {
+    font-family: var(--font-bangla), 'Noto Sans Bengali', system-ui, sans-serif;
+    line-height: 1.75; /* 10% more than default */
+  }
+
+  .text-bangla-sm {
+    font-family: var(--font-bangla), 'Noto Sans Bengali', system-ui, sans-serif;
+    @apply text-base leading-relaxed; /* Minimum text-base for Bengali */
+  }
+
+  .text-bangla-lg {
+    font-family: var(--font-bangla), 'Noto Sans Bengali', system-ui, sans-serif;
+    @apply text-lg leading-relaxed;
+  }
   /* #endregion  /**======== Typography =========== */
+
+  /* Topographic pattern for "Matri-bhumi" (Land) feel */
+  .bg-topographic {
+    background-color: #080808;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23134e4a' stroke-width='0.8'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 702 770 612 661 604 703 571 679 537 560 516 545 525 459 469 477 417 485 407 414 364 382 333 396 212 339 240 360 139 330 127 345 41 289 42 391 72 441 78 472 117 557 136 616 136 597 102 613 90 664 96 680 157 773 205 795 221 840 287 846 325 858 405 868 445 879 536 853 544 873 610 874 650 797 697 792 732 829 763 893 807 805 833 734 860 710 846 659 799 680 787 728 768 660 733 588 677 555 671 539 639 457 630 402 633 344 598 317 566 296 530 238 507 212 472 234 442 229 428 195 397 147 385 218 378 295 378 325 369 412 377 458 407 545 385 555 369 603 350 622 342 684 375 732 351 757 330 769 305 758 267 745 295 652 291 686 249 729 231 765 189 771 129 758 85 797 66 834 47 817 18 856 13 879 24 944 67 935 92 948 117 948 128 927 136 973 178 970 199 966 220 955 242 978 281 949 321 952 354 929 370 919 397 908 414 922 455 893 470 877 475 873 512 880 537 845 567 873 604 861 638 870 673 862 713 870 736 862 768 894 767 927 799 940 800 964 750 980 709 989 680 992 655 980 647 993 620 993 570 985 530 996 517 999 460 991 443 978 421 983 410 1000 357 995 307 985 278 969 247 981 213 993 163 987 135 979 114 985 68 1000 42 980 7 992 -17 960 -37 977 -57 994M191 952L235 1000M284 100L366 -24M330 900L250 900M757 220L793 132M310 400L330 437M-14 880L150 816M-49 860L25 820'/%3E%3Cpath d='M-6 920L2 874 19 854 42 824 52 804 72 793 89 793 115 787 132 777 151 768 168 758 197 762 218 739 243 739 261 746 278 734 296 720 314 720 342 708 360 709 376 719 394 724 415 715 427 702 449 699 464 685 481 673 495 662 512 643 519 622 528 596 537 583 547 569 559 568 575 568 593 560 606 557 628 565 645 543 663 554 666 552 668 541 676 522 679 498 696 482 708 469 728 465 741 455 774 436 785 419 801 394 823 382 839 369 858 360 875 340 885 317 896 313 912 288 937 272 959 266 979 267 1002 252 1017 247 1033 228 1045 201 1057 190 1064 165 1082 154 1100 123 1120 104 1127 78 1133 56 1127 35 1128 -7 1134 -33 1143 -63 1135 -99 1127 -127 1123 -165 1106 -176 1095 -198 1071 -218 1052 -238 1029 -248 1001 -251 967 -254 955 -235 943 -221 932 -188 924 -177 909 -154 895 -140 881 -111 880 -87 872 -73 865 -60 860 -50 865 -42 876 -35 896 -31 918 -30'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 600px 600px;
+  }
 
   .layout {
     /* 1100px */

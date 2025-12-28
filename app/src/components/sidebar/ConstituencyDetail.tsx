@@ -14,12 +14,15 @@ interface Candidate {
   candidate_name_english?: string;
   party: string;
   partyColor: string;
+  allocated_to?: string;
 }
 
 // Party colors for display
 const PARTY_CONFIG: Record<string, { color: string; name: string }> = {
-  BNP: { color: '#00a651', name: 'BNP' },
-  Jamaat: { color: '#ff6b35', name: 'Jamaat-e-Islami' },
+  BNP: { color: '#10b981', name: 'BNP' },
+  Jamaat: { color: '#f59e0b', name: 'Jamaat-e-Islami' },
+  NCP: { color: '#8b5cf6', name: 'NCP' },
+  JUIB: { color: '#22c55e', name: 'JUIB' },
 };
 
 interface ConstituencyDetailProps {
@@ -45,11 +48,11 @@ export default function ConstituencyDetail({
       const constituencyId = parseInt(constituency.id);
 
       try {
-        // Load BNP candidates
+        // Load BNP candidates (filter out allocated seats)
         const bnpResponse = await fetch('/data/bnp_candidates.json');
         const bnpData = await bnpResponse.json();
         const bnpCandidates = bnpData.candidates
-          .filter((c: { constituency_id: number }) => c.constituency_id === constituencyId)
+          .filter((c: Candidate) => c.constituency_id === constituencyId && !c.allocated_to)
           .map((c: Candidate) => ({
             ...c,
             party: 'BNP',
@@ -61,11 +64,27 @@ export default function ConstituencyDetail({
       }
 
       try {
+        // Load JUIB candidates
+        const juibResponse = await fetch('/data/juib_candidates.json');
+        const juibData = await juibResponse.json();
+        const juibCandidates = (juibData.candidates || [])
+          .filter((c: Candidate) => c.constituency_id === constituencyId)
+          .map((c: Candidate) => ({
+            ...c,
+            party: 'JUIB',
+            partyColor: PARTY_CONFIG.JUIB.color,
+          }));
+        allCandidates.push(...juibCandidates);
+      } catch (error) {
+        console.error('Failed to load JUIB candidates:', error);
+      }
+
+      try {
         // Load Jamaat candidates
         const jamaatResponse = await fetch('/data/jamat_candidate.json');
         const jamaatData = await jamaatResponse.json();
         const jamaatCandidates = (jamaatData.candidates || jamaatData)
-          .filter((c: { constituency_id: number }) => c.constituency_id === constituencyId)
+          .filter((c: Candidate) => c.constituency_id === constituencyId)
           .map((c: Candidate) => ({
             ...c,
             party: 'Jamaat',
@@ -74,6 +93,22 @@ export default function ConstituencyDetail({
         allCandidates.push(...jamaatCandidates);
       } catch (error) {
         console.error('Failed to load Jamaat candidates:', error);
+      }
+
+      try {
+        // Load NCP candidates
+        const ncpResponse = await fetch('/data/ncp_candidates.json');
+        const ncpData = await ncpResponse.json();
+        const ncpCandidates = ncpData.candidates
+          .filter((c: Candidate) => c.constituency_id === constituencyId)
+          .map((c: Candidate) => ({
+            ...c,
+            party: 'NCP',
+            partyColor: PARTY_CONFIG.NCP.color,
+          }));
+        allCandidates.push(...ncpCandidates);
+      } catch (error) {
+        console.error('Failed to load NCP candidates:', error);
       }
 
       setCandidates(allCandidates);

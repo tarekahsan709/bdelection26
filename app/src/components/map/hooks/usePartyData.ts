@@ -7,6 +7,7 @@ interface Candidate {
   constituency_id: number;
   candidate_name?: string;
   candidate_name_english?: string;
+  allocated_to?: string; // For BNP seats allocated to alliance partners
 }
 
 interface CandidateData {
@@ -23,23 +24,29 @@ export function usePartyData() {
   useEffect(() => {
     const loadPartyData = async () => {
       try {
-        const [bnpRes, jamaatRes, ncpRes] = await Promise.all([
+        const [bnpRes, jamaatRes, ncpRes, juibRes] = await Promise.all([
           fetch('/data/bnp_candidates.json'),
           fetch('/data/jamat_candidate.json'),
           fetch('/data/ncp_candidates.json'),
+          fetch('/data/juib_candidates.json'),
         ]);
 
-        const [bnpData, jamaatData, ncpData]: CandidateData[] = await Promise.all([
+        const [bnpData, jamaatData, ncpData, juibData]: CandidateData[] = await Promise.all([
           bnpRes.json(),
           jamaatRes.json(),
           ncpRes.json(),
+          juibRes.json(),
         ]);
 
         const map = new Map<string, string[]>();
 
         // Process each party's candidates
-        const processParty = (data: CandidateData, partyCode: string) => {
+        const processParty = (data: CandidateData, partyCode: string, filterAllocated = false) => {
           data.candidates?.forEach((candidate) => {
+            // Skip BNP candidates that are allocated to alliance partners
+            if (filterAllocated && candidate.allocated_to) {
+              return;
+            }
             const cId = String(candidate.constituency_id);
             const existing = map.get(cId) || [];
             if (!existing.includes(partyCode)) {
@@ -48,9 +55,10 @@ export function usePartyData() {
           });
         };
 
-        processParty(bnpData, 'BNP');
+        processParty(bnpData, 'BNP', true); // Filter out allocated seats
         processParty(jamaatData, 'Jamaat');
         processParty(ncpData, 'NCP');
+        processParty(juibData, 'JUIB');
 
         setPartyMap(map);
       } catch (error) {
@@ -74,9 +82,9 @@ export function getPartyColor(partyMap: PartyMap, constituencyId: string): strin
     return PARTY_COLORS.Independent.color;
   }
 
-  // If multiple parties, prioritize: BNP > Jamaat > NCP > Independent
+  // If multiple parties, prioritize: BNP > Jamaat > JUIB > NCP > Independent
   // This creates a visual hierarchy showing main opposition parties
-  const priority = ['BNP', 'Jamaat', 'NCP'];
+  const priority = ['BNP', 'Jamaat', 'JUIB', 'NCP'];
   for (const party of priority) {
     if (parties.includes(party)) {
       return PARTY_COLORS[party as keyof typeof PARTY_COLORS]?.color || PARTY_COLORS.Independent.color;

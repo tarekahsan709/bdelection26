@@ -110,8 +110,15 @@ export const PARTY_COLORS = {
     color: '#8b5cf6',     // Violet - fresh, new party
     bg: 'rgba(139, 92, 246, 0.15)',
     name: 'NCP',
-    fullName: 'National Congress Party',
-    fullNameBn: 'জাতীয় কংগ্রেস পার্টি',
+    fullName: 'Jatiya Nagorik Party',
+    fullNameBn: 'জাতীয় নাগরিক পার্টি',
+  },
+  JUIB: {
+    color: '#22c55e',     // Green - Islamic party in BNP alliance
+    bg: 'rgba(34, 197, 94, 0.15)',
+    name: 'JUIB',
+    fullName: 'Jamiat Ulama-e-Islam Bangladesh',
+    fullNameBn: 'জমিয়তে উলামায়ে ইসলাম বাংলাদেশ',
   },
   AL: {
     color: '#0d9488',     // Teal - distinct from flag green

@@ -1,6 +1,7 @@
 'use client';
 
 import { PARTY_COLORS } from '@/config/colors';
+import { JanatarDabi } from '@/components/janatar-dabi';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -504,6 +505,7 @@ interface Candidate {
   candidate_name?: string;
   candidate_name_english?: string;
   party: string;
+  allocated_to?: string; // For BNP seats allocated to alliance partners
 }
 
 interface InfrastructureData {
@@ -572,11 +574,22 @@ export default function ConstituencyPage() {
           const bnpRes = await fetch('/data/bnp_candidates.json');
           const bnpData = await bnpRes.json();
           const bnp = bnpData.candidates
-            .filter((c: Candidate) => c.constituency_id === cId)
+            .filter((c: Candidate) => c.constituency_id === cId && !c.allocated_to)
             .map((c: Candidate) => ({ ...c, party: 'BNP' }));
           allCandidates.push(...bnp);
         } catch {
           // BNP data not available
+        }
+
+        try {
+          const juibRes = await fetch('/data/juib_candidates.json');
+          const juibData = await juibRes.json();
+          const juib = (juibData.candidates || [])
+            .filter((c: Candidate) => c.constituency_id === cId)
+            .map((c: Candidate) => ({ ...c, party: 'JUIB' }));
+          allCandidates.push(...juib);
+        } catch {
+          // JUIB data not available
         }
 
         try {
@@ -741,16 +754,29 @@ export default function ConstituencyPage() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════════
-            প্রার্থী - সবচেয়ে গুরুত্বপূর্ণ তথ্য
+            জনতার দাবি - People's Demands (First see problems, then candidates)
+        ═══════════════════════════════════════════════════════════════════ */}
+        <section className="py-12 px-4 border-t border-white/5">
+          <div className="max-w-5xl mx-auto">
+            <JanatarDabi
+              constituencyId={constituencyId}
+              constituencyName={population?.name_english || `Constituency ${constituencyId}`}
+              constituencyNameBn={population?.name}
+            />
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            প্রার্থী - কারা সমস্যা সমাধান করতে চান
         ═══════════════════════════════════════════════════════════════════ */}
         <section className="py-12 px-4 border-t border-white/5">
           <div className="max-w-5xl mx-auto">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white">
+                <h2 className="text-2xl md:text-3xl font-bold text-white text-bangla">
                   প্রার্থী
                 </h2>
-                <p className="text-neutral-500 mt-1">এই নির্বাচনী এলাকায় কারা এমপি পদপ্রার্থী</p>
+                <p className="text-neutral-500 mt-1 text-bangla-sm">এই নির্বাচনী এলাকায় কারা এমপি পদপ্রার্থী</p>
               </div>
               {candidates.length > 0 && (
                 <span className="px-3 py-1 rounded-full bg-rose-500/15 text-rose-400 text-sm font-medium">
@@ -772,7 +798,7 @@ export default function ConstituencyPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
-                <p className="text-neutral-400 font-medium">প্রার্থীদের তথ্য শীঘ্রই আসছে</p>
+                <p className="text-neutral-400 font-medium text-bangla-sm">প্রার্থীদের তথ্য শীঘ্রই আসছে</p>
                 <p className="text-neutral-600 text-sm mt-1">আপডেটের জন্য পরে দেখুন</p>
               </div>
             )}

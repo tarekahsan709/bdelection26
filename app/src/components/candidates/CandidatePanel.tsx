@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
 import { PARTY_COLORS } from '@/config/colors';
 
@@ -14,6 +14,7 @@ interface Candidate {
   party: string;
   partyColor: string;
   partyBg: string;
+  allocated_to?: string;
 }
 
 // Re-export for backward compatibility with proper typing
@@ -32,7 +33,6 @@ export default function CandidatePanel({
   isExpanded,
   onToggleExpand,
 }: CandidatePanelProps) {
-  const router = useRouter();
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -47,12 +47,12 @@ export default function CandidatePanel({
       const allCandidates: Candidate[] = [];
       const constituencyId = parseInt(constituency.id);
 
-      // Fetch BNP candidates
+      // Fetch BNP candidates (filter out allocated seats)
       try {
         const bnpResponse = await fetch('/data/bnp_candidates.json');
         const bnpData = await bnpResponse.json();
         const bnpCandidates = bnpData.candidates
-          .filter((c: { constituency_id: number }) => c.constituency_id === constituencyId)
+          .filter((c: Candidate) => c.constituency_id === constituencyId && !c.allocated_to)
           .map((c: Candidate) => ({
             ...c,
             party: 'BNP',
@@ -64,12 +64,29 @@ export default function CandidatePanel({
         // Silent error
       }
 
+      // Fetch JUIB candidates
+      try {
+        const juibResponse = await fetch('/data/juib_candidates.json');
+        const juibData = await juibResponse.json();
+        const juibCandidates = (juibData.candidates || [])
+          .filter((c: Candidate) => c.constituency_id === constituencyId)
+          .map((c: Candidate) => ({
+            ...c,
+            party: 'JUIB',
+            partyColor: PARTY_CONFIG.JUIB.color,
+            partyBg: PARTY_CONFIG.JUIB.bg,
+          }));
+        allCandidates.push(...juibCandidates);
+      } catch {
+        // Silent error
+      }
+
       // Fetch Jamaat candidates
       try {
         const jamaatResponse = await fetch('/data/jamat_candidate.json');
         const jamaatData = await jamaatResponse.json();
         const jamaatCandidates = (jamaatData.candidates || jamaatData)
-          .filter((c: { constituency_id: number }) => c.constituency_id === constituencyId)
+          .filter((c: Candidate) => c.constituency_id === constituencyId)
           .map((c: Candidate) => ({
             ...c,
             party: 'Jamaat',
@@ -86,7 +103,7 @@ export default function CandidatePanel({
         const ncpResponse = await fetch('/data/ncp_candidates.json');
         const ncpData = await ncpResponse.json();
         const ncpCandidates = ncpData.candidates
-          .filter((c: { constituency_id: number }) => c.constituency_id === constituencyId)
+          .filter((c: Candidate) => c.constituency_id === constituencyId)
           .map((c: Candidate) => ({
             ...c,
             party: 'NCP',
@@ -134,15 +151,27 @@ export default function CandidatePanel({
               {constituency.district_english} · {candidates.length} candidate{candidates.length !== 1 ? 's' : ''}
             </p>
           </div>
-          <button
-            onClick={onClose}
-            className="ml-3 p-2 text-neutral-500 hover:text-white hover:bg-white/10 rounded-lg transition-all"
-            aria-label="Close panel"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          <div className="ml-3 flex items-center gap-2">
+            {/* View Details Button */}
+            <Link
+              href={`/constituency/${constituency.id}`}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-teal-400 bg-teal-500/10 hover:bg-teal-500/20 border border-teal-500/30 rounded-lg transition-all"
+            >
+              <span>বিস্তারিত</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+            <button
+              onClick={onClose}
+              className="p-2 text-neutral-500 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+              aria-label="Close panel"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Divider */}
@@ -163,27 +192,16 @@ export default function CandidatePanel({
               </div>
             </div>
           ) : candidates.length > 0 ? (
-            <div className="p-5 space-y-4">
+            <div className="p-5">
               {/* Candidate cards grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 {candidates.map((candidate, idx) => (
-                  <CandidateCard key={`${candidate.party}-${candidate.candidate_id || idx}`} candidate={candidate} />
+                  <CandidateCard
+                    key={`${candidate.party}-${candidate.candidate_id || idx}`}
+                    candidate={candidate}
+                  />
                 ))}
               </div>
-
-              {/* Development Score CTA - Navigate to dedicated page */}
-              <button
-                className="w-full py-3.5 bg-gradient-to-r from-teal-600/15 to-amber-500/5 hover:from-teal-600/25 hover:to-amber-500/10 border border-teal-600/30 hover:border-teal-500/50 rounded-xl flex items-center justify-center gap-2.5 text-teal-400 transition-all group"
-                onClick={() => router.push(`/constituency/${constituency.id}`)}
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-                <span className="text-sm font-medium">বিস্তারিত দেখুন</span>
-                <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-12 text-neutral-600">
@@ -209,10 +227,10 @@ function CandidateCard({ candidate }: { candidate: Candidate }) {
     .toUpperCase();
 
   return (
-    <div className="p-5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.07] hover:border-white/10 transition-all cursor-pointer">
+    <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.07] hover:border-white/10 transition-all">
       {/* Avatar */}
       <div
-        className="w-14 h-14 rounded-full mx-auto mb-3 flex items-center justify-center text-base font-semibold shadow-lg"
+        className="w-12 h-12 rounded-full mx-auto mb-2 flex items-center justify-center text-sm font-semibold shadow-lg"
         style={{
           backgroundColor: candidate.partyBg,
           color: candidate.partyColor,

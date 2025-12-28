@@ -1,0 +1,158 @@
+{
+  "party": "JUIB",
+  "party_full_name": "Jamiat Ulama-e-Islam Bangladesh",
+  "party_bengali": "জমিয়তে উলামায়ে ইসলাম বাংলাদেশ",
+  "party_symbol": "Date Palm Tree",
+  "party_symbol_bengali": "খেজুরগাছ",
+  "alliance": "BNP-led 20-party alliance",
+  "document_date": "2025-12-27",
+  "source": "BNP press release - 4 seat allocation to JUIB",
+  "total_seats": 4,
+  "candidates": [
+    {
+      "candidate_id": 12,
+      "serial": 12,
+      "constituency_id": 12,
+      "constituency": "নীলফামারী -১",
+      "constituency_english": "Nilphamari-1",
+      "division_id": "6",
+      "division": "রংপুর",
+      "division_english": "Rangpur",
+      "district_id": "30",
+      "district": "নীলফামারী",
+      "district_english": "Nilphamari",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "ডোমার উপজেলা",
+          "name_english": "Domar Upazila",
+          "upazila_id": "433",
+          "postcodes": [
+            "5341",
+            "5340"
+          ]
+        },
+        {
+          "type": "upazila",
+          "name": "ডিমলা উপজেলা",
+          "name_english": "Dimla Upazila",
+          "upazila_id": "434",
+          "postcodes": [
+            "5350",
+            "5351"
+          ]
+        }
+      ],
+      "candidate_name": "মাওলানা মনজুরুল ইসলাম আফেন্দী",
+      "candidate_name_english": "Maulana Monzurul Islam Afendi",
+      "party_position": "Secretary General",
+      "alliance": "BNP-led 20-party alliance",
+      "allocation_source": "BNP"
+    },
+    {
+      "candidate_id": 207,
+      "serial": 207,
+      "constituency_id": 207,
+      "constituency": "নারায়ণগঞ্জ -৪",
+      "constituency_english": "Narayanganj-4",
+      "division_id": "3",
+      "division": "ঢাকা",
+      "division_english": "Dhaka",
+      "district_id": "11",
+      "district": "নারায়াণগঞ্জ",
+      "district_english": "Narayanganj",
+      "areas": [
+        {
+          "type": "union",
+          "name": "নারায়ণগঞ্জ সদর উপজেলার নির্দিষ্ট ইউনিয়নসমূহ: ফতুল্লা, এনায়েতপুর, বরুয়াবী, কাশিপুর, কুতুবপুর, গোপালদী, আলীরটেক",
+          "name_english": "Specific unions of Narayanganj Sadar Upazila: Fatulla, Enayetpur, Baruabi, Kashipur, Kutubpur, Gopaldi, Alirtek"
+        }
+      ],
+      "candidate_name": "মুফতি মনির হোসেন কাসেমী",
+      "candidate_name_english": "Mufti Monir Hossain Kasemi",
+      "party_position": "Central Leader",
+      "alliance": "BNP-led 20-party alliance",
+      "allocation_source": "BNP"
+    },
+    {
+      "candidate_id": 233,
+      "serial": 233,
+      "constituency_id": 233,
+      "constituency": "সিলেট-৫",
+      "constituency_english": "Sylhet-5",
+      "division_id": "7",
+      "division": "সিলেট",
+      "division_english": "Sylhet",
+      "district_id": "54",
+      "district": "সিলেট",
+      "district_english": "Sylhet",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "কানাইঘাট উপজেলা",
+          "name_english": "Kanaighat Upazila",
+          "upazila_id": "490",
+          "postcodes": [
+            "3181",
+            "3183",
+            "3180",
+            "3182"
+          ]
+        },
+        {
+          "type": "upazila",
+          "name": "জকিগঞ্জ উপজেলা",
+          "name_english": "Zakiganj Upazila",
+          "upazila_id": "491"
+        }
+      ],
+      "candidate_name": "মাওলানা মোহাম্মদ উবায়দুল্লাহ ফারুক",
+      "candidate_name_english": "Maulana Mohammad Ubaydullah Faruk",
+      "party_position": "President",
+      "alliance": "BNP-led 20-party alliance",
+      "allocation_source": "BNP"
+    },
+    {
+      "candidate_id": 244,
+      "serial": 244,
+      "constituency_id": 244,
+      "constituency": "ব্রাহ্মণবাড়িয়া - ২",
+      "constituency_english": "Brahmanbaria-2",
+      "division_id": "2",
+      "division": "চট্টগ্রাম",
+      "division_english": "Chattogram",
+      "district_id": "41",
+      "district": "ব্রাহ্মণবাড়িয়া",
+      "district_english": "Brahmanbaria",
+      "areas": [
+        {
+          "type": "upazila",
+          "name": "সরাইল উপজেলা",
+          "name_english": "Sarail Upazila",
+          "upazila_id": "54",
+          "postcodes": [
+            "3432",
+            "3430",
+            "3431"
+          ]
+        },
+        {
+          "type": "upazila",
+          "name": "আশুগঞ্জ উপজেলা",
+          "name_english": "Ashuganj Upazila",
+          "upazila_id": "51"
+        },
+        {
+          "type": "union",
+          "name": "বিজয়নগর উপজেলার নিম্নলিখিত ইউনিয়নসমূহঃ (১) বুড়ি ও (২) চান্দুরা ইউনিয়ন",
+          "name_english": "Bijoynagar Upazila Unions: (1) Buri and (2) Chandura Union"
+        }
+      ],
+      "candidate_name": "মাওলানা জুনায়েদ আল হাবিব",
+      "candidate_name_english": "Maulana Zunaid Al Habib",
+      "party_position": "Vice President",
+      "alliance": "BNP-led 20-party alliance",
+      "allocation_source": "BNP"
+    }
+  ]
+}
