@@ -9,7 +9,6 @@ An interactive visualization of Bangladesh's 300 parliamentary constituencies wi
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-![Bangladesh Election Map Preview](app/public/images/og.jpg)
 
 ## Features
 
@@ -18,7 +17,6 @@ An interactive visualization of Bangladesh's 300 parliamentary constituencies wi
 - **Voter Statistics** - Real-time voter counts by division, district, and constituency
 - **Janatar Dabi (জনতার দাবি)** - Community voting on local issues (mosquitoes, traffic, roads, etc.)
 - **Area Videos** - YouTube integration showing local news and election coverage
-- **Bilingual UI** - Bengali and English language support
 - **Mobile Responsive** - Works on all device sizes
 
 ## Tech Stack
@@ -72,8 +70,8 @@ app/src/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/tarekahsan709/bangladesh-election.git
-   cd bangladesh-election/app
+   git clone https://github.com/tarekahsan709/bdelection26.git
+   cd bdelection26/app
    ```
 
 2. **Install dependencies**
@@ -111,19 +109,6 @@ app/src/
    ```
 
 6. **Open** [http://localhost:3000](http://localhost:3000)
-
-## Available Scripts
-
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start development server |
-| `pnpm build` | Build for production |
-| `pnpm start` | Start production server |
-| `pnpm lint` | Run ESLint |
-| `pnpm lint:fix` | Fix ESLint issues |
-| `pnpm typecheck` | Run TypeScript type checking |
-| `pnpm test` | Run tests |
-| `pnpm format` | Format code with Prettier |
 
 ## Key Features Explained
 

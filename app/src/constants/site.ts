@@ -16,7 +16,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://bdelection.org',
 
   /** GitHub repository URL */
-  github: 'https://github.com/tarekahsan709/bangladesh-election',
+  github: 'https://github.com/tarekahsan709/bdelection26',
 
   /** Site keywords for SEO - comprehensive list */
   keywords: [
@@ -54,7 +54,7 @@ export const siteConfig = {
   /** Author information */
   author: {
     name: 'Bangladesh Election Map Contributors',
-    url: 'https://github.com/tarekahsan709/bangladesh-election',
+    url: 'https://github.com/tarekahsan709/bdelection26',
   },
 
   /** Open Graph image dimensions */
