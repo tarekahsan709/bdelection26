@@ -5,31 +5,35 @@ import { useEffect, useState } from 'react';
 export default function OfflineIndicator() {
   const [isOffline, setIsOffline] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const updateStatus = () => {
-      const offline = !navigator.onLine;
-      setIsOffline(offline);
-      if (offline) {
-        setShowBanner(true);
-      }
-    };
+    setMounted(true);
 
-    updateStatus();
-
-    window.addEventListener('online', () => {
+    const handleOnline = () => {
       setIsOffline(false);
       setTimeout(() => setShowBanner(false), 2000);
-    });
-    window.addEventListener('offline', updateStatus);
+    };
+
+    const handleOffline = () => {
+      setIsOffline(true);
+      setShowBanner(true);
+    };
+
+    if (!navigator.onLine) {
+      handleOffline();
+    }
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
 
     return () => {
-      window.removeEventListener('online', updateStatus);
-      window.removeEventListener('offline', updateStatus);
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
     };
   }, []);
 
-  if (!showBanner) return null;
+  if (!mounted || !showBanner) return null;
 
   return (
     <div
@@ -60,7 +64,7 @@ export default function OfflineIndicator() {
               />
               <line x1='4' y1='4' x2='20' y2='20' strokeWidth={2} />
             </svg>
-            <span>ইন্টারনেট সংযোগ নেই - ক্যাশ করা ডেটা দেখাচ্ছে</span>
+            <span>ইন্টারনেট সংযোগ নেই</span>
           </>
         ) : (
           <>
