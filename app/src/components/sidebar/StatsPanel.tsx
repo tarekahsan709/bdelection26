@@ -32,7 +32,7 @@ export default function StatsPanel({ filterState }: StatsPanelProps) {
     const calculateStats = async () => {
       setLoading(true);
       try {
-        const response = await fetch('/data/constituency-population.json', {
+        const response = await fetch('/data/constituency-voters-2025.json', {
           signal: controller.signal,
         });
         const data = await response.json();

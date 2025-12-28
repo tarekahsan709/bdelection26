@@ -4,7 +4,7 @@ const turf = require('@turf/turf');
 
 // Input/Output paths
 const GEOJSON_PATH = path.join(__dirname, '../data/geojson/bangladesh.geojson');
-const POPULATION_DATA_PATH = path.join(__dirname, '../app/public/data/constituency-population.json');
+const POPULATION_DATA_PATH = path.join(__dirname, '../app/public/data/constituency-voters-2025.json');
 const OUTPUT_VOTERS_PATH = path.join(__dirname, '../app/public/data/dot-density-voters.json');
 const OUTPUT_POPULATION_PATH = path.join(__dirname, '../app/public/data/dot-density-population.json');
 
@@ -298,7 +298,7 @@ function main() {
 
   // Load constituency population data
   if (!fs.existsSync(POPULATION_DATA_PATH)) {
-    console.error(`❌ Error: constituency-population.json not found`);
+    console.error(`❌ Error: constituency-voters-2025.json not found`);
     console.error('   Please run generate-constituency-population.js first.');
     process.exit(1);
   }

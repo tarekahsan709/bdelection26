@@ -5,7 +5,7 @@ const path = require('path');
 const CONSTITUENCIES_PATH = path.join(__dirname, '../data/bd-constituencies.json');
 const DIVISIONS_PATH = path.join(__dirname, '../data/geojson/bd-divisions.json');
 const DISTRICTS_PATH = path.join(__dirname, '../data/geojson/bd-districts.json');
-const OUTPUT_PATH = path.join(__dirname, '../app/public/data/constituency-population.json');
+const OUTPUT_PATH = path.join(__dirname, '../app/public/data/constituency-voters-2025.json');
 
 // Voter to population ratio (Bangladesh avg: ~110M voters / ~170M population = 1:1.54)
 const VOTER_TO_POPULATION_RATIO = 1.54;

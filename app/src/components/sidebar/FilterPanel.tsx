@@ -46,7 +46,7 @@ export default function FilterPanel({
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch('/data/constituency-population.json', { signal: controller.signal })
+    fetch('/data/constituency-voters-2025.json', { signal: controller.signal })
       .then((res) => res.json())
       .then((data) => setAllConstituencies(data.constituencies || []))
       .catch(() => undefined);

@@ -62,7 +62,7 @@ export default function ConstituencyLayer({
   useEffect(() => {
     const fetchConstituencies = async () => {
       try {
-        const response = await fetch('/data/constituency-population.json');
+        const response = await fetch('/data/constituency-voters-2025.json');
         const data = await response.json();
         setConstituencies(data.constituencies.filter((c: ConstituencyInfo) => c.lat && c.long));
       } catch {

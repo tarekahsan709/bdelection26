@@ -113,7 +113,7 @@ export default function LeafletMap({
 
     const fetchAndFlyToRegion = async () => {
       try {
-        const response = await fetch('/data/constituency-population.json');
+        const response = await fetch('/data/constituency-voters-2025.json');
         const data = await response.json();
 
         // Check if filter changed while we were fetching

@@ -13,7 +13,7 @@ const OFFICIAL_2024_TOTAL = 119689289;
 
 // Paths
 const CONSTITUENCIES_PATH = path.join(__dirname, '../data/bd-constituencies.json');
-const POP_DATA_PATH = path.join(__dirname, '../app/public/data/constituency-population.json');
+const POP_DATA_PATH = path.join(__dirname, '../app/public/data/constituency-voters-2025.json');
 const OUTPUT_PATH = path.join(__dirname, '../data/bd-constituencies.json');
 
 // Missing constituencies that need data

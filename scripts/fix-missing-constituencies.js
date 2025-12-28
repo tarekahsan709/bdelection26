@@ -7,7 +7,7 @@ const fs = require('fs');
 
 // Load source and population data
 const sourceData = JSON.parse(fs.readFileSync('./data/bd-constituencies.json', 'utf8'));
-const popDataPath = './app/public/data/constituency-population.json';
+const popDataPath = './app/public/data/constituency-voters-2025.json';
 const popData = JSON.parse(fs.readFileSync(popDataPath, 'utf8'));
 
 // Known district center coordinates (approximate)

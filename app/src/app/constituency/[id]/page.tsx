@@ -560,7 +560,7 @@ export default function ConstituencyPage() {
         setInfrastructure(infra || null);
 
         // Fetch constituency population data for names and voter count
-        const popResponse = await fetch('/data/constituency-population.json');
+        const popResponse = await fetch('/data/constituency-voters-2025.json');
         const popJson = await popResponse.json();
         const pop = popJson.constituencies.find(
           (c: ConstituencyPopulation) => c.id === constituencyId

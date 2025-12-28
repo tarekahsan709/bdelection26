@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Paths
-const POPULATION_DATA = path.join(__dirname, '../app/public/data/constituency-population.json');
+const POPULATION_DATA = path.join(__dirname, '../app/public/data/constituency-voters-2025.json');
 const OUTPUT_PATH = path.join(__dirname, '../app/public/data/constituency-infrastructure.json');
 
 // Overpass API endpoints (multiple for load balancing)

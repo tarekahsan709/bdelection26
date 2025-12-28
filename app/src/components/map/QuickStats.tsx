@@ -16,7 +16,7 @@ export default function QuickStats() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch('/data/constituency-population.json', { signal: controller.signal })
+    fetch('/data/constituency-voters-2025.json', { signal: controller.signal })
       .then((res) => res.json())
       .then((data) => {
         setStats({
