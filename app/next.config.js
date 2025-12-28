@@ -9,6 +9,47 @@ const nextConfig = {
   // Standalone output for Railway deployment
   output: 'standalone',
 
+  // Security Headers
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          // Prevent clickjacking - blocks embedding in iframes
+          { key: 'X-Frame-Options', value: 'DENY' },
+          // Prevent MIME type sniffing
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          // Control referrer information
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          // XSS Protection (legacy browsers)
+          { key: 'X-XSS-Protection', value: '1; mode=block' },
+          // DNS Prefetch Control
+          { key: 'X-DNS-Prefetch-Control', value: 'on' },
+          // Permissions Policy - restrict browser features
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(self), interest-cohort=()',
+          },
+          // Content Security Policy
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data: https: blob:",
+              "font-src 'self' data:",
+              "connect-src 'self' https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://www.ecs.gov.bd",
+              "frame-ancestors 'none'",
+              "form-action 'self'",
+              "base-uri 'self'",
+            ].join('; '),
+          },
+        ],
+      },
+    ];
+  },
+
   // Uncoment to add domain whitelist
   // images: {
   //   remotePatterns: [

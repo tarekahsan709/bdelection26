@@ -1,6 +1,32 @@
+import type { IssueType, IssueVotes, VoteResponse } from '@/types/janatar-dabi';
 import { NextRequest, NextResponse } from 'next/server';
 import Redis from 'ioredis';
-import type { IssueType, IssueVotes, VoteResponse } from '@/types/janatar-dabi';
+import { z } from 'zod';
+
+// Zod schemas for strict input validation
+const constituencyIdSchema = z
+  .string()
+  .min(1)
+  .max(3)
+  .regex(/^[1-9][0-9]{0,2}$/, 'Invalid constituency ID format')
+  .refine((val) => {
+    const num = parseInt(val, 10);
+    return num >= 1 && num <= 300;
+  }, 'Constituency ID must be between 1 and 300');
+
+const issueSchema = z.enum([
+  'mosquitos',
+  'water_logging',
+  'traffic',
+  'extortion',
+  'bad_roads',
+  'load_shedding',
+]);
+
+const voteRequestSchema = z.object({
+  constituency_id: constituencyIdSchema,
+  issue: issueSchema,
+});
 
 // Redis client - connects to Railway Redis via REDIS_URL env var
 const redis = process.env.REDIS_URL
@@ -112,19 +138,21 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const constituencyId = searchParams.get('constituency_id');
 
-  if (!constituencyId) {
+  // Validate constituency_id with Zod
+  const parseResult = constituencyIdSchema.safeParse(constituencyId);
+  if (!parseResult.success) {
     return NextResponse.json(
-      { error: 'constituency_id is required' },
+      { error: 'Invalid constituency_id', details: parseResult.error.flatten() },
       { status: 400 }
     );
   }
 
   try {
-    const votes = await getVotes(constituencyId);
+    const votes = await getVotes(parseResult.data);
 
     return NextResponse.json({
       success: true,
-      constituency_id: constituencyId,
+      constituency_id: parseResult.data,
       votes,
     });
   } catch {
@@ -149,24 +177,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = await request.json();
-    const { constituency_id, issue } = body;
-
-    if (!constituency_id) {
+    // Parse and validate request body with Zod
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
       return NextResponse.json(
-        { error: 'constituency_id is required' },
+        { error: 'Invalid JSON body' },
         { status: 400 }
       );
     }
 
-    if (!issue || !VALID_ISSUES.includes(issue as IssueType)) {
+    const parseResult = voteRequestSchema.safeParse(body);
+    if (!parseResult.success) {
       return NextResponse.json(
-        { error: 'Valid issue type is required' },
+        { error: 'Invalid request data', details: parseResult.error.flatten() },
         { status: 400 }
       );
     }
 
-    const votes = await incrementVote(constituency_id, issue as IssueType);
+    const { constituency_id, issue } = parseResult.data;
+    const votes = await incrementVote(constituency_id, issue);
 
     // Record rate limit for in-memory fallback
     if (!redis) {
