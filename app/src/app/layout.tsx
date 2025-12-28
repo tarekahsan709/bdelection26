@@ -109,6 +109,21 @@ export default function RootLayout({
   return (
     <html lang='bn' className={notoSansBengali.variable}>
       <head>
+        <link
+          rel='preload'
+          href='/data/constituency-voters-2025.json'
+          as='fetch'
+          crossOrigin='anonymous'
+        />
+        <link
+          rel='preload'
+          href='/data/bd-divisions.json'
+          as='fetch'
+          crossOrigin='anonymous'
+        />
+        <link rel='preconnect' href='https://a.tile.openstreetmap.org' />
+        <link rel='preconnect' href='https://b.tile.openstreetmap.org' />
+        <link rel='dns-prefetch' href='https://c.tile.openstreetmap.org' />
         <WebsiteJsonLd />
         <OrganizationJsonLd />
       </head>

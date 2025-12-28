@@ -2,17 +2,15 @@
 
 import dynamic from 'next/dynamic';
 
+import MapSkeleton from '@/components/ui/MapSkeleton';
+
 import type { ConstituencyInfo } from './ConstituencyLayer';
 
 import type { FilterState } from '@/types/map';
 
 const LeafletMap = dynamic(() => import('./LeafletMap'), {
   ssr: false,
-  loading: () => (
-    <div className='flex h-full w-full items-center justify-center bg-[#080808]'>
-      <div className="w-8 h-8 border-3 border-teal-600/30 border-t-teal-500 rounded-full animate-spin" />
-    </div>
-  ),
+  loading: () => <MapSkeleton />,
 });
 
 interface MapContainerProps {
