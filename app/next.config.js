@@ -51,7 +51,7 @@ const nextConfig = {
     ];
   },
 
-  // Uncoment to add domain whitelist
+  // Uncomment to add domain whitelist
   // images: {
   //   remotePatterns: [
   //     {
