@@ -121,7 +121,7 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search constituency..."
+          placeholder="নির্বাচনী এলাকা খুঁজুন..."
           className="w-full pl-10 pr-4 py-2.5 bg-neutral-900/95 border border-neutral-800 rounded-lg text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/30 backdrop-blur-sm"
         />
         {query && (

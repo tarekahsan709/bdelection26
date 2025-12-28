@@ -1,5 +1,6 @@
 'use client';
 
+import DivisionMap from '@/components/map/DivisionMap';
 import { getConstituencyUrl, slugify } from '@/lib/url-utils';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
@@ -180,20 +181,9 @@ export default function DivisionPage() {
           </div>
         </section>
 
-        {/* Division Map Illustration */}
+        {/* Division Map */}
         <section className="mb-12">
-          <div className="relative h-48 md:h-64 rounded-2xl bg-gradient-to-br from-teal-500/10 to-amber-500/5 border border-white/[0.06] overflow-hidden flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-6xl mb-2">🗺️</div>
-              <p className="text-neutral-500 text-sm">{division.name} বিভাগ</p>
-              <p className="text-neutral-600 text-xs mt-1">
-                {stats.districts.length} জেলা · {stats.totalConstituencies} নির্বাচনী এলাকা
-              </p>
-            </div>
-            {/* Decorative circles */}
-            <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-teal-500/5" />
-            <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-amber-500/5" />
-          </div>
+          <DivisionMap divisionSlug={divisionSlug} className="h-64 md:h-80 rounded-2xl border border-white/[0.06]" />
         </section>
 
         {/* Constituencies by District */}
