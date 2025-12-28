@@ -197,8 +197,8 @@ export default function LeafletMap({
   }
 
   return (
-    <div className='relative h-full w-full'>
-      <div ref={mapContainerRef} className='absolute inset-0' />
+    <div className='relative h-full w-full isolate'>
+      <div ref={mapContainerRef} className='absolute inset-0 z-0' />
 
       {/* Search bar overlay */}
       <SearchBar onSelect={handleConstituencySelect} />

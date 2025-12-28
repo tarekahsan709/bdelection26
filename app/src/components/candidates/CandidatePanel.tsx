@@ -115,9 +115,9 @@ export default function CandidatePanel({
               </div>
             </div>
           ) : candidates.length > 0 ? (
-            <div className='p-5'>
+            <div className='p-3 sm:p-5'>
               {/* Candidate cards grid */}
-              <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3'>
+              <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3'>
                 {candidates.map((candidate, idx) => (
                   <CandidateCard
                     key={`${candidate.party}-${candidate.candidate_id || idx}`}
@@ -161,10 +161,10 @@ function CandidateCard({ candidate }: { candidate: Candidate }) {
     .toUpperCase();
 
   return (
-    <div className='p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.07] hover:border-white/10 transition-all'>
+    <div className='p-2.5 sm:p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.07] hover:border-white/10 transition-all'>
       {/* Avatar */}
       <div
-        className='w-12 h-12 rounded-full mx-auto mb-2 flex items-center justify-center text-sm font-semibold shadow-lg'
+        className='w-9 h-9 sm:w-12 sm:h-12 rounded-full mx-auto mb-1.5 sm:mb-2 flex items-center justify-center text-xs sm:text-sm font-semibold shadow-lg'
         style={{
           backgroundColor: candidate.partyBg,
           color: candidate.partyColor,
@@ -174,21 +174,21 @@ function CandidateCard({ candidate }: { candidate: Candidate }) {
       </div>
 
       {/* Name */}
-      <p className='text-sm font-medium text-white text-center leading-tight truncate'>
+      <p className='text-xs sm:text-sm font-medium text-white text-center leading-tight truncate'>
         {name}
       </p>
 
-      {/* Bengali name */}
+      {/* Bengali name - hide on very small screens */}
       {candidate.candidate_name && candidate.candidate_name_english && (
-        <p className='text-xs text-neutral-500 text-center truncate mt-0.5'>
+        <p className='hidden sm:block text-xs text-neutral-500 text-center truncate mt-0.5'>
           {candidate.candidate_name}
         </p>
       )}
 
       {/* Party badge */}
-      <div className='mt-2 flex justify-center'>
+      <div className='mt-1.5 sm:mt-2 flex justify-center'>
         <span
-          className='px-2 py-0.5 rounded-full text-xs font-medium'
+          className='px-1.5 sm:px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-medium'
           style={{
             backgroundColor: candidate.partyBg,
             color: candidate.partyColor,

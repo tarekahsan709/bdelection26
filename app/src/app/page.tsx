@@ -296,7 +296,7 @@ export default function HomePage() {
   return (
     <>
       <ParallaxBackground />
-      <main className='relative flex h-screen w-screen'>
+      <main className='relative flex h-screen w-screen isolate'>
         {/* Mobile Header - only visible on mobile */}
         <MobileHeader
           onMenuClick={() => setIsSidebarOpen(true)}
@@ -346,8 +346,8 @@ export default function HomePage() {
           />
         )}
 
-        {/* Map container */}
-        <div className='flex-1 relative pt-14 md:pt-0 overflow-hidden'>
+        {/* Map container - isolate creates stacking context, z-0 keeps it below fixed elements */}
+        <div className='flex-1 relative pt-14 md:pt-0 overflow-hidden isolate z-0'>
           {/* Contour pattern overlay */}
           <div
             className='absolute inset-0 pointer-events-none z-[1] opacity-[0.03]'
