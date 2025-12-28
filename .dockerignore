@@ -1,0 +1,32 @@
+# Dependencies
+app/node_modules
+node_modules
+
+# Build output
+app/.next
+.next
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+
+# Docs
+*.md
+LICENSE
+
+# Scripts (not needed for build)
+scripts
+
+# GitHub
+.github
+
+# Claude
+.claude
+
+# Misc
+.DS_Store
+*.log
