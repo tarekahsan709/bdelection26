@@ -43,7 +43,8 @@ export default function LeafletMap({
     center: BANGLADESH_CENTER,
     bounds: null,
   });
-  const [hoveredConstituency, setHoveredConstituency] = useState<ConstituencyInfo | null>(null);
+  const [hoveredConstituency, setHoveredConstituency] =
+    useState<ConstituencyInfo | null>(null);
   const [colorMode, setColorMode] = useState<ColorMode>('area');
 
   const { dots, loading, error } = useMapData('voters');
@@ -54,21 +55,36 @@ export default function LeafletMap({
     (constituency: ConstituencyInfo | null) => {
       onConstituencySelect?.(constituency);
     },
-    [onConstituencySelect]
+    [onConstituencySelect],
   );
 
   const handleConstituencyHover = useCallback(
     (constituency: ConstituencyInfo | null) => {
       setHoveredConstituency(constituency);
     },
-    []
+    [],
   );
 
   // Initialize Leaflet map
   useEffect(() => {
-    if (!mapContainerRef.current || mapRef.current) return;
+    const container = mapContainerRef.current;
+    if (!container) return;
 
-    const map = L.map(mapContainerRef.current, {
+    // Prevent double initialization in Strict Mode
+    if (mapRef.current) {
+      return;
+    }
+
+    // Check if container already has a map (can happen with hot reload)
+    const existingMap = (container as HTMLDivElement & { _leaflet_id?: number })
+      ._leaflet_id;
+    if (existingMap) {
+      return;
+    }
+
+    let mounted = true;
+
+    const map = L.map(container, {
       center: BANGLADESH_CENTER,
       zoom: 7,
       maxBounds: BANGLADESH_BOUNDS,
@@ -83,10 +99,11 @@ export default function LeafletMap({
       {
         attribution: '&copy; OpenStreetMap &copy; CARTO',
         subdomains: 'abcd',
-      }
+      },
     ).addTo(map);
 
     const updateMapState = () => {
+      if (!mounted) return;
       setMapState({
         zoom: map.getZoom(),
         center: [map.getCenter().lat, map.getCenter().lng],
@@ -100,6 +117,8 @@ export default function LeafletMap({
     mapRef.current = map;
 
     return () => {
+      mounted = false;
+      map.off('moveend', updateMapState);
       map.remove();
       mapRef.current = null;
     };
@@ -124,16 +143,18 @@ export default function LeafletMap({
 
         const constituencies: ConstituencyInfo[] = data.constituencies;
 
-        let filteredConstituencies = constituencies.filter(c => c.lat && c.long);
+        let filteredConstituencies = constituencies.filter(
+          (c) => c.lat && c.long,
+        );
 
         if (currentFilter.divisionId) {
           filteredConstituencies = filteredConstituencies.filter(
-            c => c.division_id === currentFilter.divisionId
+            (c) => c.division_id === currentFilter.divisionId,
           );
 
           if (currentFilter.districtId) {
             filteredConstituencies = filteredConstituencies.filter(
-              c => c.district_id === currentFilter.districtId
+              (c) => c.district_id === currentFilter.districtId,
             );
           }
         }
@@ -143,7 +164,9 @@ export default function LeafletMap({
 
         if (filteredConstituencies.length > 0) {
           const bounds = L.latLngBounds(
-            filteredConstituencies.map(c => [c.lat, c.long] as [number, number])
+            filteredConstituencies.map(
+              (c) => [c.lat, c.long] as [number, number],
+            ),
           );
           map.flyToBounds(bounds, {
             padding: [50, 50],
@@ -167,15 +190,15 @@ export default function LeafletMap({
 
   if (error) {
     return (
-      <div className="flex h-full w-full items-center justify-center bg-gray-900">
-        <p className="text-red-400">Error loading map data: {error}</p>
+      <div className='flex h-full w-full items-center justify-center bg-gray-900'>
+        <p className='text-red-400'>Error loading map data: {error}</p>
       </div>
     );
   }
 
   return (
-    <div className="relative h-full w-full">
-      <div ref={mapContainerRef} className="absolute inset-0" />
+    <div className='relative h-full w-full'>
+      <div ref={mapContainerRef} className='absolute inset-0' />
 
       {/* Search bar overlay */}
       <SearchBar onSelect={handleConstituencySelect} />
@@ -206,7 +229,11 @@ export default function LeafletMap({
             hoveredConstituency={hoveredConstituency}
             selectedConstituency={selectedConstituency || null}
           />
-          <DotLayer map={mapRef.current} dots={visibleDots} colorMode={colorMode} />
+          <DotLayer
+            map={mapRef.current}
+            dots={visibleDots}
+            colorMode={colorMode}
+          />
           <DistrictBoundaryLayer
             map={mapRef.current}
             hoveredConstituency={hoveredConstituency}
@@ -222,8 +249,8 @@ export default function LeafletMap({
         </>
       )}
       {loading && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-          <p className="text-white">Loading voter data...</p>
+        <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50'>
+          <p className='text-white'>Loading voter data...</p>
         </div>
       )}
     </div>

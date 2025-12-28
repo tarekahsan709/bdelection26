@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import { Noto_Sans_Bengali } from 'next/font/google';
 import Link from 'next/link';
 import * as React from 'react';
@@ -9,6 +9,15 @@ import '@/styles/colors.css';
 import { OrganizationJsonLd, WebsiteJsonLd } from '@/components/seo/JsonLd';
 
 import { siteConfig } from '@/constants/site';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover',
+  themeColor: '#0c0c0c',
+};
 
 // Noto Sans Bengali - Clean, modern Bangla font by Google
 const notoSansBengali = Noto_Sans_Bengali({
@@ -112,8 +121,8 @@ export default function RootLayout({
 
 function Disclaimer() {
   return (
-    <div className='fixed bottom-0 left-0 right-0 z-9999 bg-amber-950/95 backdrop-blur-sm border-t border-amber-800/50 px-4 py-2'>
-      <div className='max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs'>
+    <div className='fixed bottom-0 left-0 right-0 z-50 bg-amber-950/95 backdrop-blur-sm border-t border-amber-800/50 px-4 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]'>
+      <div className='max-w-6xl mx-auto flex items-center justify-between gap-4 text-sm'>
         <div className='flex items-center gap-2 text-amber-200'>
           <svg
             className='w-4 h-4 shrink-0'
@@ -126,30 +135,30 @@ function Disclaimer() {
               clipRule='evenodd'
             />
           </svg>
-          <span>এটি সরকারি অ্যাপ নয় | Not an Official Government App</span>
+          <span className='hidden sm:inline'>এটি সরকারি অ্যাপ নয়</span>
+          <span className='sm:hidden'>সরকারি নয়</span>
         </div>
-        <div className='flex items-center gap-3'>
+        <div className='flex items-center gap-1'>
           <Link
             href='/terms'
-            className='text-amber-300/80 hover:text-amber-100'
+            className='px-2 py-1 min-h-11 flex items-center text-amber-300/80 active:text-amber-100'
           >
             শর্তাবলী
           </Link>
-          <span className='text-amber-800'>|</span>
           <Link
             href='/privacy'
-            className='text-amber-300/80 hover:text-amber-100'
+            className='px-2 py-1 min-h-11 flex items-center text-amber-300/80 active:text-amber-100'
           >
             গোপনীয়তা
           </Link>
-          <span className='text-amber-800'>|</span>
           <a
             href='https://www.ecs.gov.bd'
             target='_blank'
             rel='noopener noreferrer'
-            className='text-amber-300 hover:text-amber-100 flex items-center gap-1'
+            className='px-2 py-1 min-h-11 flex items-center gap-1 text-amber-300 active:text-amber-100'
           >
-            নির্বাচন কমিশন
+            <span className='hidden sm:inline'>নির্বাচন কমিশন</span>
+            <span className='sm:hidden'>EC</span>
             <svg
               className='w-3 h-3'
               fill='none'

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo,useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import type { ConstituencyInfo } from './ConstituencyLayer';
 
@@ -52,19 +52,36 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
       const divisionEng = c.division_english?.toLowerCase() || '';
 
       if (nameEng === searchTerm || name === searchTerm) score += 1000;
-      else if (nameEng.startsWith(searchTerm) || name.startsWith(searchTerm)) score += 500;
-      else if (nameEng.includes(searchTerm) || name.includes(searchTerm)) score += 300;
+      else if (nameEng.startsWith(searchTerm) || name.startsWith(searchTerm))
+        score += 500;
+      else if (nameEng.includes(searchTerm) || name.includes(searchTerm))
+        score += 300;
 
       if (districtEng === searchTerm || district === searchTerm) score += 200;
-      else if (districtEng.startsWith(searchTerm) || district.startsWith(searchTerm)) score += 150;
-      else if (districtEng.includes(searchTerm) || district.includes(searchTerm)) score += 100;
+      else if (
+        districtEng.startsWith(searchTerm) ||
+        district.startsWith(searchTerm)
+      )
+        score += 150;
+      else if (
+        districtEng.includes(searchTerm) ||
+        district.includes(searchTerm)
+      )
+        score += 100;
 
       if (divisionEng.startsWith(searchTerm)) score += 50;
       else if (divisionEng.includes(searchTerm)) score += 25;
 
       if (score === 0) {
-        if (fuzzyMatch(c.name_english, searchTerm) || fuzzyMatch(c.name, searchTerm)) score += 20;
-        else if (fuzzyMatch(c.district_english, searchTerm) || fuzzyMatch(c.district, searchTerm))
+        if (
+          fuzzyMatch(c.name_english, searchTerm) ||
+          fuzzyMatch(c.name, searchTerm)
+        )
+          score += 20;
+        else if (
+          fuzzyMatch(c.district_english, searchTerm) ||
+          fuzzyMatch(c.district, searchTerm)
+        )
           score += 10;
       }
 
@@ -85,7 +102,10 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -100,30 +120,33 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
   };
 
   return (
-    <div ref={containerRef} className="absolute top-14 left-4 z-[1000]" style={{ width: '280px' }}>
-      <div className="relative">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+    <div
+      ref={containerRef}
+      className='absolute top-16 md:top-14 left-3 right-3 md:right-auto md:left-4 z-1000 md:w-72'
+    >
+      <div className='relative'>
+        <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
           <svg
-            className="w-4 h-4 text-neutral-500"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+            className='w-5 h-5 text-neutral-500'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeLinecap='round'
+              strokeLinejoin='round'
               strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
             />
           </svg>
         </div>
         <input
           ref={inputRef}
-          type="text"
+          type='text'
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="নির্বাচনী এলাকা খুঁজুন..."
-          className="w-full pl-10 pr-4 py-2.5 bg-neutral-900/95 border border-neutral-800 rounded-lg text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/30 backdrop-blur-sm"
+          placeholder='নির্বাচনী এলাকা খুঁজুন...'
+          className='w-full h-11 pl-11 pr-11 bg-neutral-900/95 border border-neutral-800 rounded-xl text-base text-white placeholder-neutral-500 focus:outline-none focus:border-teal-500/50 backdrop-blur-sm'
         />
         {query && (
           <button
@@ -131,42 +154,45 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
               setQuery('');
               setIsOpen(false);
             }}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center"
+            className='absolute inset-y-0 right-0 w-11 flex items-center justify-center'
+            aria-label='Clear search'
           >
             <svg
-              className="w-4 h-4 text-neutral-500 hover:text-neutral-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              className='w-5 h-5 text-neutral-500 active:text-neutral-300'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeLinecap='round'
+                strokeLinejoin='round'
                 strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
+                d='M6 18L18 6M6 6l12 12'
               />
             </svg>
           </button>
         )}
       </div>
-
       {isOpen && results.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-neutral-900/95 border border-neutral-800 rounded-lg shadow-xl backdrop-blur-sm overflow-hidden">
+        <div className='absolute top-full left-0 right-0 mt-1 bg-neutral-900/95 border border-neutral-800 rounded-xl shadow-xl backdrop-blur-sm overflow-hidden max-h-64 overflow-y-auto'>
           {results.map((constituency) => (
             <button
               key={constituency.id}
               onClick={() => handleSelect(constituency)}
-              className="w-full px-4 py-3 text-left hover:bg-neutral-800/50 transition-colors border-b border-neutral-800/50 last:border-0"
+              className='w-full min-h-11 px-4 py-3 text-left active:bg-neutral-800/50 border-b border-neutral-800/50 last:border-0'
             >
-              <div className="flex items-baseline gap-2">
-                <span className="text-sm font-medium text-white">{constituency.name_english}</span>
+              <div className='flex items-baseline gap-2'>
+                <span className='text-base font-medium text-white'>
+                  {constituency.name_english}
+                </span>
                 {constituency.name && (
-                  <span className="text-xs text-teal-400/80">{constituency.name}</span>
+                  <span className='text-sm text-teal-400/80'>
+                    {constituency.name}
+                  </span>
                 )}
               </div>
-              <div className="text-xs text-neutral-500 mt-0.5">
-                {constituency.district_english}
-                {constituency.district && ` (${constituency.district})`}, {constituency.division_english}
+              <div className='text-sm text-neutral-500 mt-0.5'>
+                {constituency.district_english}, {constituency.division_english}
               </div>
             </button>
           ))}
