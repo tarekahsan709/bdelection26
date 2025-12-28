@@ -27,8 +27,6 @@ interface Constituency {
 interface DivisionStats {
   totalVoters: number;
   totalConstituencies: number;
-  urbanConstituencies: number;
-  ruralConstituencies: number;
   districts: string[];
 }
 
@@ -72,8 +70,6 @@ export default function DivisionPage() {
         setStats({
           totalVoters: divConstituencies.reduce((sum: number, c: Constituency) => sum + c.registered_voters, 0),
           totalConstituencies: divConstituencies.length,
-          urbanConstituencies: divConstituencies.filter((c: Constituency) => c.urban_classification === 'urban').length,
-          ruralConstituencies: divConstituencies.filter((c: Constituency) => c.urban_classification === 'rural').length,
           districts: districts as string[],
         });
       } catch {
@@ -153,7 +149,7 @@ export default function DivisionPage() {
           <p className="text-2xl text-neutral-400 mb-8">{division.name} Division</p>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
             <StatCard
               value={formatNumber(stats.totalVoters)}
               label="মোট ভোটার"
@@ -171,12 +167,6 @@ export default function DivisionPage() {
               label="জেলা"
               sublabel="Districts"
               color="emerald"
-            />
-            <StatCard
-              value={`${stats.urbanConstituencies}/${stats.ruralConstituencies}`}
-              label="শহর/গ্রাম"
-              sublabel="Urban/Rural"
-              color="sky"
             />
           </div>
         </section>
@@ -265,20 +255,11 @@ function ConstituencyCard({ constituency }: { constituency: Constituency }) {
       href={getConstituencyUrl(constituency)}
       className="group p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.05] hover:border-teal-500/30 transition-all"
     >
-      <div className="flex items-start justify-between">
-        <div>
-          <h4 className="font-medium text-white group-hover:text-teal-400 transition-colors">
-            {constituency.name_english}
-          </h4>
-          <p className="text-sm text-neutral-500 mt-0.5">{constituency.name}</p>
-        </div>
-        <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${
-          constituency.urban_classification === 'urban'
-            ? 'bg-teal-500/15 text-teal-400'
-            : 'bg-amber-500/15 text-amber-400'
-        }`}>
-          {constituency.urban_classification === 'urban' ? 'শহর' : 'গ্রাম'}
-        </span>
+      <div>
+        <h4 className="font-medium text-white group-hover:text-teal-400 transition-colors">
+          {constituency.name_english}
+        </h4>
+        <p className="text-sm text-neutral-500 mt-0.5">{constituency.name}</p>
       </div>
       <div className="mt-3 flex items-center justify-between text-xs">
         <span className="text-neutral-500">

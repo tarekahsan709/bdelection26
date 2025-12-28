@@ -306,13 +306,6 @@ export default function ConstituencyPage() {
             </svg>
           </button>
           <span className="text-sm text-neutral-400">{population.name_english}</span>
-          <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${
-            population.urban_classification === 'urban'
-              ? 'bg-teal-600/20 text-teal-400'
-              : 'bg-amber-500/20 text-amber-400'
-          }`}>
-            {population.urban_classification === 'urban' ? 'শহর' : 'গ্রাম'}
-          </span>
         </div>
       </header>
 
@@ -332,13 +325,6 @@ export default function ConstituencyPage() {
                   </span>
                   <span className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-neutral-300">
                     {population.division_english}
-                  </span>
-                  <span className={`px-3 py-1.5 rounded-full text-sm font-medium ${
-                    population.urban_classification === 'urban'
-                      ? 'bg-teal-500/15 text-teal-400 border border-teal-500/20'
-                      : 'bg-amber-500/15 text-amber-400 border border-amber-500/20'
-                  }`}>
-                    {population.urban_classification === 'urban' ? 'শহর' : 'গ্রাম'}
                   </span>
                 </div>
 

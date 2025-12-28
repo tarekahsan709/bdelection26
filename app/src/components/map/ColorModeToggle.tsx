@@ -24,15 +24,10 @@ export default function ColorModeToggle({ colorMode, onChange }: ColorModeToggle
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
                 <span
-                  className="w-2 h-2 rounded-full"
-                  style={{ backgroundColor: DATA_COLORS.urban }}
-                />
-                <span
-                  className="w-2 h-2 rounded-full"
-                  style={{ backgroundColor: DATA_COLORS.rural }}
+                  className="w-2 h-2 rounded-full bg-teal-500"
                 />
               </div>
-              <span>শহর/গ্রাম</span>
+              <span>এলাকা</span>
             </div>
           </button>
           <div className="w-px bg-neutral-800" />

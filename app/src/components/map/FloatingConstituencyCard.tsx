@@ -53,22 +53,10 @@ export default function FloatingConstituencyCard({
 
         {/* Stats */}
         <div className="p-4 space-y-3">
-          <div className="grid grid-cols-2 gap-3">
-            <div className="bg-neutral-800/50 rounded-lg p-3">
-              <div className="text-xs text-neutral-500">ভোটার সংখ্যা</div>
-              <div className="text-lg font-bold text-teal-400 mt-1">
-                {formatNumber(constituency.registered_voters)}
-              </div>
-            </div>
-            <div className="bg-neutral-800/50 rounded-lg p-3">
-              <div className="text-xs text-neutral-500">ধরন</div>
-              <div className="text-lg font-bold text-white mt-1">
-                {constituency.urban_classification === 'urban' ? (
-                  <span className="text-cyan-400">শহর</span>
-                ) : (
-                  <span className="text-amber-400">গ্রাম</span>
-                )}
-              </div>
+          <div className="bg-neutral-800/50 rounded-lg p-3">
+            <div className="text-xs text-neutral-500">ভোটার সংখ্যা</div>
+            <div className="text-lg font-bold text-teal-400 mt-1">
+              {formatNumber(constituency.registered_voters)}
             </div>
           </div>
 

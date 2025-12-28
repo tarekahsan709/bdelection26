@@ -105,12 +105,6 @@ export default function Sidebar({
 
         {/* Legend Section */}
         <div className="px-5 py-4">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-1 h-4 bg-gradient-to-b from-emerald-400 to-emerald-600 rounded-full" />
-            <h3 className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">
-              চিহ্ন
-            </h3>
-          </div>
           <LegendPanel />
         </div>
       </div>

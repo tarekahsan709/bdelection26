@@ -1,14 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Stats {
   totalConstituencies: number;
   totalVoters: number;
   totalDivisions: number;
   totalDistricts: number;
-  urbanConstituencies: number;
-  ruralConstituencies: number;
+  maleVoters: number;
+  femaleVoters: number;
 }
 
 export default function QuickStats() {
@@ -24,8 +24,8 @@ export default function QuickStats() {
           totalVoters: data.statistics?.total_voters || 0,
           totalDivisions: 8,
           totalDistricts: 64,
-          urbanConstituencies: data.statistics?.urban_constituencies || 0,
-          ruralConstituencies: data.statistics?.rural_constituencies || 0,
+          maleVoters: data.metadata?.male_voters || data.statistics?.male_voters || 0,
+          femaleVoters: data.metadata?.female_voters || data.statistics?.female_voters || 0,
         });
       })
       .catch(() => undefined);
@@ -47,9 +47,9 @@ export default function QuickStats() {
         <StatCard value={stats.totalDivisions.toString()} label="বিভাগ" icon="🗺️" />
         <StatCard value={stats.totalDistricts.toString()} label="জেলা" icon="📍" />
         <StatCard
-          value={`${stats.urbanConstituencies}/${stats.ruralConstituencies}`}
-          label="শহর/গ্রাম"
-          icon="🏙️"
+          value={`${formatVoters(stats.maleVoters)}/${formatVoters(stats.femaleVoters)}`}
+          label="পুরুষ/নারী"
+          icon="⚤"
           className="hidden sm:flex"
         />
       </div>

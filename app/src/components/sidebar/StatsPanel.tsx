@@ -1,14 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import type { FilterState } from '@/types/map';
 import type { ConstituencyPopulation } from '@/types/constituency';
-
+import { useEffect, useState } from 'react';
 
 interface StatsData {
   total: number;
-  urban: number;
-  rural: number;
+  male: number;
+  female: number;
   constituencies: number;
 }
 
@@ -19,8 +18,8 @@ interface StatsPanelProps {
 export default function StatsPanel({ filterState }: StatsPanelProps) {
   const [stats, setStats] = useState<StatsData>({
     total: 0,
-    urban: 0,
-    rural: 0,
+    male: 0,
+    female: 0,
     constituencies: 0,
   });
   const [loading, setLoading] = useState(true);
@@ -49,18 +48,16 @@ export default function StatsPanel({ filterState }: StatsPanelProps) {
         });
 
         const total = filtered.reduce((sum, c) => sum + (c.registered_voters || 0), 0);
-        const urban = filtered
-          .filter((c) => c.urban_classification === 'urban')
-          .reduce((sum, c) => sum + (c.registered_voters || 0), 0);
-        const rural = filtered
-          .filter((c) => c.urban_classification === 'rural')
-          .reduce((sum, c) => sum + (c.registered_voters || 0), 0);
+
+        // Get gender data from metadata (national level only)
+        const maleVoters = data.metadata?.male_voters || 0;
+        const femaleVoters = data.metadata?.female_voters || 0;
 
         if (isMounted) {
           setStats({
             total,
-            urban,
-            rural,
+            male: maleVoters,
+            female: femaleVoters,
             constituencies: filtered.length,
           });
         }
@@ -98,8 +95,8 @@ export default function StatsPanel({ filterState }: StatsPanelProps) {
     <div className="grid grid-cols-2 gap-2">
       <StatCard label="মোট ভোটার" value={formatNumber(stats.total)} accent="white" />
       <StatCard label="নির্বাচনী এলাকা" value={stats.constituencies.toString()} accent="white" />
-      <StatCard label="শহর" value={formatNumber(stats.urban)} accent="teal" />
-      <StatCard label="গ্রাম" value={formatNumber(stats.rural)} accent="amber" />
+      <StatCard label="পুরুষ" value={formatNumber(stats.male)} accent="teal" />
+      <StatCard label="নারী" value={formatNumber(stats.female)} accent="amber" />
     </div>
   );
 }
