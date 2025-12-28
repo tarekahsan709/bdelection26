@@ -37,6 +37,7 @@
   "dependencies": {
     "@types/leaflet": "^1.9.21",
     "clsx": "^2.0.0",
+    "ioredis": "^5.8.2",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.438.0",
     "next": "^15.4.3",

@@ -1,7 +1,21 @@
 export const siteConfig = {
-  title: 'Next.js + Tailwind CSS + TypeScript Starter',
+  title: 'বাংলাদেশ নির্বাচন ২০২৬ | Bangladesh Election 2026',
   description:
-    'A starter for Next.js, Tailwind CSS, and TypeScript with Absolute Import, Seo, Link component, pre-configured with Husky',
-  /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
-  url: 'https://tsnext-tw.thcl.dev',
+    'বাংলাদেশের ৩০০ নির্বাচনী এলাকার ইন্টারেক্টিভ মানচিত্র। প্রার্থী, ভোটার সংখ্যা এবং জনতার দাবি দেখুন। Interactive map of 300 constituencies with candidates, voter data, and local issues.',
+  /** Without additional '/' on the end */
+  url: 'https://bangladesh-election.up.railway.app',
+  /** Site keywords for SEO */
+  keywords: [
+    'বাংলাদেশ নির্বাচন',
+    'Bangladesh Election 2026',
+    'নির্বাচনী এলাকা',
+    'constituency',
+    'ভোটার',
+    'প্রার্থী',
+    'BNP',
+    'জামায়াত',
+    'এনসিপি',
+  ],
+  /** Locale */
+  locale: 'bn_BD',
 };

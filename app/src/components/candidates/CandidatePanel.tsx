@@ -1,24 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
 import { PARTY_COLORS } from '@/config/colors';
-
-interface Candidate {
-  candidate_id: number;
-  serial: number;
-  constituency_id: number;
-  candidate_name?: string;
-  candidate_name_english?: string;
-  party: string;
-  partyColor: string;
-  partyBg: string;
-  allocated_to?: string;
-}
-
-// Re-export for backward compatibility with proper typing
-const PARTY_CONFIG: Record<string, { color: string; bg: string; name: string; fullName: string; fullNameBn: string }> = PARTY_COLORS;
+import { useCandidates } from '@/hooks/useCandidates';
+import type { Candidate } from '@/types/candidate';
 
 interface CandidatePanelProps {
   constituency: ConstituencyInfo | null;
@@ -33,94 +19,7 @@ export default function CandidatePanel({
   isExpanded,
   onToggleExpand,
 }: CandidatePanelProps) {
-  const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!constituency) {
-      setCandidates([]);
-      return;
-    }
-
-    const fetchCandidates = async () => {
-      setLoading(true);
-      const allCandidates: Candidate[] = [];
-      const constituencyId = parseInt(constituency.id);
-
-      // Fetch BNP candidates (filter out allocated seats)
-      try {
-        const bnpResponse = await fetch('/data/bnp_candidates.json');
-        const bnpData = await bnpResponse.json();
-        const bnpCandidates = bnpData.candidates
-          .filter((c: Candidate) => c.constituency_id === constituencyId && !c.allocated_to)
-          .map((c: Candidate) => ({
-            ...c,
-            party: 'BNP',
-            partyColor: PARTY_CONFIG.BNP.color,
-            partyBg: PARTY_CONFIG.BNP.bg,
-          }));
-        allCandidates.push(...bnpCandidates);
-      } catch {
-        // Silent error
-      }
-
-      // Fetch JUIB candidates
-      try {
-        const juibResponse = await fetch('/data/juib_candidates.json');
-        const juibData = await juibResponse.json();
-        const juibCandidates = (juibData.candidates || [])
-          .filter((c: Candidate) => c.constituency_id === constituencyId)
-          .map((c: Candidate) => ({
-            ...c,
-            party: 'JUIB',
-            partyColor: PARTY_CONFIG.JUIB.color,
-            partyBg: PARTY_CONFIG.JUIB.bg,
-          }));
-        allCandidates.push(...juibCandidates);
-      } catch {
-        // Silent error
-      }
-
-      // Fetch Jamaat candidates
-      try {
-        const jamaatResponse = await fetch('/data/jamat_candidate.json');
-        const jamaatData = await jamaatResponse.json();
-        const jamaatCandidates = (jamaatData.candidates || jamaatData)
-          .filter((c: Candidate) => c.constituency_id === constituencyId)
-          .map((c: Candidate) => ({
-            ...c,
-            party: 'Jamaat',
-            partyColor: PARTY_CONFIG.Jamaat.color,
-            partyBg: PARTY_CONFIG.Jamaat.bg,
-          }));
-        allCandidates.push(...jamaatCandidates);
-      } catch {
-        // Silent error
-      }
-
-      // Fetch NCP candidates
-      try {
-        const ncpResponse = await fetch('/data/ncp_candidates.json');
-        const ncpData = await ncpResponse.json();
-        const ncpCandidates = ncpData.candidates
-          .filter((c: Candidate) => c.constituency_id === constituencyId)
-          .map((c: Candidate) => ({
-            ...c,
-            party: 'NCP',
-            partyColor: PARTY_CONFIG.NCP.color,
-            partyBg: PARTY_CONFIG.NCP.bg,
-          }));
-        allCandidates.push(...ncpCandidates);
-      } catch {
-        // Silent error
-      }
-
-      setCandidates(allCandidates);
-      setLoading(false);
-    };
-
-    fetchCandidates();
-  }, [constituency]);
+  const { candidates, loading } = useCandidates(constituency?.id ?? null);
 
   if (!constituency) return null;
 
@@ -260,7 +159,7 @@ function CandidateCard({ candidate }: { candidate: Candidate }) {
             color: candidate.partyColor,
           }}
         >
-          {PARTY_CONFIG[candidate.party]?.name || candidate.party}
+          {PARTY_COLORS[candidate.party]?.name || candidate.party}
         </span>
       </div>
     </div>

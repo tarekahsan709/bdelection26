@@ -1,15 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
-import type {
-  IssueType,
-  IssueVotes,
-  JanatarDabiData,
-  VoteResponse,
-  ISSUE_KEYS,
-} from '@/types/janatar-dabi';
+import Redis from 'ioredis';
+import type { IssueType, IssueVotes, VoteResponse } from '@/types/janatar-dabi';
 
-const DATA_FILE_PATH = path.join(process.cwd(), 'data', 'janatar-dabi-votes.json');
+// Redis client - connects to Railway Redis via REDIS_URL env var
+const redis = process.env.REDIS_URL
+  ? new Redis(process.env.REDIS_URL)
+  : null;
+
+// Fallback in-memory store when Redis is not available (local dev)
+const inMemoryStore: Record<string, IssueVotes> = {};
+const rateLimitStore: Record<string, number[]> = {};
+
+const RATE_LIMIT_WINDOW = 60; // 1 minute in seconds
+const MAX_VOTES_PER_WINDOW = 10;
+const VOTES_KEY_PREFIX = 'janatar_dabi:votes:';
+const RATE_LIMIT_KEY_PREFIX = 'janatar_dabi:ratelimit:';
 
 const DEFAULT_VOTES: IssueVotes = {
   mosquitos: 0,
@@ -29,24 +34,77 @@ const VALID_ISSUES: IssueType[] = [
   'load_shedding',
 ];
 
-async function readVotesData(): Promise<JanatarDabiData> {
-  try {
-    const fileContent = await fs.readFile(DATA_FILE_PATH, 'utf-8');
-    return JSON.parse(fileContent);
-  } catch {
-    // If file doesn't exist, return default structure
-    return {
-      metadata: {
-        created_at: new Date().toISOString().split('T')[0],
-        description: 'Janatar Dabi - People\'s Demands voting data',
-      },
-      constituencies: {},
-    };
-  }
+function getClientIP(request: NextRequest): string {
+  const forwarded = request.headers.get('x-forwarded-for');
+  const realIp = request.headers.get('x-real-ip');
+  return forwarded?.split(',')[0].trim() || realIp || 'unknown';
 }
 
-async function writeVotesData(data: JanatarDabiData): Promise<void> {
-  await fs.writeFile(DATA_FILE_PATH, JSON.stringify(data, null, 2), 'utf-8');
+// Redis-based rate limiting
+async function checkRateLimit(ip: string): Promise<boolean> {
+  if (!redis) {
+    // Fallback to in-memory
+    const now = Date.now();
+    const windowStart = now - RATE_LIMIT_WINDOW * 1000;
+    if (!rateLimitStore[ip]) rateLimitStore[ip] = [];
+    rateLimitStore[ip] = rateLimitStore[ip].filter((ts) => ts > windowStart);
+    return rateLimitStore[ip].length < MAX_VOTES_PER_WINDOW;
+  }
+
+  const key = `${RATE_LIMIT_KEY_PREFIX}${ip}`;
+  const count = await redis.incr(key);
+
+  if (count === 1) {
+    await redis.expire(key, RATE_LIMIT_WINDOW);
+  }
+
+  return count <= MAX_VOTES_PER_WINDOW;
+}
+
+function recordInMemoryRateLimit(ip: string): void {
+  if (!rateLimitStore[ip]) rateLimitStore[ip] = [];
+  rateLimitStore[ip].push(Date.now());
+}
+
+// Get votes from Redis or in-memory
+async function getVotes(constituencyId: string): Promise<IssueVotes> {
+  if (!redis) {
+    return inMemoryStore[constituencyId] || { ...DEFAULT_VOTES };
+  }
+
+  const key = `${VOTES_KEY_PREFIX}${constituencyId}`;
+  const data = await redis.hgetall(key);
+
+  if (!data || Object.keys(data).length === 0) {
+    return { ...DEFAULT_VOTES };
+  }
+
+  return {
+    mosquitos: parseInt(data.mosquitos || '0', 10),
+    water_logging: parseInt(data.water_logging || '0', 10),
+    traffic: parseInt(data.traffic || '0', 10),
+    extortion: parseInt(data.extortion || '0', 10),
+    bad_roads: parseInt(data.bad_roads || '0', 10),
+    load_shedding: parseInt(data.load_shedding || '0', 10),
+  };
+}
+
+// Increment vote in Redis or in-memory
+async function incrementVote(
+  constituencyId: string,
+  issue: IssueType
+): Promise<IssueVotes> {
+  if (!redis) {
+    if (!inMemoryStore[constituencyId]) {
+      inMemoryStore[constituencyId] = { ...DEFAULT_VOTES };
+    }
+    inMemoryStore[constituencyId][issue]++;
+    return { ...inMemoryStore[constituencyId] };
+  }
+
+  const key = `${VOTES_KEY_PREFIX}${constituencyId}`;
+  await redis.hincrby(key, issue, 1);
+  return getVotes(constituencyId);
 }
 
 // GET /api/janatar-dabi?constituency_id=1
@@ -62,8 +120,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const data = await readVotesData();
-    const votes = data.constituencies[constituencyId] || { ...DEFAULT_VOTES };
+    const votes = await getVotes(constituencyId);
 
     return NextResponse.json({
       success: true,
@@ -83,6 +140,16 @@ export async function GET(request: NextRequest) {
 // Body: { constituency_id: string, issue: IssueType }
 export async function POST(request: NextRequest) {
   try {
+    const clientIP = getClientIP(request);
+    const withinLimit = await checkRateLimit(clientIP);
+
+    if (!withinLimit) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please wait before voting again.' },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const { constituency_id, issue } = body;
 
@@ -100,22 +167,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const data = await readVotesData();
+    const votes = await incrementVote(constituency_id, issue as IssueType);
 
-    // Initialize constituency if it doesn't exist
-    if (!data.constituencies[constituency_id]) {
-      data.constituencies[constituency_id] = { ...DEFAULT_VOTES };
+    // Record rate limit for in-memory fallback
+    if (!redis) {
+      recordInMemoryRateLimit(clientIP);
     }
-
-    // Increment the vote count
-    data.constituencies[constituency_id][issue as IssueType]++;
-
-    // Save the updated data
-    await writeVotesData(data);
 
     const response: VoteResponse = {
       success: true,
-      votes: data.constituencies[constituency_id],
+      votes,
       message: 'Vote recorded successfully',
     };
 

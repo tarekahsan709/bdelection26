@@ -1,19 +1,8 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { PARTY_COLORS } from '@/config/colors';
-
-interface Candidate {
-  constituency_id: number;
-  candidate_name?: string;
-  candidate_name_english?: string;
-  allocated_to?: string; // For BNP seats allocated to alliance partners
-}
-
-interface CandidateData {
-  party: string;
-  candidates: Candidate[];
-}
+import type { RawCandidate, PartyData } from '@/types/candidate';
 
 export type PartyMap = Map<string, string[]>; // constituency_id -> party codes
 
@@ -22,27 +11,32 @@ export function usePartyData() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
     const loadPartyData = async () => {
       try {
         const [bnpRes, jamaatRes, ncpRes, juibRes] = await Promise.all([
-          fetch('/data/bnp_candidates.json'),
-          fetch('/data/jamat_candidate.json'),
-          fetch('/data/ncp_candidates.json'),
-          fetch('/data/juib_candidates.json'),
+          fetch('/data/bnp_candidates.json', { signal: controller.signal }),
+          fetch('/data/jamat_candidate.json', { signal: controller.signal }),
+          fetch('/data/ncp_candidates.json', { signal: controller.signal }),
+          fetch('/data/juib_candidates.json', { signal: controller.signal }),
         ]);
 
-        const [bnpData, jamaatData, ncpData, juibData]: CandidateData[] = await Promise.all([
+        const [bnpData, jamaatData, ncpData, juibData]: PartyData[] = await Promise.all([
           bnpRes.json(),
           jamaatRes.json(),
           ncpRes.json(),
           juibRes.json(),
         ]);
 
+        if (!isMounted) return;
+
         const map = new Map<string, string[]>();
 
         // Process each party's candidates
-        const processParty = (data: CandidateData, partyCode: string, filterAllocated = false) => {
-          data.candidates?.forEach((candidate) => {
+        const processParty = (data: PartyData, partyCode: string, filterAllocated = false) => {
+          data.candidates?.forEach((candidate: RawCandidate) => {
             // Skip BNP candidates that are allocated to alliance partners
             if (filterAllocated && candidate.allocated_to) {
               return;
@@ -62,13 +56,22 @@ export function usePartyData() {
 
         setPartyMap(map);
       } catch (error) {
-        console.error('Error loading party data:', error);
+        if ((error as Error).name !== 'AbortError') {
+          console.error('Error loading party data:', error);
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     loadPartyData();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
   }, []);
 
   return { partyMap, loading };
@@ -92,9 +95,4 @@ export function getPartyColor(partyMap: PartyMap, constituencyId: string): strin
   }
 
   return PARTY_COLORS.Independent.color;
-}
-
-// Get all parties in a constituency
-export function getConstituencyParties(partyMap: PartyMap, constituencyId: string): string[] {
-  return partyMap.get(constituencyId) || [];
 }

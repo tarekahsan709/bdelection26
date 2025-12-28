@@ -1,29 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
 import { getConstituencyColor } from '@/constants/divisions';
-
-interface Candidate {
-  candidate_id: number;
-  serial: number;
-  constituency_id: number;
-  constituency: string;
-  constituency_english: string;
-  candidate_name?: string;
-  candidate_name_english?: string;
-  party: string;
-  partyColor: string;
-  allocated_to?: string;
-}
-
-// Party colors for display
-const PARTY_CONFIG: Record<string, { color: string; name: string }> = {
-  BNP: { color: '#10b981', name: 'BNP' },
-  Jamaat: { color: '#f59e0b', name: 'Jamaat-e-Islami' },
-  NCP: { color: '#8b5cf6', name: 'NCP' },
-  JUIB: { color: '#22c55e', name: 'JUIB' },
-};
+import { PARTY_COLORS } from '@/config/colors';
+import { useCandidates } from '@/hooks/useCandidates';
 
 interface ConstituencyDetailProps {
   constituency: ConstituencyInfo;
@@ -34,89 +14,9 @@ export default function ConstituencyDetail({
   constituency,
   onClose,
 }: ConstituencyDetailProps) {
-  const [candidates, setCandidates] = useState<Candidate[]>([]);
-  const [loading, setLoading] = useState(true);
-
+  const { candidates, loading } = useCandidates(constituency.id);
   const constituencyColor = getConstituencyColor(constituency.id);
-  const count = constituency.registered_voters;
-
-  // Load candidates from all parties for this constituency
-  useEffect(() => {
-    const fetchCandidates = async () => {
-      setLoading(true);
-      const allCandidates: Candidate[] = [];
-      const constituencyId = parseInt(constituency.id);
-
-      try {
-        // Load BNP candidates (filter out allocated seats)
-        const bnpResponse = await fetch('/data/bnp_candidates.json');
-        const bnpData = await bnpResponse.json();
-        const bnpCandidates = bnpData.candidates
-          .filter((c: Candidate) => c.constituency_id === constituencyId && !c.allocated_to)
-          .map((c: Candidate) => ({
-            ...c,
-            party: 'BNP',
-            partyColor: PARTY_CONFIG.BNP.color,
-          }));
-        allCandidates.push(...bnpCandidates);
-      } catch (error) {
-        console.error('Failed to load BNP candidates:', error);
-      }
-
-      try {
-        // Load JUIB candidates
-        const juibResponse = await fetch('/data/juib_candidates.json');
-        const juibData = await juibResponse.json();
-        const juibCandidates = (juibData.candidates || [])
-          .filter((c: Candidate) => c.constituency_id === constituencyId)
-          .map((c: Candidate) => ({
-            ...c,
-            party: 'JUIB',
-            partyColor: PARTY_CONFIG.JUIB.color,
-          }));
-        allCandidates.push(...juibCandidates);
-      } catch (error) {
-        console.error('Failed to load JUIB candidates:', error);
-      }
-
-      try {
-        // Load Jamaat candidates
-        const jamaatResponse = await fetch('/data/jamat_candidate.json');
-        const jamaatData = await jamaatResponse.json();
-        const jamaatCandidates = (jamaatData.candidates || jamaatData)
-          .filter((c: Candidate) => c.constituency_id === constituencyId)
-          .map((c: Candidate) => ({
-            ...c,
-            party: 'Jamaat',
-            partyColor: PARTY_CONFIG.Jamaat.color,
-          }));
-        allCandidates.push(...jamaatCandidates);
-      } catch (error) {
-        console.error('Failed to load Jamaat candidates:', error);
-      }
-
-      try {
-        // Load NCP candidates
-        const ncpResponse = await fetch('/data/ncp_candidates.json');
-        const ncpData = await ncpResponse.json();
-        const ncpCandidates = ncpData.candidates
-          .filter((c: Candidate) => c.constituency_id === constituencyId)
-          .map((c: Candidate) => ({
-            ...c,
-            party: 'NCP',
-            partyColor: PARTY_CONFIG.NCP.color,
-          }));
-        allCandidates.push(...ncpCandidates);
-      } catch (error) {
-        console.error('Failed to load NCP candidates:', error);
-      }
-
-      setCandidates(allCandidates);
-      setLoading(false);
-    };
-
-    fetchCandidates();
-  }, [constituency.id]);
+  const count = constituency.registered_voters ?? 0;
 
   return (
     <div className='space-y-4'>
@@ -157,13 +57,13 @@ export default function ConstituencyDetail({
         <div className='rounded-lg bg-gray-800 p-3'>
           <p className='text-xs text-gray-400'>Registered Voters</p>
           <p className='text-lg font-semibold text-white'>
-            {count.toLocaleString()}
+            {count > 0 ? count.toLocaleString() : '—'}
           </p>
         </div>
         <div className='rounded-lg bg-gray-800 p-3'>
           <p className='text-xs text-gray-400'>Classification</p>
           <p className='text-lg font-semibold text-white capitalize'>
-            {constituency.urban_classification}
+            {constituency.urban_classification || '—'}
           </p>
         </div>
       </div>
@@ -194,11 +94,11 @@ export default function ConstituencyDetail({
                   <span
                     className='ml-2 rounded-full px-2 py-0.5 text-xs font-medium'
                     style={{
-                      backgroundColor: `${candidate.partyColor}20`,
+                      backgroundColor: candidate.partyBg,
                       color: candidate.partyColor,
                     }}
                   >
-                    {candidate.party}
+                    {PARTY_COLORS[candidate.party]?.name || candidate.party}
                   </span>
                 </div>
               </div>

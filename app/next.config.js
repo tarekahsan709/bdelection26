@@ -6,6 +6,9 @@ const nextConfig = {
 
   reactStrictMode: true,
 
+  // Standalone output for Railway deployment
+  output: 'standalone',
+
   // Uncoment to add domain whitelist
   // images: {
   //   remotePatterns: [
