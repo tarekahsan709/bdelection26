@@ -26,7 +26,30 @@ const issueSchema = z.enum([
 const voteRequestSchema = z.object({
   constituency_id: constituencyIdSchema,
   issue: issueSchema,
+  turnstile_token: z.string().min(1, 'Turnstile token is required'),
 });
+
+const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY || '1x0000000000000000000000000000000AA'; // Test secret for dev
+const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+
+async function verifyTurnstileToken(token: string, ip: string): Promise<boolean> {
+  try {
+    const response = await fetch(TURNSTILE_VERIFY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        secret: TURNSTILE_SECRET_KEY,
+        response: token,
+        remoteip: ip,
+      }),
+    });
+
+    const data = await response.json();
+    return data.success === true;
+  } catch {
+    return false;
+  }
+}
 
 // Redis client - connects to Railway Redis via REDIS_URL env var
 const redis = process.env.REDIS_URL
@@ -196,7 +219,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { constituency_id, issue } = parseResult.data;
+    const { constituency_id, issue, turnstile_token } = parseResult.data;
+
+    // Verify Turnstile CAPTCHA token
+    const isValidToken = await verifyTurnstileToken(turnstile_token, clientIP);
+    if (!isValidToken) {
+      return NextResponse.json(
+        { error: 'CAPTCHA verification failed. Please try again.' },
+        { status: 403 }
+      );
+    }
+
     const votes = await incrementVote(constituency_id, issue);
 
     // Record rate limit for in-memory fallback

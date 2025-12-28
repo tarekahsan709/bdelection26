@@ -26,7 +26,7 @@ export default function CandidatePanel({
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 md:left-80 transition-transform duration-300 ease-out ${
+      className={`fixed bottom-10 left-0 right-0 md:left-80 transition-transform duration-300 ease-out ${
         isExpanded ? 'translate-y-0' : 'translate-y-[calc(100%-52px)]'
       }`}
       style={{ zIndex: 1000 }}

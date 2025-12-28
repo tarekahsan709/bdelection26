@@ -1,11 +1,11 @@
+import { siteConfig } from '@/constant/config';
 import { Metadata } from 'next';
 import { Noto_Sans_Bengali } from 'next/font/google';
+import Link from 'next/link';
 import * as React from 'react';
 
 import '@/styles/globals.css';
 import '@/styles/colors.css';
-
-import { siteConfig } from '@/constant/config';
 
 // Noto Sans Bengali - Clean, modern Bangla font by Google
 const notoSansBengali = Noto_Sans_Bengali({
@@ -79,17 +79,27 @@ function Disclaimer() {
           </svg>
           <span>এটি সরকারি অ্যাপ নয় | Not an Official Government App</span>
         </div>
-        <a
-          href="https://www.ecs.gov.bd"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-amber-300 hover:text-amber-100 underline underline-offset-2 flex items-center gap-1"
-        >
-          বিস্তারিত তথ্যের জন্য বাংলাদেশ নির্বাচন কমিশন দেখুন
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
+        <div className="flex items-center gap-3">
+          <Link href="/terms" className="text-amber-300/80 hover:text-amber-100">
+            শর্তাবলী
+          </Link>
+          <span className="text-amber-800">|</span>
+          <Link href="/privacy" className="text-amber-300/80 hover:text-amber-100">
+            গোপনীয়তা
+          </Link>
+          <span className="text-amber-800">|</span>
+          <a
+            href="https://www.ecs.gov.bd"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-amber-300 hover:text-amber-100 flex items-center gap-1"
+          >
+            নির্বাচন কমিশন
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   );

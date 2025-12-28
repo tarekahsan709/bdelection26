@@ -1,8 +1,11 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
+import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile';
 import { useJanatarDabi } from './useJanatarDabi';
 import { ISSUES, ISSUE_KEYS, type IssueType } from '@/types/janatar-dabi';
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'; // Test key for dev
 
 interface JanatarDabiProps {
   constituencyId: string;
@@ -26,6 +29,8 @@ export function JanatarDabi({
   } = useJanatarDabi(constituencyId);
 
   const [showAnimation, setShowAnimation] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileInstance>(null);
 
   // Calculate percentages and sort issues
   const sortedIssues = useMemo(() => {
@@ -49,10 +54,21 @@ export function JanatarDabi({
   const handleVote = async (issue: IssueType) => {
     if (hasVoted || submitting) return;
 
-    const success = await submitVote(issue);
+    if (!turnstileToken) {
+      return;
+    }
+
+    const success = await submitVote(issue, turnstileToken);
     if (success) {
       setShowAnimation(true);
       setTimeout(() => setShowAnimation(false), 2000);
+      // Reset turnstile for next potential vote (different constituency)
+      turnstileRef.current?.reset();
+      setTurnstileToken(null);
+    } else {
+      // Reset turnstile on failure so user can try again
+      turnstileRef.current?.reset();
+      setTurnstileToken(null);
     }
   };
 
@@ -124,11 +140,11 @@ export function JanatarDabi({
                   <button
                     key={issueKey}
                     onClick={() => handleVote(issueKey)}
-                    disabled={submitting}
+                    disabled={submitting || !turnstileToken}
                     className={`
                       relative p-4 rounded-xl border transition-all duration-200
                       ${
-                        submitting
+                        submitting || !turnstileToken
                           ? 'opacity-50 cursor-not-allowed'
                           : 'hover:scale-105 hover:border-rose-500/50 hover:bg-rose-500/10 active:scale-95'
                       }
@@ -146,6 +162,31 @@ export function JanatarDabi({
                   </button>
                 );
               })}
+            </div>
+
+            {/* Turnstile CAPTCHA */}
+            <div className="mt-4 flex flex-col items-center gap-2">
+              <Turnstile
+                ref={turnstileRef}
+                siteKey={TURNSTILE_SITE_KEY}
+                onSuccess={(token) => setTurnstileToken(token)}
+                onError={() => setTurnstileToken(null)}
+                onExpire={() => setTurnstileToken(null)}
+                options={{
+                  theme: 'dark',
+                  size: 'normal',
+                }}
+              />
+              {!turnstileToken && (
+                <p className="text-xs text-neutral-500">
+                  ভোট দিতে উপরের যাচাইকরণ সম্পূর্ণ করুন
+                </p>
+              )}
+              {turnstileToken && (
+                <p className="text-xs text-teal-400 flex items-center gap-1">
+                  <span>✓</span> যাচাইকরণ সম্পূর্ণ - এখন ভোট দিন
+                </p>
+              )}
             </div>
           </div>
         )}

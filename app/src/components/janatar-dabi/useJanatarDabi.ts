@@ -12,7 +12,7 @@ interface UseJanatarDabiReturn {
   loading: boolean;
   submitting: boolean;
   error: string | null;
-  submitVote: (issue: IssueType) => Promise<boolean>;
+  submitVote: (issue: IssueType, turnstileToken: string) => Promise<boolean>;
 }
 
 function isValidIssueType(value: string): value is IssueType {
@@ -81,9 +81,14 @@ export function useJanatarDabi(constituencyId: string): UseJanatarDabiReturn {
   }, [constituencyId]);
 
   const submitVote = useCallback(
-    async (issue: IssueType): Promise<boolean> => {
+    async (issue: IssueType, turnstileToken: string): Promise<boolean> => {
       if (hasVoted) {
         setError('You have already voted for this constituency');
+        return false;
+      }
+
+      if (!turnstileToken) {
+        setError('Please complete the CAPTCHA verification');
         return false;
       }
 
@@ -94,7 +99,7 @@ export function useJanatarDabi(constituencyId: string): UseJanatarDabiReturn {
         const response = await fetch('/api/janatar-dabi', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ constituency_id: constituencyId, issue }),
+          body: JSON.stringify({ constituency_id: constituencyId, issue, turnstile_token: turnstileToken }),
         });
 
         const data = await response.json();

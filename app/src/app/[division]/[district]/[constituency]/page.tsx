@@ -493,7 +493,7 @@ export default function ConstituencyPage() {
           </div>
         </section>
 
-        <footer className="py-8 px-4 border-t border-white/5">
+        <footer className="py-8 px-4 border-t border-white/5 pb-16">
           <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <Link
               href="/"

@@ -206,7 +206,7 @@ export default function DivisionPage() {
         </section>
 
         {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-white/5 text-center">
+        <footer className="mt-16 pt-8 pb-16 border-t border-white/5 text-center">
           <Link
             href="/"
             className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white rounded-lg transition-colors text-sm"
