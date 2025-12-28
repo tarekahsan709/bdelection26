@@ -862,7 +862,7 @@ export default function ConstituencyPage() {
             {/* Per capita context */}
             <div className="mt-6 p-4 rounded-xl bg-white/[0.02] border border-white/5">
               <p className="text-sm text-neutral-400">
-                <span className="text-white font-medium">প্রতি ১০,০০০ ভোটারে:</span>{' '}
+                <span className="text-white font-medium">প্রতি 10,000 ভোটারে:</span>{' '}
                 {infrastructure?.schools ? ((infrastructure.schools / voters) * 10000).toFixed(1) : '—'} বিদ্যালয়,{' '}
                 {infrastructure?.hospitals || infrastructure?.clinics
                   ? (((infrastructure.hospitals || 0) + (infrastructure.clinics || 0)) / voters * 10000).toFixed(1)
@@ -921,7 +921,7 @@ export default function ConstituencyPage() {
               <div className="mt-6 p-4 rounded-xl bg-white/[0.02] border border-white/5">
                 <p className="text-sm text-neutral-400">
                   <span className="text-teal-400 font-medium">বিঃদ্রঃ</span>{' '}
-                  এমপিরা ৫ বছরের মেয়াদে কাজ করেন। আপনার ভোট এই নির্বাচনী এলাকার দীর্ঘমেয়াদী উন্নয়নে প্রভাব ফেলে।
+                  এমপিরা 5 বছরের মেয়াদে কাজ করেন। আপনার ভোট এই নির্বাচনী এলাকার দীর্ঘমেয়াদী উন্নয়নে প্রভাব ফেলে।
                 </p>
               </div>
             </details>
@@ -1280,7 +1280,7 @@ function _GardenView({ infrastructure, voters }: { infrastructure: Infrastructur
       have: infrastructure.hospitals + infrastructure.clinics,
       need: Math.ceil(voters / standards.healthcare),
       standard: standards.healthcare,
-      standardText: 'প্রতি ১০ হাজার জনে ১টি',
+      standardText: 'প্রতি 10 হাজার জনে 1টি',
       unit: 'হাসপাতাল/ক্লিনিক',
     },
     {
@@ -1290,7 +1290,7 @@ function _GardenView({ infrastructure, voters }: { infrastructure: Infrastructur
       have: infrastructure.schools,
       need: Math.ceil(voters / standards.education),
       standard: standards.education,
-      standardText: 'প্রতি ২ হাজার জনে ১টি',
+      standardText: 'প্রতি 2 হাজার জনে 1টি',
       unit: 'বিদ্যালয়',
     },
     {
@@ -1300,7 +1300,7 @@ function _GardenView({ infrastructure, voters }: { infrastructure: Infrastructur
       have: infrastructure.banks,
       need: Math.ceil(voters / standards.finance),
       standard: standards.finance,
-      standardText: 'প্রতি ১৫ হাজার জনে ১টি',
+      standardText: 'প্রতি 15 হাজার জনে 1টি',
       unit: 'ব্যাংক শাখা',
     },
     {
@@ -1310,7 +1310,7 @@ function _GardenView({ infrastructure, voters }: { infrastructure: Infrastructur
       have: infrastructure.markets,
       need: Math.ceil(voters / standards.commerce),
       standard: standards.commerce,
-      standardText: 'প্রতি ৫ হাজার জনে ১টি',
+      standardText: 'প্রতি 5 হাজার জনে 1টি',
       unit: 'বাজার',
     },
     {
@@ -1320,7 +1320,7 @@ function _GardenView({ infrastructure, voters }: { infrastructure: Infrastructur
       have: infrastructure.mosques,
       need: Math.ceil(voters / standards.worship),
       standard: standards.worship,
-      standardText: 'প্রতি ২ হাজার জনে ১টি',
+      standardText: 'প্রতি 2 হাজার জনে 1টি',
       unit: 'মসজিদ',
     },
   ];
@@ -1445,15 +1445,15 @@ function _GardenView({ infrastructure, voters }: { infrastructure: Infrastructur
       <div className="flex justify-center gap-6 text-xs text-neutral-500">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-400" />
-          <span>পর্যাপ্ত (৮০%+)</span>
+          <span>পর্যাপ্ত (80%+)</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-amber-400" />
-          <span>মাঝামাঝি (৫০-৮০%)</span>
+          <span>মাঝামাঝি (50-80%)</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-red-400" />
-          <span>অপ্রতুল (&lt;৫০%)</span>
+          <span>অপ্রতুল (&lt;50%)</span>
         </div>
       </div>
 

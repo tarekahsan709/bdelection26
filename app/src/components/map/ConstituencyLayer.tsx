@@ -105,7 +105,7 @@ export default function ConstituencyLayer({
           <div class="font-semibold text-white">${constituency.name || constituency.name_english}</div>
           <div class="text-gray-300 text-xs">${constituency.division || constituency.division_english} বিভাগ</div>
           <div class="mt-1 text-xs">
-            <span class="text-cyan-400">${constituency.registered_voters.toLocaleString('bn-BD')}</span> ভোটার
+            <span class="text-cyan-400">${constituency.registered_voters.toLocaleString('en-US')}</span> ভোটার
           </div>
         </div>
       `;

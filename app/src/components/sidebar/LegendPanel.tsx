@@ -22,7 +22,7 @@ export default function LegendPanel() {
         </div>
       </div>
       <p className="text-[11px] text-neutral-600 leading-relaxed">
-        প্রতিটি বিন্দু প্রায় ৫,০০০ নিবন্ধিত ভোটার প্রতিনিধিত্ব করে
+        প্রতিটি বিন্দু প্রায় 5,000 নিবন্ধিত ভোটার প্রতিনিধিত্ব করে
       </p>
     </div>
   );

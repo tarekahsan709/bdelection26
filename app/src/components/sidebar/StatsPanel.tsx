@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import type { FilterState } from '@/types/map';
 import type { ConstituencyPopulation } from '@/types/constituency';
 
-const BENGALI_DIGITS = '০১২৩৪৫৬৭৮৯';
 
 interface StatsData {
   total: number;
@@ -128,19 +127,15 @@ function StatCard({
   );
 }
 
-function toBengaliDigits(str: string): string {
-  return str.replace(/\d/g, (d) => BENGALI_DIGITS[parseInt(d)]);
-}
-
 function formatNumber(num: number): string {
   if (num >= 10000000) {
-    return toBengaliDigits((num / 10000000).toFixed(1)) + ' কোটি';
+    return (num / 10000000).toFixed(1) + ' কোটি';
   }
   if (num >= 100000) {
-    return toBengaliDigits((num / 100000).toFixed(1)) + ' লক্ষ';
+    return (num / 100000).toFixed(1) + ' লক্ষ';
   }
   if (num >= 1000) {
-    return toBengaliDigits((num / 1000).toFixed(0)) + ' হাজার';
+    return (num / 1000).toFixed(0) + ' হাজার';
   }
-  return num.toLocaleString('bn-BD');
+  return num.toLocaleString('en-US');
 }

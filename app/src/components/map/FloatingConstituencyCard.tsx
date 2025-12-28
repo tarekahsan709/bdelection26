@@ -19,7 +19,7 @@ export default function FloatingConstituencyCard({
     if (num >= 100000) {
       return (num / 100000).toFixed(1) + ' লক্ষ';
     }
-    return num.toLocaleString('bn-BD');
+    return num.toLocaleString('en-US');
   };
 
   return (

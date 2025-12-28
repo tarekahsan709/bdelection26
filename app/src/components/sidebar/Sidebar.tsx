@@ -27,7 +27,7 @@ export default function Sidebar({
       {/* Header */}
       <div className="px-5 pt-6 pb-5 border-b border-white/[0.04]">
         <h1 className="text-xl font-bold text-white/90 tracking-tight">
-          বাংলাদেশ নির্বাচন ২০২৬
+          বাংলাদেশ নির্বাচন 2026
         </h1>
         <p className="mt-1.5 text-sm text-neutral-500">
           ভোটার ঘনত্ব মানচিত্র
@@ -70,7 +70,7 @@ export default function Sidebar({
                     </p>
                     <div className="flex items-center gap-3 mt-2">
                       <span className="text-xs text-teal-400">
-                        {selectedConstituency.registered_voters.toLocaleString('bn-BD')} ভোটার
+                        {selectedConstituency.registered_voters.toLocaleString('en-US')} ভোটার
                       </span>
                     </div>
                   </div>
