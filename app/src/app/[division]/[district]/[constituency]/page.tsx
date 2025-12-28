@@ -2,6 +2,7 @@
 
 import { PARTY_COLORS } from '@/config/colors';
 import { JanatarDabi } from '@/components/janatar-dabi';
+import { AreaVideos } from '@/components/meme-pulse';
 import { slugify } from '@/lib/url-utils';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
@@ -368,6 +369,16 @@ export default function ConstituencyPage() {
           <div className="max-w-5xl mx-auto">
             <JanatarDabi
               constituencyId={constituencyId}
+              constituencyName={population?.name_english || `Constituency ${constituencyId}`}
+              constituencyNameBn={population?.name}
+            />
+          </div>
+        </section>
+
+        {/* Meme Pulse - What's happening in your area */}
+        <section className="py-12 px-4 border-t border-white/5">
+          <div className="max-w-5xl mx-auto">
+            <AreaVideos
               constituencyName={population?.name_english || `Constituency ${constituencyId}`}
               constituencyNameBn={population?.name}
             />
