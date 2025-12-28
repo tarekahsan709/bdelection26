@@ -31,9 +31,13 @@ const voteRequestSchema = z.object({
 });
 
 const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY || '';
-const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+const TURNSTILE_VERIFY_URL =
+  'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
-async function verifyTurnstileToken(token: string, ip: string): Promise<boolean> {
+async function verifyTurnstileToken(
+  token: string,
+  ip: string,
+): Promise<boolean> {
   try {
     const response = await fetch(TURNSTILE_VERIFY_URL, {
       method: 'POST',
@@ -53,9 +57,37 @@ async function verifyTurnstileToken(token: string, ip: string): Promise<boolean>
 }
 
 // Redis client - connects to Railway Redis via REDIS_URL env var
-const redis = process.env.REDIS_URL
-  ? new Redis(process.env.REDIS_URL)
-  : null;
+let redis: Redis | null = null;
+
+if (process.env.REDIS_URL) {
+  try {
+    redis = new Redis(process.env.REDIS_URL, {
+      maxRetriesPerRequest: 3,
+      retryStrategy: (times) => {
+        if (times > 3) {
+          console.warn(
+            'Redis connection failed after 3 retries. Falling back to in-memory storage.',
+          );
+          return null; // Stop retrying
+        }
+        return Math.min(times * 100, 2000);
+      },
+    });
+
+    // Handle connection errors gracefully
+    redis.on('error', (err) => {
+      console.error('Redis connection error:', err.message);
+      redis = null; // Fall back to in-memory storage
+    });
+
+    redis.on('connect', () => {
+      console.log('Successfully connected to Redis');
+    });
+  } catch (error) {
+    console.error('Failed to initialize Redis client:', error);
+    redis = null;
+  }
+}
 
 // Fallback in-memory store when Redis is not available (local dev)
 const inMemoryStore: Record<string, IssueVotes> = {};
@@ -133,7 +165,7 @@ async function getVotes(constituencyId: string): Promise<IssueVotes> {
 // Increment vote in Redis or in-memory
 async function incrementVote(
   constituencyId: string,
-  issue: IssueType
+  issue: IssueType,
 ): Promise<IssueVotes> {
   if (!redis) {
     if (!inMemoryStore[constituencyId]) {
@@ -157,8 +189,11 @@ export async function GET(request: NextRequest) {
   const parseResult = constituencyIdSchema.safeParse(constituencyId);
   if (!parseResult.success) {
     return NextResponse.json(
-      { error: 'Invalid constituency_id', details: parseResult.error.flatten() },
-      { status: 400 }
+      {
+        error: 'Invalid constituency_id',
+        details: parseResult.error.flatten(),
+      },
+      { status: 400 },
     );
   }
 
@@ -173,7 +208,7 @@ export async function GET(request: NextRequest) {
   } catch {
     return NextResponse.json(
       { error: 'Failed to read votes' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -188,7 +223,7 @@ export async function POST(request: NextRequest) {
     if (!withinLimit) {
       return NextResponse.json(
         { error: 'Too many requests. Please wait before voting again.' },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -197,17 +232,14 @@ export async function POST(request: NextRequest) {
     try {
       body = await request.json();
     } catch {
-      return NextResponse.json(
-        { error: 'Invalid JSON body' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
     }
 
     const parseResult = voteRequestSchema.safeParse(body);
     if (!parseResult.success) {
       return NextResponse.json(
         { error: 'Invalid request data', details: parseResult.error.flatten() },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -218,7 +250,7 @@ export async function POST(request: NextRequest) {
     if (!isValidToken) {
       return NextResponse.json(
         { error: 'CAPTCHA verification failed. Please try again.' },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -239,7 +271,7 @@ export async function POST(request: NextRequest) {
   } catch {
     return NextResponse.json(
       { error: 'Failed to record vote' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

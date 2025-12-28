@@ -11,8 +11,37 @@ const querySchema = z.object({
   sort: z.enum(['trending', 'recent']).default('trending'),
 });
 
-// Redis client
-const redis = process.env.REDIS_URL ? new Redis(process.env.REDIS_URL) : null;
+// Redis client with error handling
+let redis: Redis | null = null;
+
+if (process.env.REDIS_URL) {
+  try {
+    redis = new Redis(process.env.REDIS_URL, {
+      maxRetriesPerRequest: 3,
+      retryStrategy: (times) => {
+        if (times > 3) {
+          console.warn(
+            '[Meme Pulse] Redis connection failed. Falling back to in-memory cache.',
+          );
+          return null;
+        }
+        return Math.min(times * 100, 2000);
+      },
+    });
+
+    redis.on('error', (err) => {
+      console.error('[Meme Pulse] Redis error:', err.message);
+      redis = null;
+    });
+
+    redis.on('connect', () => {
+      console.log('[Meme Pulse] Successfully connected to Redis');
+    });
+  } catch (error) {
+    console.error('[Meme Pulse] Failed to initialize Redis:', error);
+    redis = null;
+  }
+}
 
 // YouTube API config
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
@@ -24,7 +53,10 @@ const CACHE_KEY_PREFIX = 'meme_pulse:';
 const CACHE_TTL_SECONDS = 6 * 60 * 60; // 6 hours
 
 // In-memory fallback cache
-const memoryCache: Record<string, { data: MemePulseResponse; expiresAt: number }> = {};
+const memoryCache: Record<
+  string,
+  { data: MemePulseResponse; expiresAt: number }
+> = {};
 
 function getCacheKey(constituency: string, sort: string): string {
   return `${CACHE_KEY_PREFIX}${constituency.toLowerCase().replace(/\s+/g, '_')}:${sort}`;
@@ -32,7 +64,9 @@ function getCacheKey(constituency: string, sort: string): string {
 
 function isBlocklisted(text: string): boolean {
   const lowerText = text.toLowerCase();
-  return BLOCKLIST_KEYWORDS.some((keyword) => lowerText.includes(keyword.toLowerCase()));
+  return BLOCKLIST_KEYWORDS.some((keyword) =>
+    lowerText.includes(keyword.toLowerCase()),
+  );
 }
 
 function formatDuration(isoDuration: string): string {
@@ -52,7 +86,7 @@ function formatDuration(isoDuration: string): string {
 
 async function fetchFromYouTube(
   district: string,
-  sort: 'trending' | 'recent'
+  sort: 'trending' | 'recent',
 ): Promise<VideoItem[]> {
   if (!YOUTUBE_API_KEY) {
     throw new Error('YouTube API key not configured');
@@ -146,7 +180,7 @@ async function fetchFromYouTube(
         publishedAt: item.snippet.publishedAt,
         viewCount: parseInt(item.statistics.viewCount || '0', 10),
         duration: formatDuration(item.contentDetails.duration),
-      })
+      }),
     )
     .filter((video: VideoItem) => {
       // Filter out blocklisted content
@@ -156,7 +190,9 @@ async function fetchFromYouTube(
   return videos || [];
 }
 
-async function getCachedData(cacheKey: string): Promise<MemePulseResponse | null> {
+async function getCachedData(
+  cacheKey: string,
+): Promise<MemePulseResponse | null> {
   // Try Redis first
   if (redis) {
     try {
@@ -178,7 +214,10 @@ async function getCachedData(cacheKey: string): Promise<MemePulseResponse | null
   return null;
 }
 
-async function setCachedData(cacheKey: string, data: MemePulseResponse): Promise<void> {
+async function setCachedData(
+  cacheKey: string,
+  data: MemePulseResponse,
+): Promise<void> {
   // Set in Redis
   if (redis) {
     try {
@@ -206,7 +245,7 @@ export async function GET(request: NextRequest) {
   if (!parseResult.success) {
     return NextResponse.json(
       { success: false, error: 'Invalid parameters' },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -255,9 +294,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch videos',
+        error:
+          error instanceof Error ? error.message : 'Failed to fetch videos',
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
