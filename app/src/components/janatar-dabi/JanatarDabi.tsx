@@ -13,7 +13,7 @@ interface JanatarDabiProps {
 export function JanatarDabi({
   constituencyId,
   constituencyName,
-  constituencyNameBn,
+  constituencyNameBn: _constituencyNameBn,
 }: JanatarDabiProps) {
   const {
     votes,

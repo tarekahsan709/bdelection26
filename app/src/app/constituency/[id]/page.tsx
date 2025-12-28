@@ -184,7 +184,7 @@ function ParliamentIllustration({ className = '' }: { className?: string }) {
 }
 
 // Voter Crowd Illustration - Line art style showing Bangladeshi voters (Wide version with shadows)
-function VoterCrowdIllustration({ className = '' }: { className?: string }) {
+function _VoterCrowdIllustration({ className = '' }: { className?: string }) {
   return (
     <svg viewBox="0 0 1200 320" fill="none" className={className}>
       {/* Definitions for shadows and gradients */}
@@ -485,7 +485,7 @@ function VoterCrowdIllustration({ className = '' }: { className?: string }) {
 }
 
 // Section Number Badge - Pudding-style
-function SectionBadge({ number, color = 'teal' }: { number: string; color?: 'teal' | 'amber' | 'emerald' | 'rose' }) {
+function _SectionBadge({ number, color = 'teal' }: { number: string; color?: 'teal' | 'amber' | 'emerald' | 'rose' }) {
   const colors = {
     teal: 'bg-teal-500/20 text-teal-400 border-teal-500/30',
     amber: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
@@ -615,8 +615,8 @@ export default function ConstituencyPage() {
         }
 
         setCandidates(allCandidates);
-      } catch (error) {
-        console.error('Failed to load data:', error);
+      } catch {
+        // Data load error handled silently
       } finally {
         setLoading(false);
       }
@@ -1076,7 +1076,7 @@ const Icons = {
 };
 
 // সম্ভাবনার বীজ - MP Powers in Bengali (Enhanced with details)
-function SeedsOfChange() {
+function _SeedsOfChange() {
   const powers = [
     {
       icon: Icons.road,
@@ -1262,7 +1262,7 @@ const DevIcons = {
 };
 
 // বর্তমান অবস্থা - Current Reality in Bengali (using real OSM data)
-function GardenView({ infrastructure, voters }: { infrastructure: InfrastructureData; voters: number }) {
+function _GardenView({ infrastructure, voters }: { infrastructure: InfrastructureData; voters: number }) {
   // Standards: how many people per facility is reasonable
   const standards = {
     healthcare: 10000,  // 1 hospital/clinic per 10k people

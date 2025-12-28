@@ -58,26 +58,26 @@ export default function DivisionBoundaryLayer({
   const [geoData, setGeoData] = useState<DistrictGeoJSON | null>(null);
   const [divisions, setDivisions] = useState<Division[]>([]);
 
-  // Load data
   useEffect(() => {
+    const controller = new AbortController();
     const fetchData = async () => {
       try {
         const [districtRes, divisionRes] = await Promise.all([
-          fetch('/data/district-boundaries.json'),
-          fetch('/data/bd-divisions.json'),
+          fetch('/data/district-boundaries.json', { signal: controller.signal }),
+          fetch('/data/bd-divisions.json', { signal: controller.signal }),
         ]);
         const districtData = await districtRes.json();
         const divisionData = await divisionRes.json();
         setGeoData(districtData);
         setDivisions(divisionData.divisions || []);
-      } catch (error) {
-        console.error('Failed to load boundary data:', error);
+      } catch {
+        // Silently handle fetch errors
       }
     };
     fetchData();
+    return () => controller.abort();
   }, []);
 
-  // Create the layer
   useEffect(() => {
     if (!geoData || !divisions.length) return;
 

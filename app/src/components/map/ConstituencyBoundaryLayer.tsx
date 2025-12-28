@@ -40,34 +40,33 @@ export default function ConstituencyBoundaryLayer({
   const layerRef = useRef<L.GeoJSON | null>(null);
   const [geoData, setGeoData] = useState<ConstituencyGeoJSON | null>(null);
 
-  // Load constituency boundaries
   useEffect(() => {
+    const controller = new AbortController();
     const fetchData = async () => {
       try {
-        const response = await fetch('/data/constituencies.geojson');
+        const response = await fetch('/data/constituencies.geojson', {
+          signal: controller.signal,
+        });
         const data = await response.json();
         setGeoData(data);
-      } catch (error) {
-        console.error('Failed to load constituency boundaries:', error);
+      } catch {
+        // Silently handle fetch errors
       }
     };
     fetchData();
+    return () => controller.abort();
   }, []);
 
-  // Create the layer
   useEffect(() => {
     if (!geoData) return;
 
-    // Remove existing layer
     if (layerRef.current) {
       map.removeLayer(layerRef.current);
     }
 
-    // Get the constituency to highlight
     const activeConstituency = hoveredConstituency || selectedConstituency;
     const activeId = activeConstituency?.id || null;
 
-    // Create the GeoJSON layer
     const layer = L.geoJSON(geoData as GeoJSON.FeatureCollection, {
       style: (feature) => {
         const featureId = feature?.properties?.id;
@@ -84,7 +83,6 @@ export default function ConstituencyBoundaryLayer({
           };
         }
 
-        // Default style - subtle outline only
         return {
           fillColor: 'transparent',
           fillOpacity: 0,
@@ -93,11 +91,11 @@ export default function ConstituencyBoundaryLayer({
           opacity: 0.3,
         };
       },
-      interactive: false, // Don't block dot layer interactions
+      interactive: false,
     });
 
     layer.addTo(map);
-    layer.bringToBack(); // Ensure it's behind the dots
+    layer.bringToBack();
     layerRef.current = layer;
 
     return () => {

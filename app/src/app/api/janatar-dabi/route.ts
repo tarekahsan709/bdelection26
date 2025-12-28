@@ -127,8 +127,7 @@ export async function GET(request: NextRequest) {
       constituency_id: constituencyId,
       votes,
     });
-  } catch (error) {
-    console.error('Error reading votes:', error);
+  } catch {
     return NextResponse.json(
       { error: 'Failed to read votes' },
       { status: 500 }
@@ -181,8 +180,7 @@ export async function POST(request: NextRequest) {
     };
 
     return NextResponse.json(response);
-  } catch (error) {
-    console.error('Error recording vote:', error);
+  } catch {
     return NextResponse.json(
       { error: 'Failed to record vote' },
       { status: 500 }

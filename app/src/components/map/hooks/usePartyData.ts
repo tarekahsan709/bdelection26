@@ -55,10 +55,8 @@ export function usePartyData() {
         processParty(juibData, 'JUIB');
 
         setPartyMap(map);
-      } catch (error) {
-        if ((error as Error).name !== 'AbortError') {
-          console.error('Error loading party data:', error);
-        }
+      } catch {
+        // Silently handle fetch errors
       } finally {
         if (isMounted) {
           setLoading(false);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { PARTY_COLORS } from '@/config/colors';
 import type { Candidate, RawCandidate, PartyCode } from '@/types/candidate';
 
@@ -22,6 +22,7 @@ export function useCandidates(constituencyId: number | string | null): UseCandid
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const fetchCandidates = useCallback(async () => {
     if (!constituencyId) {
@@ -29,7 +30,18 @@ export function useCandidates(constituencyId: number | string | null): UseCandid
       return;
     }
 
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    abortControllerRef.current = new AbortController();
+    const signal = abortControllerRef.current.signal;
+
     const cId = typeof constituencyId === 'string' ? parseInt(constituencyId, 10) : constituencyId;
+    if (isNaN(cId)) {
+      setCandidates([]);
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -39,33 +51,39 @@ export function useCandidates(constituencyId: number | string | null): UseCandid
     await Promise.all(
       PARTY_FILES.map(async ({ file, code, filterAllocated }) => {
         try {
-          const response = await fetch(file);
+          const response = await fetch(file, { signal });
           if (!response.ok) return;
 
           const data = await response.json();
-          const partyCandidates = (data.candidates as RawCandidate[])
-            .filter((c) => {
+          const rawCandidates = Array.isArray(data.candidates) ? data.candidates : [];
+
+          const partyCandidates = rawCandidates
+            .filter((c: RawCandidate) => {
               if (c.constituency_id !== cId) return false;
               if (filterAllocated && c.allocated_to) return false;
               return true;
             })
-            .map((c): Candidate => ({
-              ...c,
-              party: code,
-              partyColor: PARTY_COLORS[code].color,
-              partyBg: PARTY_COLORS[code].bg,
-            }));
+            .map(
+              (c: RawCandidate): Candidate => ({
+                ...c,
+                party: code,
+                partyColor: PARTY_COLORS[code].color,
+                partyBg: PARTY_COLORS[code].bg,
+              })
+            );
 
           allCandidates.push(...partyCandidates);
-        } catch {
-          hasError = true;
+        } catch (err) {
+          if ((err as Error).name !== 'AbortError') {
+            hasError = true;
+          }
         }
       })
     );
 
-    // Sort by serial number
-    allCandidates.sort((a, b) => (a.serial || 0) - (b.serial || 0));
+    if (signal.aborted) return;
 
+    allCandidates.sort((a, b) => (a.serial || 0) - (b.serial || 0));
     setCandidates(allCandidates);
     setLoading(false);
 
@@ -76,6 +94,11 @@ export function useCandidates(constituencyId: number | string | null): UseCandid
 
   useEffect(() => {
     fetchCandidates();
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
   }, [fetchCandidates]);
 
   return { candidates, loading, error, refetch: fetchCandidates };

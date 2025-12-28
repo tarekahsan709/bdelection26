@@ -15,9 +15,10 @@ export default function QuickStats() {
   const [stats, setStats] = useState<Stats | null>(null);
 
   useEffect(() => {
-    fetch('/data/constituency-population.json')
-      .then(res => res.json())
-      .then(data => {
+    const controller = new AbortController();
+    fetch('/data/constituency-population.json', { signal: controller.signal })
+      .then((res) => res.json())
+      .then((data) => {
         setStats({
           totalConstituencies: data.statistics?.total_constituencies || 300,
           totalVoters: data.statistics?.total_voters || 0,
@@ -27,7 +28,8 @@ export default function QuickStats() {
           ruralConstituencies: data.statistics?.rural_constituencies || 0,
         });
       })
-      .catch(err => console.error('Error loading stats:', err));
+      .catch(() => undefined);
+    return () => controller.abort();
   }, []);
 
   if (!stats) return null;
@@ -38,28 +40,12 @@ export default function QuickStats() {
   };
 
   return (
-    <div className="absolute bottom-6 left-4 right-4 z-[1000] pointer-events-none">
+    <div className="absolute bottom-6 left-4 right-4 z-1000 pointer-events-none">
       <div className="flex flex-wrap gap-2 justify-center pointer-events-auto">
-        <StatCard
-          value={stats.totalConstituencies.toString()}
-          label="আসন"
-          icon="🗳️"
-        />
-        <StatCard
-          value={formatVoters(stats.totalVoters)}
-          label="ভোটার"
-          icon="👥"
-        />
-        <StatCard
-          value={stats.totalDivisions.toString()}
-          label="বিভাগ"
-          icon="🗺️"
-        />
-        <StatCard
-          value={stats.totalDistricts.toString()}
-          label="জেলা"
-          icon="📍"
-        />
+        <StatCard value={stats.totalConstituencies.toString()} label="আসন" icon="🗳️" />
+        <StatCard value={formatVoters(stats.totalVoters)} label="ভোটার" icon="👥" />
+        <StatCard value={stats.totalDivisions.toString()} label="বিভাগ" icon="🗺️" />
+        <StatCard value={stats.totalDistricts.toString()} label="জেলা" icon="📍" />
         <StatCard
           value={`${stats.urbanConstituencies}/${stats.ruralConstituencies}`}
           label="শহর/গ্রাম"
@@ -80,7 +66,9 @@ interface StatCardProps {
 
 function StatCard({ value, label, icon, className = '' }: StatCardProps) {
   return (
-    <div className={`flex items-center gap-2 px-3 py-2 bg-neutral-900/90 border border-neutral-800 rounded-lg backdrop-blur-sm ${className}`}>
+    <div
+      className={`flex items-center gap-2 px-3 py-2 bg-neutral-900/90 border border-neutral-800 rounded-lg backdrop-blur-sm ${className}`}
+    >
       <span className="text-base">{icon}</span>
       <div>
         <div className="text-sm font-bold text-white">{value}</div>

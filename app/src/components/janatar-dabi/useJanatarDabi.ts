@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import type { IssueType, IssueVotes } from '@/types/janatar-dabi';
+import { ISSUE_KEYS, type IssueType, type IssueVotes } from '@/types/janatar-dabi';
 
 const STORAGE_KEY_PREFIX = 'janatar_dabi_voted_';
 
@@ -15,6 +15,10 @@ interface UseJanatarDabiReturn {
   submitVote: (issue: IssueType) => Promise<boolean>;
 }
 
+function isValidIssueType(value: string): value is IssueType {
+  return ISSUE_KEYS.includes(value as IssueType);
+}
+
 export function useJanatarDabi(constituencyId: string): UseJanatarDabiReturn {
   const [votes, setVotes] = useState<IssueVotes | null>(null);
   const [hasVoted, setHasVoted] = useState(false);
@@ -25,43 +29,55 @@ export function useJanatarDabi(constituencyId: string): UseJanatarDabiReturn {
 
   const storageKey = `${STORAGE_KEY_PREFIX}${constituencyId}`;
 
-  // Check localStorage for previous vote
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const storedVote = localStorage.getItem(storageKey);
-      if (storedVote) {
+      if (storedVote && isValidIssueType(storedVote)) {
         setHasVoted(true);
-        setVotedIssue(storedVote as IssueType);
+        setVotedIssue(storedVote);
       }
     }
   }, [storageKey]);
 
-  // Fetch current votes
   useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
     const fetchVotes = async () => {
       setLoading(true);
       setError(null);
 
       try {
         const response = await fetch(
-          `/api/janatar-dabi?constituency_id=${constituencyId}`
+          `/api/janatar-dabi?constituency_id=${constituencyId}`,
+          { signal: controller.signal }
         );
         const data = await response.json();
 
-        if (data.success) {
-          setVotes(data.votes);
-        } else {
-          setError(data.error || 'Failed to fetch votes');
+        if (isMounted) {
+          if (data.success) {
+            setVotes(data.votes);
+          } else {
+            setError(data.error || 'Failed to fetch votes');
+          }
         }
-      } catch (err) {
-        setError('Failed to connect to server');
-        console.error('Error fetching votes:', err);
+      } catch {
+        if (isMounted) {
+          setError('Failed to connect to server');
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchVotes();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
   }, [constituencyId]);
 
   const submitVote = useCallback(
@@ -77,13 +93,8 @@ export function useJanatarDabi(constituencyId: string): UseJanatarDabiReturn {
       try {
         const response = await fetch('/api/janatar-dabi', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            constituency_id: constituencyId,
-            issue,
-          }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ constituency_id: constituencyId, issue }),
         });
 
         const data = await response.json();
@@ -93,19 +104,16 @@ export function useJanatarDabi(constituencyId: string): UseJanatarDabiReturn {
           setHasVoted(true);
           setVotedIssue(issue);
 
-          // Store in localStorage
           if (typeof window !== 'undefined') {
             localStorage.setItem(storageKey, issue);
           }
-
           return true;
         } else {
           setError(data.error || 'Failed to submit vote');
           return false;
         }
-      } catch (err) {
+      } catch {
         setError('Failed to connect to server');
-        console.error('Error submitting vote:', err);
         return false;
       } finally {
         setSubmitting(false);
@@ -114,13 +122,5 @@ export function useJanatarDabi(constituencyId: string): UseJanatarDabiReturn {
     [constituencyId, hasVoted, storageKey]
   );
 
-  return {
-    votes,
-    hasVoted,
-    votedIssue,
-    loading,
-    submitting,
-    error,
-    submitVote,
-  };
+  return { votes, hasVoted, votedIssue, loading, submitting, error, submitVote };
 }

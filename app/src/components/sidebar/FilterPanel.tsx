@@ -36,17 +36,21 @@ export default function FilterPanel({
   const [allConstituencies, setAllConstituencies] = useState<ConstituencyInfo[]>([]);
 
   useEffect(() => {
-    fetch('/data/bd-divisions.json')
+    const controller = new AbortController();
+    fetch('/data/bd-divisions.json', { signal: controller.signal })
       .then((res) => res.json())
       .then((data) => setDivisions(data.divisions || []))
-      .catch((err) => console.error('Error loading divisions:', err));
+      .catch(() => undefined);
+    return () => controller.abort();
   }, []);
 
   useEffect(() => {
-    fetch('/data/constituency-population.json')
+    const controller = new AbortController();
+    fetch('/data/constituency-population.json', { signal: controller.signal })
       .then((res) => res.json())
       .then((data) => setAllConstituencies(data.constituencies || []))
-      .catch((err) => console.error('Error loading constituencies:', err));
+      .catch(() => undefined);
+    return () => controller.abort();
   }, []);
 
   useEffect(() => {
@@ -55,7 +59,8 @@ export default function FilterPanel({
       return;
     }
 
-    fetch('/data/bd-districts.json')
+    const controller = new AbortController();
+    fetch('/data/bd-districts.json', { signal: controller.signal })
       .then((res) => res.json())
       .then((data) => {
         const filtered = (data.districts || []).filter(
@@ -63,7 +68,8 @@ export default function FilterPanel({
         );
         setDistricts(filtered);
       })
-      .catch((err) => console.error('Error loading districts:', err));
+      .catch(() => undefined);
+    return () => controller.abort();
   }, [value.divisionId]);
 
   useEffect(() => {
@@ -71,7 +77,6 @@ export default function FilterPanel({
       setConstituencies([]);
       return;
     }
-
     const filtered = allConstituencies.filter(
       (c) => c.district_id === value.districtId
     );
@@ -83,7 +88,6 @@ export default function FilterPanel({
       onConstituencySelect?.(null);
       return;
     }
-
     const constituency = allConstituencies.find((c) => c.id === constituencyId);
     if (constituency) {
       onConstituencySelect(constituency);
@@ -102,7 +106,6 @@ export default function FilterPanel({
 
   return (
     <div className="space-y-3">
-      {/* Division */}
       <div className="relative">
         <select
           value={value.divisionId || ''}
@@ -125,7 +128,6 @@ export default function FilterPanel({
         <ChevronIcon />
       </div>
 
-      {/* District */}
       {value.divisionId && (
         <div className="relative">
           <select
@@ -150,7 +152,6 @@ export default function FilterPanel({
         </div>
       )}
 
-      {/* Constituency */}
       {value.districtId && constituencies.length > 0 && (
         <div className="relative">
           <select

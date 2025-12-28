@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import type { FilterState } from '@/types/map';
 import type { ConstituencyPopulation } from '@/types/constituency';
 
+const BENGALI_DIGITS = '০১২৩৪৫৬৭৮৯';
+
 interface StatsData {
   total: number;
   urban: number;
@@ -25,11 +27,15 @@ export default function StatsPanel({ filterState }: StatsPanelProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
     const calculateStats = async () => {
       setLoading(true);
-
       try {
-        const response = await fetch('/data/constituency-population.json');
+        const response = await fetch('/data/constituency-population.json', {
+          signal: controller.signal,
+        });
         const data = await response.json();
         const constituencies: ConstituencyPopulation[] = data.constituencies;
 
@@ -43,28 +49,37 @@ export default function StatsPanel({ filterState }: StatsPanelProps) {
           return true;
         });
 
-        const total = filtered.reduce((sum, c) => sum + c.registered_voters, 0);
+        const total = filtered.reduce((sum, c) => sum + (c.registered_voters || 0), 0);
         const urban = filtered
           .filter((c) => c.urban_classification === 'urban')
-          .reduce((sum, c) => sum + c.registered_voters, 0);
+          .reduce((sum, c) => sum + (c.registered_voters || 0), 0);
         const rural = filtered
           .filter((c) => c.urban_classification === 'rural')
-          .reduce((sum, c) => sum + c.registered_voters, 0);
+          .reduce((sum, c) => sum + (c.registered_voters || 0), 0);
 
-        setStats({
-          total,
-          urban,
-          rural,
-          constituencies: filtered.length,
-        });
-      } catch (error) {
-        console.error('Error calculating stats:', error);
+        if (isMounted) {
+          setStats({
+            total,
+            urban,
+            rural,
+            constituencies: filtered.length,
+          });
+        }
+      } catch {
+        // Silently handle fetch errors
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     calculateStats();
+
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
   }, [filterState]);
 
   if (loading) {
@@ -82,26 +97,10 @@ export default function StatsPanel({ filterState }: StatsPanelProps) {
 
   return (
     <div className="grid grid-cols-2 gap-2">
-      <StatCard
-        label="মোট ভোটার"
-        value={formatNumber(stats.total)}
-        accent="white"
-      />
-      <StatCard
-        label="নির্বাচনী এলাকা"
-        value={stats.constituencies.toString()}
-        accent="white"
-      />
-      <StatCard
-        label="শহর"
-        value={formatNumber(stats.urban)}
-        accent="teal"
-      />
-      <StatCard
-        label="গ্রাম"
-        value={formatNumber(stats.rural)}
-        accent="amber"
-      />
+      <StatCard label="মোট ভোটার" value={formatNumber(stats.total)} accent="white" />
+      <StatCard label="নির্বাচনী এলাকা" value={stats.constituencies.toString()} accent="white" />
+      <StatCard label="শহর" value={formatNumber(stats.urban)} accent="teal" />
+      <StatCard label="গ্রাম" value={formatNumber(stats.rural)} accent="amber" />
     </div>
   );
 }
@@ -124,22 +123,24 @@ function StatCard({
   return (
     <div className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.04] transition-colors">
       <p className="text-[11px] text-neutral-500 uppercase tracking-wide mb-1">{label}</p>
-      <p className={`text-lg font-bold tabular-nums ${accentColors[accent]}`}>
-        {value}
-      </p>
+      <p className={`text-lg font-bold tabular-nums ${accentColors[accent]}`}>{value}</p>
     </div>
   );
 }
 
+function toBengaliDigits(str: string): string {
+  return str.replace(/\d/g, (d) => BENGALI_DIGITS[parseInt(d)]);
+}
+
 function formatNumber(num: number): string {
   if (num >= 10000000) {
-    return (num / 10000000).toFixed(1).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[parseInt(d)]) + ' কোটি';
+    return toBengaliDigits((num / 10000000).toFixed(1)) + ' কোটি';
   }
   if (num >= 100000) {
-    return (num / 100000).toFixed(1).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[parseInt(d)]) + ' লক্ষ';
+    return toBengaliDigits((num / 100000).toFixed(1)) + ' লক্ষ';
   }
   if (num >= 1000) {
-    return (num / 1000).toFixed(0).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[parseInt(d)]) + ' হাজার';
+    return toBengaliDigits((num / 1000).toFixed(0)) + ' হাজার';
   }
   return num.toLocaleString('bn-BD');
 }
