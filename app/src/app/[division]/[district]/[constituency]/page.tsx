@@ -1,12 +1,15 @@
 'use client';
 
-import { PARTY_COLORS } from '@/config/colors';
-import { JanatarDabi } from '@/components/janatar-dabi';
-import { AreaVideos } from '@/components/meme-pulse';
-import { slugify } from '@/lib/url-utils';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
+import { slugify } from '@/lib/url-utils';
+
+import { JanatarDabi } from '@/components/janatar-dabi';
+import { AreaVideos } from '@/components/meme-pulse';
+
+import { PARTY_COLORS } from '@/constants/colors';
 
 function ParallaxBackground() {
   return (

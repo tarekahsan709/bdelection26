@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { PARTY_COLORS } from '@/config/colors';
-import type { RawCandidate, PartyData } from '@/types/candidate';
+import { useEffect,useState } from 'react';
+
+import { PARTY_COLORS } from '@/constants/colors';
+
+import type { PartyData,RawCandidate } from '@/types/candidate';
 
 export type PartyMap = Map<string, string[]>; // constituency_id -> party codes
 

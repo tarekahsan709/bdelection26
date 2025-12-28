@@ -1,10 +1,12 @@
 'use client';
 
-import DivisionMap from '@/components/map/DivisionMap';
-import { getConstituencyUrl, slugify } from '@/lib/url-utils';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
+import { getConstituencyUrl, slugify } from '@/lib/url-utils';
+
+import DivisionMap from '@/components/map/DivisionMap';
 
 interface Division {
   id: string;

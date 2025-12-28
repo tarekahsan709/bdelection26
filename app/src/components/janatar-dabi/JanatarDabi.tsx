@@ -1,11 +1,13 @@
 'use client';
 
-import { useState, useMemo, useRef } from 'react';
-import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile';
-import { useJanatarDabi } from './useJanatarDabi';
-import { ISSUES, ISSUE_KEYS, type IssueType } from '@/types/janatar-dabi';
+import { type TurnstileInstance,Turnstile } from '@marsidev/react-turnstile';
+import { useMemo, useRef,useState } from 'react';
 
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'; // Test key for dev
+import { useJanatarDabi } from './useJanatarDabi';
+
+import { type IssueType,ISSUE_KEYS, ISSUES } from '@/types/janatar-dabi';
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '';
 
 interface JanatarDabiProps {
   constituencyId: string;

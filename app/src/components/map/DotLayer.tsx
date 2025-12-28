@@ -1,10 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
+import { useEffect, useRef, useState } from 'react';
+
+import { DATA_COLORS } from '@/constants/colors';
+
+import { getPartyColor,usePartyData } from './hooks/usePartyData';
+
 import type { Dot } from '@/types/dot-density';
-import { DATA_COLORS } from '@/config/colors';
-import { usePartyData, getPartyColor } from './hooks/usePartyData';
 
 export type ColorMode = 'area' | 'party';
 

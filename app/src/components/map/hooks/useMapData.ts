@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect,useState } from 'react';
+
 import type { Dot, DotDensityData } from '@/types/dot-density';
 
 export function useMapData(dataMode: 'voters' | 'population') {

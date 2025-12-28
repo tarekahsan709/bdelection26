@@ -1,8 +1,9 @@
 'use client';
 
-import { useMemo } from 'react';
-import type { Dot } from '@/types/dot-density';
 import type { LatLngBounds } from 'leaflet';
+import { useMemo } from 'react';
+
+import type { Dot } from '@/types/dot-density';
 
 // Sample rate based on zoom level - very sparse at low zoom
 function getSampleRate(zoom: number): number {

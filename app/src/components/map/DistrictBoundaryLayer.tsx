@@ -1,8 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
+import { useEffect, useRef, useState } from 'react';
+
 import type { ConstituencyInfo } from './ConstituencyLayer';
+
 import type { FilterState } from '@/types/map';
 
 interface District {

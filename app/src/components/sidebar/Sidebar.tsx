@@ -1,10 +1,12 @@
 'use client';
 
 import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
-import type { FilterState } from '@/types/map';
+
 import FilterPanel from './FilterPanel';
 import LegendPanel from './LegendPanel';
 import StatsPanel from './StatsPanel';
+
+import type { FilterState } from '@/types/map';
 
 interface SidebarProps {
   filterState: FilterState;

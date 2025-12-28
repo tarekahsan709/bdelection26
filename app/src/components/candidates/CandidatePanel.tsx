@@ -1,10 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
-import { PARTY_COLORS } from '@/config/colors';
+
 import { getConstituencyUrl } from '@/lib/url-utils';
 import { useCandidates } from '@/hooks/useCandidates';
+
+import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
+
+import { PARTY_COLORS } from '@/constants/colors';
+
 import type { Candidate } from '@/types/candidate';
 
 interface CandidatePanelProps {

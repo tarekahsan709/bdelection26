@@ -1,4 +1,4 @@
-import { PARTY_COLORS } from '@/config/colors';
+import { PARTY_COLORS } from '@/constants/colors';
 
 // Raw candidate data from JSON files
 export interface RawCandidate {

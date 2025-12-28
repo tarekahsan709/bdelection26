@@ -1,4 +1,3 @@
-import { siteConfig } from '@/constant/config';
 import { Metadata } from 'next';
 import { Noto_Sans_Bengali } from 'next/font/google';
 import Link from 'next/link';
@@ -6,6 +5,8 @@ import * as React from 'react';
 
 import '@/styles/globals.css';
 import '@/styles/colors.css';
+
+import { siteConfig } from '@/constants/site';
 
 // Noto Sans Bengali - Clean, modern Bangla font by Google
 const notoSansBengali = Noto_Sans_Bengali({

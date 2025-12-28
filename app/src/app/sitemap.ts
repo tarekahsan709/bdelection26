@@ -1,9 +1,10 @@
-import { MetadataRoute } from 'next';
 import { promises as fs } from 'fs';
+import { MetadataRoute } from 'next';
 import path from 'path';
 
-import { siteConfig } from '@/constant/config';
 import { getConstituencyUrl } from '@/lib/url-utils';
+
+import { siteConfig } from '@/constants/site';
 
 interface ConstituencyData {
   id: string;

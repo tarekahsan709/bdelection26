@@ -1,9 +1,11 @@
 'use client';
 
-import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
-import { getConstituencyColor } from '@/constants/divisions';
-import { PARTY_COLORS } from '@/config/colors';
 import { useCandidates } from '@/hooks/useCandidates';
+
+import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
+
+import { PARTY_COLORS } from '@/constants/colors';
+import { getConstituencyColor } from '@/constants/divisions';
 
 interface ConstituencyDetailProps {
   constituency: ConstituencyInfo;

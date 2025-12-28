@@ -1,19 +1,22 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
 import 'leaflet/dist/leaflet.css';
-import { useMapData } from './hooks/useMapData';
-import { useViewportFilter } from './hooks/useViewportFilter';
-import DotLayer, { type ColorMode } from './DotLayer';
+
 import ColorModeToggle from './ColorModeToggle';
-import ConstituencyLayer, { type ConstituencyInfo } from './ConstituencyLayer';
 import ConstituencyBoundaryLayer from './ConstituencyBoundaryLayer';
+import ConstituencyLayer, { type ConstituencyInfo } from './ConstituencyLayer';
 import DistrictBoundaryLayer from './DistrictBoundaryLayer';
 import DivisionBoundaryLayer from './DivisionBoundaryLayer';
-import SearchBar from './SearchBar';
-import QuickStats from './QuickStats';
+import DotLayer, { type ColorMode } from './DotLayer';
 import FloatingConstituencyCard from './FloatingConstituencyCard';
+import { useMapData } from './hooks/useMapData';
+import { useViewportFilter } from './hooks/useViewportFilter';
+import QuickStats from './QuickStats';
+import SearchBar from './SearchBar';
+
 import type { FilterState, MapState } from '@/types/map';
 
 const BANGLADESH_CENTER: [number, number] = [23.8103, 90.4125];

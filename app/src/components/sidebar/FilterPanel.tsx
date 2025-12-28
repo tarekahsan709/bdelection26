@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import type { FilterState } from '@/types/map';
+import { useEffect,useState } from 'react';
+
 import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
+
+import type { FilterState } from '@/types/map';
 
 interface Division {
   id: string;

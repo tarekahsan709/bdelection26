@@ -1,8 +1,9 @@
-import type { MemePulseResponse, VideoItem } from '@/types/meme-pulse';
-import { BLOCKLIST_KEYWORDS } from '@/types/meme-pulse';
 import Redis from 'ioredis';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+
+import type { MemePulseResponse, VideoItem } from '@/types/meme-pulse';
+import { BLOCKLIST_KEYWORDS } from '@/types/meme-pulse';
 
 // Validation schema
 const querySchema = z.object({

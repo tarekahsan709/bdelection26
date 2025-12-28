@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { PARTY_COLORS } from '@/config/colors';
-import type { Candidate, RawCandidate, PartyCode } from '@/types/candidate';
+import { useCallback, useEffect, useRef,useState } from 'react';
+
+import { PARTY_COLORS } from '@/constants/colors';
+
+import type { Candidate, PartyCode,RawCandidate } from '@/types/candidate';
 
 interface UseCandidatesResult {
   candidates: Candidate[];

@@ -1,8 +1,9 @@
 'use client';
 
-import type { FilterState } from '@/types/map';
-import type { ConstituencyPopulation } from '@/types/constituency';
 import { useEffect, useState } from 'react';
+
+import type { ConstituencyPopulation } from '@/types/constituency';
+import type { FilterState } from '@/types/map';
 
 interface StatsData {
   total: number;

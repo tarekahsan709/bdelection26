@@ -1,9 +1,11 @@
 'use client';
 
-import { slugify } from '@/lib/url-utils';
 import type L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef, useState } from 'react';
+
+import 'leaflet/dist/leaflet.css';
+
+import { slugify } from '@/lib/url-utils';
 
 interface Constituency {
   division_english: string;
@@ -36,7 +38,7 @@ export default function DivisionMap({ divisionSlug, className = '' }: DivisionMa
           (c: Constituency) => slugify(c.division_english) === divisionSlug && c.lat && c.long
         );
 
-        if (constituencies.length === 0) {
+        if (constituencies.length === 0 || !mapContainerRef.current) {
           setLoading(false);
           return;
         }
@@ -47,7 +49,7 @@ export default function DivisionMap({ divisionSlug, className = '' }: DivisionMa
         );
 
         // Initialize map
-        const map = L.map(mapContainerRef.current!, {
+        const map = L.map(mapContainerRef.current, {
           center: bounds.getCenter(),
           zoom: 8,
           zoomControl: false,

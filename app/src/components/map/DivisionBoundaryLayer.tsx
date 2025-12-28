@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
+import { useEffect, useRef, useState } from 'react';
+
 import type { FilterState } from '@/types/map';
 
 interface DivisionBoundaryLayerProps {

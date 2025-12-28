@@ -3,11 +3,12 @@
 import { useState } from 'react';
 
 const VERSION = '0.1.0-beta';
+const SHOW_DEV_BANNER = process.env.NEXT_PUBLIC_SHOW_DEV_BANNER === 'true';
 
 export default function DevBanner() {
   const [isVisible, setIsVisible] = useState(true);
 
-  if (!isVisible) return null;
+  if (!SHOW_DEV_BANNER || !isVisible) return null;
 
   return (
     <div

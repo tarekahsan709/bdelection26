@@ -1,13 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import Sidebar from '@/components/sidebar/Sidebar';
-import MapContainer from '@/components/map/MapContainer';
+
 import CandidatePanel from '@/components/candidates/CandidatePanel';
-import MobileHeader from '@/components/mobile/MobileHeader';
-import DevBanner from '@/components/ui/DevBanner';
-import type { FilterState } from '@/types/map';
 import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
+import MapContainer from '@/components/map/MapContainer';
+import MobileHeader from '@/components/mobile/MobileHeader';
+import Sidebar from '@/components/sidebar/Sidebar';
+import DevBanner from '@/components/ui/DevBanner';
+
+import type { FilterState } from '@/types/map';
 
 // Gradient Orbs Background - matches details page
 function ParallaxBackground() {

@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef,useState } from 'react';
+
 import { VideoCard } from './VideoCard';
+
 import type { VideoItem } from '@/types/meme-pulse';
 
 interface AreaVideosProps {

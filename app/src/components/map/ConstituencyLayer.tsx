@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
+import { useEffect, useRef, useState } from 'react';
 
 export interface ConstituencyInfo {
   id: string;

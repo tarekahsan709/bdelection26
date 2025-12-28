@@ -1,7 +1,8 @@
-import type { IssueType, IssueVotes, VoteResponse } from '@/types/janatar-dabi';
-import { NextRequest, NextResponse } from 'next/server';
 import Redis from 'ioredis';
+import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+
+import type { IssueType, IssueVotes, VoteResponse } from '@/types/janatar-dabi';
 
 // Zod schemas for strict input validation
 const constituencyIdSchema = z
@@ -29,7 +30,7 @@ const voteRequestSchema = z.object({
   turnstile_token: z.string().min(1, 'Turnstile token is required'),
 });
 
-const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY || '1x0000000000000000000000000000000AA'; // Test secret for dev
+const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY || '';
 const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
 async function verifyTurnstileToken(token: string, ip: string): Promise<boolean> {
@@ -73,15 +74,6 @@ const DEFAULT_VOTES: IssueVotes = {
   bad_roads: 0,
   load_shedding: 0,
 };
-
-const VALID_ISSUES: IssueType[] = [
-  'mosquitos',
-  'water_logging',
-  'traffic',
-  'extortion',
-  'bad_roads',
-  'load_shedding',
-];
 
 function getClientIP(request: NextRequest): string {
   const forwarded = request.headers.get('x-forwarded-for');

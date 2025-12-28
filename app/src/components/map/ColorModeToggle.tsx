@@ -1,6 +1,7 @@
 'use client';
 
-import { PARTY_COLORS, DATA_COLORS } from '@/config/colors';
+import {PARTY_COLORS } from '@/constants/colors';
+
 import type { ColorMode } from './DotLayer';
 
 interface ColorModeToggleProps {

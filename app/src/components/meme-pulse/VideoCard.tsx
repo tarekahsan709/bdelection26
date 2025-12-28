@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useRef,useState } from 'react';
+
 import type { VideoItem } from '@/types/meme-pulse';
 
 interface VideoCardProps {
@@ -87,8 +88,9 @@ export function VideoCard({ video, layout = 'horizontal' }: VideoCardProps) {
           isHovered ? 'ring-2 ring-red-500/50 shadow-lg shadow-red-500/20' : ''
         }`}
       >
-        {/* Thumbnail Image */}
+        {/* Thumbnail Image - using img for external YouTube thumbnails */}
         {!showEmbed && (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={video.thumbnailHigh || video.thumbnailUrl}
             alt={video.title}

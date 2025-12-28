@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams, redirect } from 'next/navigation';
+import { redirect,useParams } from 'next/navigation';
 
 export default function DistrictPage() {
   const params = useParams();

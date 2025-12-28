@@ -1,8 +1,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import type { FilterState } from '@/types/map';
+
 import type { ConstituencyInfo } from './ConstituencyLayer';
+
+import type { FilterState } from '@/types/map';
 
 const LeafletMap = dynamic(() => import('./LeafletMap'), {
   ssr: false,
