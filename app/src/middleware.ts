@@ -40,15 +40,18 @@ function isRateLimited(ip: string): boolean {
 }
 
 // Clean up old entries periodically (every 5 minutes)
-setInterval(() => {
-  const now = Date.now();
-  const entries = Array.from(rateLimitMap.entries());
-  for (const [ip, entry] of entries) {
-    if (now > entry.resetTime) {
-      rateLimitMap.delete(ip);
+setInterval(
+  () => {
+    const now = Date.now();
+    const entries = Array.from(rateLimitMap.entries());
+    for (const [ip, entry] of entries) {
+      if (now > entry.resetTime) {
+        rateLimitMap.delete(ip);
+      }
     }
-  }
-}, 5 * 60 * 1000);
+  },
+  5 * 60 * 1000,
+);
 
 export function middleware(request: NextRequest) {
   const ip = getClientIP(request);
@@ -69,7 +72,7 @@ export function middleware(request: NextRequest) {
             'X-RateLimit-Limit': MAX_REQUESTS_PER_WINDOW.toString(),
             'X-RateLimit-Remaining': '0',
           },
-        }
+        },
       );
     }
 
@@ -77,10 +80,13 @@ export function middleware(request: NextRequest) {
     const response = NextResponse.next();
     const entry = rateLimitMap.get(ip);
     if (entry) {
-      response.headers.set('X-RateLimit-Limit', MAX_REQUESTS_PER_WINDOW.toString());
+      response.headers.set(
+        'X-RateLimit-Limit',
+        MAX_REQUESTS_PER_WINDOW.toString(),
+      );
       response.headers.set(
         'X-RateLimit-Remaining',
-        Math.max(0, MAX_REQUESTS_PER_WINDOW - entry.count).toString()
+        Math.max(0, MAX_REQUESTS_PER_WINDOW - entry.count).toString(),
       );
     }
     return response;
@@ -103,7 +109,7 @@ export function middleware(request: NextRequest) {
       if (pattern.test(userAgent)) {
         return NextResponse.json(
           { error: 'Automated requests are not allowed' },
-          { status: 403 }
+          { status: 403 },
         );
       }
     }
@@ -116,7 +122,7 @@ export const config = {
   matcher: [
     // Match all API routes
     '/api/:path*',
-    // Exclude static files and images
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    // Exclude static files, images, and data files
+    '/((?!_next/static|_next/image|favicon.ico|data/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|json)$).*)',
   ],
 };

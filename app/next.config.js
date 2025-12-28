@@ -9,6 +9,16 @@ const nextConfig = {
   // Standalone output for Railway deployment
   output: 'standalone',
 
+  // Rewrites to serve data files via API in standalone mode
+  async rewrites() {
+    return [
+      {
+        source: '/data/:path*',
+        destination: '/api/data/:path*',
+      },
+    ];
+  },
+
   // Security Headers
   async headers() {
     return [
