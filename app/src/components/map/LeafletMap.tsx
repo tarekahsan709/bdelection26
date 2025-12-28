@@ -48,6 +48,7 @@ export default function LeafletMap({
   const [colorMode, setColorMode] = useState<ColorMode>('area');
   const [showGestureHint, setShowGestureHint] = useState(false);
   const gestureTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastHintTimeRef = useRef(0);
 
   const { dots, loading, error } = useMapData('voters');
   const visibleDots = useViewportFilter(dots, mapState.bounds, mapState.zoom);
@@ -134,14 +135,20 @@ export default function LeafletMap({
     const container = mapContainerRef.current;
     if (!container || window.innerWidth >= 768) return;
 
+    let mounted = true;
+    const COOLDOWN_MS = 5000;
+
     const handleTouchStart = (e: TouchEvent) => {
       if (e.touches.length === 1) {
+        const now = Date.now();
+        if (now - lastHintTimeRef.current < COOLDOWN_MS) return;
+        lastHintTimeRef.current = now;
+
         if (gestureTimeoutRef.current) clearTimeout(gestureTimeoutRef.current);
-        setShowGestureHint(true);
-        gestureTimeoutRef.current = setTimeout(
-          () => setShowGestureHint(false),
-          1500,
-        );
+        if (mounted) setShowGestureHint(true);
+        gestureTimeoutRef.current = setTimeout(() => {
+          if (mounted) setShowGestureHint(false);
+        }, 1500);
       }
     };
 
@@ -149,6 +156,7 @@ export default function LeafletMap({
       passive: true,
     });
     return () => {
+      mounted = false;
       container.removeEventListener('touchstart', handleTouchStart);
       if (gestureTimeoutRef.current) clearTimeout(gestureTimeoutRef.current);
     };
