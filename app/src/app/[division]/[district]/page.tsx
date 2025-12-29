@@ -1,11 +1,12 @@
-'use client';
+import { redirect } from 'next/navigation';
 
-import { redirect,useParams } from 'next/navigation';
+interface PageProps {
+  params: Promise<{
+    division: string;
+  }>;
+}
 
-export default function DistrictPage() {
-  const params = useParams();
-  const division = params.division as string;
-
-  // Redirect to division page
+export default async function DistrictPage({ params }: PageProps) {
+  const { division } = await params;
   redirect(`/${division}`);
 }

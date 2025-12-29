@@ -5,8 +5,10 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { getConstituencyUrl, slugify } from '@/lib/url-utils';
+import { formatNumberBn } from '@/lib/utils';
 
 import DivisionMap from '@/components/map/DivisionMap';
+import { ParallaxBackground } from '@/components/ui/ParallaxBackground';
 
 interface Division {
   id: string;
@@ -42,14 +44,20 @@ export default function DivisionClient() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchData = async () => {
       try {
         // Fetch divisions
-        const divRes = await fetch('/data/bd-divisions.json');
+        const divRes = await fetch('/data/bd-divisions.json', {
+          signal: controller.signal,
+        });
         const divData = await divRes.json();
         const div = divData.divisions.find(
           (d: Division) => slugify(d.name) === divisionSlug,
         );
+
+        if (controller.signal.aborted) return;
         setDivision(div || null);
 
         if (!div) {
@@ -58,11 +66,15 @@ export default function DivisionClient() {
         }
 
         // Fetch constituencies
-        const conRes = await fetch('/data/constituency-voters-2025.json');
+        const conRes = await fetch('/data/constituency-voters-2025.json', {
+          signal: controller.signal,
+        });
         const conData = await conRes.json();
         const divConstituencies = conData.constituencies.filter(
           (c: Constituency) => slugify(c.division_english) === divisionSlug,
         );
+
+        if (controller.signal.aborted) return;
         setConstituencies(divConstituencies);
 
         // Calculate stats
@@ -80,12 +92,17 @@ export default function DivisionClient() {
           districts: districts as string[],
         });
       } catch {
-        // Error handled silently
+        // Error handled silently (includes AbortError)
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
+
     fetchData();
+
+    return () => controller.abort();
   }, [divisionSlug]);
 
   if (loading) {
@@ -121,19 +138,7 @@ export default function DivisionClient() {
 
   return (
     <div className='min-h-screen bg-[#0c0c0c] relative'>
-      {/* Background */}
-      <div className='fixed inset-0 pointer-events-none'>
-        <div className='absolute inset-0 bg-[#0c0c0c]' />
-        <div
-          className='absolute inset-0 opacity-40'
-          style={{
-            background: `
-              radial-gradient(ellipse 100% 80% at 20% 20%, rgba(13, 148, 136, 0.15) 0%, transparent 50%),
-              radial-gradient(ellipse 80% 60% at 80% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%)
-            `,
-          }}
-        />
-      </div>
+      <ParallaxBackground />
 
       {/* Header */}
       <header className='sticky top-0 z-50 bg-[#0c0c0c]/90 backdrop-blur-xl border-b border-white/[0.04]'>
@@ -177,7 +182,7 @@ export default function DivisionClient() {
           {/* Stats Grid */}
           <div className='grid grid-cols-3 gap-4 max-w-2xl mx-auto'>
             <StatCard
-              value={formatNumber(stats.totalVoters)}
+              value={formatNumberBn(stats.totalVoters)}
               label='মোট ভোটার'
               sublabel='Total Voters'
               color='teal'
@@ -308,7 +313,7 @@ function ConstituencyCard({ constituency }: { constituency: Constituency }) {
       </div>
       <div className='mt-3 flex items-center justify-between text-xs'>
         <span className='text-neutral-500'>
-          {formatNumber(constituency.registered_voters)} ভোটার
+          {formatNumberBn(constituency.registered_voters)} ভোটার
         </span>
         <svg
           className='w-4 h-4 text-neutral-600 group-hover:text-teal-400 transition-colors'
@@ -326,11 +331,4 @@ function ConstituencyCard({ constituency }: { constituency: Constituency }) {
       </div>
     </Link>
   );
-}
-
-function formatNumber(num: number): string {
-  if (num >= 10000000) return `${(num / 10000000).toFixed(1)} কোটি`;
-  if (num >= 100000) return `${(num / 100000).toFixed(1)} লক্ষ`;
-  if (num >= 1000) return `${(num / 1000).toFixed(0)} হাজার`;
-  return num.toString();
 }

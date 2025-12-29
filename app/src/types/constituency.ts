@@ -35,3 +35,39 @@ export interface ConstituencyPopulation {
   lat: number;
   long: number;
 }
+
+export interface ConstituencyPopulationJson {
+  constituencies: ConstituencyPopulation[];
+}
+
+export interface Candidate {
+  candidate_id: number;
+  constituency_id: number;
+  candidate_name?: string;
+  candidate_name_english?: string;
+  party: string;
+  allocated_to?: string;
+}
+
+export interface InfrastructureData {
+  constituency_id: string;
+  name_english: string;
+  lat: number;
+  long: number;
+  schools: number;
+  hospitals: number;
+  clinics: number;
+  banks: number;
+  markets: number;
+  mosques: number;
+}
+
+export interface InfrastructureJson {
+  constituencies: InfrastructureData[];
+}
+
+export interface ConstituencyPageData {
+  population: ConstituencyPopulation | null;
+  infrastructure: InfrastructureData | null;
+  candidates: Candidate[];
+}
