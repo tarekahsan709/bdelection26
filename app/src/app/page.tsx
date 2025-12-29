@@ -50,7 +50,12 @@ function ParallaxBackground() {
 // Detailed Parliament Illustration - Louis Kahn's Jatiya Sangsad Bhaban
 function ParliamentIllustration({ className = '' }: { className?: string }) {
   return (
-    <svg viewBox='0 0 1000 500' fill='none' className={className}>
+    <svg
+      viewBox='0 0 1000 500'
+      fill='none'
+      preserveAspectRatio='xMidYMax slice'
+      className={className}
+    >
       <defs>
         <mask id='centerMask'>
           <rect x='0' y='0' width='1000' height='500' fill='white' />
@@ -364,8 +369,8 @@ export default function HomePage() {
               নির্বাচনী এলাকা
             </span>
           </div>
-          <div className='absolute bottom-0 left-0 right-0 pointer-events-none z-10 hidden md:block'>
-            <ParliamentIllustration className='w-full h-48 text-teal-500' />
+          <div className='absolute bottom-0 left-0 right-0 pointer-events-none z-500 hidden md:block'>
+            <ParliamentIllustration className='w-full h-48 text-teal-500/50' />
           </div>
         </div>
         {!selectedConstituency && (

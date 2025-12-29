@@ -48,7 +48,12 @@ function ParallaxBackground() {
 
 function ParliamentIllustration({ className = '' }: { className?: string }) {
   return (
-    <svg viewBox='0 0 1000 500' fill='none' className={className}>
+    <svg
+      viewBox='0 0 1000 500'
+      fill='none'
+      preserveAspectRatio='xMidYMax slice'
+      className={className}
+    >
       <defs>
         <mask id='centerMask'>
           <rect x='0' y='0' width='1000' height='500' fill='white' />
