@@ -1,28 +1,39 @@
-import Redis from 'ioredis';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
+import {
+  apiError,
+  checkInMemoryRateLimit,
+  getClientIP,
+  recordInMemoryRateLimit,
+} from '@/lib/api-utils';
+import { getRedis } from '@/lib/redis';
+
+import {
+  CONSTITUENCY_VALIDATION,
+  DEFAULT_ISSUE_VOTES,
+  JANATAR_DABI_KEYS,
+  JANATAR_DABI_RATE_LIMIT,
+  TURNSTILE_VERIFY_URL,
+  VALID_ISSUES,
+} from '@/constants/api';
+
 import type { IssueType, IssueVotes, VoteResponse } from '@/types/janatar-dabi';
 
-// Zod schemas for strict input validation
 const constituencyIdSchema = z
   .string()
   .min(1)
   .max(3)
-  .regex(/^[1-9][0-9]{0,2}$/, 'Invalid constituency ID format')
+  .regex(CONSTITUENCY_VALIDATION.PATTERN, 'Invalid constituency ID format')
   .refine((val) => {
     const num = parseInt(val, 10);
-    return num >= 1 && num <= 300;
+    return (
+      num >= CONSTITUENCY_VALIDATION.MIN_ID &&
+      num <= CONSTITUENCY_VALIDATION.MAX_ID
+    );
   }, 'Constituency ID must be between 1 and 300');
 
-const issueSchema = z.enum([
-  'mosquitos',
-  'water_logging',
-  'traffic',
-  'extortion',
-  'bad_roads',
-  'load_shedding',
-]);
+const issueSchema = z.enum(VALID_ISSUES);
 
 const voteRequestSchema = z.object({
   constituency_id: constituencyIdSchema,
@@ -30,20 +41,21 @@ const voteRequestSchema = z.object({
   turnstile_token: z.string().min(1, 'Turnstile token is required'),
 });
 
-const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY || '';
-const TURNSTILE_VERIFY_URL =
-  'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+const inMemoryVoteStore: Record<string, IssueVotes> = {};
 
 async function verifyTurnstileToken(
   token: string,
   ip: string,
 ): Promise<boolean> {
+  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+  if (!secretKey) return false;
+
   try {
     const response = await fetch(TURNSTILE_VERIFY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({
-        secret: TURNSTILE_SECRET_KEY,
+        secret: secretKey,
         response: token,
         remoteip: ip,
       }),
@@ -56,88 +68,41 @@ async function verifyTurnstileToken(
   }
 }
 
-// Redis client - connects to Railway Redis via REDIS_URL env var
-let redis: Redis | null = null;
-
-if (process.env.REDIS_URL) {
-  try {
-    redis = new Redis(process.env.REDIS_URL, {
-      maxRetriesPerRequest: 3,
-      retryStrategy: (times) => {
-        if (times > 3) return null;
-        return Math.min(times * 100, 2000);
-      },
-    });
-
-    redis.on('error', () => {
-      redis = null;
-    });
-  } catch {
-    redis = null;
-  }
-}
-
-// Fallback in-memory store when Redis is not available (local dev)
-const inMemoryStore: Record<string, IssueVotes> = {};
-const rateLimitStore: Record<string, number[]> = {};
-
-const RATE_LIMIT_WINDOW = 60; // 1 minute in seconds
-const MAX_VOTES_PER_WINDOW = 10;
-const VOTES_KEY_PREFIX = 'janatar_dabi:votes:';
-const RATE_LIMIT_KEY_PREFIX = 'janatar_dabi:ratelimit:';
-
-const DEFAULT_VOTES: IssueVotes = {
-  mosquitos: 0,
-  water_logging: 0,
-  traffic: 0,
-  extortion: 0,
-  bad_roads: 0,
-  load_shedding: 0,
-};
-
-function getClientIP(request: NextRequest): string {
-  const forwarded = request.headers.get('x-forwarded-for');
-  const realIp = request.headers.get('x-real-ip');
-  return forwarded?.split(',')[0].trim() || realIp || 'unknown';
-}
-
-// Redis-based rate limiting
 async function checkRateLimit(ip: string): Promise<boolean> {
+  const redis = getRedis();
+  const { WINDOW_SECONDS, MAX_REQUESTS } = JANATAR_DABI_RATE_LIMIT;
+
   if (!redis) {
-    // Fallback to in-memory
-    const now = Date.now();
-    const windowStart = now - RATE_LIMIT_WINDOW * 1000;
-    if (!rateLimitStore[ip]) rateLimitStore[ip] = [];
-    rateLimitStore[ip] = rateLimitStore[ip].filter((ts) => ts > windowStart);
-    return rateLimitStore[ip].length < MAX_VOTES_PER_WINDOW;
+    return checkInMemoryRateLimit(
+      'janatar_dabi',
+      ip,
+      WINDOW_SECONDS,
+      MAX_REQUESTS,
+    );
   }
 
-  const key = `${RATE_LIMIT_KEY_PREFIX}${ip}`;
+  const key = `${JANATAR_DABI_KEYS.RATE_LIMIT}${ip}`;
   const count = await redis.incr(key);
 
   if (count === 1) {
-    await redis.expire(key, RATE_LIMIT_WINDOW);
+    await redis.expire(key, WINDOW_SECONDS);
   }
 
-  return count <= MAX_VOTES_PER_WINDOW;
+  return count <= MAX_REQUESTS;
 }
 
-function recordInMemoryRateLimit(ip: string): void {
-  if (!rateLimitStore[ip]) rateLimitStore[ip] = [];
-  rateLimitStore[ip].push(Date.now());
-}
-
-// Get votes from Redis or in-memory
 async function getVotes(constituencyId: string): Promise<IssueVotes> {
+  const redis = getRedis();
+
   if (!redis) {
-    return inMemoryStore[constituencyId] || { ...DEFAULT_VOTES };
+    return inMemoryVoteStore[constituencyId] || { ...DEFAULT_ISSUE_VOTES };
   }
 
-  const key = `${VOTES_KEY_PREFIX}${constituencyId}`;
+  const key = `${JANATAR_DABI_KEYS.VOTES}${constituencyId}`;
   const data = await redis.hgetall(key);
 
   if (!data || Object.keys(data).length === 0) {
-    return { ...DEFAULT_VOTES };
+    return { ...DEFAULT_ISSUE_VOTES };
   }
 
   return {
@@ -150,39 +115,39 @@ async function getVotes(constituencyId: string): Promise<IssueVotes> {
   };
 }
 
-// Increment vote in Redis or in-memory
 async function incrementVote(
   constituencyId: string,
   issue: IssueType,
 ): Promise<IssueVotes> {
+  const redis = getRedis();
+
   if (!redis) {
-    if (!inMemoryStore[constituencyId]) {
-      inMemoryStore[constituencyId] = { ...DEFAULT_VOTES };
+    if (!inMemoryVoteStore[constituencyId]) {
+      inMemoryVoteStore[constituencyId] = { ...DEFAULT_ISSUE_VOTES };
     }
-    inMemoryStore[constituencyId][issue]++;
-    return { ...inMemoryStore[constituencyId] };
+    inMemoryVoteStore[constituencyId][issue]++;
+    return { ...inMemoryVoteStore[constituencyId] };
   }
 
-  const key = `${VOTES_KEY_PREFIX}${constituencyId}`;
+  const key = `${JANATAR_DABI_KEYS.VOTES}${constituencyId}`;
   await redis.hincrby(key, issue, 1);
   return getVotes(constituencyId);
 }
 
-// GET /api/janatar-dabi?constituency_id=1
+// =============================================================================
+// Route Handlers
+// =============================================================================
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const constituencyId = searchParams.get('constituency_id');
 
-  // Validate constituency_id with Zod
   const parseResult = constituencyIdSchema.safeParse(constituencyId);
   if (!parseResult.success) {
-    return NextResponse.json(
-      {
-        error: 'Invalid constituency_id',
-        details: parseResult.error.flatten(),
-      },
-      { status: 400 },
-    );
+    return apiError('Invalid constituency_id', {
+      status: 400,
+      details: parseResult.error.flatten(),
+    });
   }
 
   try {
@@ -194,59 +159,50 @@ export async function GET(request: NextRequest) {
       votes,
     });
   } catch {
-    return NextResponse.json(
-      { error: 'Failed to read votes' },
-      { status: 500 },
-    );
+    return apiError('Failed to read votes');
   }
 }
 
-// POST /api/janatar-dabi
-// Body: { constituency_id: string, issue: IssueType }
 export async function POST(request: NextRequest) {
   try {
     const clientIP = getClientIP(request);
     const withinLimit = await checkRateLimit(clientIP);
 
     if (!withinLimit) {
-      return NextResponse.json(
-        { error: 'Too many requests. Please wait before voting again.' },
-        { status: 429 },
-      );
+      return apiError('Too many requests. Please wait before voting again.', {
+        status: 429,
+      });
     }
 
-    // Parse and validate request body with Zod
     let body: unknown;
     try {
       body = await request.json();
     } catch {
-      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+      return apiError('Invalid JSON body', { status: 400 });
     }
 
     const parseResult = voteRequestSchema.safeParse(body);
     if (!parseResult.success) {
-      return NextResponse.json(
-        { error: 'Invalid request data', details: parseResult.error.flatten() },
-        { status: 400 },
-      );
+      return apiError('Invalid request data', {
+        status: 400,
+        details: parseResult.error.flatten(),
+      });
     }
 
     const { constituency_id, issue, turnstile_token } = parseResult.data;
 
-    // Verify Turnstile CAPTCHA token
     const isValidToken = await verifyTurnstileToken(turnstile_token, clientIP);
     if (!isValidToken) {
-      return NextResponse.json(
-        { error: 'CAPTCHA verification failed. Please try again.' },
-        { status: 403 },
-      );
+      return apiError('CAPTCHA verification failed. Please try again.', {
+        status: 403,
+      });
     }
 
     const votes = await incrementVote(constituency_id, issue);
 
     // Record rate limit for in-memory fallback
-    if (!redis) {
-      recordInMemoryRateLimit(clientIP);
+    if (!getRedis()) {
+      recordInMemoryRateLimit('janatar_dabi', clientIP);
     }
 
     const response: VoteResponse = {
@@ -257,9 +213,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(response);
   } catch {
-    return NextResponse.json(
-      { error: 'Failed to record vote' },
-      { status: 500 },
-    );
+    return apiError('Failed to record vote');
   }
 }

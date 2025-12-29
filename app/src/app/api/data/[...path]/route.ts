@@ -2,52 +2,43 @@ import { readFile } from 'fs/promises';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 
-// Allowed data files to prevent directory traversal attacks
-const ALLOWED_FILES = new Set([
-  'bd-districts.json',
-  'bd-divisions.json',
-  'bnp_candidates.json',
-  'constituencies.geojson',
-  'constituency-infrastructure.json',
-  'constituency-voters-2025.json',
-  'district-boundaries.json',
-  'dot-density-population.json',
-  'dot-density-voters.json',
-  'jamat_candidate.json',
-  'juib_candidates.json',
-  'ncp_candidates.json',
-]);
+import { apiError } from '@/lib/api-utils';
+
+import {
+  ALLOWED_DATA_FILES,
+  DATA_CACHE_CONTROL,
+  DATA_CONTENT_TYPES,
+} from '@/constants/api';
 
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ path: string[] }> },
 ) {
   const { path: pathSegments } = await params;
   const filename = pathSegments.join('/');
 
   // Security: Only allow whitelisted files
-  if (!ALLOWED_FILES.has(filename)) {
-    return NextResponse.json({ error: 'File not found' }, { status: 404 });
+  if (!ALLOWED_DATA_FILES.has(filename)) {
+    return apiError('File not found', { status: 404 });
   }
 
   try {
-    // In production, public folder is at the root level
     const publicPath = process.cwd();
     const filePath = path.join(publicPath, 'public', 'data', filename);
 
     const content = await readFile(filePath, 'utf-8');
     const contentType = filename.endsWith('.geojson')
-      ? 'application/geo+json'
-      : 'application/json';
+      ? DATA_CONTENT_TYPES.GEOJSON
+      : DATA_CONTENT_TYPES.JSON;
 
     return new NextResponse(content, {
       status: 200,
       headers: {
         'Content-Type': contentType,
-        'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
+        'Cache-Control': DATA_CACHE_CONTROL,
       },
     });
   } catch {
-    return NextResponse.json({ error: 'File not found' }, { status: 404 });
+    return apiError('File not found', { status: 404 });
   }
 }
