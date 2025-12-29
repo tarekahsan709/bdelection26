@@ -1,6 +1,6 @@
 import { Metadata, Viewport } from 'next';
 import { Noto_Sans_Bengali } from 'next/font/google';
-import * as React from 'react';
+import { ReactNode } from 'react';
 
 import '@/styles/globals.css';
 import '@/styles/colors.css';
@@ -8,7 +8,19 @@ import '@/styles/colors.css';
 import Providers from '@/components/Providers';
 import { OrganizationJsonLd, WebsiteJsonLd } from '@/components/seo/JsonLd';
 
-import { siteConfig } from '@/constants/site';
+import {
+  PRELOAD_DATA,
+  siteConfig,
+  THEME,
+  TILE_SERVERS,
+} from '@/constants/site';
+
+const notoSansBengali = Noto_Sans_Bengali({
+  subsets: ['bengali'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-bangla',
+});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -16,16 +28,8 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   viewportFit: 'cover',
-  themeColor: '#0c0c0c',
+  themeColor: THEME.background,
 };
-
-// Noto Sans Bengali - Clean, modern Bangla font by Google
-const notoSansBengali = Noto_Sans_Bengali({
-  subsets: ['bengali'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-  variable: '--font-bangla',
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -57,7 +61,7 @@ export const metadata: Metadata = {
     shortcut: '/favicon/favicon-16x16.png',
     apple: '/favicon/apple-touch-icon.png',
   },
-  manifest: `/favicon/site.webmanifest`,
+  manifest: '/favicon/site.webmanifest',
   openGraph: {
     url: siteConfig.url,
     title: siteConfig.title,
@@ -103,33 +107,29 @@ export const metadata: Metadata = {
   category: 'politics',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='bn' className={notoSansBengali.variable}>
       <head>
-        <link
-          rel='preload'
-          href='/data/constituency-voters-2025.json'
-          as='fetch'
-          crossOrigin='anonymous'
-        />
-        <link
-          rel='preload'
-          href='/data/bd-divisions.json'
-          as='fetch'
-          crossOrigin='anonymous'
-        />
-        <link rel='preconnect' href='https://a.tile.openstreetmap.org' />
-        <link rel='preconnect' href='https://b.tile.openstreetmap.org' />
-        <link rel='dns-prefetch' href='https://c.tile.openstreetmap.org' />
+        {PRELOAD_DATA.map((path) => (
+          <link
+            key={path}
+            rel='preload'
+            href={path}
+            as='fetch'
+            crossOrigin='anonymous'
+          />
+        ))}
+        <link rel='preconnect' href={TILE_SERVERS.primary} />
+        <link rel='preconnect' href={TILE_SERVERS.secondary} />
+        <link rel='dns-prefetch' href={TILE_SERVERS.tertiary} />
         <WebsiteJsonLd />
         <OrganizationJsonLd />
       </head>
-      <body className='bg-[#080808] text-white antialiased font-bangla'>
+      <body
+        className='text-white antialiased font-bangla'
+        style={{ backgroundColor: THEME.bodyBackground }}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

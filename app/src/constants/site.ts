@@ -1,3 +1,22 @@
+export const THEME = {
+  background: '#0c0c0c',
+  bodyBackground: '#080808',
+} as const;
+
+export const TOTAL_CONSTITUENCIES = 300;
+export const TOTAL_CONSTITUENCIES_BN = '৩০০';
+
+export const PRELOAD_DATA = [
+  '/data/constituency-voters-2025.json',
+  '/data/bd-divisions.json',
+] as const;
+
+export const TILE_SERVERS = {
+  primary: 'https://a.tile.openstreetmap.org',
+  secondary: 'https://b.tile.openstreetmap.org',
+  tertiary: 'https://c.tile.openstreetmap.org',
+} as const;
+
 export const siteConfig = {
   /** Site name in both Bengali and English */
   name: 'Bangladesh Election Map',
