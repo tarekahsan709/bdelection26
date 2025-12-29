@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { CloseIcon, SearchIcon } from '@/components/icons';
 
@@ -140,16 +140,19 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleSelect = (constituency: ConstituencyInfo) => {
-    onSelect(constituency);
-    setQuery('');
-    setIsOpen(false);
-  };
+  const handleSelect = useCallback(
+    (constituency: ConstituencyInfo) => {
+      onSelect(constituency);
+      setQuery('');
+      setIsOpen(false);
+    },
+    [onSelect],
+  );
 
-  const clearSearch = () => {
+  const clearSearch = useCallback(() => {
     setQuery('');
     setIsOpen(false);
-  };
+  }, []);
 
   return (
     <div

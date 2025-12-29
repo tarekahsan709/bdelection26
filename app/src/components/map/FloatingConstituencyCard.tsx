@@ -1,5 +1,7 @@
 'use client';
 
+import { memo } from 'react';
+
 import { formatLakhCount } from '@/lib/map-utils';
 
 import { CloseIcon, LocationIcon } from '@/components/icons';
@@ -12,7 +14,7 @@ interface FloatingConstituencyCardProps {
   isSelected?: boolean;
 }
 
-export default function FloatingConstituencyCard({
+export default memo(function FloatingConstituencyCard({
   constituency,
   onClose,
   isSelected = false,
@@ -68,4 +70,4 @@ export default function FloatingConstituencyCard({
       </div>
     </div>
   );
-}
+});

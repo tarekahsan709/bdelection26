@@ -37,7 +37,7 @@ export default function DevBanner() {
         <button
           onClick={() => setIsVisible(false)}
           className='ml-2 p-1 hover:bg-black/10 rounded transition-colors'
-          aria-label='Close'
+          aria-label='বন্ধ করুন'
         >
           <svg
             className='w-3 h-3 text-black/50 hover:text-black/80'

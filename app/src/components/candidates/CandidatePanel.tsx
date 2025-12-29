@@ -38,7 +38,9 @@ export default function CandidatePanel({
         <button
           className='w-full min-h-11 flex items-center justify-center focus:outline-none group'
           onClick={onToggleExpand}
-          aria-label={isExpanded ? 'Collapse panel' : 'Expand panel'}
+          aria-label={
+            isExpanded ? 'প্যানেল সংকুচিত করুন' : 'প্যানেল প্রসারিত করুন'
+          }
         >
           <div className='w-10 h-1 bg-neutral-600 group-active:bg-teal-500 rounded-full' />
         </button>
@@ -74,7 +76,7 @@ export default function CandidatePanel({
             <button
               onClick={onClose}
               className='w-11 h-11 flex items-center justify-center text-neutral-500 active:text-white active:bg-white/10 rounded-lg'
-              aria-label='Close panel'
+              aria-label='প্যানেল বন্ধ করুন'
             >
               <svg
                 className='w-5 h-5'
@@ -135,7 +137,7 @@ export default function CandidatePanel({
                   d='M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z'
                 />
               </svg>
-              <p className='text-sm'>No candidates found</p>
+              <p className='text-sm'>কোনো প্রার্থী পাওয়া যায়নি</p>
             </div>
           )}
         </div>

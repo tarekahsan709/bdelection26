@@ -17,7 +17,7 @@ export default function MobileHeader({
         <button
           onClick={onMenuClick}
           className='w-11 h-11 flex items-center justify-center text-gray-400 active:text-white active:bg-white/10 rounded-lg'
-          aria-label='Open menu'
+          aria-label='মেনু খুলুন'
         >
           <svg
             className='w-6 h-6'

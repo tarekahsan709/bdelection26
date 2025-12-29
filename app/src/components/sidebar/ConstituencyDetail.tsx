@@ -44,7 +44,7 @@ function Header({ constituency, onClose }: HeaderProps) {
       <button
         onClick={onClose}
         className='rounded-full p-1 text-gray-400 hover:bg-gray-800 hover:text-white'
-        aria-label='Close'
+        aria-label='বন্ধ করুন'
       >
         <CloseIcon className='h-5 w-5' />
       </button>
