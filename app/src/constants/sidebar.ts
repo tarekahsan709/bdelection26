@@ -20,21 +20,6 @@ export const SIDEBAR_UI = {
 } as const;
 
 // =============================================================================
-// Number Formatting Thresholds (Bengali)
-// =============================================================================
-
-export const NUMBER_THRESHOLDS = {
-  /** 1 Crore (10 million) */
-  CRORE: 10000000,
-
-  /** 1 Lakh (100 thousand) */
-  LAKH: 100000,
-
-  /** 1 Thousand */
-  THOUSAND: 1000,
-} as const;
-
-// =============================================================================
 // Bengali Text Labels
 // =============================================================================
 
@@ -66,13 +51,6 @@ export const SIDEBAR_TEXT = {
     male: 'পুরুষ',
     female: 'নারী',
     voters: 'ভোটার',
-  },
-
-  /** Number suffixes */
-  numbers: {
-    crore: 'কোটি',
-    lakh: 'লক্ষ',
-    thousand: 'হাজার',
   },
 
   /** Legend */

@@ -1,14 +1,10 @@
-import {
-  MOBILE_BREAKPOINT,
-  SAMPLE_RATE_BY_ZOOM,
-  ZOOM_RADIUS,
-} from '@/constants/map';
+import { SAMPLE_RATE_BY_ZOOM, ZOOM_RADIUS } from '@/constants/map';
+import { NUMBER_SUFFIXES, NUMBER_THRESHOLDS } from '@/constants/ui';
 
 import type { Dot } from '@/types/dot-density';
 
-export function isMobile(): boolean {
-  return typeof window !== 'undefined' && window.innerWidth < MOBILE_BREAKPOINT;
-}
+// Re-export isMobile from utils for backwards compatibility
+export { isMobile } from '@/lib/utils';
 
 export function getConstituencyRadius(zoom: number): number {
   if (zoom <= 6) return ZOOM_RADIUS.constituency[6];
@@ -49,18 +45,18 @@ export function shouldIncludeDot(dot: Dot, sampleRate: number): boolean {
 }
 
 export function formatVoterCount(num: number): string {
-  if (num >= 10000000) {
-    return (num / 10000000).toFixed(1) + ' কোটি';
+  if (num >= NUMBER_THRESHOLDS.CRORE) {
+    return `${(num / NUMBER_THRESHOLDS.CRORE).toFixed(1)} ${NUMBER_SUFFIXES.crore}`;
   }
-  if (num >= 100000) {
-    return (num / 100000).toFixed(1) + ' লক্ষ';
+  if (num >= NUMBER_THRESHOLDS.LAKH) {
+    return `${(num / NUMBER_THRESHOLDS.LAKH).toFixed(1)} ${NUMBER_SUFFIXES.lakh}`;
   }
   return num.toLocaleString('en-US');
 }
 
 export function formatLakhCount(num: number): string {
-  if (num >= 100000) {
-    return (num / 100000).toFixed(1) + ' লক্ষ';
+  if (num >= NUMBER_THRESHOLDS.LAKH) {
+    return `${(num / NUMBER_THRESHOLDS.LAKH).toFixed(1)} ${NUMBER_SUFFIXES.lakh}`;
   }
   return num.toLocaleString('en-US');
 }

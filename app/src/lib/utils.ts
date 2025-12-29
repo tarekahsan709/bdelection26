@@ -1,15 +1,43 @@
-import clsx, { ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import {
+  MOBILE_BREAKPOINT,
+  NUMBER_SUFFIXES,
+  NUMBER_THRESHOLDS,
+} from '@/constants/ui';
 
-/** Merge classes with tailwind-merge with clsx full feature */
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+// =============================================================================
+// Bengali Number Formatting
+// =============================================================================
+
+/**
+ * Format number in Bengali style (কোটি, লক্ষ, হাজার)
+ * @example formatBengaliNumber(15000000) => "1.5 কোটি"
+ * @example formatBengaliNumber(250000) => "2.5 লক্ষ"
+ * @example formatBengaliNumber(5000) => "5 হাজার"
+ */
+export function formatBengaliNumber(num: number): string {
+  if (num >= NUMBER_THRESHOLDS.CRORE) {
+    return `${(num / NUMBER_THRESHOLDS.CRORE).toFixed(1)} ${NUMBER_SUFFIXES.crore}`;
+  }
+  if (num >= NUMBER_THRESHOLDS.LAKH) {
+    return `${(num / NUMBER_THRESHOLDS.LAKH).toFixed(1)} ${NUMBER_SUFFIXES.lakh}`;
+  }
+  if (num >= NUMBER_THRESHOLDS.THOUSAND) {
+    return `${(num / NUMBER_THRESHOLDS.THOUSAND).toFixed(0)} ${NUMBER_SUFFIXES.thousand}`;
+  }
+  return num.toLocaleString('en-US');
 }
 
-/** Format number in Bengali style (কোটি, লক্ষ, হাজার) */
-export function formatNumberBn(num: number): string {
-  if (num >= 10000000) return `${(num / 10000000).toFixed(1)} কোটি`;
-  if (num >= 100000) return `${(num / 100000).toFixed(1)} লক্ষ`;
-  if (num >= 1000) return `${(num / 1000).toFixed(0)} হাজার`;
-  return num.toString();
+/** @deprecated Use formatBengaliNumber instead */
+export const formatNumberBn = formatBengaliNumber;
+
+// =============================================================================
+// Mobile Detection
+// =============================================================================
+
+/**
+ * Check if current viewport is mobile size
+ */
+export function isMobile(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth < MOBILE_BREAKPOINT;
 }

@@ -41,8 +41,6 @@ export const DATA_PATHS = {
   juibCandidates: '/data/juib_candidates.json',
 } as const;
 
-export const MOBILE_BREAKPOINT = 768;
-
 export const GESTURE_HINT = {
   cooldownMs: 5000,
   displayMs: 1500,

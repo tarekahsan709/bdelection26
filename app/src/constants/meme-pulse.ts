@@ -24,26 +24,8 @@ export const MEME_PULSE_UI = {
   /** View count threshold to show "Trending" badge */
   TRENDING_THRESHOLD: 100000,
 
-  /** Mobile breakpoint (px) */
-  MOBILE_BREAKPOINT: 768,
-
   /** Card width for horizontal layout (px) */
   CARD_WIDTH: 288, // w-72 = 18rem = 288px
-} as const;
-
-// =============================================================================
-// View Count Thresholds (Bengali number formatting)
-// =============================================================================
-
-export const VIEW_COUNT_THRESHOLDS = {
-  /** 1 Crore (10 million) */
-  CRORE: 10000000,
-
-  /** 1 Lakh (100 thousand) */
-  LAKH: 100000,
-
-  /** 1 Thousand */
-  THOUSAND: 1000,
 } as const;
 
 // =============================================================================

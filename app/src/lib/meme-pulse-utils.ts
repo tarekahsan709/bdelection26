@@ -8,8 +8,20 @@ import {
   MEME_PULSE_TEXT,
   MEME_PULSE_UI,
   NEWS_CHANNEL_KEYWORDS,
-  VIEW_COUNT_THRESHOLDS,
 } from '@/constants/meme-pulse';
+import { NUMBER_THRESHOLDS } from '@/constants/ui';
+
+// Re-export isMobile from utils for backwards compatibility
+export { isMobile as isMobileViewport } from '@/lib/utils';
+
+// =============================================================================
+// Time Constants
+// =============================================================================
+
+const MS_PER_DAY = 1000 * 60 * 60 * 24;
+const DAYS_PER_WEEK = 7;
+const DAYS_PER_MONTH = 30;
+const DAYS_PER_YEAR = 365;
 
 // =============================================================================
 // Formatting Functions
@@ -22,14 +34,14 @@ import {
  * @example formatViews(5000) => "5K"
  */
 export function formatViews(views: number): string {
-  if (views >= VIEW_COUNT_THRESHOLDS.CRORE) {
-    return `${(views / VIEW_COUNT_THRESHOLDS.CRORE).toFixed(1)} ${MEME_PULSE_TEXT.views.crore}`;
+  if (views >= NUMBER_THRESHOLDS.CRORE) {
+    return `${(views / NUMBER_THRESHOLDS.CRORE).toFixed(1)} ${MEME_PULSE_TEXT.views.crore}`;
   }
-  if (views >= VIEW_COUNT_THRESHOLDS.LAKH) {
-    return `${(views / VIEW_COUNT_THRESHOLDS.LAKH).toFixed(1)} ${MEME_PULSE_TEXT.views.lakh}`;
+  if (views >= NUMBER_THRESHOLDS.LAKH) {
+    return `${(views / NUMBER_THRESHOLDS.LAKH).toFixed(1)} ${MEME_PULSE_TEXT.views.lakh}`;
   }
-  if (views >= VIEW_COUNT_THRESHOLDS.THOUSAND) {
-    return `${(views / VIEW_COUNT_THRESHOLDS.THOUSAND).toFixed(0)}K`;
+  if (views >= NUMBER_THRESHOLDS.THOUSAND) {
+    return `${(views / NUMBER_THRESHOLDS.THOUSAND).toFixed(0)}K`;
   }
   return views.toString();
 }
@@ -42,16 +54,20 @@ export function formatTimeAgo(dateString: string): string {
   const date = new Date(dateString);
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
-  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const diffDays = Math.floor(diffMs / MS_PER_DAY);
 
   if (diffDays === 0) return MEME_PULSE_TEXT.time.today;
   if (diffDays === 1) return MEME_PULSE_TEXT.time.yesterday;
-  if (diffDays < 7) return MEME_PULSE_TEXT.time.daysAgo(diffDays);
-  if (diffDays < 30)
-    return MEME_PULSE_TEXT.time.weeksAgo(Math.floor(diffDays / 7));
-  if (diffDays < 365)
-    return MEME_PULSE_TEXT.time.monthsAgo(Math.floor(diffDays / 30));
-  return MEME_PULSE_TEXT.time.yearsAgo(Math.floor(diffDays / 365));
+  if (diffDays < DAYS_PER_WEEK) return MEME_PULSE_TEXT.time.daysAgo(diffDays);
+  if (diffDays < DAYS_PER_MONTH) {
+    return MEME_PULSE_TEXT.time.weeksAgo(Math.floor(diffDays / DAYS_PER_WEEK));
+  }
+  if (diffDays < DAYS_PER_YEAR) {
+    return MEME_PULSE_TEXT.time.monthsAgo(
+      Math.floor(diffDays / DAYS_PER_MONTH),
+    );
+  }
+  return MEME_PULSE_TEXT.time.yearsAgo(Math.floor(diffDays / DAYS_PER_YEAR));
 }
 
 // =============================================================================
@@ -72,16 +88,4 @@ export function isNewsChannel(channelName: string): boolean {
  */
 export function isTrendingVideo(viewCount: number): boolean {
   return viewCount > MEME_PULSE_UI.TRENDING_THRESHOLD;
-}
-
-// =============================================================================
-// Mobile Detection
-// =============================================================================
-
-/**
- * Check if current viewport is mobile size
- */
-export function isMobileViewport(): boolean {
-  if (typeof window === 'undefined') return false;
-  return window.innerWidth < MEME_PULSE_UI.MOBILE_BREAKPOINT;
 }

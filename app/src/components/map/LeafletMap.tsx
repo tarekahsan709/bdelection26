@@ -12,9 +12,9 @@ import {
   MAP_BOUNDS,
   MAP_CENTER,
   MAP_ZOOM,
-  MOBILE_BREAKPOINT,
   TILE_LAYER,
 } from '@/constants/map';
+import { MOBILE_BREAKPOINT } from '@/constants/ui';
 
 import ColorModeToggle from './ColorModeToggle';
 import ConstituencyBoundaryLayer from './ConstituencyBoundaryLayer';

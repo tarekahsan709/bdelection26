@@ -13,9 +13,9 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log error to monitoring service in production
+    // Placeholder for error monitoring service (e.g., Sentry, LogRocket)
     if (process.env.NODE_ENV === 'production') {
-      // TODO: Send to error monitoring service
+      // Error logged: error.message, error.digest
     }
   }, [error]);
 
@@ -41,7 +41,7 @@ export default function Error({
           ওহ! কিছু একটা গোলমাল হয়েছে
         </h1>
         <p className='text-neutral-400 mb-8 max-w-md'>
-          চিন্তার কিছু নেই, এটা সাময়িক সমস্যা। একটু পরে আবার চেষ্টা করুন।
+          এটা সাময়িক সমস্যা। একটু পরে আবার চেষ্টা করুন।
         </p>
         <div className='flex gap-4'>
           <button
