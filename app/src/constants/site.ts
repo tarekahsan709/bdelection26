@@ -5,6 +5,8 @@ export const THEME = {
 
 export const TOTAL_CONSTITUENCIES = 300;
 export const TOTAL_CONSTITUENCIES_BN = '৩০০';
+export const TOTAL_DIVISIONS = 8;
+export const TOTAL_DISTRICTS = 64;
 
 export const PRELOAD_DATA = [
   '/data/constituency-voters-2025.json',

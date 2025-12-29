@@ -2,12 +2,24 @@
 
 import { memo, useMemo } from 'react';
 
+import { formatVoterCount } from '@/lib/map-utils';
+
+import { TOTAL_DISTRICTS, TOTAL_DIVISIONS } from '@/constants/site';
 import { useConstituencyData } from '@/contexts/ConstituencyDataContext';
+
+interface Stats {
+  totalConstituencies: number;
+  totalVoters: number;
+  totalDivisions: number;
+  totalDistricts: number;
+  maleVoters: number;
+  femaleVoters: number;
+}
 
 function QuickStats() {
   const { constituencies, metadata, loading } = useConstituencyData();
 
-  const stats = useMemo(() => {
+  const stats = useMemo<Stats | null>(() => {
     if (loading || constituencies.length === 0) return null;
     const totalVoters = constituencies.reduce(
       (sum, c) => sum + (c.registered_voters || 0),
@@ -16,19 +28,14 @@ function QuickStats() {
     return {
       totalConstituencies: constituencies.length,
       totalVoters,
-      totalDivisions: 8,
-      totalDistricts: 64,
+      totalDivisions: TOTAL_DIVISIONS,
+      totalDistricts: TOTAL_DISTRICTS,
       maleVoters: metadata?.male_voters || 0,
       femaleVoters: metadata?.female_voters || 0,
     };
   }, [constituencies, metadata, loading]);
 
   if (!stats) return null;
-
-  const formatVoters = (num: number): string => {
-    const crore = num / 10000000;
-    return crore.toFixed(1) + ' কোটি';
-  };
 
   return (
     <div className='absolute bottom-6 left-4 right-4 z-1000 pointer-events-none'>
@@ -39,7 +46,7 @@ function QuickStats() {
           icon='🗳️'
         />
         <StatCard
-          value={formatVoters(stats.totalVoters)}
+          value={formatVoterCount(stats.totalVoters)}
           label='ভোটার'
           icon='👥'
         />
@@ -54,7 +61,7 @@ function QuickStats() {
           icon='📍'
         />
         <StatCard
-          value={`${formatVoters(stats.maleVoters)}/${formatVoters(stats.femaleVoters)}`}
+          value={`${formatVoterCount(stats.maleVoters)}/${formatVoterCount(stats.femaleVoters)}`}
           label='পুরুষ/নারী'
           icon='⚤'
           className='hidden sm:flex'

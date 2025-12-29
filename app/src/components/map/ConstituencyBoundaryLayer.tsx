@@ -3,7 +3,9 @@
 import L from 'leaflet';
 import { useEffect, useRef, useState } from 'react';
 
-import type { ConstituencyInfo } from './ConstituencyLayer';
+import { BOUNDARY_STYLE, DATA_PATHS } from '@/constants/map';
+
+import type { ConstituencyInfo } from '@/types/constituency';
 
 interface ConstituencyBoundaryLayerProps {
   map: L.Map;
@@ -45,7 +47,7 @@ export default function ConstituencyBoundaryLayer({
     const controller = new AbortController();
     const fetchData = async () => {
       try {
-        const response = await fetch('/data/constituencies.geojson', {
+        const response = await fetch(DATA_PATHS.constituenciesGeoJson, {
           signal: controller.signal,
         });
         const data = await response.json();
@@ -74,22 +76,32 @@ export default function ConstituencyBoundaryLayer({
         const isActive = activeId && featureId === activeId;
         const isSelected = selectedConstituency?.id === featureId;
 
-        if (isActive || isSelected) {
+        if (isSelected) {
           return {
-            fillColor: isSelected ? '#0d9488' : '#14b8a6',
-            fillOpacity: isSelected ? 0.25 : 0.15,
-            color: isSelected ? '#0d9488' : '#14b8a6',
-            weight: isSelected ? 3 : 2,
+            fillColor: BOUNDARY_STYLE.selected.fillColor,
+            fillOpacity: BOUNDARY_STYLE.selected.fillOpacity,
+            color: BOUNDARY_STYLE.selected.color,
+            weight: BOUNDARY_STYLE.selected.weight,
+            opacity: 1,
+          };
+        }
+
+        if (isActive) {
+          return {
+            fillColor: BOUNDARY_STYLE.hovered.fillColor,
+            fillOpacity: BOUNDARY_STYLE.hovered.fillOpacity,
+            color: BOUNDARY_STYLE.hovered.color,
+            weight: BOUNDARY_STYLE.hovered.weight,
             opacity: 1,
           };
         }
 
         return {
-          fillColor: 'transparent',
-          fillOpacity: 0,
-          color: '#374151',
-          weight: 0.5,
-          opacity: 0.3,
+          fillColor: BOUNDARY_STYLE.inactive.fillColor,
+          fillOpacity: BOUNDARY_STYLE.inactive.fillOpacity,
+          color: BOUNDARY_STYLE.inactive.color,
+          weight: BOUNDARY_STYLE.inactive.weight,
+          opacity: BOUNDARY_STYLE.inactive.opacity,
         };
       },
       interactive: false,

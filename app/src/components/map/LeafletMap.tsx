@@ -5,9 +5,20 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import 'leaflet/dist/leaflet.css';
 
+import {
+  DATA_PATHS,
+  GESTURE_HINT,
+  MAP_ANIMATION,
+  MAP_BOUNDS,
+  MAP_CENTER,
+  MAP_ZOOM,
+  MOBILE_BREAKPOINT,
+  TILE_LAYER,
+} from '@/constants/map';
+
 import ColorModeToggle from './ColorModeToggle';
 import ConstituencyBoundaryLayer from './ConstituencyBoundaryLayer';
-import ConstituencyLayer, { type ConstituencyInfo } from './ConstituencyLayer';
+import ConstituencyLayer from './ConstituencyLayer';
 import DistrictBoundaryLayer from './DistrictBoundaryLayer';
 import DivisionBoundaryLayer from './DivisionBoundaryLayer';
 import DotLayer, { type ColorMode } from './DotLayer';
@@ -17,13 +28,8 @@ import { useViewportFilter } from './hooks/useViewportFilter';
 import QuickStats from './QuickStats';
 import SearchBar from './SearchBar';
 
+import type { ConstituencyInfo } from '@/types/constituency';
 import type { FilterState, MapState } from '@/types/map';
-
-const BANGLADESH_CENTER: [number, number] = [23.8103, 90.4125];
-const BANGLADESH_BOUNDS: L.LatLngBoundsExpression = [
-  [20.5, 88.0],
-  [26.7, 92.8],
-];
 
 interface LeafletMapProps {
   filterState: FilterState;
@@ -39,8 +45,8 @@ export default function LeafletMap({
   const mapRef = useRef<L.Map | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const [mapState, setMapState] = useState<MapState>({
-    zoom: 7,
-    center: BANGLADESH_CENTER,
+    zoom: MAP_ZOOM.default,
+    center: [MAP_CENTER.lat, MAP_CENTER.lng],
     bounds: null,
   });
   const [hoveredConstituency, setHoveredConstituency] =
@@ -53,7 +59,6 @@ export default function LeafletMap({
   const { dots, loading, error } = useMapData('voters');
   const visibleDots = useViewportFilter(dots, mapState.bounds, mapState.zoom);
 
-  // Stable callback references
   const handleConstituencySelect = useCallback(
     (constituency: ConstituencyInfo | null) => {
       onConstituencySelect?.(constituency);
@@ -68,46 +73,37 @@ export default function LeafletMap({
     [],
   );
 
-  // Initialize Leaflet map
   useEffect(() => {
     const container = mapContainerRef.current;
-    if (!container) return;
+    if (!container || mapRef.current) return;
 
-    // Prevent double initialization in Strict Mode
-    if (mapRef.current) {
-      return;
-    }
-
-    // Check if container already has a map (can happen with hot reload)
     const existingMap = (container as HTMLDivElement & { _leaflet_id?: number })
       ._leaflet_id;
-    if (existingMap) {
-      return;
-    }
+    if (existingMap) return;
 
     let mounted = true;
-    const isMobile = window.innerWidth < 768;
+    const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
 
     const map = L.map(container, {
-      center: BANGLADESH_CENTER,
-      zoom: 7,
-      maxBounds: BANGLADESH_BOUNDS,
+      center: [MAP_CENTER.lat, MAP_CENTER.lng],
+      zoom: MAP_ZOOM.default,
+      maxBounds: [
+        [MAP_BOUNDS.southWest.lat, MAP_BOUNDS.southWest.lng],
+        [MAP_BOUNDS.northEast.lat, MAP_BOUNDS.northEast.lng],
+      ],
       maxBoundsViscosity: 1.0,
-      minZoom: 6,
-      maxZoom: 13,
+      minZoom: MAP_ZOOM.min,
+      maxZoom: MAP_ZOOM.max,
       preferCanvas: true,
       dragging: !isMobile,
       touchZoom: true,
       scrollWheelZoom: true,
     });
 
-    L.tileLayer(
-      'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-      {
-        attribution: '&copy; OpenStreetMap &copy; CARTO',
-        subdomains: 'abcd',
-      },
-    ).addTo(map);
+    L.tileLayer(TILE_LAYER.url, {
+      attribution: TILE_LAYER.attribution,
+      subdomains: TILE_LAYER.subdomains,
+    }).addTo(map);
 
     const updateMapState = () => {
       if (!mounted) return;
@@ -120,7 +116,6 @@ export default function LeafletMap({
 
     map.on('moveend', updateMapState);
     updateMapState();
-
     mapRef.current = map;
 
     return () => {
@@ -133,22 +128,21 @@ export default function LeafletMap({
 
   useEffect(() => {
     const container = mapContainerRef.current;
-    if (!container || window.innerWidth >= 768) return;
+    if (!container || window.innerWidth >= MOBILE_BREAKPOINT) return;
 
     let mounted = true;
-    const COOLDOWN_MS = 5000;
 
     const handleTouchStart = (e: TouchEvent) => {
       if (e.touches.length === 1) {
         const now = Date.now();
-        if (now - lastHintTimeRef.current < COOLDOWN_MS) return;
+        if (now - lastHintTimeRef.current < GESTURE_HINT.cooldownMs) return;
         lastHintTimeRef.current = now;
 
         if (gestureTimeoutRef.current) clearTimeout(gestureTimeoutRef.current);
         if (mounted) setShowGestureHint(true);
         gestureTimeoutRef.current = setTimeout(() => {
           if (mounted) setShowGestureHint(false);
-        }, 1500);
+        }, GESTURE_HINT.displayMs);
       }
     };
 
@@ -162,21 +156,18 @@ export default function LeafletMap({
     };
   }, []);
 
-  // Update map view when filters change
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
 
-    // Capture current filter state for this effect
     const currentFilter = { ...filterState };
     let cancelled = false;
 
     const fetchAndFlyToRegion = async () => {
       try {
-        const response = await fetch('/data/constituency-voters-2025.json');
+        const response = await fetch(DATA_PATHS.constituencyVoters);
         const data = await response.json();
 
-        // Check if filter changed while we were fetching
         if (cancelled) return;
 
         const constituencies: ConstituencyInfo[] = data.constituencies;
@@ -197,7 +188,6 @@ export default function LeafletMap({
           }
         }
 
-        // Only fly if filter hasn't changed
         if (cancelled) return;
 
         if (filteredConstituencies.length > 0) {
@@ -207,15 +197,19 @@ export default function LeafletMap({
             ),
           );
           map.flyToBounds(bounds, {
-            padding: [50, 50],
-            maxZoom: currentFilter.districtId ? 9 : 8,
-            duration: 1.2,
+            padding: [MAP_ANIMATION.flyPadding, MAP_ANIMATION.flyPadding],
+            maxZoom: currentFilter.districtId
+              ? MAP_ZOOM.districtFocus
+              : MAP_ZOOM.divisionFocus,
+            duration: MAP_ANIMATION.flyDurationSeconds,
           });
         } else if (!currentFilter.divisionId && !currentFilter.districtId) {
-          map.flyTo(BANGLADESH_CENTER, 7, { duration: 1.2 });
+          map.flyTo([MAP_CENTER.lat, MAP_CENTER.lng], MAP_ZOOM.default, {
+            duration: MAP_ANIMATION.flyDurationSeconds,
+          });
         }
       } catch {
-        // Error handled silently
+        // Silently handle fetch errors
       }
     };
 
@@ -229,7 +223,7 @@ export default function LeafletMap({
   if (error) {
     return (
       <div className='flex h-full w-full items-center justify-center bg-gray-900'>
-        <p className='text-red-400'>Error loading map data: {error}</p>
+        <p className='text-red-400'>ম্যাপ ডাটা লোড করতে সমস্যা হয়েছে</p>
       </div>
     );
   }
@@ -280,7 +274,7 @@ export default function LeafletMap({
       )}
       {loading && (
         <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50'>
-          <p className='text-white'>Loading voter data...</p>
+          <p className='text-white'>ভোটার ডাটা লোড হচ্ছে...</p>
         </div>
       )}
       {showGestureHint && (

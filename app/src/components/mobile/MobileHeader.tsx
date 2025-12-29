@@ -1,6 +1,6 @@
 'use client';
 
-import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
+import type { ConstituencyInfo } from '@/types/constituency';
 
 interface MobileHeaderProps {
   onMenuClick: () => void;

@@ -7,6 +7,8 @@ import 'leaflet/dist/leaflet.css';
 
 import { slugify } from '@/lib/url-utils';
 
+import { DATA_PATHS, MAP_ZOOM } from '@/constants/map';
+
 interface Constituency {
   division_english: string;
   lat: number;
@@ -47,7 +49,7 @@ export default function DivisionMap({
         const L = await import('leaflet');
 
         // Fetch constituencies to get division bounds
-        const res = await fetch('/data/constituency-voters-2025.json', {
+        const res = await fetch(DATA_PATHS.constituencyVoters, {
           signal: controller.signal,
         });
         const data = await res.json();
@@ -69,7 +71,7 @@ export default function DivisionMap({
         // Initialize map
         const map = L.map(container, {
           center: bounds.getCenter(),
-          zoom: 8,
+          zoom: MAP_ZOOM.divisionFocus,
           zoomControl: false,
           attributionControl: false,
           dragging: false,

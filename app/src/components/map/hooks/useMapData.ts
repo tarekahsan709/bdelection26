@@ -1,10 +1,19 @@
 'use client';
 
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { DATA_PATHS } from '@/constants/map';
 
 import type { Dot, DotDensityData } from '@/types/dot-density';
 
-export function useMapData(dataMode: 'voters' | 'population') {
+type DataMode = 'voters' | 'population';
+
+const DATA_PATH_MAP: Record<DataMode, string> = {
+  voters: DATA_PATHS.dotDensityVoters,
+  population: DATA_PATHS.dotDensityPopulation,
+};
+
+export function useMapData(dataMode: DataMode) {
   const [dots, setDots] = useState<Dot[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,12 +27,11 @@ export function useMapData(dataMode: 'voters' | 'population') {
       setError(null);
 
       try {
-        const filename =
-          dataMode === 'voters' ? 'dot-density-voters.json' : 'dot-density-population.json';
+        const path = DATA_PATH_MAP[dataMode];
+        const response = await fetch(path, { signal: controller.signal });
 
-        const response = await fetch(`/data/${filename}`, { signal: controller.signal });
         if (!response.ok) {
-          throw new Error(`Failed to fetch ${filename}`);
+          throw new Error(`ডাটা লোড করতে সমস্যা হয়েছে`);
         }
 
         const data: DotDensityData = await response.json();
@@ -32,7 +40,7 @@ export function useMapData(dataMode: 'voters' | 'population') {
         }
       } catch (err) {
         if (isMounted && (err as Error).name !== 'AbortError') {
-          setError(err instanceof Error ? err.message : 'Unknown error');
+          setError(err instanceof Error ? err.message : 'অজানা সমস্যা');
         }
       } finally {
         if (isMounted) {

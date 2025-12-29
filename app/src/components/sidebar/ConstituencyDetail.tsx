@@ -2,10 +2,10 @@
 
 import { useCandidates } from '@/hooks/useCandidates';
 
-import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
-
 import { PARTY_COLORS } from '@/constants/colors';
 import { getConstituencyColor } from '@/constants/divisions';
+
+import type { ConstituencyInfo } from '@/types/constituency';
 
 interface ConstituencyDetailProps {
   constituency: ConstituencyInfo;
@@ -37,8 +37,18 @@ export default function ConstituencyDetail({
           className='rounded-full p-1 text-gray-400 hover:bg-gray-800 hover:text-white'
           aria-label='Close'
         >
-          <svg className='h-5 w-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
+          <svg
+            className='h-5 w-5'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M6 18L18 6M6 6l12 12'
+            />
           </svg>
         </button>
       </div>
@@ -87,11 +97,16 @@ export default function ConstituencyDetail({
                 <div className='flex items-start justify-between'>
                   <div className='flex-1'>
                     <p className='font-medium text-white'>
-                      {candidate.candidate_name_english || candidate.candidate_name || 'Unknown'}
+                      {candidate.candidate_name_english ||
+                        candidate.candidate_name ||
+                        'Unknown'}
                     </p>
-                    {candidate.candidate_name && candidate.candidate_name_english && (
-                      <p className='text-xs text-gray-400'>{candidate.candidate_name}</p>
-                    )}
+                    {candidate.candidate_name &&
+                      candidate.candidate_name_english && (
+                        <p className='text-xs text-gray-400'>
+                          {candidate.candidate_name}
+                        </p>
+                      )}
                   </div>
                   <span
                     className='ml-2 rounded-full px-2 py-0.5 text-xs font-medium'
@@ -107,7 +122,9 @@ export default function ConstituencyDetail({
             ))}
           </div>
         ) : (
-          <p className='text-sm text-gray-500'>No candidates found for this constituency</p>
+          <p className='text-sm text-gray-500'>
+            No candidates found for this constituency
+          </p>
         )}
       </div>
     </div>

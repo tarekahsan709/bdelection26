@@ -2,12 +2,11 @@
 
 import Link from 'next/link';
 
-import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
-
 import FilterPanel from './FilterPanel';
 import LegendPanel from './LegendPanel';
 import StatsPanel from './StatsPanel';
 
+import type { ConstituencyInfo } from '@/types/constituency';
 import type { FilterState } from '@/types/map';
 
 interface SidebarProps {

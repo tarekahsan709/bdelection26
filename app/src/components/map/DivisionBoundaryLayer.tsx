@@ -3,6 +3,8 @@
 import L from 'leaflet';
 import { useEffect, useRef, useState } from 'react';
 
+import { BOUNDARY_STYLE, DATA_PATHS } from '@/constants/map';
+
 import type { FilterState } from '@/types/map';
 
 interface DivisionBoundaryLayerProps {
@@ -31,25 +33,48 @@ interface DistrictGeoJSON {
   features: DistrictFeature[];
 }
 
-// Map modern division names to old GeoJSON division names
 const DIVISION_NAME_MAP: Record<string, string> = {
-  'barishal': 'barisal',
-  'chattogram': 'chittagong',
-  'dhaka': 'dhaka',
-  'khulna': 'khulna',
-  'rajshahi': 'rajshahi',
-  'rangpur': 'rajshahi', // Rangpur districts are in old Rajshahi division
-  'sylhet': 'sylhet',
-  'mymensingh': 'dhaka', // Mymensingh districts are in old Dhaka division
+  barishal: 'barisal',
+  chattogram: 'chittagong',
+  dhaka: 'dhaka',
+  khulna: 'khulna',
+  rajshahi: 'rajshahi',
+  rangpur: 'rajshahi',
+  sylhet: 'sylhet',
+  mymensingh: 'dhaka',
 };
 
-// Old GeoJSON district names that belong to MODERN Rangpur division
-// (these were carved out from old Rajshahi division)
 const RANGPUR_GEO_DISTRICTS = ['ranpur', 'dinajpur'];
-
-// Old GeoJSON district names that belong to MODERN Mymensingh division
-// (these were carved out from old Dhaka division)
 const MYMENSINGH_GEO_DISTRICTS = ['mymensingh', 'jamalpur'];
+
+function isDistrictInDivision(
+  selectedDivisionName: string,
+  featureDivision: string,
+  districtName: string,
+): boolean {
+  if (selectedDivisionName === 'rangpur') {
+    return RANGPUR_GEO_DISTRICTS.includes(districtName);
+  }
+  if (selectedDivisionName === 'mymensingh') {
+    return MYMENSINGH_GEO_DISTRICTS.includes(districtName);
+  }
+  if (selectedDivisionName === 'dhaka') {
+    return (
+      featureDivision === 'dhaka' &&
+      !MYMENSINGH_GEO_DISTRICTS.includes(districtName)
+    );
+  }
+  if (selectedDivisionName === 'rajshahi') {
+    return (
+      featureDivision === 'rajshahi' &&
+      !RANGPUR_GEO_DISTRICTS.includes(districtName)
+    );
+  }
+
+  const mappedDivision =
+    DIVISION_NAME_MAP[selectedDivisionName] || selectedDivisionName;
+  return featureDivision === mappedDivision;
+}
 
 export default function DivisionBoundaryLayer({
   map,
@@ -64,8 +89,8 @@ export default function DivisionBoundaryLayer({
     const fetchData = async () => {
       try {
         const [districtRes, divisionRes] = await Promise.all([
-          fetch('/data/district-boundaries.json', { signal: controller.signal }),
-          fetch('/data/bd-divisions.json', { signal: controller.signal }),
+          fetch(DATA_PATHS.districtBoundaries, { signal: controller.signal }),
+          fetch(DATA_PATHS.divisions, { signal: controller.signal }),
         ]);
         const districtData = await districtRes.json();
         const divisionData = await divisionRes.json();
@@ -82,80 +107,48 @@ export default function DivisionBoundaryLayer({
   useEffect(() => {
     if (!geoData || !divisions.length) return;
 
-    // Remove existing layer
     if (layerRef.current) {
       map.removeLayer(layerRef.current);
     }
 
-    // Find selected division name
     let selectedDivisionName: string | null = null;
     if (filterState.divisionId) {
-      const division = divisions.find(d => d.id === filterState.divisionId);
+      const division = divisions.find((d) => d.id === filterState.divisionId);
       if (division) {
         selectedDivisionName = division.name.toLowerCase();
       }
     }
 
-    // Create the GeoJSON layer
     const layer = L.geoJSON(geoData as GeoJSON.FeatureCollection, {
       style: (feature) => {
         if (!selectedDivisionName) {
-          return {
-            fillColor: 'transparent',
-            fillOpacity: 0,
-            color: 'transparent',
-            weight: 0,
-            opacity: 0,
-          };
+          return BOUNDARY_STYLE.hidden;
         }
 
-        const featureDivision = (feature?.properties?.division || '').toLowerCase();
-        const districtName = (feature?.properties?.name_lower || '').toLowerCase();
+        const featureDivision = (
+          feature?.properties?.division || ''
+        ).toLowerCase();
+        const districtName = (
+          feature?.properties?.name_lower || ''
+        ).toLowerCase();
 
-        // Check if this district belongs to the selected division
-        let isInSelectedDivision = false;
-
-        // Handle Rangpur (newer division - show only ranpur and dinajpur from old Rajshahi)
-        if (selectedDivisionName === 'rangpur') {
-          isInSelectedDivision = RANGPUR_GEO_DISTRICTS.includes(districtName);
-        }
-        // Handle Mymensingh (newer division - show only mymensingh and jamalpur from old Dhaka)
-        else if (selectedDivisionName === 'mymensingh') {
-          isInSelectedDivision = MYMENSINGH_GEO_DISTRICTS.includes(districtName);
-        }
-        // Handle Dhaka - show all old Dhaka districts EXCEPT Mymensingh ones
-        else if (selectedDivisionName === 'dhaka') {
-          isInSelectedDivision = featureDivision === 'dhaka' &&
-            !MYMENSINGH_GEO_DISTRICTS.includes(districtName);
-        }
-        // Handle Rajshahi - show all old Rajshahi districts EXCEPT Rangpur ones
-        else if (selectedDivisionName === 'rajshahi') {
-          isInSelectedDivision = featureDivision === 'rajshahi' &&
-            !RANGPUR_GEO_DISTRICTS.includes(districtName);
-        }
-        // Handle other divisions (Barishal, Chattogram, Khulna, Sylhet) - direct mapping
-        else {
-          const mappedDivision = DIVISION_NAME_MAP[selectedDivisionName] || selectedDivisionName;
-          isInSelectedDivision = featureDivision === mappedDivision;
-        }
+        const isInSelectedDivision = isDistrictInDivision(
+          selectedDivisionName,
+          featureDivision,
+          districtName,
+        );
 
         if (isInSelectedDivision) {
           return {
-            fillColor: '#0d9488',
-            fillOpacity: 0.08,
-            color: '#14b8a6',
-            weight: 2,
-            opacity: 0.6,
+            fillColor: BOUNDARY_STYLE.division.fillColor,
+            fillOpacity: BOUNDARY_STYLE.division.fillOpacity,
+            color: BOUNDARY_STYLE.division.color,
+            weight: BOUNDARY_STYLE.division.weight,
+            opacity: BOUNDARY_STYLE.division.opacity,
           };
         }
 
-        return {
-          fillColor: 'transparent',
-          fillOpacity: 0,
-          color: 'transparent',
-          weight: 0,
-          opacity: 0,
-        };
+        return BOUNDARY_STYLE.hidden;
       },
       interactive: false,
     });

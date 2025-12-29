@@ -3,38 +3,17 @@
 import L from 'leaflet';
 import { useEffect, useRef, useState } from 'react';
 
-export interface ConstituencyInfo {
-  id: string;
-  name_english: string;
-  name: string;
-  total_population: number;
-  registered_voters: number;
-  urban_classification: 'urban' | 'rural';
-  lat: number;
-  long: number;
-  division_id: string;
-  division: string;
-  division_english: string;
-  district_id: string;
-  district: string;
-  district_english: string;
-}
+import { getConstituencyRadius } from '@/lib/map-utils';
+
+import { DATA_PATHS, PANE_Z_INDEX } from '@/constants/map';
+
+import type { ConstituencyInfo } from '@/types/constituency';
 
 interface ConstituencyLayerProps {
   map: L.Map;
   onConstituencySelect: (constituency: ConstituencyInfo | null) => void;
   onConstituencyHover: (constituency: ConstituencyInfo | null) => void;
   selectedConstituency: ConstituencyInfo | null;
-}
-
-function getRadiusForZoom(zoom: number): number {
-  if (zoom <= 6) return 18;
-  if (zoom === 7) return 22;
-  if (zoom === 8) return 28;
-  if (zoom === 9) return 35;
-  if (zoom === 10) return 45;
-  if (zoom === 11) return 55;
-  return 65;
 }
 
 export default function ConstituencyLayer({
@@ -46,52 +25,52 @@ export default function ConstituencyLayer({
   const layerGroupRef = useRef<L.LayerGroup | null>(null);
   const [constituencies, setConstituencies] = useState<ConstituencyInfo[]>([]);
 
-  // Use refs for callbacks to avoid effect dependencies
   const selectRef = useRef(onConstituencySelect);
   const hoverRef = useRef(onConstituencyHover);
   const selectedRef = useRef(selectedConstituency);
 
-  // Keep refs updated
   useEffect(() => {
     selectRef.current = onConstituencySelect;
     hoverRef.current = onConstituencyHover;
     selectedRef.current = selectedConstituency;
   });
 
-  // Load constituency data once
   useEffect(() => {
+    const controller = new AbortController();
     const fetchConstituencies = async () => {
       try {
-        const response = await fetch('/data/constituency-voters-2025.json');
+        const response = await fetch(DATA_PATHS.constituencyVoters, {
+          signal: controller.signal,
+        });
         const data = await response.json();
-        setConstituencies(data.constituencies.filter((c: ConstituencyInfo) => c.lat && c.long));
+        setConstituencies(
+          data.constituencies.filter((c: ConstituencyInfo) => c.lat && c.long),
+        );
       } catch {
-        // Error handled silently
+        // Silently handle fetch errors
       }
     };
     fetchConstituencies();
+    return () => controller.abort();
   }, []);
 
-  // Create and manage layer
   useEffect(() => {
     if (!constituencies.length) return;
 
-    // Clear existing layer
     if (layerGroupRef.current) {
       map.removeLayer(layerGroupRef.current);
     }
 
-    // Create custom pane
     if (!map.getPane('constituencyPane')) {
       const pane = map.createPane('constituencyPane');
-      pane.style.zIndex = '650';
+      pane.style.zIndex = String(PANE_Z_INDEX.constituency);
     }
 
     const layerGroup = L.layerGroup();
 
     constituencies.forEach((constituency) => {
       const marker = L.circleMarker([constituency.lat, constituency.long], {
-        radius: getRadiusForZoom(map.getZoom()),
+        radius: getConstituencyRadius(map.getZoom()),
         fillColor: 'transparent',
         fillOpacity: 0,
         color: 'transparent',
@@ -138,9 +117,8 @@ export default function ConstituencyLayer({
     layerGroup.addTo(map);
     layerGroupRef.current = layerGroup;
 
-    // Update marker sizes on zoom
     const handleZoom = () => {
-      const newRadius = getRadiusForZoom(map.getZoom());
+      const newRadius = getConstituencyRadius(map.getZoom());
       layerGroup.eachLayer((layer) => {
         if (layer instanceof L.CircleMarker) {
           layer.setRadius(newRadius);

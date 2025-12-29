@@ -2,10 +2,9 @@
 
 import { memo, useMemo } from 'react';
 
-import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
-
 import { useConstituencyData } from '@/contexts/ConstituencyDataContext';
 
+import type { ConstituencyInfo } from '@/types/constituency';
 import type { FilterState } from '@/types/map';
 
 interface FilterPanelProps {

@@ -26,8 +26,10 @@ export interface ConstituencyPopulation {
   name: string;
   name_english: string;
   division_id: string;
+  division: string;
   division_english: string;
   district_id: string;
+  district: string;
   district_english: string;
   total_population: number;
   registered_voters: number;
@@ -35,6 +37,8 @@ export interface ConstituencyPopulation {
   lat: number;
   long: number;
 }
+
+export type ConstituencyInfo = ConstituencyPopulation;
 
 export interface ConstituencyPopulationJson {
   constituencies: ConstituencyPopulation[];

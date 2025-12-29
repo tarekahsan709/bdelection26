@@ -5,11 +5,10 @@ import Link from 'next/link';
 import { getConstituencyUrl } from '@/lib/url-utils';
 import { useCandidates } from '@/hooks/useCandidates';
 
-import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
-
 import { PARTY_COLORS } from '@/constants/colors';
 
 import type { Candidate } from '@/types/candidate';
+import type { ConstituencyInfo } from '@/types/constituency';
 
 interface CandidatePanelProps {
   constituency: ConstituencyInfo | null;

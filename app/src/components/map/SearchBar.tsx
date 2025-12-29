@@ -2,10 +2,96 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import type { ConstituencyInfo } from './ConstituencyLayer';
+import { CloseIcon, SearchIcon } from '@/components/icons';
+
+import { DATA_PATHS } from '@/constants/map';
+
+import type { ConstituencyInfo } from '@/types/constituency';
+
+const MAX_RESULTS = 8;
+
+const SEARCH_SCORE = {
+  exactMatch: 1000,
+  startsWith: 500,
+  contains: 300,
+  districtExact: 200,
+  districtStartsWith: 150,
+  districtContains: 100,
+  divisionStartsWith: 50,
+  divisionContains: 25,
+  fuzzyName: 20,
+  fuzzyDistrict: 10,
+} as const;
 
 interface SearchBarProps {
   onSelect: (constituency: ConstituencyInfo) => void;
+}
+
+function fuzzyMatch(text: string | undefined, term: string): boolean {
+  if (!text) return false;
+  const lowerText = text.toLowerCase();
+  if (lowerText.includes(term)) return true;
+  let termIndex = 0;
+  for (const char of lowerText) {
+    if (char === term[termIndex]) {
+      termIndex++;
+      if (termIndex === term.length) return true;
+    }
+  }
+  return false;
+}
+
+function getSearchScore(c: ConstituencyInfo, searchTerm: string): number {
+  let score = 0;
+  const nameEng = c.name_english?.toLowerCase() || '';
+  const name = c.name?.toLowerCase() || '';
+  const districtEng = c.district_english?.toLowerCase() || '';
+  const district = c.district?.toLowerCase() || '';
+  const divisionEng = c.division_english?.toLowerCase() || '';
+
+  if (nameEng === searchTerm || name === searchTerm) {
+    score += SEARCH_SCORE.exactMatch;
+  } else if (nameEng.startsWith(searchTerm) || name.startsWith(searchTerm)) {
+    score += SEARCH_SCORE.startsWith;
+  } else if (nameEng.includes(searchTerm) || name.includes(searchTerm)) {
+    score += SEARCH_SCORE.contains;
+  }
+
+  if (districtEng === searchTerm || district === searchTerm) {
+    score += SEARCH_SCORE.districtExact;
+  } else if (
+    districtEng.startsWith(searchTerm) ||
+    district.startsWith(searchTerm)
+  ) {
+    score += SEARCH_SCORE.districtStartsWith;
+  } else if (
+    districtEng.includes(searchTerm) ||
+    district.includes(searchTerm)
+  ) {
+    score += SEARCH_SCORE.districtContains;
+  }
+
+  if (divisionEng.startsWith(searchTerm)) {
+    score += SEARCH_SCORE.divisionStartsWith;
+  } else if (divisionEng.includes(searchTerm)) {
+    score += SEARCH_SCORE.divisionContains;
+  }
+
+  if (score === 0) {
+    if (
+      fuzzyMatch(c.name_english, searchTerm) ||
+      fuzzyMatch(c.name, searchTerm)
+    ) {
+      score += SEARCH_SCORE.fuzzyName;
+    } else if (
+      fuzzyMatch(c.district_english, searchTerm) ||
+      fuzzyMatch(c.district, searchTerm)
+    ) {
+      score += SEARCH_SCORE.fuzzyDistrict;
+    }
+  }
+
+  return score;
 }
 
 export default function SearchBar({ onSelect }: SearchBarProps) {
@@ -17,7 +103,7 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch('/data/constituency-voters-2025.json', { signal: controller.signal })
+    fetch(DATA_PATHS.constituencyVoters, { signal: controller.signal })
       .then((res) => res.json())
       .then((data) => setConstituencies(data.constituencies || []))
       .catch(() => undefined);
@@ -29,70 +115,11 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
 
     const searchTerm = query.toLowerCase().trim();
 
-    const fuzzyMatch = (text: string | undefined, term: string): boolean => {
-      if (!text) return false;
-      const lowerText = text.toLowerCase();
-      if (lowerText.includes(term)) return true;
-      let termIndex = 0;
-      for (const char of lowerText) {
-        if (char === term[termIndex]) {
-          termIndex++;
-          if (termIndex === term.length) return true;
-        }
-      }
-      return false;
-    };
-
-    const getScore = (c: ConstituencyInfo): number => {
-      let score = 0;
-      const nameEng = c.name_english?.toLowerCase() || '';
-      const name = c.name?.toLowerCase() || '';
-      const districtEng = c.district_english?.toLowerCase() || '';
-      const district = c.district?.toLowerCase() || '';
-      const divisionEng = c.division_english?.toLowerCase() || '';
-
-      if (nameEng === searchTerm || name === searchTerm) score += 1000;
-      else if (nameEng.startsWith(searchTerm) || name.startsWith(searchTerm))
-        score += 500;
-      else if (nameEng.includes(searchTerm) || name.includes(searchTerm))
-        score += 300;
-
-      if (districtEng === searchTerm || district === searchTerm) score += 200;
-      else if (
-        districtEng.startsWith(searchTerm) ||
-        district.startsWith(searchTerm)
-      )
-        score += 150;
-      else if (
-        districtEng.includes(searchTerm) ||
-        district.includes(searchTerm)
-      )
-        score += 100;
-
-      if (divisionEng.startsWith(searchTerm)) score += 50;
-      else if (divisionEng.includes(searchTerm)) score += 25;
-
-      if (score === 0) {
-        if (
-          fuzzyMatch(c.name_english, searchTerm) ||
-          fuzzyMatch(c.name, searchTerm)
-        )
-          score += 20;
-        else if (
-          fuzzyMatch(c.district_english, searchTerm) ||
-          fuzzyMatch(c.district, searchTerm)
-        )
-          score += 10;
-      }
-
-      return score;
-    };
-
     return constituencies
-      .map((c) => ({ constituency: c, score: getScore(c) }))
+      .map((c) => ({ constituency: c, score: getSearchScore(c, searchTerm) }))
       .filter((item) => item.score > 0)
       .sort((a, b) => b.score - a.score)
-      .slice(0, 8)
+      .slice(0, MAX_RESULTS)
       .map((item) => item.constituency);
   }, [query, constituencies]);
 
@@ -119,6 +146,11 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
     setIsOpen(false);
   };
 
+  const clearSearch = () => {
+    setQuery('');
+    setIsOpen(false);
+  };
+
   return (
     <div
       ref={containerRef}
@@ -126,19 +158,7 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
     >
       <div className='relative'>
         <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-          <svg
-            className='w-5 h-5 text-neutral-500'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-            />
-          </svg>
+          <SearchIcon className='w-5 h-5 text-neutral-500' />
         </div>
         <input
           ref={inputRef}
@@ -150,26 +170,11 @@ export default function SearchBar({ onSelect }: SearchBarProps) {
         />
         {query && (
           <button
-            onClick={() => {
-              setQuery('');
-              setIsOpen(false);
-            }}
+            onClick={clearSearch}
             className='absolute inset-y-0 right-0 w-11 flex items-center justify-center'
-            aria-label='Clear search'
+            aria-label='খোঁজা বাতিল করুন'
           >
-            <svg
-              className='w-5 h-5 text-neutral-500 active:text-neutral-300'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M6 18L18 6M6 6l12 12'
-              />
-            </svg>
+            <CloseIcon className='w-5 h-5 text-neutral-500 active:text-neutral-300' />
           </button>
         )}
       </div>

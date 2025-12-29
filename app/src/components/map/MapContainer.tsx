@@ -4,8 +4,7 @@ import dynamic from 'next/dynamic';
 
 import MapSkeleton from '@/components/ui/MapSkeleton';
 
-import type { ConstituencyInfo } from './ConstituencyLayer';
-
+import type { ConstituencyInfo } from '@/types/constituency';
 import type { FilterState } from '@/types/map';
 
 const LeafletMap = dynamic(() => import('./LeafletMap'), {

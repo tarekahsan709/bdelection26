@@ -3,6 +3,8 @@
 import L from 'leaflet';
 import { useEffect, useRef, useState } from 'react';
 
+import { getDotGlowRadius, getDotRadius, isMobile } from '@/lib/map-utils';
+
 import { DATA_COLORS } from '@/constants/colors';
 
 import { getPartyColor, usePartyData } from './hooks/usePartyData';
@@ -17,9 +19,16 @@ interface DotLayerProps {
   colorMode?: ColorMode;
 }
 
-function isMobile(): boolean {
-  return typeof window !== 'undefined' && window.innerWidth < 768;
-}
+const DOT_STYLE = {
+  main: {
+    fillOpacity: 0.85,
+    weight: 0,
+  },
+  glow: {
+    fillOpacity: 0.12,
+    weight: 0,
+  },
+} as const;
 
 export default function DotLayer({
   map,
@@ -64,25 +73,25 @@ export default function DotLayer({
     const glowRenderer = showGlow ? L.canvas({ padding: 0.5 }) : null;
 
     const zoom = map.getZoom();
-    const baseRadius = getRadiusForZoom(zoom);
-    const glowRadius = getGlowRadiusForZoom(zoom);
+    const baseRadius = getDotRadius(zoom);
+    const glowRadius = getDotGlowRadius(zoom);
 
     dots.forEach((dot: Dot) => {
-      let color: string;
-      if (colorMode === 'party') {
-        color = getPartyColor(partyMap, dot.c_id);
-      } else {
-        color = dot.u ? DATA_COLORS.urban : DATA_COLORS.rural;
-      }
+      const color =
+        colorMode === 'party'
+          ? getPartyColor(partyMap, dot.c_id)
+          : dot.u
+            ? DATA_COLORS.urban
+            : DATA_COLORS.rural;
 
       if (showGlow && glowLayer && glowRenderer) {
         L.circleMarker([dot.lat, dot.lng], {
           renderer: glowRenderer,
           radius: glowRadius,
           fillColor: color,
-          fillOpacity: 0.12,
+          fillOpacity: DOT_STYLE.glow.fillOpacity,
           color: 'transparent',
-          weight: 0,
+          weight: DOT_STYLE.glow.weight,
           interactive: false,
         }).addTo(glowLayer);
       }
@@ -91,9 +100,9 @@ export default function DotLayer({
         renderer: canvasRenderer,
         radius: baseRadius,
         fillColor: color,
-        fillOpacity: 0.85,
+        fillOpacity: DOT_STYLE.main.fillOpacity,
         color: color,
-        weight: 0,
+        weight: DOT_STYLE.main.weight,
         interactive: false,
       }).addTo(mainLayer);
     });
@@ -106,8 +115,8 @@ export default function DotLayer({
     layerGroupRef.current = mainLayer;
 
     const handleZoom = () => {
-      const newRadius = getRadiusForZoom(map.getZoom());
-      const newGlowRadius = getGlowRadiusForZoom(map.getZoom());
+      const newRadius = getDotRadius(map.getZoom());
+      const newGlowRadius = getDotGlowRadius(map.getZoom());
 
       mainLayer.eachLayer((layer) => {
         if (layer instanceof L.CircleMarker) {
@@ -138,26 +147,4 @@ export default function DotLayer({
   }, [map, dots, isReady, colorMode, partyMap, partyLoading]);
 
   return null;
-}
-
-function getRadiusForZoom(zoom: number): number {
-  if (zoom <= 6) return 0.8;
-  if (zoom === 7) return 1.0;
-  if (zoom === 8) return 1.3;
-  if (zoom === 9) return 1.6;
-  if (zoom === 10) return 2.0;
-  if (zoom === 11) return 2.5;
-  if (zoom === 12) return 3.0;
-  return 3.5;
-}
-
-function getGlowRadiusForZoom(zoom: number): number {
-  if (zoom <= 6) return 2.0;
-  if (zoom === 7) return 2.5;
-  if (zoom === 8) return 3.0;
-  if (zoom === 9) return 3.5;
-  if (zoom === 10) return 4.5;
-  if (zoom === 11) return 5.5;
-  if (zoom === 12) return 6.5;
-  return 7.5;
 }

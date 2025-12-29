@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 import CandidatePanel from '@/components/candidates/CandidatePanel';
 import { CloseIcon, SearchIcon } from '@/components/icons';
-import type { ConstituencyInfo } from '@/components/map/ConstituencyLayer';
 import MapContainer from '@/components/map/MapContainer';
 import MobileHeader from '@/components/mobile/MobileHeader';
 import Sidebar from '@/components/sidebar/Sidebar';
@@ -14,6 +13,7 @@ import { ParliamentIllustration } from '@/components/ui/ParliamentIllustration';
 
 import { TOTAL_CONSTITUENCIES_BN } from '@/constants/site';
 
+import type { ConstituencyInfo } from '@/types/constituency';
 import type { FilterState } from '@/types/map';
 
 export default function HomePage() {
