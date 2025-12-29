@@ -1,10 +1,12 @@
-import { promises as fs } from 'fs';
 import { MetadataRoute } from 'next';
-import path from 'path';
 
 import { getConstituencyUrl, slugify } from '@/lib/url-utils';
 
 import { siteConfig } from '@/constants/site';
+
+import divisionData from '../../public/data/bd-divisions.json';
+// Static imports - resolved at build time, works in standalone mode
+import constituencyVoterData from '../../public/data/constituency-voters-2025.json';
 
 interface ConstituencyData {
   id: string;
@@ -13,52 +15,16 @@ interface ConstituencyData {
   district_english: string;
 }
 
-interface VoterData {
-  metadata: {
-    updated_at: string;
-  };
-  constituencies: ConstituencyData[];
-}
-
-interface Division {
-  name: string;
-}
-
-interface DivisionData {
-  divisions: Division[];
-}
-
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
+  const lastUpdated = new Date(
+    constituencyVoterData.metadata?.updated_at || '2025-12-28',
+  );
 
-  // Read actual constituency data
-  let constituencies: ConstituencyData[] = [];
-  let divisions: Division[] = [];
-  let lastUpdated = new Date('2025-12-28');
-
-  try {
-    const filePath = path.join(
-      process.cwd(),
-      'public/data/constituency-voters-2025.json',
-    );
-    const fileContent = await fs.readFile(filePath, 'utf-8');
-    const data: VoterData = JSON.parse(fileContent);
-    constituencies = data.constituencies || [];
-    if (data.metadata?.updated_at) {
-      lastUpdated = new Date(data.metadata.updated_at);
-    }
-  } catch {
-    constituencies = [];
-  }
-
-  try {
-    const divPath = path.join(process.cwd(), 'public/data/bd-divisions.json');
-    const divContent = await fs.readFile(divPath, 'utf-8');
-    const divData: DivisionData = JSON.parse(divContent);
-    divisions = divData.divisions || [];
-  } catch {
-    divisions = [];
-  }
+  // Get constituencies from static import
+  const constituencies = (constituencyVoterData.constituencies ||
+    []) as ConstituencyData[];
+  const divisions = divisionData.divisions || [];
 
   // Generate division URLs
   const divisionUrls: MetadataRoute.Sitemap = divisions.map((d) => ({
