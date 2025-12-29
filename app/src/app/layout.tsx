@@ -50,7 +50,10 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon/favicon.ico',
+    icon: [
+      { url: '/favicon/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon/favicon.ico', sizes: 'any' },
+    ],
     shortcut: '/favicon/favicon-16x16.png',
     apple: '/favicon/apple-touch-icon.png',
   },

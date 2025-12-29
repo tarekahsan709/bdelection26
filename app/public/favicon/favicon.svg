@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><g clip-path="url(#SvgjsClipPath1507)"><rect width="1000" height="1000" fill="#f1ebeb"></rect><g transform="matrix(1.953125,0,0,1.953125,0,0)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="#0d9488"></circle>
+
+  <!-- Ballot box shape -->
+  <rect x="140" y="180" width="232" height="200" rx="16" fill="#0c0c0c" opacity="0.9"></rect>
+
+  <!-- Ballot slot -->
+  <rect x="180" y="200" width="152" height="16" rx="4" fill="#14b8a6"></rect>
+
+  <!-- Ballot paper going in -->
+  <rect x="220" y="140" width="72" height="80" rx="4" fill="white" opacity="0.95"></rect>
+  <rect x="235" y="160" width="42" height="6" rx="2" fill="#0d9488"></rect>
+  <rect x="235" y="175" width="30" height="6" rx="2" fill="#0d9488" opacity="0.6"></rect>
+  <rect x="235" y="190" width="36" height="6" rx="2" fill="#0d9488" opacity="0.4"></rect>
+
+  <!-- Checkmark on ballot -->
+  <path d="M242 205 L250 215 L268 195" stroke="#0d9488" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+
+  <!-- "26" text for 2026 -->
+  <text x="256" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white">26</text>
+</svg></svg></g></g><defs><clipPath id="SvgjsClipPath1507"><rect width="1000" height="1000" x="0" y="0" rx="250" ry="250"></rect></clipPath></defs></svg>
