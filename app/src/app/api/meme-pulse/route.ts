@@ -14,10 +14,6 @@ import {
 
 import type { MemePulseResponse } from '@/types/meme-pulse';
 
-// =============================================================================
-// Validation Schema
-// =============================================================================
-
 const querySchema = z.object({
   district: z.string().min(1).max(100),
   sort: z.enum(['trending', 'recent']).default('trending'),
@@ -50,7 +46,6 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  // Check API availability
   const apiKey = process.env.YOUTUBE_API_KEY;
   const hasQuota = await checkQuota();
 
