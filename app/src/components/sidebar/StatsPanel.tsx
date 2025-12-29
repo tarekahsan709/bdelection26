@@ -2,18 +2,77 @@
 
 import { memo, useMemo } from 'react';
 
+import { formatBengaliNumber } from '@/lib/sidebar-utils';
+
+import {
+  type StatAccent,
+  SIDEBAR_TEXT,
+  SIDEBAR_UI,
+  STAT_ACCENTS,
+} from '@/constants/sidebar';
 import { useConstituencyData } from '@/contexts/ConstituencyDataContext';
 
 import type { FilterState } from '@/types/map';
+
+// =============================================================================
+// Types
+// =============================================================================
 
 interface StatsPanelProps {
   filterState: FilterState;
 }
 
+interface Stats {
+  total: number;
+  male: number;
+  female: number;
+  constituencies: number;
+}
+
+// =============================================================================
+// Sub-Components
+// =============================================================================
+
+function LoadingSkeleton() {
+  return (
+    <div className='grid grid-cols-2 gap-2'>
+      {Array.from({ length: SIDEBAR_UI.STATS_SKELETON_COUNT }).map((_, i) => (
+        <div key={i} className='p-3 rounded-xl bg-white/5 animate-pulse'>
+          <div className='h-3 w-12 bg-neutral-800 rounded mb-2' />
+          <div className='h-5 w-16 bg-neutral-800 rounded' />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+interface StatCardProps {
+  label: string;
+  value: string;
+  accent: StatAccent;
+}
+
+function StatCard({ label, value, accent }: StatCardProps) {
+  return (
+    <div className='p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.04] transition-colors'>
+      <p className='text-[11px] text-neutral-500 uppercase tracking-wide mb-1'>
+        {label}
+      </p>
+      <p className={`text-lg font-bold tabular-nums ${STAT_ACCENTS[accent]}`}>
+        {value}
+      </p>
+    </div>
+  );
+}
+
+// =============================================================================
+// Main Component
+// =============================================================================
+
 function StatsPanel({ filterState }: StatsPanelProps) {
   const { constituencies, metadata, loading } = useConstituencyData();
 
-  const stats = useMemo(() => {
+  const stats = useMemo<Stats>(() => {
     const filtered = constituencies.filter((c) => {
       if (filterState.divisionId && c.division_id !== filterState.divisionId) {
         return false;
@@ -38,78 +97,33 @@ function StatsPanel({ filterState }: StatsPanelProps) {
   }, [constituencies, metadata, filterState]);
 
   if (loading) {
-    return (
-      <div className='grid grid-cols-2 gap-2'>
-        {[...Array(4)].map((_, i) => (
-          <div key={i} className='p-3 rounded-xl bg-white/5 animate-pulse'>
-            <div className='h-3 w-12 bg-neutral-800 rounded mb-2' />
-            <div className='h-5 w-16 bg-neutral-800 rounded' />
-          </div>
-        ))}
-      </div>
-    );
+    return <LoadingSkeleton />;
   }
 
   return (
     <div className='grid grid-cols-2 gap-2'>
       <StatCard
-        label='মোট ভোটার'
-        value={formatNumber(stats.total)}
+        label={SIDEBAR_TEXT.stats.totalVoters}
+        value={formatBengaliNumber(stats.total)}
         accent='white'
       />
       <StatCard
-        label='নির্বাচনী এলাকা'
+        label={SIDEBAR_TEXT.stats.constituencies}
         value={stats.constituencies.toString()}
         accent='white'
       />
-      <StatCard label='পুরুষ' value={formatNumber(stats.male)} accent='teal' />
       <StatCard
-        label='নারী'
-        value={formatNumber(stats.female)}
+        label={SIDEBAR_TEXT.stats.male}
+        value={formatBengaliNumber(stats.male)}
+        accent='teal'
+      />
+      <StatCard
+        label={SIDEBAR_TEXT.stats.female}
+        value={formatBengaliNumber(stats.female)}
         accent='amber'
       />
     </div>
   );
-}
-
-function StatCard({
-  label,
-  value,
-  accent,
-}: {
-  label: string;
-  value: string;
-  accent: 'white' | 'teal' | 'amber';
-}) {
-  const accentColors = {
-    white: 'text-white',
-    teal: 'text-teal-400',
-    amber: 'text-amber-400',
-  };
-
-  return (
-    <div className='p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:bg-white/[0.04] transition-colors'>
-      <p className='text-[11px] text-neutral-500 uppercase tracking-wide mb-1'>
-        {label}
-      </p>
-      <p className={`text-lg font-bold tabular-nums ${accentColors[accent]}`}>
-        {value}
-      </p>
-    </div>
-  );
-}
-
-function formatNumber(num: number): string {
-  if (num >= 10000000) {
-    return (num / 10000000).toFixed(1) + ' কোটি';
-  }
-  if (num >= 100000) {
-    return (num / 100000).toFixed(1) + ' লক্ষ';
-  }
-  if (num >= 1000) {
-    return (num / 1000).toFixed(0) + ' হাজার';
-  }
-  return num.toLocaleString('en-US');
 }
 
 export default memo(StatsPanel);
