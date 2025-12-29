@@ -376,7 +376,7 @@ export default function HomePage() {
         {!selectedConstituency && (
           <button
             onClick={() => setIsSidebarOpen(true)}
-            className='fixed bottom-16 right-4 z-40 md:hidden flex items-center gap-2 px-5 py-3.5 bg-linear-to-r from-teal-600 to-teal-500 text-white font-medium rounded-full shadow-lg shadow-teal-500/25 active:scale-95 transition-transform'
+            className='fixed bottom-4 right-4 z-40 md:hidden flex items-center gap-2 px-5 py-3.5 bg-linear-to-r from-teal-600 to-teal-500 text-white font-medium rounded-full shadow-lg shadow-teal-500/25 active:scale-95 transition-transform'
             style={{ marginBottom: 'env(safe-area-inset-bottom)' }}
             aria-label='Find my area'
           >
