@@ -87,7 +87,7 @@ npm run typecheck # Type check with TypeScript
 - [ ] Historical election comparison (2008, 2014, 2018, 2024)
 - [ ] Constituency profile pages
 - [ ] Search functionality
-- [ ] More party candidate data (AL, JP, etc.)
+- [ ] Complete NCP candidate data (125/300)
 - [ ] Actual election results visualization
 
 ## Contributing
@@ -101,6 +101,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 ## Author
 
 **Nazmul Ahsan**
+
 - Email: tarekahsan709@gmail.com
 - GitHub: [@tarekahsan709](https://github.com/tarekahsan709)
 

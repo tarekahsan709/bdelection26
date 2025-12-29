@@ -83,59 +83,45 @@ export const COLORS = {
 
   // Text colors
   text: {
-    primary: '#f1f5f9',   // Warm white
+    primary: '#f1f5f9', // Warm white
     secondary: '#94a3b8', // Slate-400
-    muted: '#64748b',     // Slate-500
-    inverse: '#0f172a',   // Dark for light backgrounds
+    muted: '#64748b', // Slate-500
+    inverse: '#0f172a', // Dark for light backgrounds
   },
 } as const;
 
 // Party Colors - Distinct from UI, for political data
 export const PARTY_COLORS = {
   BNP: {
-    color: '#10b981',     // Emerald - distinct from AL
+    color: '#10b981', // Emerald - distinct from AL
     bg: 'rgba(16, 185, 129, 0.15)',
     name: 'BNP',
     fullName: 'Bangladesh Nationalist Party',
     fullNameBn: 'বাংলাদেশ জাতীয়তাবাদী দল',
   },
   Jamaat: {
-    color: '#f59e0b',     // Gold/Amber - traditional
+    color: '#f59e0b', // Gold/Amber - traditional
     bg: 'rgba(245, 158, 11, 0.15)',
     name: 'Jamaat',
     fullName: 'Jamaat-e-Islami',
     fullNameBn: 'জামায়াতে ইসলামী',
   },
   NCP: {
-    color: '#8b5cf6',     // Violet - fresh, new party
+    color: '#8b5cf6', // Violet - fresh, new party
     bg: 'rgba(139, 92, 246, 0.15)',
     name: 'NCP',
     fullName: 'Jatiya Nagorik Party',
     fullNameBn: 'জাতীয় নাগরিক পার্টি',
   },
   JUIB: {
-    color: '#22c55e',     // Green - Islamic party in BNP alliance
+    color: '#22c55e', // Green - Islamic party in BNP alliance
     bg: 'rgba(34, 197, 94, 0.15)',
     name: 'JUIB',
     fullName: 'Jamiat Ulama-e-Islam Bangladesh',
     fullNameBn: 'জমিয়তে উলামায়ে ইসলাম বাংলাদেশ',
   },
-  AL: {
-    color: '#0d9488',     // Teal - distinct from flag green
-    bg: 'rgba(13, 148, 136, 0.15)',
-    name: 'AL',
-    fullName: 'Awami League',
-    fullNameBn: 'আওয়ামী লীগ',
-  },
-  JP: {
-    color: '#eab308',     // Yellow - traditional
-    bg: 'rgba(234, 179, 8, 0.15)',
-    name: 'JP',
-    fullName: 'Jatiya Party',
-    fullNameBn: 'জাতীয় পার্টি',
-  },
   Independent: {
-    color: '#64748b',     // Slate - neutral
+    color: '#64748b', // Slate - neutral
     bg: 'rgba(100, 116, 139, 0.15)',
     name: 'Independent',
     fullName: 'Independent',
@@ -145,12 +131,12 @@ export const PARTY_COLORS = {
 
 // Semantic colors for data visualization
 export const DATA_COLORS = {
-  urban: '#0d9488',       // Teal - developed areas
-  rural: '#f59e0b',       // Gold - agricultural areas
-  positive: '#10b981',    // Emerald - good status
-  warning: '#f59e0b',     // Gold - caution
-  negative: '#f87171',    // Coral - needs attention
-  neutral: '#64748b',     // Slate - neutral data
+  urban: '#0d9488', // Teal - developed areas
+  rural: '#f59e0b', // Gold - agricultural areas
+  positive: '#10b981', // Emerald - good status
+  warning: '#f59e0b', // Gold - caution
+  negative: '#f87171', // Coral - needs attention
+  neutral: '#64748b', // Slate - neutral data
 } as const;
 
 // Chart colors (ordered for multi-series charts)

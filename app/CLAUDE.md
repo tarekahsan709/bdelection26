@@ -7,6 +7,7 @@ A world-class, interactive election visualization platform for Bangladesh inspir
 ## What We're Building
 
 An interactive dot-density map where:
+
 - Each dot represents ~10,000 voters
 - Dots are color-coded by political party
 - Users can filter by Division → District → Constituency
@@ -51,25 +52,27 @@ bangladesh-election/
 ## Data Schemas
 
 ### Constituency (`bd-constituencies.json`)
+
 ```typescript
 interface Constituency {
   id: string;
-  name: string;                    // Bengali name
-  name_english: string;            // e.g., "Dhaka-1"
+  name: string; // Bengali name
+  name_english: string; // e.g., "Dhaka-1"
   division_id: string;
   division: string;
   division_english: string;
   district_id: string;
   district: string;
   district_english: string;
-  areas: Area[];                   // Upazilas/wards in this constituency
-  registered_voters?: number;      // From DBpedia (291/300 have data)
+  areas: Area[]; // Upazilas/wards in this constituency
+  registered_voters?: number; // From DBpedia (291/300 have data)
   lat?: number;
   long?: number;
 }
 ```
 
 ### Candidate
+
 ```typescript
 interface Candidate {
   candidate_id: number;
@@ -79,20 +82,21 @@ interface Candidate {
   constituency_english: string;
   division_id: string;
   district_id: string;
-  candidate_name?: string;         // Bengali
+  candidate_name?: string; // Bengali
   candidate_name_english?: string;
   election_year?: number;
 }
 ```
 
 ### Party Colors
+
 ```typescript
 const PARTY_COLORS = {
-  BNP: '#00a651',      // Green
-  Jamaat: '#ff6b35',   // Orange
-  AL: '#006a4e',       // Awami League green (future)
-  JP: '#ffcc00',       // Jatiya Party yellow (future)
-  Independent: '#9b59b6'
+  BNP: '#00a651', // Green
+  Jamaat: '#ff6b35', // Orange
+  NCP: '#8b5cf6', // Violet
+  JUIB: '#22c55e', // Green (alliance)
+  Independent: '#9b59b6',
 };
 ```
 
@@ -111,11 +115,13 @@ City Corporations: 12 (have wards instead of unions)
 ## Key Design Decisions
 
 ### Dot Density Visualization
+
 - Each constituency generates dots based on voter count: `Math.floor(voters / 10000)`
 - Dots are randomly distributed within a radius of the constituency center
 - Party color is applied to dots where that party has a candidate
 
 ### Map Interaction
+
 - Dark theme using CartoDB `dark_all` tiles
 - Bounded to Bangladesh coordinates
 - Click to zoom + show constituency details
@@ -123,6 +129,7 @@ City Corporations: 12 (have wards instead of unions)
 - Filter by division/district updates map bounds
 
 ### Sidebar
+
 - Division → District cascading dropdowns
 - Stats update in real-time based on filter
 - Bar chart shows party candidate distribution
@@ -130,20 +137,19 @@ City Corporations: 12 (have wards instead of unions)
 
 ## Current Data Status
 
-| Data | Count | Status |
-|------|-------|--------|
-| Constituencies | 300 | Complete |
-| Voter counts | 291/300 | 97% complete |
-| BNP candidates | 300 | Complete |
-| Jamaat candidates | 39 | 2008 election data |
-| Division boundaries | 8 | Complete |
-| District boundaries | 64 | Complete |
-| Upazila polygons | 463 | In bangladesh.geojson |
+| Data                | Count   | Status                |
+| ------------------- | ------- | --------------------- |
+| Constituencies      | 300     | Complete              |
+| Voter counts        | 291/300 | 97% complete          |
+| BNP candidates      | 300     | Complete              |
+| Jamaat candidates   | 39      | 2008 election data    |
+| Division boundaries | 8       | Complete              |
+| District boundaries | 64      | Complete              |
+| Upazila polygons    | 463     | In bangladesh.geojson |
 
 ### Missing Data Needed
-- Awami League candidates
-- Jatiya Party candidates
-- NCP candidates (real data)
+
+- NCP candidates (real data - 125/300 complete)
 - Actual election results (vote counts per party per constituency)
 - 9 constituency voter counts still missing
 
@@ -176,16 +182,21 @@ npm run lint     # Run ESLint
 ## Common Issues
 
 ### Leaflet SSR Error
+
 Leaflet requires `window` object. Always use dynamic import:
+
 ```typescript
 const Map = dynamic(() => import('./Map'), { ssr: false });
 ```
 
 ### Constituency ID Matching
+
 Constituency IDs are strings in some files, numbers in others. Always use:
+
 ```typescript
-parseInt(constituency.id) === candidate.constituency_id
+parseInt(constituency.id) === candidate.constituency_id;
 ```
 
 ### Bengali Text Encoding
+
 All JSON files use UTF-8. Bengali names are in `name`/`bn_name` fields, English in `name_english`.
